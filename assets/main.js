@@ -22,13 +22,28 @@ function updateInterface()
 	$('#copper').text(game.player.storage.getItemCount(Items.copper.id));
 	$('#copperBar').text(game.player.storage.getItemCount(Items.copperBar.id));
 	$('#iron').text(game.player.storage.getItemCount(Items.iron.id));
-	$('#ironbar').text(game.player.storage.getItemCount(Items.ironBar.id));
+	$('#ironBar').text(game.player.storage.getItemCount(Items.ironBar.id));
 	$('#gold').text(game.player.storage.getItemCount(Items.gold.id));
 	$('#goldBar').text(game.player.storage.getItemCount(Items.goldBar.id));
 	
 	$('#fuel').text(game.player.storage.getItemCount(Items.fuel.id));
 	$('#fuelCan').text(game.player.storage.getItemCount(Items.fuelCan.id));
 	$('#fuelTank').text(game.player.storage.getItemCount(Items.fuelTank.id));
+	
+	if(game.currentPlanet)
+	{
+		resources = game.currentPlanet._getAvailableResources("mine");
+		var elements = [];
+		for(var i=0; i < resources.length; i++)
+		{
+			elements.push(game.getItemName(resources[i].id));
+		}
+		$('#elementFinder').text(elements.join());
+	}
+	else
+	{
+		$('#elementFinder').text("N/A");
+	}
 }
 
 //---------------------------------------------------------------------------

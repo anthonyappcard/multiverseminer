@@ -51,16 +51,20 @@ function Game()
 	
 	this.reset = function(fullReset)
 	{
+		// Clear the storage
+		localStorage.clear();
+		
 		// Clear the local variables
-		this.currentPlanet = 0;		
 		this.planets = {};
 		
 		// Reset the saved settings
+		this.player.reset(fullReset);
 		this.settings.reset(fullReset);
 		
-		// Re-load from the defaults
-		this.save();
-		this.load();
+		if (this.currentPlanet)
+		{
+			this.currentPlanet.reset(fullReset);
+		}
 		
 		this.setStartupState();
 	}

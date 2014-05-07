@@ -40,8 +40,8 @@ function Planet(data)
 				continue;
 			}
 			
-			var min = resource.min || 0;
-			var max = resource.max || Number.MAX_VALUE;
+			var min = resource.minDepth || 0;
+			var max = resource.maxDepth || Number.MAX_VALUE;
 			if(min > this.currentDepth || max < this.currentDepth)
 			{
 				continue;
@@ -84,5 +84,7 @@ function Planet(data)
 	{
 		this.miner.reset();
 		this.storage.reset();
+		
+		this.currentDepth = 0;
 	}
 }

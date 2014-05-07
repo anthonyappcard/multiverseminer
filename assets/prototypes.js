@@ -41,6 +41,16 @@ function Statistics(key)
 		this.manualDigCount = Utils.loadInt(storageKey + 'manualDigCount', 1);
 		this.manualGatherCount = Utils.loadInt(storageKey + 'manualGatherCount', 1);
 	}
+	
+	this.reset = function(fullReset)
+	{
+		this.clickCount = 0;
+		
+		this.autoDigCount = 0;
+		
+		this.manualDigCount = 0;
+		this.manualGatherCount = 0;
+	}
 };
 
 //---------------------------------------------------------------------------
@@ -121,6 +131,11 @@ function Miner(id)
 
 		this.baseMineSpeed = Utils.loadFloat(storageKey + 'baseMineSpeed', 1);
 	}
+	
+	this.reset = function(fullReset)
+	{
+		this.baseMineSpeed = 1;
+	}
 }
 
 //---------------------------------------------------------------------------
@@ -163,10 +178,18 @@ function Combatant(id)
 	{	
 		var storageKey = this.getStorageKey();
 		
-		this.health = Utils.loadFloat(storageKey + 'health', 1);
-		this.defense = Utils.loadFloat(storageKey + 'defense', 1);
+		this.health = Utils.loadFloat(storageKey + 'health', 0);
+		this.defense = Utils.loadFloat(storageKey + 'defense', 0);
 		
 		this.baseAttackSpeed = Utils.loadFloat(storageKey + 'baseAttackSpeed', 1);
+	}
+	
+	this.reset = function(fullReset)
+	{
+		this.health = 0;
+		this.defense = 0;
+		
+		this.baseAttackSpeed = 1;
 	}
 }
 
@@ -285,5 +308,10 @@ function Storage(id)
 			this.items[key] = Utils.loadInt(storageKey + key, 0);
 			Utils.log("Loaded item "+key+" with "+this.items[key]);
 		}
+	}
+	
+	this.reset = function(fullReset)
+	{
+		this.items = {};
 	}
 }

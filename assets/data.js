@@ -3,13 +3,13 @@ Items = {
 		'oxygenCan': { 'id': 2, 'name': 'Oxygen can', 'baseValue': 11, 'craftResult': 1, 'craftCost': {}, },
 		'oxygenTank': {	'id': 3, 'name': 'Oxygen tank', 'baseValue': 120, 'craftResult': 1, 'craftCost': {}, },
 		
-		'copper': { 'id': 10, 'name': 'copper', 'baseValue': 0.5, },
+		'copper': { 'id': 10, 'name': 'Copper', 'baseValue': 0.5, },
 		'copperBar': {	'id': 11, 'name': 'Copper bar', 'baseValue': 5,	'craftResult': 1, 'craftCost': {}, },
 			
 		'iron': { 'id': 20,	'name': 'Iron',	'baseValue': 1,	},
 		'ironBar': { 'id': 21, 'name': 'Iron bar', 'baseValue': 10, 'craftResult': 1, 'craftCost': {}, },
 		
-		'gold':	{ 'id': 30,	'name': 'copper', 'baseValue': 100, },
+		'gold':	{ 'id': 30,	'name': 'Gold', 'baseValue': 100, },
 		'goldBar': { 'id': 31, 'name': 'Gold bar', 'baseValue': 1000, 'craftResult': 1, 'craftCost': {}, },
 		
 		'fuel':	{ 'id': 400, 'name': 'Fuel', 'baseValue': 1000, },
@@ -58,8 +58,8 @@ Planets = {
 //---------------------------------------------------------------------------
 Planets.earth.resources[Items.oxygen.id] = { 'mode': 'gather', 'minDepth': -20, 'maxDepth': 0, 'baseChance': 1 };
 Planets.earth.resources[Items.fuel.id] = { 'mode': 'gather', 'minDepth': -20, 'maxDepth': 0, 'baseChance': 0.1 };
-Planets.earth.resources[Items.iron.id] = { 'mode': 'mine', 'minDepth': 5, 'maxDepth': 35, 'baseChance': 0.5 };
-Planets.earth.resources[Items.copper.id] = { 'mode': 'mine', 'minDepth': 5, 'maxDepth': 15, 'baseChance': 0.9 };
-Planets.earth.resources[Items.gold.id] = { 'mode': 'mine', 'minDepth': 50, 'maxDepth': 150, 'baseChance': 0.1 };
+Planets.earth.resources[Items.iron.id] = { 'mode': 'mine', 'minDepth': 5, 'maxDepth': 350, 'baseChance': 0.5 };
+Planets.earth.resources[Items.copper.id] = { 'mode': 'mine', 'minDepth': 5, 'maxDepth': 1500, 'baseChance': 0.9 };
+Planets.earth.resources[Items.gold.id] = { 'mode': 'mine', 'minDepth': 500, 'maxDepth': 5500, 'baseChance': 0.1 };
 
 Planets.moon.resources[Items.iron.id] = { 'mode': 'mine', 'minDepth': 20, 'maxDepth': 100, 'baseChance': 0.9 };
