@@ -1,101 +1,79 @@
-var game = {
-    earth: { 
-	    depth: 0,
-		iron: 0,
-		ironBar: 0,
-		ironChance: 20,
-		fuel: 0,
-        fuelCan: 0,
-		fuelChance: 5,
-		oxygen: 0,
-		oxygenChance: 100,
-        oxygenTank: 0,
-		chance: 0,
-		copper: 0,
-        copperBar: 0,
-		copperChance: 5,
-        gold: 0,
-        goldBar: 0,
-        goldChance: 1
-	},
-	moon: {
-	    depth: 0
-	},
-	pick: {
-		current: {
-			owned: true,
-			power: 1
-		},
-		copper: {
-			owned: false,
-			power: 3,
-			name: "Copper Pickaxe"
-		},
-		iron: {
-			owned: false,
-			power: 10,
-			name: "Iron Pickaxe"
-		},
-        gold: {
-            owned: false,
-            power: 15,
-            name: "Gold Pickaxe"
-        }
-	}
-};
+//---------------------------------------------------------------------------
+//core setup
+//---------------------------------------------------------------------------
+var game = new Game();
+game.init();
 
-var atmosphere = 0;
+var interval = 1000 / 60;
+setInterval(function () { onUpdate(); }, interval);
 
-function gather_atmosphere(number){
-    atmosphere = atmosphere + number;
-    document.getElementById("atmosphere").innerHTML = atmosphere;
-};
-
-
-function dig_down(){
-    game.earth.depth+=game.pick.current.power;
-	if(game.earth.depth>10000){
-	    game.earth.ironChance=100*game.pick.current.power;
-	} else if(game.earth.depth>9000){
-	    game.earth.ironChance=90*game.pick.current.power;
-	} else if(game.earth.depth>8000){
-	    game.earth.ironChance=80*game.pick.current.power;
-	} else if(game.earth.depth>7000){
-	    game.earth.ironChance=70*game.pick.current.power;
-	} else if(game.earth.depth>6000){
-	    game.earth.ironChance=50*game.pick.current.power;
-	} else if(game.earth.depth>5000){
-	    game.earth.ironChance=40*game.pick.current.power;
-	} else if(game.earth.depth>4000){
-	    game.earth.ironChance=30*game.pick.current.power;
-	} else if(game.earth.depth>3000){
-	    game.earth.ironChance=20*game.pick.current.power;
-	} else {
-	    game.earth.ironChance=10*game.pick.current.power;
-	}
-	game.earth.chance = getRandom();
-	if(game.earth.chance<game.earth.ironChance){
-	    game.earth.iron++;
-		document.getElementById('iron').innerHTML = game.earth.iron;
-	}
-	if(game.earth.chance<game.earth.copperChance){
-	    game.earth.copper++;
-		document.getElementById('copper').innerHTML = game.earth.copper;
-	}
-    if(game.earth.chance<game.earth.fuelChance){
-        game.earth.fuel++;
-        document.getElementById('fuel').innerHTML = game.earth.fuel;
-    }
-	document.getElementById('depth').innerHTML = game.earth.depth;
+//---------------------------------------------------------------------------
+//user interface
+//---------------------------------------------------------------------------
+function updateInterface()
+{
+	$('#planet').text(game.currentPlanet.data.name);
+	$('#depth').text(game.currentPlanet.currentDepth);
+	
+	$('#oxygen').text(game.player.storage.getItemCount(Items.oxygen.id));
+	$('#oxygenCan').text(game.player.storage.getItemCount(Items.oxygenCan.id));
+	$('#oxygenTank').text(game.player.storage.getItemCount(Items.oxygenTank.id));
+	
+	$('#copper').text(game.player.storage.getItemCount(Items.copper.id));
+	$('#copperBar').text(game.player.storage.getItemCount(Items.copperBar.id));
+	$('#iron').text(game.player.storage.getItemCount(Items.iron.id));
+	$('#ironbar').text(game.player.storage.getItemCount(Items.ironBar.id));
+	$('#gold').text(game.player.storage.getItemCount(Items.gold.id));
+	$('#goldBar').text(game.player.storage.getItemCount(Items.goldBar.id));
+	
+	$('#fuel').text(game.player.storage.getItemCount(Items.fuel.id));
+	$('#fuelCan').text(game.player.storage.getItemCount(Items.fuelCan.id));
+	$('#fuelTank').text(game.player.storage.getItemCount(Items.fuelTank.id));
 }
 
-function getRandom(){
-    return Math.floor((Math.random() * 100) + 1);
+//---------------------------------------------------------------------------
+//function hooks
+//---------------------------------------------------------------------------
+function onUpdate()
+{
+	game.update();
+	
+	updateInterface();
 }
 
-function planetEarth(){
+function onCraft(what)
+{
+	if(what == undefined)
+	{
+		Utils.logError("onCraft with invalid target");
+		return;
+	}
+	
+	game.player.craft(what);
+	
+	updateInterface();
+}
+
+function onDigSideways()
+{
+	// Todo
+}
+
+function onDigDown()
+{
+	game.settings.addStat('clickCount');
+	game.player.mine();
+}
+
+function onGatherAtmosphere()
+{
+	game.settings.addStat('clickCount');	
+	game.player.gather();
+}
+
+function onPlanetEarth(){
 	$(".planet").planetarium({
-   		autospin: "10000ms",                                  
+   		autospin: "1000ms",                                  
    		angle: "20deg",                                      
    		glow: "rgba(255, 255, 255, 0.34902) 0px 0px 50px, inset 33px 20px 50px rgba(0,0,0,0.5)", 
    		pattern: "assets/texture-earth.jpg",                    
@@ -108,38 +86,12 @@ function planetEarth(){
  });
 }
 
-function dig_sideways(){
-	if(game.earth.depth>10000){
-	    game.earth.ironChance=100*game.pick.current.power;
-	} else if(game.earth.depth>9000){
-	    game.earth.ironChance=90*game.pick.current.power;
-	} else if(game.earth.depth>8000){
-	    game.earth.ironChance=80*game.pick.current.power;
-	} else if(game.earth.depth>7000){
-	    game.earth.ironChance=70*game.pick.current.power;
-	} else if(game.earth.depth>6000){
-	    game.earth.ironChance=50*game.pick.current.power;
-	} else if(game.earth.depth>5000){
-	    game.earth.ironChance=40*game.pick.current.power;
-	} else if(game.earth.depth>4000){
-	    game.earth.ironChance=30*game.pick.current.power;
-	} else if(game.earth.depth>3000){
-	    game.earth.ironChance=20*game.pick.current.power;
-	} else {
-	    game.earth.ironChance=10*game.pick.current.power;
-	}
-	game.earth.chance = getRandom();
-	if(game.earth.chance<game.earth.ironChance){
-	    game.earth.iron++;
-		document.getElementById('iron').innerHTML = game.earth.iron;
-	}
-	if(game.earth.chance<game.earth.copperChance){
-	    game.earth.copper++;
-		document.getElementById('copper').innerHTML = game.earth.copper;
-	}
-    if(game.earth.chance<game.earth.fuelChance){
-        game.earth.fuel++;
-        document.getElementById('fuel').innerHTML = game.earth.fuel;
-    }
-	document.getElementById('depth').innerHTML = game.earth.depth;
+function onSave()
+{
+	game.save();
+}
+
+function onReset()
+{
+	game.reset();
 }

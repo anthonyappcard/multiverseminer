@@ -6,10 +6,14 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Multiverse Miner</title>
     <script src="assets/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <script src="assets/data.js" type="text/javascript"></script>
+    <script src="assets/game.js" type="text/javascript"></script>
+    <script src="assets/planet.js" type="text/javascript"></script>
+    <script src="assets/player.js" type="text/javascript"></script>
+    <script src="assets/prototypes.js" type="text/javascript"></script>
+    <script src="assets/settings.js" type="text/javascript"></script>
+    <script src="assets/utils.js" type="text/javascript"></script>
     <script src="assets/main.js" type="text/javascript"></script>
-	<script src="assets/craft.js" type="text/javascript"></script>
-	<script src="assets/furnace.js" type="text/javascript"></script>
-    <script src="assets/earth.js" type="text/javascript"></script>
     <script src="assets/jquery.planetarium.js" type="text/javascript"></script>
     <link href="assets/planetarium.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
@@ -57,19 +61,26 @@
 <body text="white">
   <div class="container">
     <h1>Multiverse Miner</h1><br />
-    <button onclick="dig_sideways()">Dig around</button>
-    <button onclick="dig_down()">Dig down</button> <span id="depth">0</span> meters deep.
+    <button onclick="onDigSideways()">Dig around</button>
+    <button onclick="onDigDown()">Dig down</button> <span id="depth">0</span> meters deep.
 
-    <p><button onclick="gather_atmosphere(1)">Gather atmosphere.</button><br /></p>
+    <p><button onclick="onGatherAtmosphere()">Gather atmosphere.</button><br /></p>
 
     <div class="planet"></div><br />
+    <span id="oxygen">0</span> oxygen<br />
+    <span id="oxygenCan">0</span> oxygen cans<br />
+    <span id="oxygenTank">0</span> oxygen tanks<br />
     <span id="copper">0</span> copper<br />
     <span id="iron">0</span> iron<br />
-    <span id="atmosphere">0</span> oxygen<br />
+    <span id="gold">0</span> gold<br />
+    <span id="copperBar">0</span> copper bars<br />
     <span id="ironBar">0</span> iron bars<br />
+    <span id="goldBar">0</span> gold bars<br />
     <span id="fuel">0</span> fuel<br />
     <span id="fuelCan">0</span> fuel cans<br />
+    <span id="fuelTank">0</span> fuel tanks<br />
     <br />
+    <p><button onclick="onSave()">Save</button><button onclick="onReset()">Reset</button><br /></p>
     <br />
   </div>
 
@@ -86,32 +97,36 @@
     <div id="accordion">
       <h4 class="accordion-toggle">Fuel</h4>
       <div class="accordion-content default">
-        <button onclick='craft("fuelCan")'>Fuel can [10 fuel, 1 iron bar]</button><br />
-        <button onclick="craftFuelTank()">Fuel tank [1 fuel can, 10 iron
+        <button onclick='onCraft(Items.fuelCan.id)'>Fuel can [10 fuel, 1 iron bar]</button><br />
+        <button onclick="onCraft(Items.fuelTank.id)">Fuel tank [1 fuel can, 10 iron
         bar]</button><br />
       </div>
       <h4 class="accordion-toggle">Iron</h4>
       <div class="accordion-content default">
-        <button onclick='craft("ironBar")'>Craft an iron bar [10 iron]</button><br />
-        <button onclick="craftIronPick()">Iron pickaxe [10 iron bars]</button><br />
+	    <button onclick='onCraft(Items.copperBar.id)'>Craft an copper bar [10 copper]</button><br />
+	    <button onclick='onCraft(Items.copperPick.id)'>Craft an copper pick [10 copper bars]</button><br />
+        <button onclick='onCraft(Items.ironBar.id)'>Craft an iron bar [10 iron]</button><br />
+        <button onclick="onCraft(Items.ironPick.id)">Iron pickaxe [10 iron bars]</button><br />
+        <button onclick='onCraft(Items.goldBar.id)'>Craft an gold bar [10 gold]</button><br />
+        <button onclick="onCraft(Items.goldPick.id)">Gold pickaxe [10 gold bars]</button><br />
       </div>
       
       <h4 class="accordion-toggle">Oxygen</h4>
       <div class="accordion-content default">
-        <button onclick="craftOxygenCan()">Oxygen can [1 oxygen, 1 ironbar]</button><br />
-        <button onclick="craftOxygenTank()">Oxygen tank [1 oxygen can, 10 iron bar]</button><br />
+        <button onclick="onCraft(Items.oxygenCan.id)">Oxygen can [1 oxygen, 1 ironbar]</button><br />
+        <button onclick="onCraft(Items.oxygenTank.id)">Oxygen tank [1 oxygen can, 10 iron bar]</button><br />
       </div>
       
       <h4 class="accordion-toggle">Machinery</h4>
       <div class="accordion-content default">
-        <button onclick="craftJackhammer()">Jackhammer [1 fuel tank, 10 iron bars]</button><br />
+        <button onclick="onCraft(Items.jackHammer.id)">Jackhammer [1 fuel tank, 10 iron bars]</button><br />
       </div>
       
       <h4 class="accordion-toggle">Picks</h4>
       <div class="accordion-content default">
-          <button onclick="craft('copperPick')">Copper Pick [10 copper bars]</button><br />
-          <button onclick="craft('ironPick')">Iron Pick [10 iron bars]</button><br />
-          <button onclick="craft('goldPick')">Gold Pick [10 gold bars]</button><br />
+          <button onclick="onCraft(Items.copperPick.id)">Copper Pick [10 copper bars]</button><br />
+          <button onclick="onCraft(Items.ironPick.id)">Iron Pick [10 iron bars]</button><br />
+          <button onclick="onCraft(Items.goldPick.id)">Gold Pick [10 gold bars]</button><br />
       </div>
     </div>
     
@@ -122,7 +137,7 @@
 
       <h2>Element Finder</h2>Elements available at the current depth: // element list
       <div id="travel">
-          <p><button onclick="planetEarth()">Travel</button></p>
+          <p><button onclick="onPlanetEarth()">Travel</button></p>
       </div>
     </div>
 
