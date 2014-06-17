@@ -112,14 +112,15 @@ function onUpdate() {
     game.update(currentTime);
     ui.update(currentTime);
 };
-function newCraft(what, quantity) {
-    if (what == undefined) {
+function newCraft(itemId, quantity) {
+	if (itemId == undefined) {
         utils.logError("onCraft with no item specified.");
     }
     if (quantity == undefined) {
         quantity = 1;
     };
-    if (game.player.craft(what, quantity)) {
+	if (quantity == "max") quantity = game.player.storage.getMaxCrafts(itemId);
+	if (game.player.craft(itemId, quantity)) {
         ui.screenPlanet.componentCrafting.invalidate();
     }
 };

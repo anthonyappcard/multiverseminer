@@ -499,16 +499,18 @@ function UIPlanetScreen() {
 		                    addTooltip(entry,item);
 	                    }
 	                    var element = $('.craft_' + item.id);
-                        var jcount = element.find(".craftingCount");
+	                    var jxMax = element.find(".craftMax");
+	                    element.find(".craft100").css("visibility",maxCraftable>=100 ? "visible" : "hidden");
+                        element.find(".craft10").css("visibility",maxCraftable>=10 ? "visible" : "hidden");
                         if (maxCraftable > 0) {
                             element.removeClass('craftDisabled').addClass('craftEnabled');
-                            jcount.html(" x "+maxCraftable.toFixed()+" ");
+                            jxMax.html(" x "+maxCraftable.toFixed()+" ");
                         } else {
                             element.addClass('craftDisabled');
-                            jcount.html("");
+                            jxMax.html("");
                         }
                         var qty = game.player.storage.getItemCount(item.id);
-                        if (qty > 0) jcount.append(" ("+qty+")");
+                        if (qty > 0) element.find(".craftingCount").html(" ("+qty+")");
                     }
                 }
 	            craftableContent.find(".craftDisabled").remove();
@@ -736,7 +738,12 @@ function UIPlanetScreen() {
             icon = item.icon;
         }
         content.append('<image class="craftingIcon" src="' + sys.iconRoot + icon + '" />');
-        content.append('<span class="craftingText">' + item.name + '</span> <span class="craftingCount"></span>').disableSelection();
+        content.append('<span class="craftingText">' + item.name + '</span>');
+	    content.append('<span class="craftingCount"></span>');
+	    content.append('<span class="craftMax" onclick="newCraft(\''+item.id+'\',\'max\');(arguments[0] || event || window.event).stopPropagation();"></span>');
+	    content.append('<span class="craft100" onclick="newCraft(\''+item.id+'\',100);(arguments[0] || event || window.event).stopPropagation();">x100</span>');
+	    content.append('<span class="craft10" onclick="newCraft(\''+item.id+'\',10);(arguments[0] || event || window.event).stopPropagation();">x10</span>');
+		content.disableSelection();
 
         return content;
     };

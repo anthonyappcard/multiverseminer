@@ -1,14 +1,20 @@
+.craft10, .craft100, .craftMax {
+	float: right;
+	min-width: 4em;
+	padding-top: 1.5em;
+	cursor: pointer;
+}
+
 .craftingIcon {
 	vertical-align:middle;
 	width:30px;
 	height:30px;
-	cursor:hand;
+	cursor:pointer;
 	margin:10px;
 }
 
-.craftingText .clickable {
-vertical-align:middle;
-cursor:hand;
+.craftEnabled .craftingText {
+	cursor:pointer;
 }
 
 /* Outer Container */
