@@ -469,6 +469,8 @@ function UIPlanetScreen() {
         var self = ui.screenPlanet;
         var parent = $('#playerCraftingContent');
         if (parent.html() !== "") {
+	        var craftableContent = parent.children(":nth-child(2)"); // assuming child 1 is [Crafting] header
+	        craftableContent.html("");
             for (var key in ItemCategory) {
                 var items = game.getItemsByCategory(key);
                 if (!items || items.length <= 0) {
@@ -478,33 +480,28 @@ function UIPlanetScreen() {
                 for (var i = 0; i < items.length; i++) {
                     var item = items[i];
                     if (item.id) {
-                        var element = $('#craft_' + item.id);
-                        var canCraft = null;
-                        if (item.craftCost && game.player.storage.canAdd(item.id)) {
-                            var cost = game.getCraftingCost(item.id, 1);
-                            var quantity = game.itemDictionary[item.id].craftResult || 1;
-                            var keys = Object.keys(cost);
-                            for (var x = 0; x < keys.length; x++) {
-                                var key = keys[x];
-                                var n = game.player.storage.getItemCount(key) / cost[key]
-                                if (canCraft == null || canCraft > n) {
-                                    canCraft = n;
-                                }
-                            }
-                        }
-                        if (canCraft > 1.0) {
+                        var maxCraftable = game.player.storage.getMaxCraftableItems(item.id);
+	                    if (maxCraftable > 0) {
+		                    craftableContent.append(self.buildCraftingEntry(item));
+	                    }
+	                    var element = $('.craft_' + item.id);
+                        var jcount = element.find(".craftingCount");
+                        if (maxCraftable > 0) {
                             element.removeClass('craftDisabled').addClass('craftEnabled');
-                            element.find(".craftingCount").html("("+canCraft.toFixed()+")");
+                            jcount.html(" x "+maxCraftable.toFixed()+" ");
                         } else {
                             element.addClass('craftDisabled');
-                            element.find(".craftingCount").html("");
+                            jcount.html("");
                         }
+                        var qty = game.player.storage.getItemCount(item.id);
+                        if (qty > 0) jcount.append(" ("+qty+")");
                     }
                 }
             }
             // Skip re-building this for now
             return;
         }
+	    parent.append('<p>[Craftable]</p>').append($('<div/>'));
 
         for (var key in ItemCategory) {
             // Todo: remove this when scavenging items no longer have craftCost as their attribute
@@ -532,7 +529,7 @@ function UIPlanetScreen() {
             parent.append('<p>' + ItemCategory[key] + '</p>').append(headerContent);
             for (var i = 0; i < craftableItems.length; i++) {
                 headerContent.append(self.buildCraftingEntry(craftableItems[i]));
-                $("#craft_" + craftableItems[i].id).tooltipster({
+                $(".craft_" + craftableItems[i].id).tooltipster({
                     content: self.buildCraftingTooltip(craftableItems[i]),
                     theme: 'tooltipster-punk',
                     contentAsHTML: true,
@@ -724,7 +721,7 @@ function UIPlanetScreen() {
 
     this.buildCraftingEntry = function(item) {
         var tooltipContent = ui.buildCraftingCostTooltip(item);
-        var content = $('<div id="craft_' + item.id + '" class="craftingItemPanel" onclick="newCraftingModal(\'' + item.id + '\')" />');
+        var content = $('<div class="craft_' + item.id + ' craftingItemPanel" onclick="newCraftingModal(\'' + item.id + '\')" />');
 
         var icon = game.getDefaultItemIcon(item);
         if (item.icon) {

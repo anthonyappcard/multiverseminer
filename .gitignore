@@ -17,3 +17,5 @@ src/data/npc.js
 src/data/planets_autogen.js
 src/data/races.js
 src/data/actors.js
+.idea/
+multiverseminer.iml

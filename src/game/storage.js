@@ -174,6 +174,33 @@ function Storage(id) {
 	this.getStorageChanged = function() {
 		return this.storageChanged;
 	};
+
+	/**
+	 * Returns max amount of crafts with current resources. See also getMaxCraftableItems()
+	 */
+	this.getMaxCrafts = function (itemId) {
+		var count = null;
+		var item = game.itemDictionary[itemId];
+		if (item.craftCost && game.player.storage.canAdd(item.id)) {
+			var cost = game.getCraftingCost(item.id, 1);
+			var keys = Object.keys(cost);
+			for (var x = 0; x < keys.length; x++) {
+				var key = keys[x];
+				var n = game.player.storage.getItemCount(key) / cost[key];
+				if (count == null || count > n) {
+					count = n;
+				}
+			}
+		}
+		return Math.floor(count);
+	};
+
+	/**
+	 * Returns maximum craftable output with current resources. See also getMaxCrafts()
+	 */
+	this.getMaxCraftableItems = function (itemId) {
+		return this.getMaxCrafts(itemId) * (game.itemDictionary[itemId].craftResult || 1);
+	};
 	
 	// ---------------------------------------------------------------------------
 	// internal stuff, don't use outside
