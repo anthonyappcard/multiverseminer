@@ -10,7 +10,6 @@ $(document).ready(onDocumentReady);
 
 window.onbeforeunload = function() {
     game.save();
-    console.log("atomic save");
 };
 
 // Setup notifications

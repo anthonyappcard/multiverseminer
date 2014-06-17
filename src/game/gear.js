@@ -148,7 +148,7 @@ function Gear(id) {
 				continue;
 			}
 			
-			console.log(this.equip(itemId));
+			this.equip(itemId);
 			// TODO: load metadata
 		}
 	};

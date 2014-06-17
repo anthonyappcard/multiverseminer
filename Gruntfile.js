@@ -60,7 +60,8 @@ module.exports = function(grunt) {
                         custombox   : 'external/jquery.custombox',
                         joyride     : 'external/jquery.joyride-2.1',
                         noty        : 'external/jquery.noty.packaged',
-                        toolbar     : 'external/jquery.toolbar'
+                        toolbar     : 'external/jquery.toolbar',
+                        collapsable : 'external/collapsable-list'
 					}
 				}
 			}
