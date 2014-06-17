@@ -6,7 +6,10 @@
 	margin-bottom: 20px;
 	margin-top: 20px;
 	height: 20px;
-	width: 290px;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
 }
 
 .inventoryContent {
@@ -14,7 +17,12 @@
     height: 435px;
     overflow: scroll;
     position: relative;
-    width: 329px;
+    width: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
 }
 
 .inventoryContentPlayer {
@@ -22,7 +30,10 @@
     height: 435px;
     overflow: scroll;
     position: relative;
-    width: 293px;
+    width: auto;
 	overflow-x: hidden;
 	overflow-y: auto;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
 }
