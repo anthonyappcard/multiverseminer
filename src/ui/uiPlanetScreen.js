@@ -479,26 +479,25 @@ function UIPlanetScreen() {
                     var item = items[i];
                     if (item.id) {
                         var element = $('#craft_' + item.id);
-                        var canCraft = false;
+                        var canCraft = null;
                         if (item.craftCost && game.player.storage.canAdd(item.id)) {
                             var cost = game.getCraftingCost(item.id, 1);
                             var quantity = game.itemDictionary[item.id].craftResult || 1;
                             var keys = Object.keys(cost);
-                            var pass = 0;
                             for (var x = 0; x < keys.length; x++) {
                                 var key = keys[x];
-                                if (game.player.storage.getItemCount(key) >= cost[key]) {
-                                    pass++;
+                                var n = game.player.storage.getItemCount(key) / cost[key]
+                                if (canCraft == null || canCraft > n) {
+                                    canCraft = n;
                                 }
                             }
-                            if (pass === keys.length) {
-                                canCraft = true;
-                            }
                         }
-                        if (canCraft) {
+                        if (canCraft > 1.0) {
                             element.removeClass('craftDisabled').addClass('craftEnabled');
+                            element.find(".craftingCount").html("("+canCraft.toFixed()+")");
                         } else {
                             element.addClass('craftDisabled');
+                            element.find(".craftingCount").html("");
                         }
                     }
                 }
@@ -732,7 +731,7 @@ function UIPlanetScreen() {
             icon = item.icon;
         }
         content.append('<image class="craftingIcon" src="' + sys.iconRoot + icon + '" />');
-        content.append('<span class="craftingText">' + item.name + '</span>').disableSelection();
+        content.append('<span class="craftingText">' + item.name + '</span> <span class="craftingCount"></span>').disableSelection();
 
         return content;
     };
