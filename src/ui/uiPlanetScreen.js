@@ -262,7 +262,7 @@ function UIPlanetScreen() {
     };
 
     this.buildCraftingTooltip = function(item) {
-        content = "<div style='font-size: 9pt;'>";
+        var content = "<div style='font-size: 9pt;'>";
 
         switch (item.category) {
             case "rawMaterial":
@@ -307,7 +307,7 @@ function UIPlanetScreen() {
                 if (item.description) {
                     content += "<p><strong>Description: </strong>" + "</br>&nbsp;" + item.description + "</br>";
                 }
-
+		        break;
             case "miningGear":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
@@ -466,12 +466,24 @@ function UIPlanetScreen() {
     };
 
     this.updateCraftingPanel = function() {
+	    function addTooltip(element, item) {
+		    element.tooltipster({
+			    content: self.buildCraftingTooltip(item),
+			    theme: 'tooltipster-punk',
+			    contentAsHTML: true,
+			    position: "bottom",
+			    onlyOne: true,
+			    interactiveTolerance: 10,
+			    speed: 10
+		    });
+	    }
+
         var self = ui.screenPlanet;
         var parent = $('#playerCraftingContent');
         if (parent.html() !== "") {
 	        var craftableContent = parent.children(":nth-child(2)"); // assuming child 1 is [Crafting] header
-	        craftableContent.html("");
             for (var key in ItemCategory) {
+	            if (key == 'scavenge') continue;
                 var items = game.getItemsByCategory(key);
                 if (!items || items.length <= 0) {
                     continue;
@@ -481,8 +493,10 @@ function UIPlanetScreen() {
                     var item = items[i];
                     if (item.id) {
                         var maxCraftable = game.player.storage.getMaxCraftableItems(item.id);
-	                    if (maxCraftable > 0) {
-		                    craftableContent.append(self.buildCraftingEntry(item));
+	                    if (maxCraftable > 0 && craftableContent.find(".craft_"+item.id).length == 0) {
+		                    var entry = self.buildCraftingEntry(item);
+		                    craftableContent.append(entry);
+		                    addTooltip(entry,item);
 	                    }
 	                    var element = $('.craft_' + item.id);
                         var jcount = element.find(".craftingCount");
@@ -497,6 +511,7 @@ function UIPlanetScreen() {
                         if (qty > 0) jcount.append(" ("+qty+")");
                     }
                 }
+	            craftableContent.find(".craftDisabled").remove();
             }
             // Skip re-building this for now
             return;
@@ -528,16 +543,9 @@ function UIPlanetScreen() {
             var headerContent = $('<div/>');
             parent.append('<p>' + ItemCategory[key] + '</p>').append(headerContent);
             for (var i = 0; i < craftableItems.length; i++) {
-                headerContent.append(self.buildCraftingEntry(craftableItems[i]));
-                $(".craft_" + craftableItems[i].id).tooltipster({
-                    content: self.buildCraftingTooltip(craftableItems[i]),
-                    theme: 'tooltipster-punk',
-                    contentAsHTML: true,
-                    position: "bottom",
-                    onlyOne: true,
-                    interactiveTolerance: 10,
-                    speed: 10
-                });
+	            var entry = self.buildCraftingEntry(craftableItems[i]);
+	            headerContent.append(entry);
+                addTooltip(entry,craftableItems[i]);
             }
         }
 
