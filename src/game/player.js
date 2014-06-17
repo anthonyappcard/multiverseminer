@@ -38,22 +38,22 @@ function Player() {
         this.gear.addSlot('legs');
         this.gear.addSlot('feet');
         this.gear.addSlot('miningGear');
-        /*/this.totalPower = */this.calculatePower();
+        this.totalPower = this.calculatePower();
     };
 
     this.calculatePower = function() {
         this.pickPower = this.gear.getStats()["power"] || 1;
         this.miningLuck = this.gear.getStats()["miningLuck"] || 1;
-        //this.totalPower = power * miningLuck;
-        //return this.totalPower;
-    };//*/
+        this.totalPower = this.pickPower * this.miningLuck;
+        return this.totalPower;
+    };
     
     this.update = function(currentTime) {
         this.miner.update(currentTime);
         this.combatant.update(currentTime);
         this.stats = this.gear.getStats();
         this.checkPlanet();
-        /*/this.totalPower = */this.calculatePower();
+        this.totalPower = this.calculatePower();
 
         if (!this.canBreathe) {
             if (currentTime - this.lastOxygenConsumption > 1000) {
@@ -193,6 +193,7 @@ function Player() {
 
             // TODO: Planet needs to evaluate this
             game.currentPlanet.equip(item.id);
+            game.currentPlanet.storage.removeItem(item.id);
         }
 
         //this.equipBestGear();
@@ -225,9 +226,8 @@ function Player() {
         }
         var itemId = this.gear.getItemInSlot(type);
         this.gear.unEquip(type);
-        // Add the item back to the player's inventory
         game.player.storage.addItem(itemId);
-        game.player.gearChanged = true;
+        game.player.gear.gearChanged = true;
     };
 
     this.hasEquipped = function(type) {
@@ -262,7 +262,7 @@ function Player() {
         this.playerClass = utils.loadInt('playerClass', 1);
         game.currentPlanet = game.planets[utils.loadInt('planetID', 1)];
         game.planetChanged = true;
-        /*this.totalPower = */this.calculatePower();
+        this.totalPower = this.calculatePower();
     };
 
     this.reset = function(fullReset) {
