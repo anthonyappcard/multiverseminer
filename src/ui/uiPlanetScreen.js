@@ -66,7 +66,6 @@ function UIPlanetScreen() {
         this.planetInventoryFilter.values = ItemCategory;
         this.planetInventoryFilter.callback = this.onPlanetInventoryFilterChanged;
         this.planetInventoryFilter.min = 1; // To avoid selecting undef
-        //console.log(this.planetInventoryFilter);
         this.planetInventoryFilter.init();
         this.planetInventoryFilter.setSelection(game.settings.selectedPlanetInventoryFilter);
 
@@ -233,7 +232,6 @@ function UIPlanetScreen() {
     // ---------------------------------------------------------------------------
     this.updatePlayerInventoryPanel = function() {
         var self = ui.screenPlanet;
-
         //self.playerInventory.update(game.player.storage);
     };
 
@@ -251,7 +249,6 @@ function UIPlanetScreen() {
         var self = ui.screenPlanet;
         var parent = $('#playerGearSlots');
         parent.empty();
-
         var gearSlots = game.player.gear.getSlots();
         for (var i = 0; i < gearSlots.length; i++) {
             var itemId = game.player.gear.getItemInSlot(gearSlots[i]);
@@ -457,7 +454,7 @@ function UIPlanetScreen() {
                 content += "&nbsp;Mine: " + item.automine + "/s</br>";
                 content += "&nbsp;Refine: " + item.autorefine + "/s</br>";
                 content += "&nbsp;Gather: " + item.autogather + "/s</br>";
-                content += "&nbsp;Scavenge: " + item.autoscavenge + "/s</br>";
+                content += "&nbsp;Scavenge: " + item.autoScavenge + "/s</br>";
                 break;
 
         };
@@ -557,7 +554,7 @@ function UIPlanetScreen() {
             collapsible: true,
             active: false
         });
-        parent.prepend('<form id="formdiv"><input class="filterinput" type="text" data-type="search" /></form><br>').parent();
+        input = $('.filterinput').prepend('<form id="formdiv"><input class="filterinput" type="text" data-type="search" /></form><br>').parent();
         $('.filterinput').on('input', function() {
             var a = $(this).val();
             if (a.length > 0) {

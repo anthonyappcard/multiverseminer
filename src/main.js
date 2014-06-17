@@ -111,18 +111,20 @@ function onUpdate() {
     game.update(currentTime);
     ui.update(currentTime);
 };
+
 function newCraft(itemId, quantity) {
-	if (itemId == undefined) {
+    if (itemId == undefined) {
         utils.logError("onCraft with no item specified.");
     }
     if (quantity == undefined) {
         quantity = 1;
     };
-	if (quantity == "max") quantity = game.player.storage.getMaxCrafts(itemId);
-	if (game.player.craft(itemId, quantity)) {
+    if (quantity == "max") quantity = game.player.storage.getMaxCrafts(itemId);
+    if (game.player.craft(itemId, quantity)) {
         ui.screenPlanet.componentCrafting.invalidate();
     }
 };
+
 function onCraft(what) {
     if (what == undefined) {
         utils.logError("onCraft with invalid target");
@@ -162,7 +164,11 @@ function toggleAudio() {
     } else {
         document.getElementById('audioDig').muted = false;
         document.getElementById('audioDigSuccess').muted = false;
-        noty({text: "Audio unmuted.",type: "information",timeout: 2000});
+        noty({
+            text: "Audio unmuted.",
+            type: "information",
+            timeout: 2000
+        });
     }
 };
 
@@ -170,9 +176,17 @@ function togglePopup() {
     //pause playing
     game.settings.togglePopups();
     if (!game.settings.showPopups) {
-        noty({text: "Loot text disabled.",type: "information",timeout: 2000});
+        noty({
+            text: "Loot text disabled.",
+            type: "information",
+            timeout: 2000
+        });
     } else {
-        noty({text: "Loot text enabled.",type: "information",timeout: 2000});
+        noty({
+            text: "Loot text enabled.",
+            type: "information",
+            timeout: 2000
+        });
     }
 };
 
@@ -255,16 +269,19 @@ function onMovePlanetItemsToPlayer() {
 
 function onSave() {
     game.save();
-    noty({text: "Game saved.",type: "information",timeout: 2000});
+    noty({
+        text: "Game saved.",
+        type: "information",
+        timeout: 2000
+    });
 };
 
 function onReset() {
-    $(this).custombox({
-        url: "#newReset",
-        customClass: 'scavModal',
-        overlayClose: 'true',
-        opacity: '0.7'
+    $.custombox( this, {
+        overlay: false,
+        effect: 'fadein'
     });
+    e.preventDefault();
 };
 
 function onPlayerDied() {
@@ -307,12 +324,13 @@ function showChat() {
         width: 500
     });
 }
+
 function newCraftingModal(itemId) {
-	var maxCrafts = game.player.storage.getMaxCrafts(itemId);
-	if (maxCrafts <= 5) {
-		newCraft(itemId,1);
-		return;
-	}
+    var maxCrafts = game.player.storage.getMaxCrafts(itemId);
+    if (maxCrafts <= 5) {
+        newCraft(itemId, 1);
+        return;
+    }
     var name = game.getItem(itemId).name;
     if (game.getItem(itemId).description) {
         var description = "Description: " + game.getItem(itemId).description;
@@ -333,6 +351,7 @@ function newCraftingModal(itemId) {
     $("#item-description").css("display", "block");
     $("new-crating-modal").dialog('open');
 };
+
 function showFight() {
     if (game.playerDied > 0)
         return false;

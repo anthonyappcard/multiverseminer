@@ -266,11 +266,13 @@ function Player() {
     };
 
     this.reset = function(fullReset) {
-        window.localStorage.clear();
         this.miner.reset(fullReset);
         this.combatant.reset(fullReset);
         this.storage.reset(fullReset);
         this.gear.reset(fullReset);
+        delete this.stats;
+        window.localStorage.clear();
+        localStorage.clear();
         this.oxygenConsumption = 1;
         this.pickPower = 1;
         this.miningLuck = 1;
