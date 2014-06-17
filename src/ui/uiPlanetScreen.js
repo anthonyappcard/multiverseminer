@@ -512,7 +512,7 @@ function UIPlanetScreen() {
                             jxMax.html("");
                         }
                         var qty = game.player.storage.getItemCount(item.id);
-                        if (qty > 0) element.find(".craftingCount").html(" (" + qty + ")");
+                        element.find(".craftingCount").html(qty>0 ? (" (" + qty + ")") : "");
                     }
                 }
                 craftableContent.find(".craftDisabled").remove();
