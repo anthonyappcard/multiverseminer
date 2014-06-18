@@ -91,11 +91,16 @@ function Planet(data) {
         }
 
         if(this.storage.getItemCount(itemId) > (game.getItem(itemId).planetlimit || 1)) {
-            game.moveItems(itemId, this.storage, game.player.storage, 1);
-        } else {
-            this._updateStats();
-            this.update();
+            game.moveItems(itemId, this.storage, game.player.storage, this.storage.getItemCount(itemId) - (game.getItem(itemId).planetlimit || 1));
         }
+        
+        this._updateStats();
+        this.update();
+        noty({
+            text: game.getItem(itemId).name + " equipped",
+            type: "information",
+            timeout: 3500
+        });
     };
 
     this.unEquip = function(itemId) {

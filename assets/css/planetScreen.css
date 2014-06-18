@@ -100,14 +100,6 @@
 .gearPanel {
     margin: 1px 10px;
 }
-.playerGearPaperdoll {
-    height: 285px;
-    left: 8px;
-    position: relative;
-    top: 30px;
-    width: 200px;
-}
-
 .craftingItemPanel {
     background: none repeat scroll 0 0 #000;
     font-size: 11px;
