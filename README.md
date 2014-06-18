@@ -38,7 +38,6 @@ Please update the list of items accordingly. Remove item when complete.
 - Spaceship parts need icons.
 
 ## General UI
-- IMPORTANT: New Tutorial view - http://tracelytics.github.io/pageguide/
 - Gather more statistics on actions performed and display them somewhere.
 - New solution required for HUD. Remove this jqueryui shit.
 
@@ -49,45 +48,36 @@ Please update the list of items accordingly. Remove item when complete.
 - Make asteroid field mineable.
 
 ## Questing
-
 - Pull quests from assets/quests.json
 - Show available and completed quests in a modal.
 
 ## Crafting
-- Dim recipes you can't create.
 - Add option to tooltip to craft multiple via text input. Show the maximum you can make in the tooltip.
-- Spaceship parts you've built need to be displayed in the crafting tab. Show all of the parts, and only make the ones you've built active. The ones you haven't can be dimmed.
 - Space travel to other planets besides the moon should require minimum level 2 upgrades on the ship.
 - Refactor the Crafting window to use a grid like structure instead of the plain list
 - Add element information to planet image overlay, eg what the planet contains.
 
 ## Gear
-
 - update the gear ui to look a little better, inspiration from http://www.openorpg.com/wp-content/uploads/2014/05/charactertest.gif)
 - Evaluate the stats properly for the equipped gear
 - Fix equip best functionality, if we need it, otherwise remove it.
 - add a stat display in the gear panel below the gear or if merged with the inventory as a side panel
 
 ## Inventory
-
 - Move slot system into storage.js
 - have storage.js fill in empty slots, no limit on slot count
 - hook up the storage sort function to collapse the items into slots
-- reset currently does not clear the slot display
 - update the gear to re-use some of the inventory code
 - show item informations in details when single clicking an item
 
 ## Planets
-
 - add oxygen cost to planet data and update accordingly in update loop
 
 ## Combat
-
 - Feed NPCs from xls to the combat system.
 - Make stats on weapons and items work.
 - Implement random chance of fight when flying between planets.
 - Implement random chance of fight when scavenging.
-
 
 ## Other
 - Right now we're relying on constructor functions that define Planet and Player keys and values when they're created using a lot of (this.object = etc), it would be nice if we could instead have Player and Planet defined with Player.prototype = {key: value,} instead for organization.
