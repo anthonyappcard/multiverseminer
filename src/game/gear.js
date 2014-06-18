@@ -155,9 +155,7 @@ function Gear(id) {
      
     this.reset = function(fullReset) {
         for(var key in this.slots) {
-            if(!this.hasGearEquipped(key)) {
-                continue;
-            }
+            // This code may throw some errors when resetting(haven't yet), but it works(the last code did not)
             this.unEquip(key);
         }
     };

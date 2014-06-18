@@ -104,7 +104,6 @@ function Game() {
         }
 
         this.setNewGame();
-        this.player.gear.reset(fullReset);
         this.setStartupState();
         //this.save();
         location.reload();

@@ -1,4 +1,4 @@
-require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "custombox", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "pusher", "pushernotifier"]);
+require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "custombox", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar"]);
 
 // Create components
 var game = new Game();
@@ -81,18 +81,6 @@ function onDocumentReady() {
         content: '#user-toolbar-options',
         position: 'top',
         hideOnClick: true
-    });
-    $(function() {
-        var pusher = new Pusher('eff046273c0447c5498c');
-        var channel = pusher.subscribe('updates');
-        var notifier = new PusherNotifier(channel);
-        channel.bind('my_event', function(data) {
-            noty({
-                text: data.message,
-                type: information,
-                timeout: 5000
-            });
-        });
     });
 }
 

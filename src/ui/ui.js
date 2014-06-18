@@ -1,4 +1,4 @@
-require(["uiplanetscreen", "uitravelscreen", "uifloating", "jquery", "jqueryui", "jgrowl", "tooltipster"]);
+require(["uiplanetscreen", "uitravelscreen", "uifloating", "jquery", "jqueryui", "jgrowl", "tooltipster", "pusher", "pushernotifier"]);
 
 // ---------------------------------------------------------------------------
 // Some const values used in ui code
@@ -39,6 +39,26 @@ function UI() {
     // main UI functions
     // ---------------------------------------------------------------------------
     this.init = function() {
+        $(function() {
+            var pusher = new Pusher('eff046273c0447c5498c');
+        
+            // logging
+            pusher.log = function(message) {
+              if (window.console && window.console.log) {
+                window.console.log(message);
+              }
+            };
+        
+            var channel = pusher.subscribe('updates');
+            var notifier = new PusherNotifier(channel);
+            channel.bind('my_event', function(data) {
+                noty({
+                    text: data.message,
+                    type: "information",
+                    timeout: 5000
+                });
+            });
+        });
         // Setup key bindings
         $(window).delegate('*', 'keypress', this.onKeyPress);
         $(document).bind('keypress', this.onKeyPress);
