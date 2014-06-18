@@ -241,7 +241,6 @@ function UIPlanetScreen() {
         if (!game.currentPlanet) {
             return;
         }
-
         self.planetInventory.update(game.currentPlanet.storage);
     };
 
@@ -454,7 +453,7 @@ function UIPlanetScreen() {
                 content += "&nbsp;Mine: " + item.automine + "/s</br>";
                 content += "&nbsp;Refine: " + item.autorefine + "/s</br>";
                 content += "&nbsp;Gather: " + item.autogather + "/s</br>";
-                content += "&nbsp;Scavenge: " + item.autoScavenge + "/s</br>";
+                content += "&nbsp;Scavenge: " + item.autoscavenge + "/s</br>";
                 break;
 
         };
