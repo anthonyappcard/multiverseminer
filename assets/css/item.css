@@ -27,13 +27,6 @@
     margin-top: -9px;
     position: relative;
 }
-.itemSlotHover {
-	border:1px solid #a7a7a7;
-}
-
-.itemSlotNonHover {
-	border: 1px dotted #474747;
-}
 .itemSlot img {
     display: block;
     height: 40px;
