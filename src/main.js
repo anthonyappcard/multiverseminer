@@ -1,10 +1,9 @@
-require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "custombox", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar"]);
+require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "custombox", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "pusher", "pushernotifier"]);
 
 // Create components
 var game = new Game();
 var ui = new UI();
 var uiplanetscreen = new UIPlanetScreen();
-
 // Add hook for document ready
 $(document).ready(onDocumentReady);
 
@@ -83,7 +82,19 @@ function onDocumentReady() {
         position: 'top',
         hideOnClick: true
     });
-};
+    $(function() {
+        var pusher = new Pusher('eff046273c0447c5498c');
+        var channel = pusher.subscribe('updates');
+        var notifier = new PusherNotifier(channel);
+        channel.bind('my_event', function(data) {
+            noty({
+                text: data.message,
+                type: information,
+                timeout: 5000
+            });
+        });
+    });
+}
 
 function openSettings() {
     $('#settings').toolbar({

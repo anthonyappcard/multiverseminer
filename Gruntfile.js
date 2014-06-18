@@ -62,7 +62,9 @@ module.exports = function(grunt) {
                         noty        : 'external/jquery.noty.packaged',
                         toolbar     : 'external/jquery.toolbar',
                         collapsable : 'external/collapsable-list',
-                        contextmenu : 'external/jquery.ui-contextmenu'
+                        contextmenu : 'external/jquery.ui-contextmenu',
+                        pusher      : 'external/pusher',
+                        pushernotifier: 'external/PusherNotifier'
 					}
 				}
 			}

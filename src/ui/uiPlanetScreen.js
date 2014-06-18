@@ -262,7 +262,8 @@ function UIPlanetScreen() {
         var content = "<div style='font-size: 9pt;'>";
 
         switch (item.category) {
-            case "rawMaterial":
+            /* Raw Materials */
+			case "rawMaterial":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
                     if (item.description) {
@@ -280,7 +281,8 @@ function UIPlanetScreen() {
                     content += "<p><strong>Description: </strong>" + "</br>&nbsp;" + item.description + "</br>";
                 }
                 break;
-
+			
+			/* Components */
             case "component":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
@@ -293,19 +295,9 @@ function UIPlanetScreen() {
                     content += "<p><strong>Description: </strong>" + "</br>&nbsp;" + item.description + "</br>";
                 }
                 break;
-            case "spaceship":
-                if (item.craftCost) {
-                    content = "<strong>" + item.name + "</strong><p>";
-                    content += "<strong>Cost:</strong></br>";
-                    for (cost in item.craftCost) {
-                        content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
-                    }
-                }
-                if (item.description) {
-                    content += "<p><strong>Description: </strong>" + "</br>&nbsp;" + item.description + "</br>";
-                }
-                break;
-            case "miningGear":
+            
+         	/* Mining Gear */
+			case "miningGear":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
                     content += "<strong>Cost:</strong></br>";
@@ -322,36 +314,8 @@ function UIPlanetScreen() {
                 content += "&nbsp;Loot Luck: " + item.lootLuck + "</br>";
                 content += "&nbsp;Scavenge Luck: " + item.scavengeLuck + "</br>";
                 break;
-
-            case "gearMainHand":
-                if (item.craftCost) {
-                    content = "<strong>" + item.name + "</strong><p>";
-                    content += "<strong>Cost:</strong></br>";
-                    for (cost in item.craftCost) {
-                        content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
-                    }
-                }
-                if (item.description) {
-                    content += "<p><strong>Description: </strong>" + "</br>&nbsp;" + item.description + "</br>";
-                }
-                content += "</br><strong>Stats:</strong></br>";
-                content += "&nbsp;Strength: " + item.strength + "</br>";
-                content += "&nbsp;Accuracy: " + item.accuracy + "</br>";
-                content += "&nbsp;Defense: " + item.defense + "</br>";
-                content += "&nbsp;Evasion: " + item.evasion + "</br>";
-                content += "&nbsp;Attack Speed: " + item.attackSpeed + "</br>";
-                content += "&nbsp;Ship Speed: " + item.shipSpeed + "</br>";
-                content += "&nbsp;Health: " + item.health + "</br>";
-                content += "&nbsp;Mining Luck: " + item.miningLuck + "</br>";
-                content += "&nbsp;Scavenge Luck: " + item.scavengeLuck + "</br>";
-                content += "&nbsp;Loot Luck: " + item.lootLuck + "</br>";
-                content += "&nbsp;Counter: " + item.counter + "</br>";
-                content += "&nbsp;Regeneration: " + item.regeneration + "</br>";
-                content += "&nbsp;Resillience: " + item.resillience + "</br>";
-                content += "&nbsp;Perception: " + item.perception + "</br>";
-                content += "&nbsp;Experience: " + item.experience + "</br>";
-                break;
-
+				
+			/* Head Gear */
             case "gearHead":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
@@ -364,10 +328,10 @@ function UIPlanetScreen() {
                     content += "<p><strong>Description: </strong>" + "</br>&nbsp;" + item.description + "</br>";
                 }
                 content += "</br><strong>Stats:</strong></br>";
-                content += "&nbsp;Strength: " + item.strength + "</br>";
-                content += "&nbsp;Accuracy: " + item.accuracy + "</br>";
+                /* content += "&nbsp;Strength: " + item.strength + "</br>";
+                content += "&nbsp;Accuracy: " + item.accuracy + "</br>"; */
                 content += "&nbsp;Defense: " + item.defense + "</br>";
-                content += "&nbsp;Evasion: " + item.evasion + "</br>";
+                /* content += "&nbsp;Evasion: " + item.evasion + "</br>";
                 content += "&nbsp;Attack Speed: " + item.attackSpeed + "</br>";
                 content += "&nbsp;Ship Speed: " + item.shipSpeed + "</br>";
                 content += "&nbsp;Health: " + item.health + "</br>";
@@ -378,9 +342,70 @@ function UIPlanetScreen() {
                 content += "&nbsp;Regeneration: " + item.regeneration + "</br>";
                 content += "&nbsp;Resillience: " + item.resillience + "</br>";
                 content += "&nbsp;Perception: " + item.perception + "</br>";
-                content += "&nbsp;Experience: " + item.experience + "</br>";
+                content += "&nbsp;Experience: " + item.experience + "</br>"; */
+                break;
+				
+			/* Chest Gear */
+            case "gearChest":
+                if (item.craftCost) {
+                    content = "<strong>" + item.name + "</strong><p>";
+                    content += "<strong>Cost:</strong></br>";
+                    for (cost in item.craftCost) {
+                        content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+                    }
+                }
+                if (item.description) {
+                    content += "<p><strong>Description: </strong>" + "</br>&nbsp;" + item.description + "</br>";
+                }
+                content += "</br><strong>Stats:</strong></br>";
+                /* content += "&nbsp;Strength: " + item.strength + "</br>";
+                content += "&nbsp;Accuracy: " + item.accuracy + "</br>"; */
+                content += "&nbsp;Defense: " + item.defense + "</br>";
+                /* content += "&nbsp;Evasion: " + item.evasion + "</br>";
+                content += "&nbsp;Attack Speed: " + item.attackSpeed + "</br>";
+                content += "&nbsp;Ship Speed: " + item.shipSpeed + "</br>";
+                content += "&nbsp;Health: " + item.health + "</br>";
+                content += "&nbsp;Mining Luck: " + item.miningLuck + "</br>";
+                content += "&nbsp;Scavenge Luck: " + item.scavengeLuck + "</br>";
+                content += "&nbsp;Loot Luck: " + item.lootLuck + "</br>";
+                content += "&nbsp;Counter: " + item.counter + "</br>";
+                content += "&nbsp;Regeneration: " + item.regeneration + "</br>";
+                content += "&nbsp;Resillience: " + item.resillience + "</br>";
+                content += "&nbsp;Perception: " + item.perception + "</br>";
+                content += "&nbsp;Experience: " + item.experience + "</br>"; */
+                break;	
+				
+			/* Main Hand */
+            case "gearMainHand":
+                if (item.craftCost) {
+                    content = "<strong>" + item.name + "</strong><p>";
+                    content += "<strong>Cost:</strong></br>";
+                    for (cost in item.craftCost) {
+                        content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+                    }
+                }
+                if (item.description) {
+                    content += "<p><strong>Description: </strong>" + "</br>&nbsp;" + item.description + "</br>";
+                }
+                content += "</br><strong>Stats:</strong></br>";
+                /* content += "&nbsp;Strength: " + item.strength + "</br>";
+                content += "&nbsp;Accuracy: " + item.accuracy + "</br>";
+                content += "&nbsp;Defense: " + item.defense + "</br>";
+                content += "&nbsp;Evasion: " + item.evasion + "</br>"; */
+                content += "&nbsp;Attack Speed: " + item.attackSpeed + "</br>";
+                /* content += "&nbsp;Ship Speed: " + item.shipSpeed + "</br>";
+                content += "&nbsp;Health: " + item.health + "</br>";
+                content += "&nbsp;Mining Luck: " + item.miningLuck + "</br>";
+                content += "&nbsp;Scavenge Luck: " + item.scavengeLuck + "</br>";
+                content += "&nbsp;Loot Luck: " + item.lootLuck + "</br>";
+                content += "&nbsp;Counter: " + item.counter + "</br>";
+                content += "&nbsp;Regeneration: " + item.regeneration + "</br>";
+                content += "&nbsp;Resillience: " + item.resillience + "</br>";
+                content += "&nbsp;Perception: " + item.perception + "</br>";
+                content += "&nbsp;Experience: " + item.experience + "</br>"; */
                 break;
 
+			/* Leg Gear */
             case "gearLegs":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
@@ -393,10 +418,10 @@ function UIPlanetScreen() {
                     content += "<p><strong>Description: </strong>" + "</br>&nbsp;" + item.description + "</br>";
                 }
                 content += "</br><strong>Stats:</strong></br>";
-                content += "&nbsp;Strength: " + item.strength + "</br>";
-                content += "&nbsp;Accuracy: " + item.accuracy + "</br>";
+                /* content += "&nbsp;Strength: " + item.strength + "</br>";
+                content += "&nbsp;Accuracy: " + item.accuracy + "</br>"; */
                 content += "&nbsp;Defense: " + item.defense + "</br>";
-                content += "&nbsp;Evasion: " + item.evasion + "</br>";
+                /* content += "&nbsp;Evasion: " + item.evasion + "</br>";
                 content += "&nbsp;Attack Speed: " + item.attackSpeed + "</br>";
                 content += "&nbsp;Ship Speed: " + item.shipSpeed + "</br>";
                 content += "&nbsp;Health: " + item.health + "</br>";
@@ -407,9 +432,10 @@ function UIPlanetScreen() {
                 content += "&nbsp;Regeneration: " + item.regeneration + "</br>";
                 content += "&nbsp;Resillience: " + item.resillience + "</br>";
                 content += "&nbsp;Perception: " + item.perception + "</br>";
-                content += "&nbsp;Experience: " + item.experience + "</br>";
+                content += "&nbsp;Experience: " + item.experience + "</br>"; */
                 break;
 
+			/* Foot Gear */
             case "gearFeet":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
@@ -422,10 +448,10 @@ function UIPlanetScreen() {
                     content += "<p><strong>Description: </strong>" + "</br>&nbsp;" + item.description + "</br>";
                 }
                 content += "</br><strong>Stats:</strong></br>";
-                content += "&nbsp;Strength: " + item.strength + "</br>";
-                content += "&nbsp;Accuracy: " + item.accuracy + "</br>";
+                /* content += "&nbsp;Strength: " + item.strength + "</br>";
+                content += "&nbsp;Accuracy: " + item.accuracy + "</br>"; */
                 content += "&nbsp;Defense: " + item.defense + "</br>";
-                content += "&nbsp;Evasion: " + item.evasion + "</br>";
+                /* content += "&nbsp;Evasion: " + item.evasion + "</br>";
                 content += "&nbsp;Attack Speed: " + item.attackSpeed + "</br>";
                 content += "&nbsp;Ship Speed: " + item.shipSpeed + "</br>";
                 content += "&nbsp;Health: " + item.health + "</br>";
@@ -436,9 +462,10 @@ function UIPlanetScreen() {
                 content += "&nbsp;Regeneration: " + item.regeneration + "</br>";
                 content += "&nbsp;Resillience: " + item.resillience + "</br>";
                 content += "&nbsp;Perception: " + item.perception + "</br>";
-                content += "&nbsp;Experience: " + item.experience + "</br>";
+                content += "&nbsp;Experience: " + item.experience + "</br>"; */
                 break;
 
+			/* Buildings */
             case "gearBuilding":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
@@ -456,7 +483,20 @@ function UIPlanetScreen() {
                 content += "&nbsp;Gather: " + item.autogather + "/s</br>";
                 content += "&nbsp;Scavenge: " + item.autoscavenge + "/s</br>";
                 break;
-
+				
+			/* Spaceship */
+			case "spaceship":
+                if (item.craftCost) {
+                    content = "<strong>" + item.name + "</strong><p>";
+                    content += "<strong>Cost:</strong></br>";
+                    for (cost in item.craftCost) {
+                        content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+                    }
+                }
+                if (item.description) {
+                    content += "<p><strong>Description: </strong>" + "</br>&nbsp;" + item.description + "</br>";
+                }
+                break;
         };
         content += "</div>";
         return content;
