@@ -4,7 +4,6 @@ var uiplanetscreen = new UIPlanetScreen();
 function Planet(data) {
     this.data = data;
     this.miner = new Miner('planet' + data.id);
-    this.gear = new Gear('planet' + data.id);
     this.storage = new Storage('planet' + data.id);
 
     this.lastAutoTime = Date.now();
@@ -20,9 +19,6 @@ function Planet(data) {
     this.autoScavengeValue = 0;
     this.autoScavenge = false;
 
-    var equippedAmount = 0; //TODO: remove this and all related to it once we find a proper way to equip buildings
-    var maxCanEquip = 4; //TODO: read above
-
     // ---------------------------------------------------------------------------
     // general
     // ---------------------------------------------------------------------------
@@ -30,23 +26,15 @@ function Planet(data) {
         if ($("#playerInventoryFilter").text() == "Scavenge") {
             $("#decompButton").show();
         }
-        this.gear.initialize();
-
-        // Add the slots we can wear
-        for (var i = 0; i < maxCanEquip; i++) //TODO: read equippedAmount, line 23, todo
-            this.gear.addSlot('building_' + i);
 
         this.miner.initialize();
         this.storage.initialize();
+
+        this._updateStats();
     };
 
     this.update = function(currentTime) {
         this.miner.update(currentTime);
-
-        // Temp fix to enable auto-mining on re-load
-        if (this.gear.getItemInSlot('building') > 0 && !this.autoMine) {
-            this.autoMine = true;
-        }
 
         var elapsedTime = currentTime - this.lastAutoTime;
         var autoCycles = Math.floor(elapsedTime / 1000); // account for inactive tab
@@ -84,31 +72,20 @@ function Planet(data) {
     };
 
     this.equip = function(itemId) {
-        if (!itemId || !this.storage.hasItem(itemId) || !game.player.storage.hasItem(itemId)) {
+        if (!itemId || (!this.storage.hasItem(itemId) && !game.player.storage.hasItem(itemId))) {
             utils.logError("Unable to equip item, invalid or don't have it");
             return;
         }
-        //TODO: fix this horrible hack once we figure a way to add multiple of the same slot ...
 
-        if (equippedAmount < maxCanEquip) {
-            var itemInfo = game.getItem(itemId);
-            this.gear.slots['building_' + equippedAmount] = itemId;
-            this.gear.slotMetadata['building_' + equippedAmount] = this.storage.getItemMetadata(itemId);
-            this.gear.gearChanged = true;
-            game.player.gear.gearChanged = true;
-            equippedAmount++;
-
-            //this.gear.equip(itemId, this.storage.getItemMetadata(itemId));
+        if(this.storage.getItemCount(itemId) > (game.getItem(itemId).planetlimit || 1)) {
+            game.moveItems(itemId, this.storage, game.player.storage, 1);
+        } else {
             this._updateStats();
         }
     };
 
-    this.canEquip = function(itemId) {
-        return this.gear.canEquip(itemId);
-    };
-
-    this.unEquip = function(type) {
-        this.gear.unEquip(type);
+    this.unEquip = function(itemId) {
+        game.moveItems(itemId, this.storage, game.player.storage, 1);
         this._updateStats();
     };
 
@@ -174,8 +151,8 @@ function Planet(data) {
                 }
             }
 
-            if (item.autoScavenge) {
-                this.autoScavengePerSecond += item.autoScavenge * this.storage.getItemCount(item.id);
+            if (item.autoscavenge) {
+                this.autoScavengePerSecond += item.autoscavenge * this.storage.getItemCount(item.id);
                 this.autoScavenge = true;
                 // Temporary cap at 5 / s
                 if (this.autoScavengePerSecond > 5) {
@@ -252,7 +229,9 @@ function Planet(data) {
         if (game.currentPlanet != this) {
             return;
         }
-
+        
+        if(!game.settings.showPopups) return;
+        
         var items = {};
         for (var i = 0; i < totalItems.length; i++) {
             if (!items[totalItems[i]]) {
@@ -278,29 +257,17 @@ function Planet(data) {
     this.save = function() {
         this.miner.save();
         this.storage.save();
-        this.gear.save();
     };
 
     this.load = function() {
         this.miner.load();
         this.storage.load();
-        //TODO: fix this ...
-        var storageKey = this.gear._getStorageKey();
-        for (var key in this.gear.slots) {
-            var itemId = utils.load(storageKey + key, undefined);
-            if (!itemId || itemId == -1) {
-                continue;
-            }
-
-            console.log(this.equip(itemId));
-            // TODO: load metadata
-        }
-        //this.gear.load();
         this._updateStats();
     };
 
     this.reset = function() {
         this.miner.reset();
         this.storage.reset();
+        this._updateStats();
     };
 }

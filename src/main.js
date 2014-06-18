@@ -276,14 +276,6 @@ function onSave() {
     });
 };
 
-function onReset() {
-    $.custombox( this, {
-        overlay: false,
-        effect: 'fadein'
-    });
-    e.preventDefault();
-};
-
 function onPlayerDied() {
     game.playerDied = new Date();
     $('#mineButton')[0].classList.add("hidden");

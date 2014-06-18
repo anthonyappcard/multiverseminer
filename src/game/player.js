@@ -193,7 +193,6 @@ function Player() {
 
             // TODO: Planet needs to evaluate this
             game.currentPlanet.equip(item.id);
-            game.currentPlanet.storage.removeItem(item.id);
         }
 
         //this.equipBestGear();

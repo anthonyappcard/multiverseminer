@@ -603,17 +603,7 @@ function UIPlanetScreen() {
     };
 
     this.updatePlanetPanel = function() {
-        var self = ui.screenPlanet;
-        var parent = $('#planetBuildings');
-        parent.empty();
-
-        var gearSlots = game.currentPlanet.gear.getSlots();
-        for (var i = 0; i < gearSlots.length; i++) {
-            var itemId = game.currentPlanet.gear.getItemInSlot(gearSlots[i]);
-            var slot = ui.buildGearSlot('planetBuildings', gearSlots[i], itemId, parent);
-            slot.itemContext = self.componentPlanet.itemContext;
-            parent.append(slot.getMainElement());
-        }
+        
     };
 
     this.updateQuestsDisplay = function() {
