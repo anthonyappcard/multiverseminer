@@ -571,6 +571,7 @@ function Game() {
             case this.itemContexts.planetInventory:
                 {
                     this.moveItems(itemId, this.player.storage, this.currentPlanet.storage, this.player.storage.getItemCount(itemId));
+                    this.currentPlanet.equip(itemId);
                     return true;
                 }
 
