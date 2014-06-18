@@ -52,7 +52,14 @@ function onDocumentReady() {
 
     // Call one round of UI Updates
     ui.update();
-
+    $(function() {
+        $("#notification-list").dialog()
+            .on('diagclose', function(event, ui) {
+                if ( localStorage.getItem('notification_count') ) {
+                    localStorage.setItem('notification_count', 0);
+                }
+            });
+        });
     // Activate the default panels
     onActivatePlayerInventory();
     onActivatePlayerGear();
@@ -72,25 +79,15 @@ function onDocumentReady() {
     $("#class3").click(function() {
         selectClass(3);
     });
-    var n = noty({
-        text: "We're open source, and actively developing! <a href='http://github.com/antlong/multiverseminer' target='_blank'>Fork our repo.</a>",
-        type: "information",
-        timeout: 3500
-    });
-    $('#settings').toolbar({
-        content: '#user-toolbar-options',
-        position: 'top',
-        hideOnClick: true
-    });
 }
 
-function openSettings() {
-    $('#settings').toolbar({
-        content: '#user-toolbar-options',
-        position: 'top',
-        hideOnClick: true
-    });
-};
+//function openSettings() {
+//    $('#settings').toolbar({
+//        content: '#user-toolbar-options',
+//        position: 'top',
+//        hideOnClick: true
+//    });
+//};
 
 function tutorial() {
     $('#joyRideTipContent').joyride({

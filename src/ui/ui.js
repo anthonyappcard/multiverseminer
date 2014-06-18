@@ -8,7 +8,8 @@ MouseButtons = {
     middle: 2,
     right: 3
 };
-
+var notificationCount = (localStorage.getItem("notificationCount") || localStorage.setItem("notification_count", "0"));
+var notificationText = (localStorage.getItem("notificationText") || localStorage.setItem("notification_text", ""));
 //---------------------------------------------------------------------------
 // UI Class
 // ---------------------------------------------------------------------------
@@ -39,6 +40,9 @@ function UI() {
     // main UI functions
     // ---------------------------------------------------------------------------
     this.init = function() {
+        //if ($("#new-message-count").text() == 0) {
+        //    $(".new-message").css("display", "none");
+        //};
         $(function() {
             var pusher = new Pusher('eff046273c0447c5498c');
         
@@ -48,15 +52,13 @@ function UI() {
                 window.console.log(message);
               }
             };
-        
             var channel = pusher.subscribe('updates');
             var notifier = new PusherNotifier(channel);
-            channel.bind('my_event', function(data) {
-                noty({
-                    text: data.message,
-                    type: "information",
-                    timeout: 5000
-                });
+            channel.bind('update', function(data) {
+                localStorage.setItem("notification_count", ++notificationCount);
+                localStorage.setItem("notification_text", notification_text+="<br>" + data.message);
+                $("#new-message-count").text(notification_count);
+                $("#notification-list").text(notification_text);
             });
         });
         // Setup key bindings
@@ -88,6 +90,11 @@ function UI() {
             this.screenPlanet.hide();
             this.screenTravel.show();
         }
+        $('#settings').toolbar({
+            content: '#user-toolbar-options',
+            position: 'top',
+            hideOnClick: true
+        });
     };
 
     this.update = function(currentTime) {
