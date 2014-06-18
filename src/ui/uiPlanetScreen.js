@@ -28,6 +28,7 @@ function UIPlanetScreen() {
     this.componentPlanet = undefined;
 
     this.componentPlanetDisplay = undefined;
+    this.componentQuestsPanel = undefined;
 
     // ---------------------------------------------------------------------------
     // overrides
@@ -120,7 +121,6 @@ function UIPlanetScreen() {
 
         this.componentQuestsPanel = new UIComponent('questsPanel');
         this.componentQuestsPanel.init();
-        this.componentQuestsPanel.enabled = true;
         this.componentQuestsPanel.updateCallback = this.updateQuestsDisplay;
 
         // Activate some defaults
@@ -201,6 +201,7 @@ function UIPlanetScreen() {
         this.componentPlanet.update(currentTime);
 
         this.componentPlanetDisplay.update(currentTime);
+        this.componentQuestsPanel.update(currentTime);
     };
 
     this.show = function() {
@@ -607,6 +608,21 @@ function UIPlanetScreen() {
 
     this.updateQuestsDisplay = function() {
         // TODO
+    	$('#questsContent').empty();
+    	for(var i = 0; i < game.QuestTable.length; i++) {
+    		var quest = game.QuestTable[i];
+    		var dom = $("<li>" + quest.name + "</li>");
+    		var expandQuest = $("<span class='expandQuest'>Tasks</span>");
+    		if(quest.completed)
+    			dom.addClass('questCompleted');
+    		expandQuest.mousedown({'self': dom, 'quest': quest}, function(a) {
+    			uiplanetscreen._buildTaskList(a.data.self, a.data.quest);
+    		});
+    		dom.append(expandQuest);
+    		$('#questsContent').append(dom);
+    	}
+		$('#questsContent').sortable();
+		$('#questsContent').disableSelection();
     };
 
     this.updatePlanetDisplay = function() {
@@ -674,6 +690,7 @@ function UIPlanetScreen() {
 
     this.activateQuests = function() {
         this.hideLeftSideComponents();
+        this.componentQuestsPanel.show();
     };
     this.activateEmpire = function() {
         this.hideLeftSideComponents();
@@ -744,5 +761,37 @@ function UIPlanetScreen() {
         content.disableSelection();
 
         return content;
+    };
+    
+    this._buildTaskList = function(dom, quest) {
+    	var taskList = $("#taskList");
+    	if(taskList)
+    		taskList.remove();
+    	var last = 0;
+    	var div = $("<div id='taskList'></div>");
+		var ul = $("<ul class='taskList'></ul>");
+    	for(var i = 0; i < quest.tasks.length; i++) {
+    		var task = quest.tasks[i];
+    		var li = $("<li class='taskItem'>" + task.desc + "</li>");
+    		if(quest.ordered) {
+    			if(task.completed) {
+    				last = i;
+    				li.addClass("taskCompleted")
+    			} else if(i == (last + 1)) {
+    				li.addClass("taskCurrent");
+    			} else {
+    				li.addClass("taskUnavailable")
+    			}
+    		} else {
+    			if(task.completed)
+    				li.addClass("taskCompleted");
+    			else
+    				li.addClass("taskCurrent");
+    		}
+    		ul.append(li);
+    	}
+		div.append("<div class='questDescription'>" + quest.desc + "</div>");
+		div.append(ul);
+		dom.append(div);
     };
 }
