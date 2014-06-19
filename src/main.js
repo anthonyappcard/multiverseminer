@@ -175,7 +175,14 @@ function onMine() {
         $('#audioDig').trigger('play');
     }
 };
-
+function exportStorage() {
+    // encode the data into base64
+    base64 = window.btoa(JSON.stringify(localStorage));
+    var x = $("#exportStorageText");
+    var link = 'data:application/octet-stream;base64,' + base64;
+    x.append("<p><p><a href="+ link + ">Download</a>");
+    $("#exportStorageModal").dialog({modal: true});
+}
 function toggleAudio() {
     //pause playing
     if (!document.getElementById('audioDig').muted) {
