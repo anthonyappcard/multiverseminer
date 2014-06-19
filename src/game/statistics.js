@@ -29,7 +29,7 @@ function Statistics(key) {
         localStorage[storageKey + 'manualGatherCount'] = this.manualGatherCount;
         localStorage[storageKey + 'manualScavengeCount'] = this.manualScavengeCount;
         localStorage[storageKey + 'autoDigCount'] = this.autoDigCount;
-        localStorage[storageKey + 'autogatherCount'] = this.autoGatherCount;
+        localStorage[storageKey + 'autogatherCount'] = this.autogatherCount;
         localStorage[storageKey + 'autoscavengeCount'] = this.autoscavengeCount;
         localStorage[storageKey + 'autorefineCount'] = this.autorefineCount;
 

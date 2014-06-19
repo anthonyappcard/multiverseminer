@@ -23,7 +23,6 @@ Number.prototype.formatNumber = function() {
     if (ui.numberFormatter) {
         return ui.numberFormatter(this).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-
     return this;
 };
 
@@ -75,13 +74,7 @@ function onDocumentReady() {
 
     // Call one round of UI Updates
     ui.update();
-    $(function() {
-        $("#notification-list").dialog()
-            .on('diagclose', function(event, ui) {
-                localStorage.setItem('notification_count', 0);
-                localStorage.setItem('notification_text', "");
-            });
-    });
+
     // Activate the default panels
     onActivatePlayerInventory();
     onActivatePlayerGear();
@@ -92,15 +85,15 @@ function onDocumentReady() {
         onUpdate();
     }, interval);
 
-    $("#class1").click(function() {
-        selectClass(1);
-    });
-    $("#class2").click(function() {
-        selectClass(2);
-    });
-    $("#class3").click(function() {
-        selectClass(3);
-    });
+    //$("#class1").click(function() {
+    //    selectClass(1);
+    //});
+    //$("#class2").click(function() {
+    //    selectClass(2);
+    //});
+    //$("#class3").click(function() {
+    //    selectClass(3);
+    //});
 }
 
 //function openSettings() {
@@ -128,6 +121,14 @@ function onUpdate() {
     var currentTime = Date.now();
     game.update(currentTime);
     ui.update(currentTime);
+};
+
+function openNotifications() {
+    $("#notification-list").dialog({
+        close: function(event, ui) {
+            localStorage.setItem('notification_count', 0);
+            localStorage.setItem('notification_text', "");
+        }})
 };
 
 function newCraft(itemId, quantity) {
@@ -352,11 +353,14 @@ function newCraftingModal(itemId) {
         height: 300,
         modal: true,
         title: "Crafting: " + name,
-        close: function(ev, ui) { $(this).close(); },
+        close: function(ev, ui) {
+            $(this).close();
+        },
         buttons: {
             'Craft It': function() {
                 if ($("#quantity").val() > 0) {
                     newCraft(itemId, $("#quantity").val());
+                    $(this).dialog("close");
                 } else {
                     noty({
                         text: "You can't craft that few.",
@@ -368,10 +372,8 @@ function newCraftingModal(itemId) {
         }
     });
     $("#hidden-input").val(itemId);
-    $("new-crating-modal").dialog('open').bind('dialogclose', function(event) {
-        alert('closed');
-    });
-};
+    $("new-crating-modal").dialog('open');
+}
 
 function showFight() {
     if (game.playerDied > 0)

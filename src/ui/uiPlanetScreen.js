@@ -750,9 +750,9 @@ function UIPlanetScreen() {
         var myObj = game.settings.totalStats;
         numberRegex = /^\d+$/;
         for (var prop in myObj) {
-            if (myObj.hasOwnProperty(prop) && prop !== 'key' && typeof myObj[prop] != 'function') {
-                if (myObj[prop] == null) myObj[prop] = 0;
-                x.push((prop + ': ' + myObj[prop] + '</br>'));
+            if (myObj.hasOwnProperty(prop) && prop !== 'key' && typeof myObj[prop] != 'function' && prop !== 'id') {
+                if (typeof myObj[prop] !== 'number') myObj[prop] = 0;
+                    x.push((prop + ': ' + myObj[prop] + '</br>'));
             }
         };
         for (var key in stats) {
@@ -818,11 +818,11 @@ function UIPlanetScreen() {
     		if(quest.ordered) {
     			if(task.completed) {
     				last = i;
-    				li.addClass("taskCompleted")
+    				li.addClass("taskCompleted");
     			} else if(i == (last + 1)) {
     				li.addClass("taskCurrent");
     			} else {
-    				li.addClass("taskUnavailable")
+    				li.addClass("taskUnavailable");
     			}
     		} else {
     			if(task.completed)
