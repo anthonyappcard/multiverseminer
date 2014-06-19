@@ -181,11 +181,13 @@ margin-right:4px;
     background: none repeat scroll 0 0 rgba(83, 83, 83, 0.8);
 }
 .minerStats {
+    bottom: 25px;
+    display: block;
     font-size: 14px;
-    padding-top: 50px;
-    width: 100%;
-    text-align: left;
     padding-left: 10px;
+    position: absolute;
+    text-align: left;
+    width: 100%;
 }
 .statsContent {
     font-size: 12px;

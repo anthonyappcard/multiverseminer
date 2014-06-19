@@ -86,14 +86,17 @@ function onDocumentReady() {
     $(document).contextmenu({
         delegate: ".hasMenu",
         preventSelect: true,
+        autoTrigger: true,
         taphold: true,
         menu: [{
             title: "Info",
             action: function(event, ui) {
-                console.log(ui.target.children().last().val().attr("id"));
+                console.log(ui.target.children().last().attr("id"));
             }
         }]
     });
+    var inputElement = document.getElementById("input");
+    inputElement.addEventListener("change", handleFiles, false);
 };
 
 //function openSettings() {
@@ -175,14 +178,33 @@ function onMine() {
         $('#audioDig').trigger('play');
     }
 };
+
 function exportStorage() {
     // encode the data into base64
     base64 = window.btoa(JSON.stringify(localStorage));
     var x = $("#exportStorageText");
     var link = 'data:application/octet-stream;base64,' + base64;
-    x.append("<p><p><a href="+ link + ">Download</a>");
-    $("#exportStorageModal").dialog({modal: true});
-}
+    x.append("<a href=" + link + ">Download</a>");
+    $("#exportStorageModal").dialog({
+        modal: true
+    });
+};
+
+function importStorage() {
+    $("#importStorageModal").dialog({
+        modal: true
+    });
+};
+    
+function handleFiles() {
+    var fileList = this.files;
+    x = JSON.toSource(fileList);
+    for (var key in x) {
+        localStorage[key] = data[key];
+    }
+};
+
+
 function toggleAudio() {
     //pause playing
     if (!document.getElementById('audioDig').muted) {
@@ -352,11 +374,6 @@ function showChat() {
 }
 
 function newCraftingModal(itemId) {
-    var maxCrafts = game.player.storage.getMaxCrafts(itemId);
-    if (maxCrafts <= 5) {
-        newCraft(itemId, 1);
-        return;
-    }
     var name = game.getItem(itemId).name;
     if (game.getItem(itemId).description) {
         var description = "Description: " + game.getItem(itemId).description;
@@ -375,7 +392,7 @@ function newCraftingModal(itemId) {
             'Craft It': function() {
                 if ($("#quantity").val() > 0) {
                     newCraft(itemId, $("#quantity").val());
-                    $(this).dialog("close");
+                    $(this).close();
                 } else {
                     noty({
                         text: "You can't craft that few.",
