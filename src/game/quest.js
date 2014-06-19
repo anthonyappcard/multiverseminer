@@ -42,7 +42,7 @@ function Quest(name,desc, ordered, tasks, reward){
     };
     
     this.check = function() {
-		for(var i = 0; i < this.tasks; i++) {
+		for(var i = 0; i < this.tasks.length; i++) {
 			if(!this.tasks[i].completed) return false;
 		}
 		this.complete();
@@ -51,19 +51,15 @@ function Quest(name,desc, ordered, tasks, reward){
     
     this.taskProgress = function(type, what) { //kill, craft, mine, event? x y
     	if(this.ordered) {
-    		for(var i = 0; i < this.tasks; i++) {
+    		for(var i = 0; i < this.tasks.length; i++) {
     			if(!this.tasks[i].completed) {
-	    			if(tasks[i].type == type) {
-	    				tasks[i].progress(what);
-	    			}
+	    			this.tasks[i].progress(type, what);
 	    			break;
     			}
     		}
     	} else {
-    		for(var i = 0; i < this.tasks; i++) {
-    			if(tasks[i].type == type) {
-    				tasks[i].progress(what);
-    			}
+    		for(var i = 0; i < this.tasks.length; i++) {
+    			this.tasks[i].progress(type, what);
     		}
     	}
     	this.check();
@@ -80,39 +76,86 @@ function Quest(name,desc, ordered, tasks, reward){
 * Where X is the quantity and Y is the object. It can be specific, EG: 10 ironBar, or generic 5 gems
 * If the type is event then a listener will be created for that event and when fired will complete the task
 */
-function Task(desc,type,what){
+function Task(desc,type,what) {
 	this.desc = desc;
 	this.type = type;
 	
-    if(type === 'event'){
+    if(type == 'event'){
         this.event = what;
-        return;
+    } else {
+	    var quantity, id;
+	    quantity = what.split(' ')[0];
+	    id = what.split(' ')[1];
+	    quantity = parseInt(quantity,10);
+	    quantity = isNaN(quantity) ? 1 : quantity;
+	    this.current = 0; //when current progress >= goal, win :P
+	    this.goal = quantity;
+	    this.event = id;
     }
-    
-    var quantity, id;
-    quantity = what.split(' ')[0];
-    id = what.split(' ')[1];
-    quantity = parseInt(quantity,10);
-    quantity = isNaN(quantity) ? 1 : quantity;
-    this.goal = quantity;
-    this.event = type;
-    
-    this.current = 0; //when current progress >= goal, win :P
     this.completed = false;
     
-    this.check = function(){
-    	if(this.current >= this.goal)
-    		this.completed = true;
+    this.check = function() {
+    	if(this.type != 'event') {
+	    	if(this.current >= this.goal) {
+	    		this.completed = true;
+	    	}
+    	}
     	return this.completed;
     };
     
-    this.progress = function(amount) {
-    	this.current += amount;
+    this.progress = function(type, what) {
+    	if(this.type == type) {
+    		if(type == 'event') {
+    			if(what == this.event) {
+    				this.completed = true;
+    			}
+	    	} else {
+	    	    var quantity, id;
+	    	    quantity = what.split(' ')[0];
+	    	    id = what.split(' ')[1];
+	    	    quantity = parseInt(quantity,10);
+	    	    quantity = isNaN(quantity) ? 0 : quantity;
+	    	    if(id == this.event) {
+	    	    	this.current += quantity;
+	    	    }
+	    	}
+    	}
     	return this.check();
     };
 };
 
 function initQuests() {
-	//example quest
-	game.addQuest("Example", "This is just an example quest.", false, [new Task("Exmample Task", "event", "example")], function() { console.log("The example quest was completed!"); });
+	// example quest
+	// game.addQuest(
+	//	"Example",
+	//		"This is just an example quest.", false,
+	//			[new Task("Example Task", "event", "example")], 
+	//
+	//function() { console.log("The example quest was completed!"); }
+	//);
+		
+	game.addQuest(
+		'Mine Copper', 
+			'Mine 10 copper', false, 
+				[new Task('Mine copper', 'mine', '10 copper')], 
+	
+	function() {noty({text: "Quest Complete: Mine Copper", type: "information", timeout: 3500 });}
+	);
+	
+	game.addQuest(
+		'Kill Thugs', 
+			'Kill 2 thugs', false, 
+				[new Task('Kill thugs', 'kill', '2 npc_thug')], 
+	
+	function() {noty({text: "Quest Complete: Kill Thugs", type: "information", timeout: 3500 });}
+	);
+	
+	game.addQuest(
+		'Craft Copper Bar', 
+			'Craft 1 copper bar with the copper from before', false, 
+				[new Task('Craft copper bar', 'craft', '1 copperBar')], 
+	
+	function() {noty({text: "Quest Complete: Craft Copper Bar", type: "information", timeout: 3500 });}
+	);
+
 };

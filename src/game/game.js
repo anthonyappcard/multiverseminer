@@ -120,7 +120,13 @@ function Game() {
 
         if (this.settings.autoSaveEnabled && elapsedSinceAutoSave > this.settings.autoSaveInterval && !this.settings.travelActive) {
 
-            ui.notify("Auto-saving");
+            // ui.notify("Auto-saving");
+			var notify = noty({
+							layout: 'bottomCenter',
+							type: 'success',
+							timeout: 3500,
+							text: 'Auto Saved'
+						});
             this.save();
             this.lastAutoSaveTime = currentTime;
         }
