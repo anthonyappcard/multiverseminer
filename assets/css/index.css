@@ -15,7 +15,6 @@ body {
     margin-top: 0;
     min-height: 600px;
     min-width: 800px;
-    overflow: hidden;
     width: calc(100% - 1px);
 }
 a {
