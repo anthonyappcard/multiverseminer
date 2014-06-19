@@ -127,4 +127,7 @@ function Task(desc,type,what) {
 function initQuests() {
 	//example quest
 	game.addQuest("Example", "This is just an example quest.", false, [new Task("Example Task", "event", "example")], function() { console.log("The example quest was completed!"); });
+	game.addQuest('Mine copper', 'Mine 10 copper', false, [new Task('Mine copper', 'mine', '10 copper')], function() {noty({text: "Mining complete!", type: "information", timeout: 3500 });});
+	game.addQuest('Kill thugs', 'Kill 2 thugs', false, [new Task('Kill thugs', 'kill', '2 npc_thug')], function() {noty({text: "Fighting complete!", type: "information", timeout: 3500 });});
+	game.addQuest('Craft copper bar', 'Craft 1 copper bar with the copper from before', false, [new Task('Craft copper bar', 'craft', '1 copperBar')], function() {noty({text: "Crafting complete!", type: "information", timeout: 3500 });});
 };
