@@ -675,8 +675,8 @@ function Game() {
         luck = luck || 1;
         for (var i = 0; i < table.entries.length; i++) {
             var entry = table.entries[i][0];
-            var chance = table.entries[i][1];
-            if (Math.random() <= chance * Math.sqrt(Math.pow(1.1, luck - 1))) {
+            var chance = this._calculateChance(table.entries[i], luck);
+            if (Math.random() <= chance) {
                 if (entry.entries) {
                     // Sub-table
                     this._pickLootTableEntries(entry, results, luck);
@@ -697,6 +697,13 @@ function Game() {
         } else {
             results.push(entry);
         }
+    };
+    
+    this._calculateChance = function(entry, luck) { //array 
+    	//TODO: gather extra chances from planet buildings
+    	var chance  = entry[1] * Math.sqrt(Math.pow(1.1, luck - 1)); //TODO: find a proper formula
+    	//TODO: add modifiers?
+    	return chance;
     };
 
     this._leaveOrbit = function(target) {
