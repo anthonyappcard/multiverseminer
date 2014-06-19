@@ -352,7 +352,7 @@ function newCraftingModal(itemId) {
         height: 300,
         modal: true,
         title: "Crafting: " + name,
-        close: function( event, ui ) {},
+        close: function(ev, ui) { $(this).close(); },
         buttons: {
             'Craft It': function() {
                 if ($("#quantity").val() > 0) {
