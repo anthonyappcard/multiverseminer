@@ -1,17 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
-
 <html lang="en">
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type">
-
     <title>Multiverse Miner</title>
-    <!--<script src="/socket.io/socket.io.js"></script>-->
     <script src="require.js" type="text/javascript"></script>
     <script src="MultiverseMiner.min.js" type="text/javascript"></script>
     <link href="MultiverseMiner.min.css" rel="stylesheet" type="text/css">
 </head>
-
-<body class="body">
+<body>
     <audio id="audioDig" preload="none"><source src="assets/sound/Dig.mp3" type="audio/mp3"></audio>
     <audio id="audioDigSuccess" preload="none"><source src="assets/sound/Dig-FoundMineral.mp3" type="audio/mp3"></audio>
 
@@ -325,6 +321,11 @@
             <div class="genericButton bottomBarButton clickable" onclick="exportStorage()">
                 <div id="exportSave" class="bottomBarButtonText noSelect">Export</div>
             </div>
+            
+            <div class="genericButton bottomBarButton clickable" onclick="importStorage()">
+                <div id="importSave" class="bottomBarButtonText noSelect">Import</div>
+            </div>
+            
         </div>
             <div class="hidden fightDialog" id="fight-dialog">
                 <div id="fightText">
@@ -475,6 +476,18 @@
     </div>
     <div id="release-notes" style="display:none;"></div>
     <div id="notification-list" style="display:none;">You have no notifications.</div>
-    <div id="exportStorageModal" style="display:none;"><div id="exportStorageText">Store your data.</div></div>
+    
+    <div id="exportStorageModal" style="display:none;">
+        <div id="exportStorageText">
+            Save your data.<p>
+        </div>
+    </div>
+    
+    <div id="importStorageModal" style="display:none;">
+        <div id="importStorageText">
+            Import your data.<p>
+                <input type="file" id="input">
+        </div>
+    </div>
 </body>
 </html>
