@@ -623,7 +623,7 @@ function UIPlanetScreen() {
         var myObj = game.settings.totalStats;
         numberRegex = /^\d+$/;
         for (var prop in myObj) {
-            if (myObj.hasOwnProperty(prop) && prop !== 'key' && typeof myObj[prop] != 'function') {
+            if (myObj.hasOwnProperty(prop) && prop !== 'key' && typeof myObj[prop] != 'function' && prop != 'id') {
                 if (myObj[prop] == null) myObj[prop] = 0;
                 x.push((prop + ': ' + myObj[prop] + '</br>'));
             }

@@ -6,10 +6,12 @@
 	margin-bottom: 20px;
 	margin-top: 20px;
 	height: 20px;
-	width: 80%;
+	width: 95%;
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
+	vertical-align: middle;
+	line-height: 30px;
 }
 
 .inventoryContentPlayer {

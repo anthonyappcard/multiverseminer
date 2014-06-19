@@ -47,6 +47,7 @@ function Statistics(key) {
     };
 
     this.reset = function(fullReset) {
+        sessionStorage.clear();
         this.manualDigCount = 0;
         this.manualGatherCount = 0;
         this.manualScavengeCount = 0;
