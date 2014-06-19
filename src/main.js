@@ -1,15 +1,16 @@
-require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "custombox", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "pusher", "pushernotifier"]);
+require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "custombox", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "ws", "contextmenu"]);
 
 // Create components
 var game = new Game();
 var ui = new UI();
 var uiplanetscreen = new UIPlanetScreen();
-// Add hook for document ready
-$(document).ready(onDocumentReady);
 
+// Save before closing the page.
 window.onbeforeunload = function() {
     game.save();
 };
+// Add hook for document ready
+$(document).ready(onDocumentReady);
 
 // Setup notifications
 $.jGrowl.defaults.position = 'top-right';
@@ -24,35 +25,6 @@ Number.prototype.formatNumber = function() {
         return ui.numberFormatter(this).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
     return this;
-};
-
-$(function() {
-    var pusher = new Pusher('eff046273c0447c5498c');
-
-    // logging
-    pusher.log = function(message) {
-        if (window.console && window.console.log) {
-            window.console.log(message);
-        }
-    };
-    var channel = pusher.subscribe('updates');
-    var notifier = new PusherNotifier(channel);
-    channel.bind('update', function(data) {
-        if (localStorage.getItem("notification_text") == "You have no notifications.") {
-            var notificationText = localStorage.setItem("notification_text", "Notifications: <br>");
-        };
-        localStorage.setItem("notification_count", ++notificationCount);
-        localStorage.setItem("notification_text", notificationText += "<br>" + data.message);
-        $("#new-message-count").text(notification_count);
-        $("#notification-list").text(notification_text);
-    });
-});
-
-
-function selectClass(playerClass) {
-    game.player.playerClass = playerClass;
-    $("#class-pick").dialog("close");
-    game.save();
 };
 
 // ---------------------------------------------------------------------------
@@ -85,17 +57,44 @@ function onDocumentReady() {
         onUpdate();
     }, interval);
 
-    //$("#class1").click(function() {
-    //    selectClass(1);
-    //});
-    //$("#class2").click(function() {
-    //    selectClass(2);
-    //});
-    //$("#class3").click(function() {
-    //    selectClass(3);
-    //});
     $('<div class=\'hide-left\'><button onclick=\'$("#leftCategory").toggle()\'>Hide Panel</button></div>').insertAfter('#leftCategoryContent');
-}
+    var ws = $.WebSocket('ws://dev.multiverseminer.com:8080', null, {
+        http: 'http://127.0.0.1:81/Lab/Websocket/Data/poll.php'
+    });
+    ws.onerror = function(e) {
+        console.log('Error with WebSocket uid: ' + e.target.uid);
+    };
+    var pipe1;
+    // if connection is opened => start opening a pipe (multiplexing)
+    ws.onopen = function() {
+        //
+        pipe1 = ws.registerPipe('user/all', null, {
+            onopen: function() {
+                console.log('pipe1 (' + this.uid + ') connected!');
+            },
+            onmessage: function(e) {
+                console.log('< pipe1 : ' + e.data);
+            },
+            onerror: function(e) {
+                console.log('< pipe1 error : ' + e.data);
+            },
+            onclose: function() {
+                console.log('pipe1 (' + pipe.uid + ') connection closed!');
+            }
+        });
+    };
+    $(document).contextmenu({
+        delegate: ".hasMenu",
+        preventSelect: true,
+        taphold: true,
+        menu: [{
+            title: "Info",
+            action: function(event, ui) {
+                console.log(ui.target.children().last().val().attr("id"));
+            }
+        }]
+    });
+};
 
 //function openSettings() {
 //    $('#settings').toolbar({
@@ -104,6 +103,13 @@ function onDocumentReady() {
 //        hideOnClick: true
 //    });
 //};
+//function viewItemDetails(itemId):
+
+function selectClass(playerClass) {
+    game.player.playerClass = playerClass;
+    $("#class-pick").dialog("close");
+    game.save();
+};
 
 function tutorial() {
     $('#joyRideTipContent').joyride({
@@ -129,7 +135,8 @@ function openNotifications() {
         close: function(event, ui) {
             localStorage.setItem('notification_count', 0);
             localStorage.setItem('notification_text', "");
-        }})
+        }
+    });
 };
 
 function newCraft(itemId, quantity) {
@@ -410,3 +417,28 @@ function changeRightCategoryButton(selected) {
     var name = document.getElementById("rightCategory" + selected);
     name.className = "genericButtonSelected categoryButton clickable";
 }
+// Old events code.
+//$(function() {
+//    var channel = pusher.subscribe('updates');
+//    var notifier = new PusherNotifier(channel);
+//    channel.bind('update', function(data) {
+//        if (localStorage.getItem("notification_text") == "You have no notifications.") {
+//            var notificationText = localStorage.setItem("notification_text", "Notifications: <br>");
+//        };
+//        localStorage.setItem("notification_count", ++notificationCount);
+//        localStorage.setItem("notification_text", notificationText += "<br>" + data.message);
+//        $("#new-message-count").text(notification_count);
+//        $("#notification-list").text(notification_text);
+//    });
+//});
+
+// Select class.
+//$("#class1").click(function() {
+//    selectClass(1);
+//});
+//$("#class2").click(function() {
+//    selectClass(2);
+//});
+//$("#class3").click(function() {
+//    selectClass(3);
+//});

@@ -224,3 +224,11 @@ display:block;
     left: 4px;
     bottom: 7%;
 }
+.ui-menu {
+    list-style: none outside none;
+    padding-left: 7px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    display: block;
+    height: 65px;
+}
