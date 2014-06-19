@@ -469,19 +469,34 @@ function UIPlanetScreen() {
             case "gearBuilding":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
+                if (item.description) {
+                    content += "<p><strong>Description: </strong><br>&nbsp;" + item.description + "</br><br>";
+                }
                     content += "<strong>Cost:</strong></br>";
                     for (cost in item.craftCost) {
                         content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
                     }
                 }
-                if (item.description) {
-                    content += "<p><strong>Description: </strong>" + item.description + "</br>";
-                }
-                content += "</br><strong>Stats:</strong></br>";
-                content += "&nbsp;Mine: " + item.automine + "/s</br>";
-                content += "&nbsp;Refine: " + item.autorefine + "/s</br>";
-                content += "&nbsp;Gather: " + item.autogather + "/s</br>";
-                content += "&nbsp;Scavenge: " + item.autoscavenge + "/s</br>";
+				if (item.id == "miningRig"){
+					content += "</br><strong>Stats:</strong></br>";
+					content += "&nbsp;Mining : " + item.automine + "/aps";
+				}
+                if (item.id == "refinery") {
+					content += "</br><strong>Stats:</strong></br>";
+					content += "&nbsp;Refining Rate: " + item.autorefine + "/aps";
+				}
+				if (item.id == "gatherStation") {
+					content += "</br><strong>Stats:</strong></br>";
+					content += "&nbsp;Gathering Rate: " + item.autogather + "/aps";
+				}
+                if (item.id == "scavengeStation") {
+					content += "</br><strong>Stats:</strong></br>";
+					content += "&nbsp;Scavenging Rate: " + item.autoscavenge + "/aps";
+				}
+				if (item.id == "crudeOilDrone") {
+					content += "</br><strong>Stats:</strong></br>";
+					content += "&nbsp;Gather: ";
+				}
                 break;
 				
 			/* Spaceship */
