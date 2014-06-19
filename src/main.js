@@ -94,6 +94,7 @@ function onDocumentReady() {
     //$("#class3").click(function() {
     //    selectClass(3);
     //});
+    $('<div class=\'hide-left\'><button onclick=\'$("#leftCategory").toggle()\'>Hide Panel</button></div>').insertAfter('#leftCategoryContent');
 }
 
 //function openSettings() {

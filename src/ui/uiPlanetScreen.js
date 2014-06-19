@@ -469,19 +469,34 @@ function UIPlanetScreen() {
             case "gearBuilding":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
+                if (item.description) {
+                    content += "<p><strong>Description: </strong><br>&nbsp;" + item.description + "</br><br>";
+                }
                     content += "<strong>Cost:</strong></br>";
                     for (cost in item.craftCost) {
                         content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
                     }
                 }
-                if (item.description) {
-                    content += "<p><strong>Description: </strong>" + item.description + "</br>";
-                }
-                content += "</br><strong>Stats:</strong></br>";
-                content += "&nbsp;Mine: " + item.automine + "/s</br>";
-                content += "&nbsp;Refine: " + item.autorefine + "/s</br>";
-                content += "&nbsp;Gather: " + item.autogather + "/s</br>";
-                content += "&nbsp;Scavenge: " + item.autoscavenge + "/s</br>";
+				if (item.id == "miningRig"){
+					content += "</br><strong>Stats:</strong></br>";
+					content += "&nbsp;Mining : " + item.automine + "/aps";
+				}
+                if (item.id == "refinery") {
+					content += "</br><strong>Stats:</strong></br>";
+					content += "&nbsp;Refining Rate: " + item.autorefine + "/aps";
+				}
+				if (item.id == "gatherStation") {
+					content += "</br><strong>Stats:</strong></br>";
+					content += "&nbsp;Gathering Rate: " + item.autogather + "/aps";
+				}
+                if (item.id == "scavengeStation") {
+					content += "</br><strong>Stats:</strong></br>";
+					content += "&nbsp;Scavenging Rate: " + item.autoscavenge + "/aps";
+				}
+				if (item.id == "crudeOilDrone") {
+					content += "</br><strong>Stats:</strong></br>";
+					content += "&nbsp;Gather: ";
+				}
                 break;
 				
 			/* Spaceship */
@@ -646,13 +661,14 @@ function UIPlanetScreen() {
 		console.log("PlanetPanel");  
 	};
 
+// Questing Section (650-704)	
     this.updateQuestsDisplay = function() {
         // TODO
     	$('#questsContent').empty();
     	for(var i = 0; i < game.QuestTable.length; i++) {
     		var quest = game.QuestTable[i];
-    		var dom = $("<li>" + quest.name + "</li>");
-    		var expandQuest = $("<span class='expandQuest'>Tasks</span>");
+    		var dom = $("<span class='questTitle'>" + quest.name + "</span><br>");
+    		var expandQuest = $("<span class='expandQuest'>Open</span>");
     		if(quest.completed)
     			dom.addClass('questCompleted');
     		expandQuest.mousedown({'self': dom, 'quest': quest}, function(a) {
@@ -664,6 +680,44 @@ function UIPlanetScreen() {
 		$('#questsContent').sortable();
 		$('#questsContent').disableSelection();
     };
+
+    this._buildTaskList = function(dom, quest) {
+    	var taskList = $("#taskList");
+    	if(taskList)
+    		taskList.remove();
+    	var last = 0;
+    	var div = $("<div id='taskList'></div>");
+		var ul = $("<ul class='taskList'></ul>");
+    	for(var i = 0; i < quest.tasks.length; i++) {
+    		var task = quest.tasks[i];
+    		var li = $("<li class='taskItem'>" + task.desc + "</li>");
+    		if(quest.ordered) {
+    			if(task.completed) {
+    				last = i;
+    				li.addClass("taskCompleted");
+    			} else if(i == (last + 1)) {
+    				li.addClass("taskCurrent");
+    			} else {
+    				li.addClass("taskUnavailable");
+    			}
+    		} else {
+    			if(task.completed)
+    				li.addClass("taskCompleted");
+    			else
+    				li.addClass("taskCurrent");
+    		}
+    		ul.append(li);
+    	}
+		div.append("<div class='questDescription'>-&nbsp;" + quest.desc + "</div>");
+		div.append(ul);
+		dom.append(div);
+    };
+
+    this.activateQuests = function() {
+        this.hideLeftSideComponents();
+        this.componentQuestsPanel.show();
+    };
+
 
     this.updatePlanetDisplay = function() {
         $('#planetDisplayBackground').empty();
@@ -727,11 +781,6 @@ function UIPlanetScreen() {
     this.activateCrafting = function() {
         this.hideRightSideComponents();
         this.componentCrafting.show();
-    };
-
-    this.activateQuests = function() {
-        this.hideLeftSideComponents();
-        this.componentQuestsPanel.show();
     };
 
     this.activateEmpire = function() {
@@ -805,35 +854,5 @@ function UIPlanetScreen() {
         return content;
     };
     
-    this._buildTaskList = function(dom, quest) {
-    	var taskList = $("#taskList");
-    	if(taskList)
-    		taskList.remove();
-    	var last = 0;
-    	var div = $("<div id='taskList'></div>");
-		var ul = $("<ul class='taskList'></ul>");
-    	for(var i = 0; i < quest.tasks.length; i++) {
-    		var task = quest.tasks[i];
-    		var li = $("<li class='taskItem'>" + task.desc + "</li>");
-    		if(quest.ordered) {
-    			if(task.completed) {
-    				last = i;
-    				li.addClass("taskCompleted");
-    			} else if(i == (last + 1)) {
-    				li.addClass("taskCurrent");
-    			} else {
-    				li.addClass("taskUnavailable");
-    			}
-    		} else {
-    			if(task.completed)
-    				li.addClass("taskCompleted");
-    			else
-    				li.addClass("taskCurrent");
-    		}
-    		ul.append(li);
-    	}
-		div.append("<div class='questDescription'>" + quest.desc + "</div>");
-		div.append(ul);
-		dom.append(div);
-    };
+
 }
