@@ -44,7 +44,11 @@ function Game() {
         // Initialize all the components
         this.player.initialize();
         this.settings.initialize();
-
+        
+        initQuests();
+        
+        this.questProgress("event", "example"); //this is an example of how to progress in event type quests
+        
         // Load the settings
         this.load();
 
