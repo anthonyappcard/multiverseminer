@@ -221,7 +221,7 @@ display:block;
 }
 .hide-left {
     display: block;
-    position: fixed;
+    position: absolute;
     left: 4px;
     bottom: 7%;
 }
