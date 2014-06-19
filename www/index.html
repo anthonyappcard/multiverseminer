@@ -5,7 +5,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type">
 
     <title>Multiverse Miner</title>
-    <!--<script src="http://www.multiverseminer.com/socket.io/socket.io.js"></script>-->
+    <script src="/socket.io/socket.io.js"></script>
     <script src="require.js" type="text/javascript"></script>
     <script src="MultiverseMiner.min.js" type="text/javascript"></script>
     <link href="MultiverseMiner.min.css" rel="stylesheet" type="text/css">
@@ -54,7 +54,9 @@
             </div>
 
             <div class="categoryContent clearLeftFloat" id="leftCategoryContent">
-                <div class="inventoryPanel" id="playerInventoryPanel">
+                
+				<!-- Inventory Panel -->
+				<div class="inventoryPanel" id="playerInventoryPanel">
                     <div id="playerInventoryContent">
                         <div class="inventoryFilter" id="playerInventoryFilter"></div>
 
@@ -65,21 +67,27 @@
                         </div>
                     </div>
                 </div>
-
+				
+				<!-- Empire Panel -->
                 <div class="empirePanel" id="empirePanel">
                     <div id="empireContent"></div>
                 </div>
-
+				
+				<!-- Stats Panel -->
                 <div class="statsPanel" id="statsPanel">
                     <div class="statsContent" id="statsContent"></div>
                 </div>
                 
-                <div class="questsPanel ui-sortable" id="questsPanel">
-                	<ul class="questsContent" id="questsContent"></ul>
-                </div>
-            </div>
+				<!-- Quests Panel -->
+				<div class="questsPanel" id="questsPanel">
+					<!-- <div class="questsContent" id="questsContent"> -->
+						<ul class="questsContent" id="questsContent"></ul>
+					<!-- </div> -->
+				</div>
+				            
+			</div>
         </div>
-
+	
         <div class="panelPlanetRight" id="panelPlanetRight">
             <div id="rightCategory">
                 <div class="genericButton categoryButton clickable" id="rightCategory0" onclick="onActivatePlayerGear()">
@@ -216,7 +224,8 @@
         Build a spaceship, and travel through the solar system.<br>
         This is a community developed, open source game.<br>
         If you'd like to join the team, <a href="http://webchat.freenode.net?channels=%23multiverseminer&amp;uio=d4">Click here</a>
-    </div><!--
+    </div>
+    <!--
             <div id="class-pick" class="hidden" title="Pick a Race!">
         <table>
             <tr>
@@ -260,7 +269,7 @@
             </tr>
         </table>
         </div>
-            -->
+    -->
 
     <div class="hidden" id="get-a-ship" title="Thou shall not travel!">
         You need to craft a ship in order to travel away from Earth<br>
@@ -293,7 +302,7 @@
             <div class="genericButton bottomBarButton" id="timeDisplay">
                 <div class="bottomBarButtonText noSelect" id="timeDisplayText"></div>
             </div>
-        </div>
+            </div>
 
         <div class="panelBottomLeft">
             <div class="genericButton bottomBarButton clickable notifications">
@@ -464,6 +473,6 @@
          <input style="display:none;" id="hidden-input" name="itemId"></input>
     </div>
     <div id="release-notes" style="display:none;"></div>
-    <div id="notification-list" style="display:none;"></div>
+    <div id="notification-list" style="display:none;">You have no notifications.</div>
 </body>
 </html>

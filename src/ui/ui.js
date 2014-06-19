@@ -1,4 +1,4 @@
-require(["uiplanetscreen", "uitravelscreen", "uifloating", "jquery", "jqueryui", "jgrowl", "tooltipster", "pusher", "pushernotifier"]);
+require(["uiplanetscreen", "uitravelscreen", "uifloating", "jquery", "jqueryui", "jgrowl", "tooltipster"]);
 
 // ---------------------------------------------------------------------------
 // Some const values used in ui code
@@ -8,8 +8,7 @@ MouseButtons = {
     middle: 2,
     right: 3
 };
-var notificationCount = (localStorage.getItem("notificationCount") || localStorage.setItem("notification_count", "0"));
-var notificationText = (localStorage.getItem("notificationText") || localStorage.setItem("notification_text", ""));
+
 //---------------------------------------------------------------------------
 // UI Class
 // ---------------------------------------------------------------------------
@@ -43,24 +42,6 @@ function UI() {
         //if ($("#new-message-count").text() == 0) {
         //    $(".new-message").css("display", "none");
         //};
-        $(function() {
-            var pusher = new Pusher('eff046273c0447c5498c');
-        
-            // logging
-            pusher.log = function(message) {
-              if (window.console && window.console.log) {
-                window.console.log(message);
-              }
-            };
-            var channel = pusher.subscribe('updates');
-            var notifier = new PusherNotifier(channel);
-            channel.bind('update', function(data) {
-                localStorage.setItem("notification_count", ++notificationCount);
-                localStorage.setItem("notification_text", notification_text+="<br>" + data.message);
-                $("#new-message-count").text(notification_count);
-                $("#notification-list").text(notification_text);
-            });
-        });
         // Setup key bindings
         $(window).delegate('*', 'keypress', this.onKeyPress);
         $(document).bind('keypress', this.onKeyPress);

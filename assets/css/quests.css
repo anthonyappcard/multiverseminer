@@ -1,0 +1,18 @@
+/*
+.questsPanel {
+	margin: 1px 15px;
+}
+*/
+
+#questsContent {
+	margin-top: 20px;
+	background-color: red;
+	width: 80%;
+	height: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	font-size: 12px;
+	border: 1px solid #D1D1D1;
+	background-color: #5C5C5C;
+}

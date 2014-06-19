@@ -611,7 +611,7 @@ function UIPlanetScreen() {
 
     this.updateEmpirePanel = function() {
         // Todo
-        console.log("empire");
+        console.log("empirePanel");
     };
 
     this.updateStatsPanel = function() {
@@ -643,8 +643,8 @@ function UIPlanetScreen() {
     };
 
     this.updatePlanetPanel = function() {
-        
-    };
+		console.log("PlanetPanel");  
+	};
 
     this.updateQuestsDisplay = function() {
         // TODO
@@ -659,7 +659,7 @@ function UIPlanetScreen() {
     			uiplanetscreen._buildTaskList(a.data.self, a.data.quest);
     		});
     		dom.append(expandQuest);
-    		$('#questsContent').append(dom);
+   		$('#questsContent').append(dom);
     	}
 		$('#questsContent').sortable();
 		$('#questsContent').disableSelection();
@@ -701,6 +701,7 @@ function UIPlanetScreen() {
         this.componentPlayerInventory.hide();
         this.componentEmpire.hide();
         this.componentStats.hide();
+		this.componentQuestsPanel.hide();
         game.clearItemContext(this.playerInventory.itemContext);
     };
 
@@ -732,6 +733,7 @@ function UIPlanetScreen() {
         this.hideLeftSideComponents();
         this.componentQuestsPanel.show();
     };
+
     this.activateEmpire = function() {
         this.hideLeftSideComponents();
         this.componentEmpire.show();
