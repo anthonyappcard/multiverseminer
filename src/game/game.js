@@ -551,7 +551,7 @@ function Game() {
     };
 
     this.questProgress = function(type, what) { //Destroy, Craft, Collect, Event? x y
-        for (var i = 0; i < QuestTable.length; i++) {
+        for (var i = 0; i < this.QuestTable.length; i++) {
             if (this.QuestTable[i].completed) continue;
             this.QuestTable[i].taskProgress(type, what);
         }
