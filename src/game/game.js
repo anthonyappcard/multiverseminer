@@ -703,6 +703,17 @@ function Game() {
     	//TODO: gather extra chances from planet buildings
     	var chance  = entry[1] * Math.sqrt(Math.pow(1.1, luck - 1)); //TODO: find a proper formula
     	//TODO: add modifiers?
+    	var buildings = game.currentPlanet.storage.getItemsOfCategory('gearBuilding');
+    	for(var i = 0; i < buildings.length; i++) {
+    		var building = buildings[i];
+    		var count = game.currentPlanet.storage.getItemCount(building);
+    		var stats = game.getItem(building).statchange;
+    		if(!stats) continue;
+    		var aMatch = stats.match("(\\w+)\":([0-9.]+)");
+    		var material = aMatch[1], extraChance = aMatch[2];
+    		if(material == entry[0])
+    			chance += (parseFloat(extraChance) * count);
+    	}
     	return chance;
     };
 
