@@ -69,7 +69,7 @@ function Quest(name,desc, ordered, tasks, reward){
     	this.check();
     };
     
-}
+};
 
 
 /**
@@ -110,4 +110,9 @@ function Task(desc,type,what){
     	this.current += amount;
     	return this.check();
     };
-}
+};
+
+function initQuests() {
+	//example quest
+	game.addQuest("Example", "This is just an example quest.", false, [new Task("Exmample Task", "event", "example")], function() { console.log("The example quest was completed!"); });
+};
