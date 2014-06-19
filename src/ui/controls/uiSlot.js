@@ -9,7 +9,7 @@ function UISlot(id, parent) {
     this.parent = parent;
 
     this.controlType = 'UISlot';
-    this.classes = 'itemSlot itemSlotNonHover';
+    this.classes = 'hasMenu itemSlot itemSlotNonHover';
 
     this.mainDiv = undefined;
     this.iconDisplay = undefined;
@@ -247,6 +247,7 @@ function UISlot(id, parent) {
 
         this.iconDisplay = $('<img class="itemSlotIcon" src="' + sys.iconRoot + icon + '"/>');
         this.countDisplay = $('<div class="itemSlotText"></div>');
+        this.menuHelper = $('<div style="display:none;" id="' + this.item.id + '"/>');
 
         this.mainDiv.attr('title', item.name);
         $("#" + this.id).tooltipster({
@@ -260,6 +261,7 @@ function UISlot(id, parent) {
         });
         this.mainDiv.append(this.iconDisplay);
         this.mainDiv.append(this.countDisplay);
+        this.mainDiv.append(this.menuHelper);
         this.update(count);
     };
 

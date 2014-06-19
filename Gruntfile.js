@@ -63,8 +63,7 @@ module.exports = function(grunt) {
                         toolbar     : 'external/jquery.toolbar',
                         collapsable : 'external/collapsable-list',
                         contextmenu : 'external/jquery.ui-contextmenu',
-                        pusher      : 'external/pusher',
-                        pushernotifier: 'external/PusherNotifier'
+                        ws          : 'external/jquery.WebSocket'
 					}
 				}
 			}
