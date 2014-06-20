@@ -11,56 +11,51 @@
     <audio id="audioDig" preload="none"><source src="assets/sound/Dig.mp3" type="audio/mp3"></audio>
     <audio id="audioDigSuccess" preload="none"><source src="assets/sound/Dig-FoundMineral.mp3" type="audio/mp3"></audio>
 
+	<!-- Left, Right and Center Panel Layout -->
     <div class="screen" id="planetScreen">
-        <div class="panelPlanetLeft" id="panelPlanetLeft">
-            <div id="leftCategory">
-                <div class="genericButton categoryButton clickable" id="leftCategory0" onclick="onActivatePlayerInventory()">
+		
+		<!-- Left Panel -->
+		<div class="panelPlanetLeft" id="panelPlanetLeft">
+			
+			<!-- Left Category Start -->
+			<div id="leftCategory">
+                <!-- Inventory Button -->
+				<div class="genericButton categoryButton clickable" id="leftCategory0" onclick="onActivatePlayerInventory()">
                     <img alt="backpack" class="categoryButtonIcon" src="assets/images/itemIcons/backpack.png">
-
-                    <div class="categoryButtonText">
-                        INVENTORY
-                    </div>
+                    <div class="categoryButtonText">INVENTORY</div>
                 </div>
 
+				<!-- Empire Button -->
                 <div class="genericButton categoryButton clickable" id="leftCategory1" onclick="onActivateEmpire()">
                     <img alt="empire" class="categoryButtonIcon" src="assets/images/empire.png">
-
-                    <div class="categoryButtonText">
-                        EMPIRE
-                    </div>
+                    <div class="categoryButtonText">EMPIRE</div>
                 </div>
 
+				<!-- Stats Button -->
                 <div class="genericButton categoryButton clickable" id="leftCategory2" onclick="onActivateStats()">
                     <img alt="stats" class="categoryButtonIcon" src="assets/images/stats.png">
-
-                    <div class="categoryButtonText">
-                        STATS
-                    </div>
+                    <div class="categoryButtonText">STATS</div>
                 </div>
 
+				<!-- Quests Button -->
                 <div class="genericButton categoryButton clickable" id="leftCategory3" onclick="onActivateQuests()">
                     <img alt="quests" class="categoryButtonIcon" src="assets/images/quests.png">
-
-                    <div class="categoryButtonText">
-                        QUESTS
-                    </div>
-                    
-                    
+                    <div class="categoryButtonText">QUESTS</div>
                 </div>
-            </div>
-
+		    </div>
+			<!-- Left Category End -->
+			
+			<!-- Left Panel Data -->
             <div class="categoryContent clearLeftFloat" id="leftCategoryContent">
                 
 				<!-- Inventory Panel -->
 				<div class="inventoryPanel" id="playerInventoryPanel">
                     <div id="playerInventoryContent">
                         <div class="inventoryFilter" id="playerInventoryFilter"></div>
-
                         <div class="inventoryContentPlayer panelContent" id="playerInventorySlots"></div>
-
                         <div class="decompbutton" id="decompButton" style="display:none;">
-                            <button id="decomp" onclick="game.player.decomposeScavenged()" title="Click to decompose">Decompose All</button>
-                        </div>
+							<button id="decomp" onclick="game.player.decomposeScavenged()" title="Click to decompose">Decompose All</button>
+						</div>
                     </div>
                 </div>
 				
@@ -77,140 +72,135 @@
 				<!-- Quests Panel -->
 				<div class="questsPanel" id="questsPanel">
 					<div class="questsContent" id="questsContent"></div>
-				</div>
-				            
+				</div>           
 			</div>
-        </div>
+			<!-- End Left Panel Data -->
+	    </div>
+		<!-- Left Panel End -->
 	
+		<!-- Right Panel Start -->
         <div class="panelPlanetRight" id="panelPlanetRight">
-            <div id="rightCategory">
+            <!-- Right Category Start -->
+			<div id="rightCategory">
+				<!-- Gear Button -->
                 <div class="genericButton categoryButton clickable" id="rightCategory0" onclick="onActivatePlayerGear()">
                     <img alt="swordGear" class="categoryButtonIcon" src="assets/images/itemIcons/swordGear.png">
-
-                    <div class="categoryButtonText">
-                        GEAR
-                    </div>
+                    <div class="categoryButtonText">GEAR</div>
                 </div>
-
+				
+				<!-- Ship Button -->
                 <div class="genericButton categoryButton clickable" id="rightCategory1" onclick="onActivateShip()">
                     <img alt="ship" class="categoryButtonIcon" src="assets/images/itemIcons/ship.png">
-
-                    <div class="categoryButtonText">
-                        SHIP
-                    </div>
+                    <div class="categoryButtonText">SHIP</div>
                 </div>
 
+				<!-- Planet Button -->
                 <div class="genericButton categoryButton clickable" id="rightCategory2" onclick="onActivatePlanet()">
                     <img alt="earth" class="categoryButtonIcon" src="assets/images/earth2.png">
-
-                    <div class="categoryButtonText">
-                        PLANET
-                    </div>
+                    <div class="categoryButtonText">PLANET</div>
                 </div>
 
+				<!-- Crafting Button -->
                 <div class="genericButton categoryButton clickable" id="rightCategory3" onclick="onActivateCrafting()">
                     <img alt="crafting" class="categoryButtonIcon" src="assets/images/crafting.png">
-
-                    <div class="categoryButtonText">
-                        CRAFTING
-                    </div>
+                    <div class="categoryButtonText">CRAFTING</div>
                 </div>
             </div>
-
+			<!-- Right Category End -->
+			
+			<!-- Right Panel Data -->
             <div class="categoryContent clearLeftFloat" id="rightCategoryContent">
-                <div class="gearPanel" id="playerGearPanel">
+                <!-- Gear Panel -->
+				<div class="gearPanel" id="playerGearPanel">
                     <div id="playerGearContent">
                         <div class="playerGearPaperdoll panelContent" id="playerGearSlots"></div>
                     </div>
-
+					<!-- Miner Stats -->
                     <div class="minerStats" id="minerStats">
-                        <div id="combatantHP">
-                            HP:
-                        </div>
-
-                        <div id="combatantXP">
-                            Combat XP:
-                        </div>
-
-                        <div id="combatantLevel">
-                            Combat Level:
-                        </div>
-
-                        <div id="minerXP">
-                            Mining XP:
-                        </div>
-
-                        <div id="minerLevel">
-                            Mining Level:
-                        </div>
+                        <div id="combatantHP">HP:</div>
+                        <div id="combatantXP">Combat XP:</div>
+                        <div id="combatantLevel">Combat Level:</div>
+                        <div id="minerXP">Mining XP:</div>
+                        <div id="minerLevel">Mining Level:</div>
                     </div>
                 </div>
 
+				<!-- Ship Panel -->
                 <div class="shipPanel" id="playerShipPanel"></div>
 
+				<!-- Planet Panel -->
                 <div class="planetPanel" id="planetPanel">
                     <div class="inventoryPanel" id="planetInventoryPanel">
                         <div id="planetInventoryContent">
                             <div class="inventoryFilter" id="planetInventoryFilter"></div>
-
                             <div class="inventoryContentPlanet panelContent" id="planetInventorySlots"></div>
                         </div>
                     </div>
-
-                    <div class="clickable" onclick="onMovePlanetItemsToPlayer()">
-                        Get all
-                    </div>
+					
+					<!-- Get all from planet button -->
+                    <div class="clickable" onclick="onMovePlanetItemsToPlayer()">Get all</div>
                 </div>
 
+				<!-- Crafting Panel -->
                 <div class="craftingPanel" id="playerCraftingPanel">
                     <div id="playerCraftingContent" style="height:500px;"></div>
                 </div>
             </div>
+			<!-- End Right Panel Data -->
         </div>
+		<!-- End Right Panel -->
 
-        <div class="panelPlanetDisplay" id="planetDisplay">
+        <!-- Center Panel -->
+		<div class="panelPlanetDisplay" id="planetDisplay">
             <img alt="logo" class="logo" src="assets/images/logo.png">
-
-            <div>
-                <button class="mainButton tooltip" id="mineButton" onclick="onMine()" title="Click to mine."><img alt="pick_1" class="categoryButtonIcon" src="assets/images/itemIcons/pick_1.png">
-
-                <div class="categoryButtonText">
-                    DIG [D]
-                </div></button> <button class="mainButton tooltip" id="gatherButton" onclick="onGather()" title="Click to gather atmosphere."><img alt="pick" class="categoryButtonIcon" src="assets/images/itemIcons/pick.png">
-
-                <div class="categoryButtonText">
-                    GATHER [G]
-                </div></button> <button class="mainButton tooltip" id="scavengeButton" onclick="onScavenge()" title="Click to scavenge."><img class="categoryButtonIcon" src="assets/images/itemIcons/binoculars.gif">
-
-                <div class="categoryButtonText">
-                    SCAVENGE [S]
-                </div></button>
+            <!-- Button Data Start -->
+			<div>
+                <!-- Dig Button -->
+				<button class="mainButton tooltip" id="mineButton" onclick="onMine()" title="Click to mine.">
+					<img alt="pick_1" class="categoryButtonIcon" src="assets/images/itemIcons/pick_1.png">
+					<div class="categoryButtonText">DIG [D]</div>
+				</button> 
+				
+				<!-- Gather Button -->
+				<button class="mainButton tooltip" id="gatherButton" onclick="onGather()" title="Click to gather atmosphere.">
+					<img alt="pick" class="categoryButtonIcon" src="assets/images/itemIcons/pick.png">
+					<div class="categoryButtonText">GATHER [G]</div>
+				</button> 
+				
+				<!-- Scavenge Button -->
+				<button class="mainButton tooltip" id="scavengeButton" onclick="onScavenge()" title="Click to scavenge.">
+					<img class="categoryButtonIcon" src="assets/images/itemIcons/binoculars.gif">
+					<div class="categoryButtonText">SCAVENGE [S]</div>
+				</button>
             </div>
+			<!-- Button Data End -->
 
+			<!-- Planet Display Data Start -->
             <div class="planetDisplay">
                 <div class="planetDisplayBackground" id="planetDisplayBackground"></div>
-
                 <div class="planetDisplayNameFrame">
-                    <div class="planetDisplayNameTitle">
-                        PLANET
-                    </div>
-
+                    <div class="planetDisplayNameTitle">PLANET</div>
                     <div class="planetDisplayName" style="background:url(assets/images/planetTitleBackground.png) no-repeat; background-size:295px 61px;">
                         <div class="planetDisplayNameText" id="planetDisplayNameText"></div>
                     </div>
                 </div>
             </div>
-
+			<!-- Planet Display Data End -->
             <div class="floatingArea" id="floatingArea"></div>
         </div>
+		<!-- End Center Panel -->
     </div>
+	<!-- End Left, Right and Center Panel Layout -->
 
+	<!-- Travel Screen -->
     <div class="screen" id="travelScreen">
         <div class="panelTravelDisplay" id="travelDisplay">
             <div id="travelDistance"></div>
         </div>
     </div>
+	<!-- End Travel Screen -->
 
+	<!-- Tutorial Introduction
     <div class="hidden" id="tutorial-dialog" title="How to Play">
         Welcome to Multiverse Miner<br>
         Press D or the dig button to dig.<br>
@@ -218,8 +208,9 @@
         Build a spaceship, and travel through the solar system.<br>
         This is a community developed, open source game.<br>
         If you'd like to join the team, <a href="http://webchat.freenode.net?channels=%23multiverseminer&amp;uio=d4">Click here</a>
-    </div>
-    <!--
+    </div> -->
+	
+    <!-- Race Selection
             <div id="class-pick" class="hidden" title="Pick a Race!">
         <table>
             <tr>
@@ -265,6 +256,7 @@
         </div>
     -->
 
+	<!-- Travel warning -->
     <div class="hidden" id="get-a-ship" title="Thou shall not travel!">
         You need to craft a ship in order to travel away from Earth<br>
     </div>
@@ -381,94 +373,76 @@
                 <ol id="joyRideTipContent">
                     <li data-id="leftCategory0" data-options="tipLocation:bottom;" data-text="Next">
                         <h2>Inventory</h2>
-
                         <p>This is your miners inventory. Any elements you find manually will be stored here.</p>
-
                         <p>Your inventory is broken out in to pages. Click the arrows to view other item types.</p>
                     </li>
-
                     <li data-id="leftCategory1" data-options="tipLocation:bottom;" data-text="Next">
                         <h2>Empire</h2>
-                        
                         <p>In Development</p>
-
                         <p>This panel displays information about your fleet, drones, and more.</p>
                     </li>
-
                     <li data-id="leftCategory2" data-options="tipLocation:bottom;" data-text="Next">
                         <h2>Stats</h2>
-
                         <p>This panel displays stats on how many times you have mined, gathered, and scavenged.</p>
                     </li>
                     <li data-id="leftCategory3" data-options="tipLocation:bottom;" data-text="Next">
                         <h2>Quests</h2>
-
                         <p>We are currently implementing this section. Check back soon.</p>
                     </li>
                     <li data-id="leftCategory3" data-options="tipLocation:bottom;" data-text="Next">
                         <h2>Quests</h2>
-
                         <p>We are currently implementing this section. Check back soon.</p>
                     </li>
                     <li data-button="Next" data-id="mineButton" data-options="tipLocation:bottom;">
                         <h2>Digging</h2>
-
                         <p>Click this button to manually dig.<br> You also can press/hold D.<br>
                         There is a chance to find elements when digging<br>
                         Craft a better pickaxe for a higher chance of finding elements, and finding more at once.</p>
                     </li>
                     <li data-button="Next" data-id="gatherButton" data-options="tipLocation:bottom;">
-                        <h2>Gathering</h2>
-                            
+                        <h2>Gathering</h2>                       
                         <p>Click this button to manually gather atmosphere.<br>
-                        
                         <p>Many gases are used in crafting, and oxygen is required for space travel.</p>
                     </li>
                     <li data-button="Next" data-id="scavengeButton" data-options="tipLocation:bottom;">
                         <h2>Scavenging</h2>
-                        
                         <p>Click this button to scavenge for materials.<br>
-                        
                         <p>Scavenged items can be decomposed to provide base materials for use in crafting</p>
                     </li>
                     <li data-button="Next" data-id="rightCategory0" data-options="tipLocation:left;">
                         <h2>Gear</h2>
-                        
                         <p>This panel displays the gear you have equipped, as well as your characters stats.</p>
-                        
                         <p>Right click to equip, or unequip gear.</p>
                     </li>
                     <li data-button="Next" data-id="rightCategory1" data-options="tipLocation:left;">
                         <h2>Ship</h2>
-                        
                         <p>In Development</p>
-                        
                         <p>This panel displays information related to your ship, such as fuel levels.</p>
                     </li>
                     <li data-button="Next" data-id="rightCategory2" data-options="tipLocation:left;">
                         <h2>Planet</h2>
-                        
                         <p>This panel displays what elements your buildings have found on the planet.</p>
-                        
                         <p>Any elements found when using a building will go in to your planet storage.</p>
-                        
                         <p>Items in your planet storage must be transferred manually.</p>
                     </li>
                     <li data-button="Next" data-id="rightCategory3" data-options="tipLocation:left;">
                         <h2>Crafting</h2>
-                        
                         <p>This panel displays the recipes used in crafting.</p>
                     </li>
                 </ol>
             </div>
         </div>
     </div>
+	
+	<!-- Toolbar Options -->
     <div id="user-toolbar-options" style="display:none;">
     	<a onclick="toggleAudio()" title="Mute Audio"><img src="assets/images/mute.png"style="height:30px;width:30px;"></img></a>
     	<a onclick="onSave()" title="Save"><img src="assets/images/save.png" style="height:30px;width:30px;"></img></a>
     	<a onclick="doReset()" title="Reset"><img src="assets/images/reset.png" style="height:30px;width:30px;"></img></a>
         <a onclick="togglePopup()" title="Low Quality Graphics"><img src="assets/images/graphics.png" style="height:30px;width:30px;"></img></a>
     </div>
+	
+	<!-- Crafting Modal -->
     <div id="new-crafting-modal" style="display:none;">
         <div id="item-description" style="display:none;"></div>
         Craft: <input type="number" id="quantity" name="quantity" /><p>
@@ -477,17 +451,20 @@
     <div id="release-notes" style="display:none;"></div>
     <div id="notification-list" style="display:none;">You have no notifications.</div>
     
+	<!-- Export Game -->
     <div id="exportStorageModal" style="display:none;">
         <div id="exportStorageText">
             Save your data.<p>
         </div>
     </div>
-    
+	
+    <!-- Import Game -->
     <div id="importStorageModal" style="display:none;">
         <div id="importStorageText">
             Import your data.<p>
                 <input type="file" id="input">
         </div>
     </div>
+	
 </body>
 </html>
