@@ -233,10 +233,11 @@ margin-top:5px;
     z-index: 1;
 }
 .hide-left {
-display: block;
+display: none;
 position: relative;
 left: 0px;
 bottom: 26px;
+background-color: rgba(37, 37, 37, 0.75);
 }
 .ui-menu {
     list-style: none outside none;
