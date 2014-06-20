@@ -107,6 +107,7 @@ function Game() {
             this.currentPlanet.reset(fullReset);
         }
 
+        //window.localStorage.clear();
         this.setNewGame();
         this.setStartupState();
         //this.save();
@@ -179,9 +180,7 @@ function Game() {
     };
 
     this.craft = function(storageSource, storageTarget, what, count) {
-        if (!count) {
-            count = 1;
-        }
+        console.log("Inside game.js");
         var targetItem = game.itemDictionary[what];
         // Check if we have enough storage to store the result
         if (!storageTarget.canAdd(what, count)) {
@@ -204,22 +203,18 @@ function Game() {
                     text: "Insufficient resources, you need: " + keys.join(', '),
                     timeout: 1500
                 });
-            }
-            return false;
-        }
+                return false;
+            };
+        };
 
         // Now deduct
         for (var i = 0; i < keys.length; i++) {
             var key = keys[i];
             storageSource.removeItem(key, cost[key]);
         }
-
         var totalQuantity = count * quantity;
-        // Todo: Refactor
-
         storageTarget.addItem(what, totalQuantity);
-
-        ui.notify("Crafted " + totalQuantity + " " + targetItem.name);
+        noty({text:"Crafted " + totalQuantity + " " + targetItem.name,type:"information",timeout:2000});
         return true;
     };
 
