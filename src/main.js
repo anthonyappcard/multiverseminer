@@ -83,18 +83,18 @@ function onDocumentReady() {
             }
         });
     };
-    $(document).contextmenu({
-        delegate: ".hasMenu",
-        preventSelect: true,
-        autoTrigger: true,
-        taphold: true,
-        menu: [{
-            title: "Info",
-            action: function(event, ui) {
-                console.log(ui.target.children().last().attr("id"));
-            }
-        }]
-    });
+    //$(document).contextmenu({
+    //    delegate: ".hasMenu",
+    //    preventSelect: true,
+    //    autoTrigger: true,
+    //    taphold: true,
+    //    menu: [{
+    //        title: "Info",
+    //        action: function(event, ui) {
+    //            console.log(ui.target.children().last().attr("id"));
+    //        }
+    //    }]
+    //});
     var inputElement = document.getElementById("input");
     inputElement.addEventListener("change", handleFiles, false);
 };
@@ -152,6 +152,7 @@ function newCraft(itemId, quantity) {
     if (quantity == "max") quantity = game.player.storage.getMaxCrafts(itemId);
     if (game.player.craft(itemId, quantity)) {
         ui.screenPlanet.componentCrafting.invalidate();
+        return true;
     }
 };
 
@@ -386,13 +387,13 @@ function newCraftingModal(itemId) {
         modal: true,
         title: "Crafting: " + name,
         close: function(ev, ui) {
-            $(this).close();
+            $(this).dialog("close");
         },
         buttons: {
             'Craft It': function() {
                 if ($("#quantity").val() > 0) {
                     newCraft(itemId, $("#quantity").val());
-                    $(this).close();
+                    $(this).dialog("close");
                 } else {
                     noty({
                         text: "You can't craft that few.",

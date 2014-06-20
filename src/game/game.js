@@ -204,8 +204,8 @@ function Game() {
                     text: "Insufficient resources, you need: " + keys.join(', '),
                     timeout: 1500
                 });
-                return false;
             }
+            return false;
         }
 
         // Now deduct

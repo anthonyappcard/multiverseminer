@@ -1,5 +1,15 @@
 .playerGearPaperdoll {
-    display:block;
+clear: left;
+height: 400px;
+overflow: hidden;
+overflow-x: hidden;
+overflow-y: hidden;
+display: block;
+position: relative;
+padding-right: 106px;
+margin-right: 50px;
+margin-left: -10px;
+left: 2px;
 }
 .gearSlot {
 width:50px;
