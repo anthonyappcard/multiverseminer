@@ -495,7 +495,8 @@ function UIPlanetScreen() {
 				}
 				if (item.id == "crudeOilDrone") {
 					content += "</br><strong>Stats:</strong></br>";
-					content += "&nbsp;Gather: ";
+					var aMatch = item.statchange.match("(\\w+)\":([0-9.]+)");
+					content += "&nbsp;Gather: " + game.getItemName(aMatch[1]) + " +" + aMatch[2];
 				}
                 break;
 				
