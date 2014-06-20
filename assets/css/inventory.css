@@ -30,17 +30,16 @@
     float: initial;
 }
 
-.inventoryContentPlayer {
+.inventoryContentPlayer,.inventoryContentPlanet {
 clear: left;
 height: 435px;
 overflow: scroll;
 position: inherit;
-width: 325px;
+width: 93%;
 overflow-x: hidden;
 overflow-y: auto;
 margin-left: auto;
 margin-right: auto;
 display: block;
 vertical-align: middle;
-float: initial;
 }

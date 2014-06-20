@@ -4,6 +4,7 @@ cursor:hand;
 
 .clearLeftFloat {
 clear:left;
+height:auto;
 }
 
 * {

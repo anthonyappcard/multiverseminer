@@ -6,11 +6,13 @@ overflow-x: hidden;
 overflow-y: hidden;
 display: block;
 position: relative;
-padding-right: 106px;
-margin-right: 50px;
-margin-left: -10px;
-left: 2px;
+padding-right: -134px;
+margin-right: 9;
+/* margin-left: -2px; */
+/* left: 2px; */
+margin-top: 10px;
 }
+
 .gearSlot {
 width:50px;
 height:50px;
