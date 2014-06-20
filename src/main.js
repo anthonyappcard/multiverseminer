@@ -57,7 +57,7 @@ function onDocumentReady() {
         onUpdate();
     }, interval);
 
-    $('<div class=\'hide-left\'><button onclick=\'$("#leftCategory").toggle()\'>Hide Panel</button></div>').insertAfter('#leftCategoryContent');
+    //$('<div class=\'hide-left\'><button onclick=\'$("#leftCategory").toggle()\'>Hide Panel</button></div>').insertAfter('#leftCategoryContent');
     var ws = $.WebSocket('ws://dev.multiverseminer.com:8080', null, {
         http: 'http://127.0.0.1:81/Lab/Websocket/Data/poll.php'
     });
@@ -95,18 +95,7 @@ function onDocumentReady() {
     //        }
     //    }]
     //});
-    var inputElement = document.getElementById("input");
-    inputElement.addEventListener("change", handleFiles, false);
 };
-
-//function openSettings() {
-//    $('#settings').toolbar({
-//        content: '#user-toolbar-options',
-//        position: 'top',
-//        hideOnClick: true
-//    });
-//};
-//function viewItemDetails(itemId):
 
 function selectClass(playerClass) {
     game.player.playerClass = playerClass;
@@ -203,14 +192,15 @@ function importStorage() {
     $("#importStorageModal").dialog({
         modal: true
     });
-};
-
-function handleFiles() {
-    var fileList = this.files;
-    x = JSON.toSource(fileList);
-    for (var key in x) {
-        localStorage[key] = data[key];
-    }
+}
+function doImport() {
+    $("input[type=input]").on("change", function () {
+        if (confirm("Are you sure you put the correct value in the box?")) {
+            localStorage.clear();
+            localStorage.setItem(this.id, $(this).val());
+            $("#importStorageModal").append("<p>Import successful</p> Refresh the page.");
+        }
+    });
 };
 
 
@@ -350,7 +340,7 @@ function onPlayerDied() {
 };
 
 function doReset() {
-    game.reset(fullReset);
+    game.reset();
     onActivatePlayerInventory();
     onActivatePlayerGear();
 };
