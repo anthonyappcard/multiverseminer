@@ -56,10 +56,10 @@ function UIPlanetScreen() {
         this.playerInventoryFilter.init();
         this.playerInventoryFilter.setSelection(game.settings.selectedPlayerInventoryFilter);
 
-        this.playerInventory = new UIInventory('playerInventorySlots', 50);
+        this.playerInventory = new UIInventory('playerInventorySlots', 48);
         this.playerInventory.setStorage(game.player.storage);
         this.playerInventory.itemContext = game.itemContexts.playerInventory;
-        this.playerInventory.slotCount = 50;
+        this.playerInventory.slotCount = 48;
         this.playerInventory.init();
         this.playerInventory.setCategory(game.settings.selectedPlayerInventoryFilter);
 
@@ -70,9 +70,9 @@ function UIPlanetScreen() {
         this.planetInventoryFilter.init();
         this.planetInventoryFilter.setSelection(game.settings.selectedPlanetInventoryFilter);
 
-        this.planetInventory = new UIInventory('planetInventorySlots', 50);
+        this.planetInventory = new UIInventory('planetInventorySlots', 48);
         this.planetInventory.itemContext = game.itemContexts.planetInventory;
-        this.planetInventory.slotCount = 50;
+        this.planetInventory.slotCount = 48;
         this.planetInventory.init();
         this.planetInventory.setCategory(game.settings.selectedPlanetInventoryFilter);
 
@@ -495,7 +495,8 @@ function UIPlanetScreen() {
 				}
 				if (item.id == "crudeOilDrone") {
 					content += "</br><strong>Stats:</strong></br>";
-					content += "&nbsp;Gather: ";
+					var aMatch = item.statchange.match("(\\w+)\":([0-9.]+)");
+					content += "&nbsp;Gather: " + game.getItemName(aMatch[1]) + " +" + aMatch[2];
 				}
                 break;
 				
@@ -710,7 +711,7 @@ function UIPlanetScreen() {
 		div.append("<div class='questDescription'>-&nbsp;" + quest.desc + "</div>");
 		div.append(ul);
 		div.dialog({
-			modal: true,
+			modal: true
 		});
     };
 

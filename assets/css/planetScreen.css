@@ -1,12 +1,12 @@
 .panelPlanetLeft {
-    background-color: rgba(37, 37, 37, 0.75);
-	border: 5px solid #000000;
+    background-color: rgba(37,37,37,.75);
+    border: 5px solid #000;
     float: left;
     font-family: overpassregular,Arial,sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    height: calc(100% - 23px);
+    height: 600px;
     letter-spacing: 1px;
     min-width: 300px;
     outline: 1px solid #8A8A8A;
@@ -26,19 +26,20 @@
 }
 
 .panelPlanetRight {
-	background-color: rgba(37, 37, 37, 0.75);
-    border: 5px solid #000000;
-    float: right;
-    font-family: overpassregular,Arial,sans-serif;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    height: calc(100% - 23px);
-    letter-spacing: 1px;
-    min-width: 300px;
-    outline: 1px solid #8A8A8A;
-    text-align: center;
-    width: 25%;
+    background-color: rgba(37,37,37,.75);
+border: 5px solid #000;
+float: right;
+font-family: overpassregular,Arial,sans-serif;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+height: 600px;
+letter-spacing: 1px;
+min-width: 300px;
+outline: 1px solid #8A8A8A;
+text-align: center;
+width: 28%;
+overflow-y:scroll;
 }
 .planetDisplay {
     height: 50%;
