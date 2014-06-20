@@ -156,11 +156,10 @@ function newCraft(itemId, quantity) {
     try {
         if (game.player.craft(itemId, quantity)) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
-    } catch(e) {
+    } catch (e) {
         console.log(e);
     };
 };
@@ -205,7 +204,7 @@ function importStorage() {
         modal: true
     });
 };
-    
+
 function handleFiles() {
     var fileList = this.files;
     x = JSON.toSource(fileList);
@@ -403,15 +402,16 @@ function newCraftingModal(itemId) {
                     if (newCraft(itemId, $("#quantity").val())) {
                         $(this).dialog("close");
                     } else {
-                    noty({
-                        text: "You can't craft that few.",
-                        type: "information",
-                        timeout: 2000
-                    });
+                        noty({
+                            text: "You can't craft that few.",
+                            type: "information",
+                            timeout: 2000
+                        });
+                    }
                 }
             }
         }
-    }});
+    });
     $("#hidden-input").val(itemId);
     $("new-crating-modal").dialog('open');
 }

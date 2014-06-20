@@ -263,7 +263,7 @@ function UIPlanetScreen() {
 
         switch (item.category) {
             /* Raw Materials */
-			case "rawMaterial":
+            case "rawMaterial":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
                     if (item.description) {
@@ -281,8 +281,8 @@ function UIPlanetScreen() {
                     content += "<p><strong>Description: </strong>" + "</br>&nbsp;" + item.description + "</br>";
                 }
                 break;
-			
-			/* Components */
+
+                /* Components */
             case "component":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
@@ -295,9 +295,9 @@ function UIPlanetScreen() {
                     content += "<p><strong>Description: </strong>" + "</br>&nbsp;" + item.description + "</br>";
                 }
                 break;
-            
-         	/* Mining Gear */
-			case "miningGear":
+
+                /* Mining Gear */
+            case "miningGear":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
                     content += "<strong>Cost:</strong></br>";
@@ -314,8 +314,8 @@ function UIPlanetScreen() {
                 content += "&nbsp;Loot Luck: " + item.lootLuck + "</br>";
                 content += "&nbsp;Scavenge Luck: " + item.scavengeLuck + "</br>";
                 break;
-				
-			/* Head Gear */
+
+                /* Head Gear */
             case "gearHead":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
@@ -344,8 +344,8 @@ function UIPlanetScreen() {
                 content += "&nbsp;Perception: " + item.perception + "</br>";
                 content += "&nbsp;Experience: " + item.experience + "</br>"; */
                 break;
-				
-			/* Chest Gear */
+
+                /* Chest Gear */
             case "gearChest":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
@@ -373,9 +373,9 @@ function UIPlanetScreen() {
                 content += "&nbsp;Resillience: " + item.resillience + "</br>";
                 content += "&nbsp;Perception: " + item.perception + "</br>";
                 content += "&nbsp;Experience: " + item.experience + "</br>"; */
-                break;	
-				
-			/* Main Hand */
+                break;
+
+                /* Main Hand */
             case "gearMainHand":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
@@ -405,7 +405,7 @@ function UIPlanetScreen() {
                 content += "&nbsp;Experience: " + item.experience + "</br>"; */
                 break;
 
-			/* Leg Gear */
+                /* Leg Gear */
             case "gearLegs":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
@@ -435,7 +435,7 @@ function UIPlanetScreen() {
                 content += "&nbsp;Experience: " + item.experience + "</br>"; */
                 break;
 
-			/* Foot Gear */
+                /* Foot Gear */
             case "gearFeet":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
@@ -465,43 +465,43 @@ function UIPlanetScreen() {
                 content += "&nbsp;Experience: " + item.experience + "</br>"; */
                 break;
 
-			/* Buildings */
+                /* Buildings */
             case "gearBuilding":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
-                if (item.description) {
-                    content += "<p><strong>Description: </strong><br>&nbsp;" + item.description + "</br><br>";
-                }
+                    if (item.description) {
+                        content += "<p><strong>Description: </strong><br>&nbsp;" + item.description + "</br><br>";
+                    }
                     content += "<strong>Cost:</strong></br>";
                     for (cost in item.craftCost) {
                         content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
                     }
                 }
-				if (item.id == "miningRig"){
-					content += "</br><strong>Stats:</strong></br>";
-					content += "&nbsp;Mining : " + item.automine + "/aps";
-				}
+                if (item.id == "miningRig") {
+                    content += "</br><strong>Stats:</strong></br>";
+                    content += "&nbsp;Mining : " + item.automine + "/aps";
+                }
                 if (item.id == "refinery") {
-					content += "</br><strong>Stats:</strong></br>";
-					content += "&nbsp;Refining Rate: " + item.autorefine + "/aps";
-				}
-				if (item.id == "gatherStation") {
-					content += "</br><strong>Stats:</strong></br>";
-					content += "&nbsp;Gathering Rate: " + item.autogather + "/aps";
-				}
+                    content += "</br><strong>Stats:</strong></br>";
+                    content += "&nbsp;Refining Rate: " + item.autorefine + "/aps";
+                }
+                if (item.id == "gatherStation") {
+                    content += "</br><strong>Stats:</strong></br>";
+                    content += "&nbsp;Gathering Rate: " + item.autogather + "/aps";
+                }
                 if (item.id == "scavengeStation") {
-					content += "</br><strong>Stats:</strong></br>";
-					content += "&nbsp;Scavenging Rate: " + item.autoscavenge + "/aps";
-				}
-				if (item.id == "crudeOilDrone") {
-					content += "</br><strong>Stats:</strong></br>";
-					var aMatch = item.statchange.match("(\\w+)\":([0-9.]+)");
-					content += "&nbsp;Gather: " + game.getItemName(aMatch[1]) + " +" + aMatch[2];
-				}
+                    content += "</br><strong>Stats:</strong></br>";
+                    content += "&nbsp;Scavenging Rate: " + item.autoscavenge + "/aps";
+                }
+                if (item.id == "crudeOilDrone") {
+                    content += "</br><strong>Stats:</strong></br>";
+                    var aMatch = item.statchange.match("(\\w+)\":([0-9.]+)");
+                    content += "&nbsp;Gather: " + game.getItemName(aMatch[1]) + " +" + aMatch[2];
+                }
                 break;
-				
-			/* Spaceship */
-			case "spaceship":
+
+                /* Spaceship */
+            case "spaceship":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
                     content += "<strong>Cost:</strong></br>";
@@ -555,8 +555,9 @@ function UIPlanetScreen() {
                         }
                         var element = $('.craft_' + item.id);
                         var jxMax = element.find(".craftMax");
-                        element.find(".craft100").css("visibility", maxCraftable >= 100 ? "visible" : "hidden");
+                        element.find(".craft1").css("visibility", maxCraftable >= 1 ? "visible" : "hidden");
                         element.find(".craft10").css("visibility", maxCraftable >= 10 ? "visible" : "hidden");
+                        element.find(".craft100").css("visibility", maxCraftable >= 100 ? "visible" : "hidden");
                         if (maxCraftable > 0) {
                             element.removeClass('craftDisabled').addClass('craftEnabled');
                             jxMax.html(" x " + maxCraftable.toFixed() + " ");
@@ -565,7 +566,7 @@ function UIPlanetScreen() {
                             jxMax.html("");
                         }
                         var qty = game.player.storage.getItemCount(item.id);
-                        element.find(".craftingCount").html(qty>0 ? (" (" + qty + ")") : "");
+                        element.find(".craftingCount").html(qty > 0 ? (" (" + qty + ")") : "");
                     }
                 }
                 craftableContent.find(".craftDisabled").remove();
@@ -573,7 +574,7 @@ function UIPlanetScreen() {
             // Skip re-building this for now
             return;
         }
-        parent.append('<p>[Craftable]</p>').append($('<div/>'));
+        parent.append('<p>Available</p>').append($('<div/>'));
 
         for (var key in ItemCategory) {
             // Todo: remove this when scavenging items no longer have craftCost as their attribute
@@ -659,60 +660,63 @@ function UIPlanetScreen() {
     };
 
     this.updatePlanetPanel = function() {
-		console.log("PlanetPanel");  
-	};
+        console.log("PlanetPanel");
+    };
 
-// Questing Section (650-704)	
+    // Questing Section (650-704)	
     this.updateQuestsDisplay = function() {
         // TODO
-    	$('#questsContent').empty();
-    	for(var i = 0; i < game.QuestTable.length; i++) {
-    		var quest = game.QuestTable[i];
-    		var dom = $("<span class='questTitle'>" + quest.name + "</span><br>");
-    		var expandQuest = $("<span class='expandQuest'>Open</span>");
-    		if(quest.completed)
-    			dom.addClass('questCompleted');
-    		expandQuest.mousedown({'self': dom, 'quest': quest}, function(a) {
-    			uiplanetscreen._buildTaskList(a.data.self, a.data.quest);
-    		});
-    		dom.append(expandQuest);
-   		$('#questsContent').append(dom);
-    	}
-		$('#questsContent').disableSelection();
+        $('#questsContent').empty();
+        for (var i = 0; i < game.QuestTable.length; i++) {
+            var quest = game.QuestTable[i];
+            var dom = $("<span class='questTitle'>" + quest.name + "</span><br>");
+            var expandQuest = $("<span class='expandQuest'>Open</span>");
+            if (quest.completed)
+                dom.addClass('questCompleted');
+            expandQuest.mousedown({
+                'self': dom,
+                'quest': quest
+            }, function(a) {
+                uiplanetscreen._buildTaskList(a.data.self, a.data.quest);
+            });
+            dom.append(expandQuest);
+            $('#questsContent').append(dom);
+        }
+        $('#questsContent').disableSelection();
     };
 
     this._buildTaskList = function(dom, quest) {
-    	var taskList = $("#taskList");
-    	if(taskList)
-    		taskList.remove();
-    	var last = 0;
-    	var div = $("<div id='taskList'></div>");
-		var ul = $("<ul class='taskList'></ul>");
-    	for(var i = 0; i < quest.tasks.length; i++) {
-    		var task = quest.tasks[i];
-    		var li = $("<li class='taskItem'>" + task.desc + "</li>");
-    		if(quest.ordered) {
-    			if(task.completed) {
-    				last = i;
-    				li.addClass("taskCompleted");
-    			} else if(i == (last + 1)) {
-    				li.addClass("taskCurrent");
-    			} else {
-    				li.addClass("taskUnavailable");
-    			}
-    		} else {
-    			if(task.completed)
-    				li.addClass("taskCompleted");
-    			else
-    				li.addClass("taskCurrent");
-    		}
-    		ul.append(li);
-    	}
-		div.append("<div class='questDescription'>-&nbsp;" + quest.desc + "</div>");
-		div.append(ul);
-		div.dialog({
-			modal: true
-		});
+        var taskList = $("#taskList");
+        if (taskList)
+            taskList.remove();
+        var last = 0;
+        var div = $("<div id='taskList'></div>");
+        var ul = $("<ul class='taskList'></ul>");
+        for (var i = 0; i < quest.tasks.length; i++) {
+            var task = quest.tasks[i];
+            var li = $("<li class='taskItem'>" + task.desc + "</li>");
+            if (quest.ordered) {
+                if (task.completed) {
+                    last = i;
+                    li.addClass("taskCompleted");
+                } else if (i == (last + 1)) {
+                    li.addClass("taskCurrent");
+                } else {
+                    li.addClass("taskUnavailable");
+                }
+            } else {
+                if (task.completed)
+                    li.addClass("taskCompleted");
+                else
+                    li.addClass("taskCurrent");
+            }
+            ul.append(li);
+        }
+        div.append("<div class='questDescription'>-&nbsp;" + quest.desc + "</div>");
+        div.append(ul);
+        div.dialog({
+            modal: true
+        });
     };
 
     this.activateQuests = function() {
@@ -757,7 +761,7 @@ function UIPlanetScreen() {
         this.componentPlayerInventory.hide();
         this.componentEmpire.hide();
         this.componentStats.hide();
-		this.componentQuestsPanel.hide();
+        this.componentQuestsPanel.hide();
         game.clearItemContext(this.playerInventory.itemContext);
     };
 
@@ -801,7 +805,7 @@ function UIPlanetScreen() {
         for (var prop in myObj) {
             if (myObj.hasOwnProperty(prop) && prop !== 'key' && typeof myObj[prop] != 'function' && prop !== 'id') {
                 if (typeof myObj[prop] !== 'number') myObj[prop] = 0;
-                    x.push((prop + ': ' + myObj[prop] + '</br>'));
+                x.push((prop + ': ' + myObj[prop] + '</br>'));
             }
         };
         for (var key in stats) {
@@ -846,14 +850,14 @@ function UIPlanetScreen() {
         content.append('<image class="craftingIcon" src="' + sys.iconRoot + icon + '" />');
         content.append('<span id="craftingText" class="craftingText">' + item.name + '</span>');
         content.append('<span class="craftingCount"></span>');
-        content.append('<span class="craft1"   onclick="newCraft(\'' + item.id + '\',1);(arguments[0] || event || window.event).stopPropagation();">x1</span>');
-        content.append('<span class="craft10"  onclick="newCraft(\'' + item.id + '\',10);(arguments[0] || event || window.event).stopPropagation();">x10</span>');
-        content.append('<span class="craft100" onclick="newCraft(\'' + item.id + '\',100);(arguments[0] || event || window.event).stopPropagation();">x100</span>');
         content.append('<span class="craftMax" onclick="newCraft(\'' + item.id + '\',\'max\');(arguments[0] || event || window.event).stopPropagation();"></span>');
+        content.append('<span class="craft100" onclick="newCraft(\'' + item.id + '\',100);(arguments[0] || event || window.event).stopPropagation();">x100</span>');
+        content.append('<span class="craft10"  onclick="newCraft(\'' + item.id + '\',10);(arguments[0] || event || window.event).stopPropagation();">x10</span>');
+        content.append('<span class="craft1"   onclick="newCraft(\'' + item.id + '\',1);(arguments[0] || event || window.event).stopPropagation();">x1</span>');
         content.disableSelection();
 
         return content;
     };
-    
+
 
 }
