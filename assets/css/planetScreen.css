@@ -26,6 +26,7 @@
 }
 
 .panelPlanetRight {
+	background-color: rgba(37, 37, 37, 0.75);
     border: 5px solid #000000;
     float: right;
     font-family: overpassregular,Arial,sans-serif;
