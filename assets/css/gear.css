@@ -1,4 +1,102 @@
 .playerGearPaperdoll {
+    background-image: url("assets/images/character.png");
+    background-repeat: no-repeat;
+    display: block;
+    height: 307px;
+    margin-top: 15px;
+    position: relative;
+    top: 20px;
+    width: 200px;
+}
+.gearSlot.head {
+    display: block;
+    left: 40px;
+    position: absolute;
+    top: 15px;
+}
+
+.gearSlot.chest {
+    display: block;
+    left: -10px;
+    margin-top: 17px;
+    position: absolute;
+    width: 18%;
+}
+
+.gearSlot.mainHand {
+    display: block;
+    height: 7%;
+    left: 0;
+    padding-top: 48px;
+    position: absolute;
+    width: 15%;
+    z-index: 1;
+}
+
+.gearSlot.secondHand {
+position:absolute;
+}
+
+.gearSlot.legs {
+    height: 12%;
+     left: -20px;
+     position: absolute;
+     top: 77px;
+     width: 22%;
+     z-index: 4;
+}
+
+.gearSlot.feet {
+    left: -23px;
+    position: absolute;
+    top: 95px;
+    width: 22.5%;
+    z-index: 2;
+}
+
+.gearSlot.miningGear {
+    position: absolute;
+}
+.gearSlot.head img {
+    height: 405%;
+    margin-left: -21px;
+    margin-top: -45px;
+    width: 405%;
+}
+.gearSlot.chest img, .gearSlot.feet img, .gearSlot.legs img, .gearSlot.mainHand img, .gearSlot.miningGear img, .gearSlot.secondHand img {
+    height:400%;
+    width:400%;
+}
+.gearSlot.miningGear img {
+    height:50px;
+    width:50px;
+    margin-left:0px;
+    margin-top:0px;
+}
+
+.gearSlot.head div {
+    display:none;
+}
+.gearSlot.chest div {
+    display:none;
+}
+.gearSlot.mainHand div {
+    display:none;
+}
+.gearSlot.secondHand div {
+    display:none;
+}
+.gearSlot.legs div {
+    display:none;
+}
+.gearSlot.feet div {
+    display:none;
+}
+.gearSlot.miningGear div {
+    display:none;
+}
+/* Possible Fix?
+.playerGearPaperdoll {
     display:block;
 }
 .gearSlot {
@@ -113,3 +211,4 @@ top:10px;
 .gearSlot.miningGear div {
     display:none;
 }
+*/
