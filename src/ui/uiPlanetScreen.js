@@ -677,7 +677,6 @@ function UIPlanetScreen() {
     		dom.append(expandQuest);
    		$('#questsContent').append(dom);
     	}
-		$('#questsContent').sortable();
 		$('#questsContent').disableSelection();
     };
 
@@ -710,7 +709,9 @@ function UIPlanetScreen() {
     	}
 		div.append("<div class='questDescription'>-&nbsp;" + quest.desc + "</div>");
 		div.append(ul);
-		dom.append(div);
+		div.dialog({
+			modal: true,
+		});
     };
 
     this.activateQuests = function() {
