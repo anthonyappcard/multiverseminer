@@ -190,19 +190,15 @@ function Player() {
 
     this.craft = function(itemId, count) {
         // For now we craft with our inventory into our inventory
-        if (!game.craft(this.storage, this.storage, itemId, count)) {
+        try {
+            if(game.craft(this.storage, this.storage, itemId, count));
+            return true;
+        }
+        catch(err) {
+            console.log(e);
             return false;
-        }
-
-        var item = game.getItem(itemId);
-        if (item.gearType == 'building' && game.currentPlanet) {
-            game.moveItems(itemId, this.storage, game.currentPlanet.storage, 1);
-
-            // TODO: Planet needs to evaluate this
-            game.currentPlanet.equip(item.id);
-        }
-
-        game.questProgress('craft', count + " " + itemId);
+        }   
+        //game.questProgress('craft', count + " " + itemId);
         
         //this.equipBestGear();
 

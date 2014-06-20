@@ -631,13 +631,11 @@ function UIPlanetScreen() {
     };
 
     this.updateStatsPanel = function() {
-        numberRegex = /^\d+$/;
         $('#statsContent').empty();
         var stats = game.player.stats;
         var x = [];
         var y = [];
         var myObj = game.settings.totalStats;
-        numberRegex = /^\d+$/;
         for (var prop in myObj) {
             if (myObj.hasOwnProperty(prop) && prop !== 'key' && typeof myObj[prop] != 'function' && prop != 'id') {
                 if (myObj[prop] == null) myObj[prop] = 0;
@@ -646,6 +644,8 @@ function UIPlanetScreen() {
         };
         for (var key in stats) {
             var value = stats[key];
+            // TODO
+            //isNaN(value) set to 0
             y.push((key) + ': ' + value + '</br>');
         };
         $('#statsContent').html("Player Stats:</br>");
@@ -794,12 +794,10 @@ function UIPlanetScreen() {
         this.hideLeftSideComponents();
         this.componentStats.show();
         $('#statsContent').empty();
-        numberRegex = /^\d+$/;
         var stats = game.player.stats;
         var x = [];
         var y = [];
         var myObj = game.settings.totalStats;
-        numberRegex = /^\d+$/;
         for (var prop in myObj) {
             if (myObj.hasOwnProperty(prop) && prop !== 'key' && typeof myObj[prop] != 'function' && prop !== 'id') {
                 if (typeof myObj[prop] !== 'number') myObj[prop] = 0;
@@ -839,7 +837,7 @@ function UIPlanetScreen() {
 
     this.buildCraftingEntry = function(item) {
         var tooltipContent = ui.buildCraftingCostTooltip(item);
-        var content = $('<div id="craftitem" class="craft_' + item.id + ' craftingItemPanel" onclick="newCraftingModal(\'' + item.id + '\')" />');
+        var content = $('<div id="craftitem" class="craft_' + item.id + ' craftingItemPanel"/>');
 
         var icon = game.getDefaultItemIcon(item);
         if (item.icon) {
@@ -848,9 +846,10 @@ function UIPlanetScreen() {
         content.append('<image class="craftingIcon" src="' + sys.iconRoot + icon + '" />');
         content.append('<span id="craftingText" class="craftingText">' + item.name + '</span>');
         content.append('<span class="craftingCount"></span>');
-        content.append('<span class="craftMax" onclick="newCraft(\'' + item.id + '\',\'max\');(arguments[0] || event || window.event).stopPropagation();"></span>');
+        content.append('<span class="craft1"   onclick="newCraft(\'' + item.id + '\',1);(arguments[0] || event || window.event).stopPropagation();">x1</span>');
+        content.append('<span class="craft10"  onclick="newCraft(\'' + item.id + '\',10);(arguments[0] || event || window.event).stopPropagation();">x10</span>');
         content.append('<span class="craft100" onclick="newCraft(\'' + item.id + '\',100);(arguments[0] || event || window.event).stopPropagation();">x100</span>');
-        content.append('<span class="craft10" onclick="newCraft(\'' + item.id + '\',10);(arguments[0] || event || window.event).stopPropagation();">x10</span>');
+        content.append('<span class="craftMax" onclick="newCraft(\'' + item.id + '\',\'max\');(arguments[0] || event || window.event).stopPropagation();"></span>');
         content.disableSelection();
 
         return content;

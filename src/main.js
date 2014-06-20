@@ -143,17 +143,26 @@ function openNotifications() {
 };
 
 function newCraft(itemId, quantity) {
+    console.log(itemId, quantity);
     if (itemId == undefined) {
         utils.logError("onCraft with no item specified.");
+        return false;
     }
     if (quantity == undefined) {
         quantity = 1;
     };
     if (quantity == "max") quantity = game.player.storage.getMaxCrafts(itemId);
-    if (game.player.craft(itemId, quantity)) {
-        ui.screenPlanet.componentCrafting.invalidate();
-        return true;
-    }
+    console.log("Final quantity: " + quantity);
+    try {
+        if (game.player.craft(itemId, quantity)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    } catch(e) {
+        console.log(e);
+    };
 };
 
 function onCraft(what) {
@@ -342,8 +351,7 @@ function onPlayerDied() {
 };
 
 function doReset() {
-    game.player.reset();
-    game.reset();
+    game.reset(fullReset);
     onActivatePlayerInventory();
     onActivatePlayerGear();
 };
@@ -392,9 +400,9 @@ function newCraftingModal(itemId) {
         buttons: {
             'Craft It': function() {
                 if ($("#quantity").val() > 0) {
-                    newCraft(itemId, $("#quantity").val());
-                    $(this).dialog("close");
-                } else {
+                    if (newCraft(itemId, $("#quantity").val())) {
+                        $(this).dialog("close");
+                    } else {
                     noty({
                         text: "You can't craft that few.",
                         type: "information",
@@ -403,7 +411,7 @@ function newCraftingModal(itemId) {
                 }
             }
         }
-    });
+    }});
     $("#hidden-input").val(itemId);
     $("new-crating-modal").dialog('open');
 }
