@@ -62,6 +62,8 @@ function Gear(id) {
         if(this.slots[itemInfo.gearType]!=-1) {
             replacedBy = this.slots[itemInfo.gearType];
             game.player.storage.addItem(this.slots[itemInfo.gearType]);
+			//TODO: fix storage so it can take the object, Or associates metadata with the id
+            //game.player.storage.addGear(this.slots[itemInfo.gearType], this.slotMetadata[itemInfo.gearType]); //same as addItem, but accepts metadata
             game.player.unEquip(this.slots[itemInfo.gearType]);
         }
         // Now we assign the new piece of gear to the slot.
@@ -114,6 +116,12 @@ function Gear(id) {
                     if(item[statNames[i]]){
                         if(!stats[statNames[i]]){stats[statNames[i]]=0;}
                         stats[statNames[i]] += item[statNames[i]];
+                    }
+                    if(this.slotMetadata[type]) {
+                    	if(this.slotMetadata[type][statNames[i]]) {
+                            if(!stats[statNames[i]]){stats[statNames[i]]=0;}
+                            stats[statNames[i]] += this.slotMetadata[statNames[i]];
+                    	}
                     }
                 }
             }
