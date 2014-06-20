@@ -10,7 +10,7 @@ html {
 
 body {
 color:white;
-overflow:hidden;
+overflow-y:auto;
 min-width:800px;
 min-height:600px;
 width:99%;
