@@ -3,37 +3,43 @@
 }
 
 .inventoryFilter {
-	margin-bottom: 20px;
-	margin-top: 20px;
-	height: 20px;
-	width: 80%;
-	margin-left: auto;
-	margin-right: auto;
-	display: block;
-}
-
-.inventoryContentPlayer {
-    clear: left;
-    height: 435px;
-    overflow: scroll;
-    position: relative;
-    width: auto;
-	overflow-x: hidden;
-	overflow-y: auto;
-	margin-left: auto;
-	margin-right: auto;
-	display: block;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    height: 20px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    vertical-align: middle;
+    line-height: 30px;
+    padding-top: 10px;
 }
 
 .inventoryContentPlanet {
     clear: left;
     height: 435px;
     overflow: scroll;
-    position: relative;
-    width: auto;
-	overflow-x: hidden;
-	overflow-y: auto;
-	margin-left: auto;
-	margin-right: auto;
-	display: block;
+    position: inherit;
+    width: 325px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    vertical-align: middle;
+    float: initial;
+}
+
+.inventoryContentPlayer,.inventoryContentPlanet {
+clear: left;
+height: 435px;
+overflow: scroll;
+position: inherit;
+width: 93%;
+overflow-x: hidden;
+overflow-y: auto;
+margin-left: auto;
+margin-right: auto;
+display: block;
+vertical-align: middle;
 }

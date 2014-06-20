@@ -1,5 +1,6 @@
-.craft10, .craft100, .craftMax {
-	float: right;
+.craft1, .craft10, .craft100, .craftMax {
+	width:13%;
+    float: right;
 	min-width: 4em;
 	padding-top: 1.5em;
 	cursor: pointer;

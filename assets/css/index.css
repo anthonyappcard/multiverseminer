@@ -4,21 +4,18 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 95%;
+    height: 99%;
     width:100%;
 }
+
 body {
 color:white;
-overflow:auto;
-min-width:800px;
-min-height:600px;
-width:100%;
-height:100%;
-margin:0;
+position:relative;
 }
 a {
     color:white;
     font-size:12px;
+    text-decoration:inherit;
 }
 .lootFloating {
 position:absolute;
@@ -27,8 +24,9 @@ font-size:18px;
 }
 
 .categoryContent {
-height:calc(100% - 80px);
-overflow:auto;
+height: 100%;
+margin-right: auto;
+margin-left: auto;
 }
 
 .opaque {
@@ -56,7 +54,7 @@ height:auto;
 
 .screen {
 width:100%;
-height:calc(100% - 1px);
+height:100%;
 }
 
 .floatingArea {
@@ -69,22 +67,27 @@ height:50%;
 }
 
 .panelContent {
-background-color:rgba(125,125,125,0.5);
-border:1px solid #9b9b9b;
+background-color: rgba(125,125,125,.5);
+border: 1px solid #9b9b9b;
+height: 410px;
+width: 100%;
+float: left;
+display: block;
+position: relative;
+/* margin-right: 10px; */
 }
-
 .panelBottom {
-font-size:14px;
-font-family:overpassregular, Arial, sans-serif;
-font-weight:400;
-font-style:normal;
-letter-spacing:1px;
-bottom:0;
-height:50px;
-width:100%;
-text-align:center;
-border-top:1px #000;
-outline:solid 1px #8a8a8a;
+font-size: 14px;
+font-family: overpassregular,Arial,sans-serif;
+font-weight: 400;
+font-style: normal;
+letter-spacing: 1px;
+bottom: 0;
+width: 100%;
+text-align: center;
+border-top: 1px #000;
+outline: solid 1px #8a8a8a;
+margin-top: 46px;
 }
 
 .panelBottomLeft {
@@ -181,11 +184,14 @@ margin-right:4px;
     background: none repeat scroll 0 0 rgba(83, 83, 83, 0.8);
 }
 .minerStats {
-    font-size: 14px;
-    padding-top: 50px;
-    width: 100%;
-    text-align: left;
-    padding-left: 10px;
+display: block;
+font-size: 14px;
+padding-left: 0;
+position: absolute;
+text-align: left;
+top: 100px;
+float: right;
+left: 89%;
 }
 .statsContent {
     font-size: 12px;
@@ -194,12 +200,21 @@ margin-right:4px;
 }
 
 .notifications {
-    padding-left: 10px;
+    /* padding-left: 10px; */
     text-align: left;
-    width: 105px;
+    width: 120px;
+    font-size: 12px;
+    /* padding-top: 6px; */
+    /* margin-top: 5px; */
+    /* height: 68px; */
+    vertical-align: middle;
+    text-align: center;
+    height: 30px;
+    top: 10px;
 }
 .notifications > .messages {
-display:block;    
+display:block;
+margin-top:5px;
 }
 .notifications > .new-message a {
     background: none repeat scroll 0 0 #c00;
@@ -217,4 +232,20 @@ display:block;
     text-decoration: none;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
     z-index: 1;
+}
+.hide-left {
+display: none;
+position: relative;
+left: 0px;
+bottom: 26px;
+background-color: rgba(37, 37, 37, 0.75);
+}
+.ui-menu {
+    list-style: none outside none;
+    padding-left: 7px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    display: block;
+    height: 65px;
+    width:100px;
 }

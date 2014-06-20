@@ -85,7 +85,14 @@ function Player() {
 	            }
         	}
             // TODO - Add stat for whatever items you found.
-            this.storage.addItems(items);
+        	var questProgress = {};
+            for (var i = 0; i < items.length; i++) {
+            	questProgress[items[i]] = questProgress[items[i]] ? (questProgress[items[i]] + 1) : 1;
+            }
+            for (var name in questProgress) {
+            	game.questProgress('mine', questProgress[name] + " " + name);
+            	this.storage.addItem(name, questProgress[name]);
+            }
             return true;
         }
 
@@ -183,18 +190,16 @@ function Player() {
 
     this.craft = function(itemId, count) {
         // For now we craft with our inventory into our inventory
-        if (!game.craft(this.storage, this.storage, itemId, count)) {
+        try {
+            if(game.craft(this.storage, this.storage, itemId, count));
+            return true;
+        }
+        catch(err) {
+            console.log(e);
             return false;
-        }
-
-        var item = game.getItem(itemId);
-        if (item.gearType == 'building' && game.currentPlanet) {
-            game.moveItems(itemId, this.storage, game.currentPlanet.storage, 1);
-
-            // TODO: Planet needs to evaluate this
-            game.currentPlanet.equip(item.id);
-        }
-
+        }   
+        //game.questProgress('craft', count + " " + itemId);
+        
         //this.equipBestGear();
 
         return true;

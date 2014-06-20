@@ -1,15 +1,16 @@
-require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "custombox", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar"]);
+require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "custombox", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "ws", "contextmenu"]);
 
 // Create components
 var game = new Game();
 var ui = new UI();
 var uiplanetscreen = new UIPlanetScreen();
-// Add hook for document ready
-$(document).ready(onDocumentReady);
 
+// Save before closing the page.
 window.onbeforeunload = function() {
     game.save();
 };
+// Add hook for document ready
+$(document).ready(onDocumentReady);
 
 // Setup notifications
 $.jGrowl.defaults.position = 'top-right';
@@ -23,14 +24,7 @@ Number.prototype.formatNumber = function() {
     if (ui.numberFormatter) {
         return ui.numberFormatter(this).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-
     return this;
-};
-
-function selectClass(playerClass) {
-    game.player.playerClass = playerClass;
-    $("#class-pick").dialog("close");
-    game.save();
 };
 
 // ---------------------------------------------------------------------------
@@ -52,13 +46,7 @@ function onDocumentReady() {
 
     // Call one round of UI Updates
     ui.update();
-    $(function() {
-        $("#notification-list").dialog()
-            .on('diagclose', function(event, ui) {
-                localStorage.setItem('notification_count', 0);
-                localStorage.setItem('notification_text', "");
-            });
-        });
+
     // Activate the default panels
     onActivatePlayerInventory();
     onActivatePlayerGear();
@@ -69,24 +57,51 @@ function onDocumentReady() {
         onUpdate();
     }, interval);
 
-    $("#class1").click(function() {
-        selectClass(1);
+    //$('<div class=\'hide-left\'><button onclick=\'$("#leftCategory").toggle()\'>Hide Panel</button></div>').insertAfter('#leftCategoryContent');
+    var ws = $.WebSocket('ws://dev.multiverseminer.com:8080', null, {
+        http: 'http://127.0.0.1:81/Lab/Websocket/Data/poll.php'
     });
-    $("#class2").click(function() {
-        selectClass(2);
-    });
-    $("#class3").click(function() {
-        selectClass(3);
-    });
-}
+    ws.onerror = function(e) {
+        console.log('Error with WebSocket uid: ' + e.target.uid);
+    };
+    var pipe1;
+    // if connection is opened => start opening a pipe (multiplexing)
+    ws.onopen = function() {
+        //
+        pipe1 = ws.registerPipe('user/all', null, {
+            onopen: function() {
+                console.log('pipe1 (' + this.uid + ') connected!');
+            },
+            onmessage: function(e) {
+                console.log('< pipe1 : ' + e.data);
+            },
+            onerror: function(e) {
+                console.log('< pipe1 error : ' + e.data);
+            },
+            onclose: function() {
+                console.log('pipe1 (' + pipe.uid + ') connection closed!');
+            }
+        });
+    };
+    //$(document).contextmenu({
+    //    delegate: ".hasMenu",
+    //    preventSelect: true,
+    //    autoTrigger: true,
+    //    taphold: true,
+    //    menu: [{
+    //        title: "Info",
+    //        action: function(event, ui) {
+    //            console.log(ui.target.children().last().attr("id"));
+    //        }
+    //    }]
+    //});
+};
 
-//function openSettings() {
-//    $('#settings').toolbar({
-//        content: '#user-toolbar-options',
-//        position: 'top',
-//        hideOnClick: true
-//    });
-//};
+function selectClass(playerClass) {
+    game.player.playerClass = playerClass;
+    $("#class-pick").dialog("close");
+    game.save();
+};
 
 function tutorial() {
     $('#joyRideTipContent').joyride({
@@ -107,17 +122,35 @@ function onUpdate() {
     ui.update(currentTime);
 };
 
+function openNotifications() {
+    $("#notification-list").dialog({
+        close: function(event, ui) {
+            localStorage.setItem('notification_count', 0);
+            localStorage.setItem('notification_text', "");
+        }
+    });
+};
+
 function newCraft(itemId, quantity) {
+    console.log(itemId, quantity);
     if (itemId == undefined) {
         utils.logError("onCraft with no item specified.");
+        return false;
     }
     if (quantity == undefined) {
         quantity = 1;
     };
     if (quantity == "max") quantity = game.player.storage.getMaxCrafts(itemId);
-    if (game.player.craft(itemId, quantity)) {
-        ui.screenPlanet.componentCrafting.invalidate();
-    }
+    console.log("Final quantity: " + quantity);
+    try {
+        if (game.player.craft(itemId, quantity)) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (e) {
+        console.log(e);
+    };
 };
 
 function onCraft(what) {
@@ -143,6 +176,33 @@ function onMine() {
         $('#audioDig').trigger('play');
     }
 };
+
+function exportStorage() {
+    // encode the data into base64
+    base64 = window.btoa(JSON.stringify(localStorage));
+    var x = $("#exportStorageText");
+    var link = 'data:application/octet-stream;base64,' + base64;
+    x.append("<a href=" + link + ">Download</a>");
+    $("#exportStorageModal").dialog({
+        modal: true
+    });
+};
+
+function importStorage() {
+    $("#importStorageModal").dialog({
+        modal: true
+    });
+}
+function doImport() {
+    $("input[type=input]").on("change", function () {
+        if (confirm("Are you sure you put the correct value in the box?")) {
+            localStorage.clear();
+            localStorage.setItem(this.id, $(this).val());
+            $("#importStorageModal").append("<p>Import successful</p> Refresh the page.");
+        }
+    });
+};
+
 
 function toggleAudio() {
     //pause playing
@@ -280,7 +340,6 @@ function onPlayerDied() {
 };
 
 function doReset() {
-    game.player.reset();
     game.reset();
     onActivatePlayerInventory();
     onActivatePlayerGear();
@@ -313,31 +372,39 @@ function showChat() {
 }
 
 function newCraftingModal(itemId) {
-    var maxCrafts = game.player.storage.getMaxCrafts(itemId);
-    if (maxCrafts <= 5) {
-        newCraft(itemId, 1);
-        return;
-    }
     var name = game.getItem(itemId).name;
     if (game.getItem(itemId).description) {
         var description = "Description: " + game.getItem(itemId).description;
         $("#item-description").val(description);
+        $("#item-description").css("display", "block");
     }
     $("#new-crafting-modal").dialog({
         resizable: false,
         height: 300,
         modal: true,
         title: "Crafting: " + name,
+        close: function(ev, ui) {
+            $(this).dialog("close");
+        },
         buttons: {
             'Craft It': function() {
-                newCraft(itemId, $("#quantity").val());
+                if ($("#quantity").val() > 0) {
+                    if (newCraft(itemId, $("#quantity").val())) {
+                        $(this).dialog("close");
+                    } else {
+                        noty({
+                            text: "You can't craft that few.",
+                            type: "information",
+                            timeout: 2000
+                        });
+                    }
+                }
             }
         }
     });
     $("#hidden-input").val(itemId);
-    $("#item-description").css("display", "block");
     $("new-crating-modal").dialog('open');
-};
+}
 
 function showFight() {
     if (game.playerDied > 0)
@@ -373,3 +440,28 @@ function changeRightCategoryButton(selected) {
     var name = document.getElementById("rightCategory" + selected);
     name.className = "genericButtonSelected categoryButton clickable";
 }
+// Old events code.
+//$(function() {
+//    var channel = pusher.subscribe('updates');
+//    var notifier = new PusherNotifier(channel);
+//    channel.bind('update', function(data) {
+//        if (localStorage.getItem("notification_text") == "You have no notifications.") {
+//            var notificationText = localStorage.setItem("notification_text", "Notifications: <br>");
+//        };
+//        localStorage.setItem("notification_count", ++notificationCount);
+//        localStorage.setItem("notification_text", notificationText += "<br>" + data.message);
+//        $("#new-message-count").text(notification_count);
+//        $("#notification-list").text(notification_text);
+//    });
+//});
+
+// Select class.
+//$("#class1").click(function() {
+//    selectClass(1);
+//});
+//$("#class2").click(function() {
+//    selectClass(2);
+//});
+//$("#class3").click(function() {
+//    selectClass(3);
+//});

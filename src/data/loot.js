@@ -54,36 +54,56 @@ function addSingleTable(id, internalName, data) {
 // Earth resources
 // ---------------------------------------------------------------------------
 addTable(100, 'earthAtmosphere', [
-    [Items.oxygen.id, 0.9],
-    [Items.hydrogen.id, 0.01],
     [Items.argon.id, 0.009],
     [Items.carbonDioxide.id, 0.007],
+    [Items.carbonMonoxide.id, 0.007],
     [Items.helium.id, 0.007],
+    [Items.hydrogen.id, 0.01],
     [Items.krypton.id, 0.009],
-    [Items.nitrogen.id, 0.05]
+    [Items.neon.id, 0.009],
+    [Items.nitrogen.id, 0.05],
+    [Items.oxygen.id, 0.9]
 ]);
 
 addTable(101, 'earthMinerals', [
-    [Items.silicon.id, 0.020],
-    [Items.calcium.id, 0.015],
-    [Items.sodium.id, 0.015],
-    [Items.copper.id, 0.015],
-    [Items.potassium.id, 0.005],
-    [Items.magnesium.id, 0.005],
-    [Items.iron.id, 0.005],
-    [Items.crudeOil.id, 0.0007],
-    [Items.phosphorus.id, 0.0007],
-    [Items.manganese.id, 0.0007],
+    [Items.aluminaOxide.id, 0.009],
     [Items.aluminum.id, 0.0007],
-    [Items.fluorine.id, 0.0007],
-    [Items.gold.id, 0.007],
-    [Items.sulfur.id, 0.001],
+    [Items.barium.id, 0.005],
+    [Items.boron.id, 0.0005],
+    [Items.calcium.id, 0.015],
     [Items.carbon.id, 0.009],
-    [Items.titanium.id, 0.0005],
-    [Items.barium.id, 0.0005],
-    [Items.nickel.id, 0.00005],
-    [Items.zinc.id, 0.00005],
-    [Items.silver.id, 0.004]
+    [Items.ceasium.id, 0.0009],
+    [Items.chloride.id, 0.0015],
+    [Items.chromium.id, 0.0027],
+    [Items.coal.id, 0.00009],
+    [Items.copper.id, 0.015],
+    [Items.crudeOil.id, 0.009],
+    [Items.fluorine.id, 0.0007],
+    [Items.germanium.id, 0.009],
+    [Items.gold.id, 0.009],
+    [Items.iridium.id, 0.007],
+    [Items.iron.id, 0.009],
+    [Items.lime.id, 0.005],
+    [Items.magnesium.id, 0.009],
+    [Items.manganese.id, 0.009],
+    [Items.methane.id, 0.009],
+    [Items.neodymium.id, 0.009],
+    [Items.nickel.id, 0.009],
+    [Items.phosphorus.id, 0.009],
+    [Items.potassium.id, 0.009],
+    [Items.rhenium.id, 0.009],
+    [Items.silicon.id, 0.009],
+    [Items.silver.id, 0.009],
+    [Items.sodium.id, 0.009],
+    [Items.sulfur.id, 0.009],
+    [Items.sulfurDioxide.id, 0.009],
+    [Items.sulfuricAcid.id, 0.009],
+    [Items.tin.id, 0.009],
+    [Items.titanium.id, 0.001],
+    [Items.tungsten.id, 0.009],
+    [Items.water.id, 0.009],
+    [Items.xenon.id, 0.009],
+    [Items.zinc.id, 0.009]
 ]);
 
 addSingleTable(102, 'earthGemsCommon', [
@@ -312,14 +332,14 @@ addTable(900, 'plutoAtmosphere', [
 // TODO: Add items to drop when scavenging.
 
 addTable(1000, 'earthScavengeRes', [
-    [Items.aluminumRing.id, 0.009],
+    [Items.aluminumRing.id, 0.01],
     [Items.armoire.id, 0.006],
     [Items.bigRock.id, 0.006],
     [Items.bluntPencil.id, 0.001],
     [Items.brokenKnife.id, 0.009],
     [Items.computer.id, 0.002],
-    [Items.depletedBattery.id, 0.009],
-    [Items.diningRoomTable.id, 0.009],
+    [Items.depletedBattery.id, 0.01],
+    [Items.diningRoomTable.id, 0.01],
     [Items.handheldMirror.id, 0.005],
     [Items.oldShipPart.id, 0.001],
     [Items.silverCoin.id, 0.001],
@@ -328,7 +348,8 @@ addTable(1000, 'earthScavengeRes', [
     [Items.television.id, 0.003],
     [Items.tinyStone.id, 0.008],
     [Items.waterBottle.id, 0.005],
-    [Items.woodenSpoon.id, 0.001]
+    [Items.woodenSpoon.id, 0.001],
+    [Items.leatherBelt.id, 0.001]
 ]);
 
 //---------------------------------------------------------------------------

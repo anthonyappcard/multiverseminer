@@ -44,7 +44,11 @@ function Game() {
         // Initialize all the components
         this.player.initialize();
         this.settings.initialize();
-
+        
+        initQuests();
+        
+        this.questProgress("event", "example"); //this is an example of how to progress in event type quests
+        
         // Load the settings
         this.load();
 
@@ -103,6 +107,7 @@ function Game() {
             this.currentPlanet.reset(fullReset);
         }
 
+        //window.localStorage.clear();
         this.setNewGame();
         this.setStartupState();
         //this.save();
@@ -116,7 +121,13 @@ function Game() {
 
         if (this.settings.autoSaveEnabled && elapsedSinceAutoSave > this.settings.autoSaveInterval && !this.settings.travelActive) {
 
-            ui.notify("Auto-saving");
+            // ui.notify("Auto-saving");
+			var notify = noty({
+							layout: 'bottomCenter',
+							type: 'success',
+							timeout: 3500,
+							text: 'Auto Saved'
+						});
             this.save();
             this.lastAutoSaveTime = currentTime;
         }
@@ -169,9 +180,7 @@ function Game() {
     };
 
     this.craft = function(storageSource, storageTarget, what, count) {
-        if (!count) {
-            count = 1;
-        }
+        console.log("Inside game.js");
         var targetItem = game.itemDictionary[what];
         // Check if we have enough storage to store the result
         if (!storageTarget.canAdd(what, count)) {
@@ -195,21 +204,17 @@ function Game() {
                     timeout: 1500
                 });
                 return false;
-            }
-        }
+            };
+        };
 
         // Now deduct
         for (var i = 0; i < keys.length; i++) {
             var key = keys[i];
             storageSource.removeItem(key, cost[key]);
         }
-
         var totalQuantity = count * quantity;
-        // Todo: Refactor
-
         storageTarget.addItem(what, totalQuantity);
-
-        ui.notify("Crafted " + totalQuantity + " " + targetItem.name);
+        noty({text:"Crafted " + totalQuantity + " " + targetItem.name,type:"information",timeout:2000});
         return true;
     };
 
@@ -547,7 +552,7 @@ function Game() {
     };
 
     this.questProgress = function(type, what) { //Destroy, Craft, Collect, Event? x y
-        for (var i = 0; i < QuestTable.length; i++) {
+        for (var i = 0; i < this.QuestTable.length; i++) {
             if (this.QuestTable[i].completed) continue;
             this.QuestTable[i].taskProgress(type, what);
         }
@@ -675,8 +680,8 @@ function Game() {
         luck = luck || 1;
         for (var i = 0; i < table.entries.length; i++) {
             var entry = table.entries[i][0];
-            var chance = table.entries[i][1];
-            if (Math.random() <= chance * Math.sqrt(Math.pow(1.1, luck - 1))) {
+            var chance = this._calculateChance(table.entries[i], luck);
+            if (Math.random() <= chance) {
                 if (entry.entries) {
                     // Sub-table
                     this._pickLootTableEntries(entry, results, luck);
@@ -697,6 +702,26 @@ function Game() {
         } else {
             results.push(entry);
         }
+    };
+    
+    this._calculateChance = function(entry, luck) { //array 
+    	//TODO: gather extra chances from planet buildings
+    	var chance  = entry[1] * Math.sqrt(Math.pow(1.1, luck - 1)); //TODO: find a proper formula
+    	//TODO: add modifiers?
+    	var buildings = game.currentPlanet.storage.getItemsOfCategory('gearBuilding');
+    	if(buildings) {
+	    	for(var i = 0; i < buildings.length; i++) {
+	    		var building = buildings[i];
+	    		var count = game.currentPlanet.storage.getItemCount(building);
+	    		var stats = game.getItem(building).statchange;
+	    		if(!stats) continue;
+	    		var aMatch = stats.match("(\\w+)\":([0-9.]+)");
+	    		var material = aMatch[1], extraChance = aMatch[2];
+	    		if(material == entry[0])
+	    			chance += (parseFloat(extraChance) * count);
+	    	}
+    	}
+    	return chance;
     };
 
     this._leaveOrbit = function(target) {
