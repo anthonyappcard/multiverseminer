@@ -26,9 +26,9 @@
 }
 
 .panelPlanetRight {
-    background-color: rgba(37,37,37,.75);
-    border: 5px solid #000;
-    float: right;
+background-color: rgba(37,37,37,.75);
+border: 5px solid #000;
+float: right;
 font-family: overpassregular,Arial,sans-serif;
 font-size: 20px;
 font-style: normal;
@@ -39,7 +39,8 @@ min-width: 300px;
 outline: 1px solid #8A8A8A;
 text-align: center;
 width: 30%;
-overflow-y:hidden;
+/* overflow-y: hidden; */
+position: static;
 }
 .planetDisplay {
     height: 50%;

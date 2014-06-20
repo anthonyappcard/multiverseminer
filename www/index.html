@@ -112,11 +112,11 @@
 
       <div class="categoryContent clearLeftFloat" id="rightCategoryContent">
         <div class="gearPanel" id="playerGearPanel">
-          <div id="playerGearContent">
+          <div id="playerGearContent" style="overflow-x:none;">
             <div class="playerGearPaperdoll panelContent" id="playerGearSlots"></div>
           </div>
 
-          <div class="minerStats" id="minerStats"><p>
+          <div class="minerStats" id="minerStats">
             <div id="combatantHP">
               HP:
             </div>
@@ -215,59 +215,8 @@
 
   <div class="solarsystem" id="solarsystem"></div>
 
-  <div class="panelBottom" style="background:url(assets/images/bottomBarBackground.png) no-repeat center; background-size:100% 50px;">
-  <div class="panelBottomRight">
-      <div class="genericButton bottomBarButton clickable noselect" style="text-decoration: none;">
-          <a href="http://webchat.freenode.net?channels=%23multiverseminer&amp;uio=d4" target="_new">
-        <div class="bottomBarButton noSelect">
-          Chat
-        </div>
-    </a>
-      </div>
-
-      <div class="genericButton bottomBarButton clickable noselect" onclick="$('#solarsystem').load('solar.html').dialog({autoOpen:true,minWidth:1200,minHeight:'auto',modal:true});">
-      <div class="bottomBarButtonText noSelect">
-          Travel
-        </div>
-      </div>
-
-      <div class="genericButton bottomBarButton clickable noselect" id="fightButton" onclick="showFight()">
-        <div class="bottomBarButtonText noSelect">
-          Fight
-        </div>
-      </div>
-
-      <div class="genericButton bottomBarButton" id="timeDisplay">
-        <div class="bottomBarButtonText noSelect" id="timeDisplayText"></div>
-      </div>
-    </div>
-
-    <div class="panelBottomLeft">
-      <div class="genericButton bottomBarButton clickable notifications" onclick="openNotifications()">
-        <!--TODO: messages event locator has changed -->
-        <div id="messages" class="messages">Notifications: 0</div>
-      </div>
-    </div>
-
-    <div class="genericButton bottomBarButton clickable" onclick="tutorial()">
-      <div class="bottomBarButtonText noSelect">
-        Tutorial
-      </div>
-    </div>
-
-    <div class="genericButton bottomBarButton clickable">
-      <div id="settings" class="bottomBarButtonText noSelect">
-        Settings
-      </div>
-    </div>
-
-    <div class="genericButton bottomBarButton clickable" onclick="exportStorage()">
-      <div id="exportSave" class="bottomBarButtonText noSelect">
-        Export
-      </div>
-    </div>
-  </div>
-
+  <div class="panelBottom">
+  
   <div class="hidden fightDialog" id="fight-dialog">
     <div id="fightText">
       Player:
@@ -436,6 +385,57 @@
   <div id="exportStorageModal" style="display:none;">
     <div id="exportStorageText">
       Save your data.
+    </div>
+  </div>
+  <div class="panelBottomRight">
+      <div class="genericButton bottomBarButton clickable noselect" style="text-decoration: none;">
+          <a href="http://webchat.freenode.net?channels=%23multiverseminer&amp;uio=d4" target="_new">
+        <div class="bottomBarButton noSelect">
+          Chat
+        </div>
+    </a>
+      </div>
+
+      <div class="genericButton bottomBarButton clickable noselect" onclick="$('#solarsystem').load('solar.html').dialog({autoOpen:true,minWidth:1200,minHeight:'auto',modal:true});">
+      <div class="bottomBarButtonText noSelect">
+          Travel
+        </div>
+      </div>
+
+      <div class="genericButton bottomBarButton clickable noselect" id="fightButton" onclick="showFight()">
+        <div class="bottomBarButtonText noSelect">
+          Fight
+        </div>
+      </div>
+
+      <div class="genericButton bottomBarButton" id="timeDisplay">
+        <div class="bottomBarButtonText noSelect" id="timeDisplayText"></div>
+      </div>
+    </div>
+
+    <div class="panelBottomLeft">
+      <div class="genericButton bottomBarButton clickable notifications" onclick="openNotifications()">
+        <!--TODO: messages event locator has changed -->
+        <div id="messages" class="messages">Notifications: 0</div>
+      </div>
+    </div>
+
+    <div class="genericButton bottomBarButton clickable" onclick="tutorial()">
+      <div class="bottomBarButtonText noSelect">
+        Tutorial
+      </div>
+    </div>
+
+    <div class="genericButton bottomBarButton clickable">
+      <div id="settings" class="bottomBarButtonText noSelect">
+        Settings
+      </div>
+    </div>
+
+    <div class="genericButton bottomBarButton clickable" onclick="exportStorage()">
+      <div id="exportSave" class="bottomBarButtonText noSelect">
+        Export
+      </div>
     </div>
   </div>
 </body>
