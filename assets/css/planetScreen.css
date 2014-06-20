@@ -1,14 +1,3 @@
-.panelPlanetDisplay {
-    font-family: overpassregular,Arial,sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    height: 90%;
-    left: 24%;
-    letter-spacing: 1px;
-    overflow: hidden;
-    text-align: center;
-}
 .panelPlanetLeft {
     background-color: rgba(37,37,37,.75);
     border: 5px solid #000;
@@ -22,10 +11,22 @@
     min-width: 300px;
     outline: 1px solid #8A8A8A;
     text-align: center;
-    width: 28%;
+    width: 25%;
 }
+.panelPlanetDisplay {
+    font-family: overpassregular,Arial,sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    height: 90%;
+    left: 24%;
+    letter-spacing: 1px;
+    overflow: hidden;
+    text-align: center;
+}
+
 .panelPlanetRight {
-background-color: rgba(37,37,37,.75);
+    background-color: rgba(37,37,37,.75);
 border: 5px solid #000;
 float: right;
 font-family: overpassregular,Arial,sans-serif;
@@ -52,6 +53,7 @@ overflow-y:scroll;
     position: inherit;
     width: 100%;
 }
+
 .planetImage {
     max-height: 100%;
     max-width: 100%;
