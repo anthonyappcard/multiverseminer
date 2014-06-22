@@ -49,6 +49,7 @@ height:auto;
 }
 
 .decompbutton {
+    margin-top:5px;
     height:auto;
 }
 
@@ -88,6 +89,7 @@ text-align: center;
 border-top: 1px #000;
 outline: solid 1px #8a8a8a;
 margin-top: 46px;
+position:fixed;
 }
 
 .panelBottomLeft {
@@ -184,14 +186,14 @@ margin-right:4px;
     background: none repeat scroll 0 0 rgba(83, 83, 83, 0.8);
 }
 .minerStats {
-display: block;
-font-size: 14px;
-padding-left: 0;
-position: absolute;
-text-align: left;
-top: 100px;
-float: right;
-left: 89%;
+    display: block;
+    float: right;
+    font-size: 14px;
+    left: 87%;
+    padding-left: 0;
+    position: absolute;
+    text-align: left;
+    top: 23%;
 }
 .statsContent {
     font-size: 12px;
@@ -200,13 +202,9 @@ left: 89%;
 }
 
 .notifications {
-    /* padding-left: 10px; */
     text-align: left;
     width: 120px;
     font-size: 12px;
-    /* padding-top: 6px; */
-    /* margin-top: 5px; */
-    /* height: 68px; */
     vertical-align: middle;
     text-align: center;
     height: 30px;
