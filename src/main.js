@@ -420,7 +420,9 @@ function showFight() {
     game.currentFight = new Fight();
     game.currentFight.init();
 }
-
+function onReset() {
+    $("#resetModal").dialog();
+}
 function changeLeftCategoryButton(selected) {
     for (var i = 0; i < 4; i++) {
         var name = document.getElementById("leftCategory" + i);
