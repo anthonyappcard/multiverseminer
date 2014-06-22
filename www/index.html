@@ -240,19 +240,16 @@
     </div>
   </div>
 
-  <div class="hidden" id="scavmodal" style="margin-left:auto;margin-right:auto;">
-    <div class="hidden" id="newReset" style="font-family: Lucida Console;font-size:14px;">
+  <div class="hidden" id="scavmodal" style="margin-left:auto;margin-right:auto;" />
+  
+    <div class="hidden" id="resetModal" style="font-family: Lucida Console;font-size:14px;">
       <p>Are you sure you would like to reset?<br />
       You'll lose all of your gear, items, and stats.</p>
 
       <div class="yes" onclick="doReset()">
         Reset
       </div>
-
-      <div class="no" onclick="$.fn.custombox('close')">
-        Cancel
-      </div>
-    </div>
+  </div>
 
     <ol id="joyRideTipContent">
       <li data-id="leftCategory0" data-options="tipLocation:bottom;" data-text="Next">
@@ -356,13 +353,23 @@
   </div>
 
   <div id="user-toolbar-options" style="display:none;">
-    <a onclick="toggleAudio()" title="Mute Audio"><img src="assets/images/mute.png"
-    style="height:30px;width:30px;" /></a> <a onclick="onSave()" title="Save"><img src=
-    "assets/images/save.png" style="height:30px;width:30px;" /></a> <a onclick=
-    "doReset()" title="Reset"><img src="assets/images/reset.png" style=
-    "height:30px;width:30px;" /></a> <a onclick="togglePopup()" title=
-    "Low Quality Graphics"><img src="assets/images/graphics.png" style=
-    "height:30px;width:30px;" /></a>
+    
+    <a onclick="toggleAudio()" title="Mute Audio">
+        <img src="assets/images/mute.png" style="height:24px;width:24px;" />
+    </a>
+    
+    <a onclick="onSave()" title="Save">
+        <img src="assets/images/save.png" style="height:24px;width:24px;" />
+    </a>
+    
+    <a onclick="onReset()" title="Reset">
+        <img src="assets/images/reset.png" style="height:24px;width:24px;" />
+    </a>
+    
+    <a onclick="togglePopup()" title="Low Quality Graphics">
+        <img src="assets/images/graphics.png" style="height:24px;width:24px;" />
+    </a>
+  
   </div>
 
   <div id="new-crafting-modal" style="display:none;">

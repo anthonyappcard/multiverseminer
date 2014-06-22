@@ -73,7 +73,7 @@ function UI() {
         }
         $('#settings').toolbar({
             content: '#user-toolbar-options',
-            position: 'top',
+            position: 'bottom',
             hideOnClick: true
         });
     };

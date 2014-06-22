@@ -1,12 +1,12 @@
 function Statistics(key) {
     this.id = key;
-    this.manualDigCount = 0;
-    this.manualGatherCount = 0;
-    this.manualScavengeCount = 0;
-    this.autoDigCount = 0;
-    this.autoscavengeCount = 0;
-    this.autogatherCount = 0;
-    this.autorefineCount = 0;
+    this.manualDigCount = "0";
+    this.manualGatherCount = "0";
+    this.manualScavengeCount = "0";
+    this.autoDigCount = "0";
+    this.autoscavengeCount = "0";
+    this.autogatherCount = "0";
+    this.autorefineCount = "0";
 
     // ---------------------------------------------------------------------------
     // general
@@ -37,23 +37,22 @@ function Statistics(key) {
 
     this.load = function() {
         var storageKey = this._getStorageKey();
-        this.manualDigCount = utils.loadInt(storageKey + 'manualDigCount', 0);
-        this.manualGatherCount = utils.loadInt(storageKey + 'manualGatherCount', 0);
-        this.manualScavengeCount = utils.loadInt(storageKey + 'manualScavengeCount', 0);
-        this.autoDigCount = utils.loadInt(storageKey + 'autoDigCount', 0);
-        this.autogatherCount = utils.loadInt(storageKey + 'autogatherCount', 0);
-        this.autoscavengeCount = utils.loadInt(storageKey + 'autoscavengeCount', 0);
-        this.autorefineCount = utils.loadInt(storageKey + 'autorefineCount', 0);
+        this.manualDigCount = utils.loadInt(storageKey + 'manualDigCount', "0");
+        this.manualGatherCount = utils.loadInt(storageKey + 'manualGatherCount', "0");
+        this.manualScavengeCount = utils.loadInt(storageKey + 'manualScavengeCount', "0");
+        this.autoDigCount = utils.loadInt(storageKey + 'autoDigCount', "0");
+        this.autogatherCount = utils.loadInt(storageKey + 'autogatherCount', "0");
+        this.autoscavengeCount = utils.loadInt(storageKey + 'autoscavengeCount', "0");
+        this.autorefineCount = utils.loadInt(storageKey + 'autorefineCount', "0");
     };
 
     this.reset = function(fullReset) {
-        sessionStorage.clear();
-        this.manualDigCount = 0;
-        this.manualGatherCount = 0;
-        this.manualScavengeCount = 0;
-        this.autoDigCount = 0;
-        this.autogatherCount = 0;
-        this.autoscavengeCount = 0;
-        this.autorefineCount = 0;
+        localStorage.setValue(this.manualDigCount, "0");
+        localStorage.setValue(this.manualGatherCount, "0");
+        localStorage.setValue(this.manualScavengeCount, "0");
+        localStorage.setValue(this.autoDigCount, "0");
+        localStorage.setValue(this.autogatherCount, "0");
+        localStorage.setValue(this.autoscavengeCount, "0");
+        localStorage.setValue(this.autorefineCount, "0");
     };
 };
