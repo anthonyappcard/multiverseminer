@@ -113,6 +113,13 @@ position: static;
     width: auto;
 }
 
-.empirePanel,.craftingPanel,.statsPanel {
+.empirePanel,.statsPanel {
 margin:20px 20px;
+}
+
+.craftingPanel {
+}
+
+.planetPanel {
+	margin: 0px;
 }
