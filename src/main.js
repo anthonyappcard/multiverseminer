@@ -118,6 +118,7 @@ function onDocumentReady() {
             title: "Decompose",
             action: function(event, ui) {
                 itemId = game.getItem(ui.target.children().last().attr("id"));
+                console.log(itemId);
                 game.player.decompose(itemId);
             }
         }]
