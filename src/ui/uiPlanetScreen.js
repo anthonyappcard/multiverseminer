@@ -64,7 +64,7 @@ function UIPlanetScreen() {
         this.playerInventory.setCategory(game.settings.selectedPlayerInventoryFilter);
 
         this.planetInventoryFilter = new UISelection('planetInventoryFilter');
-        this.planetInventoryFilter.values = ItemCategory;
+        this.planetInventoryFilter.values = ItemCategoryPlanet;
         this.planetInventoryFilter.callback = this.onPlanetInventoryFilterChanged;
         this.planetInventoryFilter.min = 1; // To avoid selecting undef
         this.planetInventoryFilter.init();
