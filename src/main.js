@@ -58,43 +58,64 @@ function onDocumentReady() {
     }, interval);
 
     //$('<div class=\'hide-left\'><button onclick=\'$("#leftCategory").toggle()\'>Hide Panel</button></div>').insertAfter('#leftCategoryContent');
-    var ws = $.WebSocket('ws://dev.multiverseminer.com:8080', null, {
-        http: 'http://127.0.0.1:81/Lab/Websocket/Data/poll.php'
-    });
-    ws.onerror = function(e) {
-        console.log('Error with WebSocket uid: ' + e.target.uid);
-    };
-    var pipe1;
-    // if connection is opened => start opening a pipe (multiplexing)
-    ws.onopen = function() {
-        //
-        pipe1 = ws.registerPipe('user/all', null, {
-            onopen: function() {
-                console.log('pipe1 (' + this.uid + ') connected!');
-            },
-            onmessage: function(e) {
-                console.log('< pipe1 : ' + e.data);
-            },
-            onerror: function(e) {
-                console.log('< pipe1 error : ' + e.data);
-            },
-            onclose: function() {
-                console.log('pipe1 (' + pipe.uid + ') connection closed!');
-            }
-        });
-    };
-    //$(document).contextmenu({
-    //    delegate: ".hasMenu",
-    //    preventSelect: true,
-    //    autoTrigger: true,
-    //    taphold: true,
-    //    menu: [{
-    //        title: "Info",
-    //        action: function(event, ui) {
-    //            console.log(ui.target.children().last().attr("id"));
-    //        }
-    //    }]
+    //var ws = $.WebSocket('ws://dev.multiverseminer.com:8080', null, {
+    //    http: 'http://127.0.0.1:81/Lab/Websocket/Data/poll.php'
     //});
+    //ws.onerror = function(e) {
+    //    console.log('Error with WebSocket uid: ' + e.target.uid);
+    //};
+    //var pipe1;
+    //// if connection is opened => start opening a pipe (multiplexing)
+    //ws.onopen = function() {
+      //  //
+      //  pipe1 = ws.registerPipe('user/all', null, {
+      //      onopen: function() {
+      //          console.log('pipe1 (' + this.uid + ') connected!');
+      //      },
+      //      onmessage: function(e) {
+      //          console.log('< pipe1 : ' + e.data);
+      //      },
+      //      onerror: function(e) {
+      //          console.log('< pipe1 error : ' + e.data);
+      //      },
+      //      onclose: function() {
+      //          console.log('pipe1 (' + pipe.uid + ') connection closed!');
+      //      }
+      //  });
+    //};
+    $(document).contextmenu({
+        delegate: ".hasMenu",
+        preventSelect: true,
+        autoTrigger: true,
+        taphold: true,
+        menu: [{
+            title: "Info",
+            action: function(event, ui) {
+                info = game.getItem(ui.target.children().last().attr("id"));
+                itemName = info.name;
+                itemDescription = info.description;
+                dialogDiv = $("#itemInfo");
+                dialogDiv.dialog();
+                dialogDiv.dialog("open");
+                dialogDiv.html("Name: " + itemName + "<p>");
+                if (typeof itemDescription === "undefined") {
+                    dialogDiv.append("Description: A mysterious item.");
+                } else {
+                    dialogDiv.append("Description: " + itemDescription + "<p>");
+                }
+            }
+        }, {
+            title: "Equip",
+            action: function(event, ui) {
+                itemId = game.getItem(ui.target.children().last().attr("id"));
+                if (game.player.canEquip(itemId.id)) {
+                    game.player.equip(itemId.id);
+                } else {
+                    noty({text: "You can't equip this item", timeout: 2000, type: "information"});
+                }
+            }
+        }]
+    });
 };
 
 function selectClass(playerClass) {
@@ -193,8 +214,9 @@ function importStorage() {
         modal: true
     });
 }
+
 function doImport() {
-    $("input[type=input]").on("change", function () {
+    $("input[type=input]").on("change", function() {
         if (confirm("Are you sure you put the correct value in the box?")) {
             localStorage.clear();
             localStorage.setItem(this.id, $(this).val());
@@ -422,9 +444,11 @@ function showFight() {
     game.currentFight = new Fight();
     game.currentFight.init();
 }
+
 function onReset() {
     $("#resetModal").dialog();
 }
+
 function changeLeftCategoryButton(selected) {
     for (var i = 0; i < 4; i++) {
         var name = document.getElementById("leftCategory" + i);

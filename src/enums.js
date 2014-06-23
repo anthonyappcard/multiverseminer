@@ -17,6 +17,13 @@ ItemCategory = {
     'scavenge': 'Scavenge'
 };
 
+ItemCategoryPlanet = {
+    'unset': '-unset-',
+    'rawMaterial': 'Raw Materials',
+    'gem': 'Gems',
+    'gearBuilding': 'Buildings',
+};
+
 GearType = {
     'head': 'Head',
     'chest': 'Chest',
