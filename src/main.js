@@ -110,6 +110,8 @@ function onDocumentReady() {
                 itemId = game.getItem(ui.target.children().last().attr("id"));
                 if (game.player.canEquip(itemId.id)) {
                     game.player.equip(itemId.id);
+                } else {
+                    noty({text: "You can't equip this item", timeout: 2000, type: "information"});
                 }
             }
         }]
