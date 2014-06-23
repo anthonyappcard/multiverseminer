@@ -118,8 +118,11 @@ function onDocumentReady() {
             title: "Decompose",
             action: function(event, ui) {
                 itemId = game.getItem(ui.target.children().last().attr("id"));
-                console.log(itemId);
-                game.player.decompose(itemId);
+                if (itemId.category == "scavenge") {
+                    game.player.decompose(itemId);
+                } else {
+                    noty({type: "notification", text: "This can't be scavenged", timeout: 2000});
+                }
             }
         }]
     });
