@@ -1,4 +1,4 @@
-require(["game", "gameminer", "gamecombatant", "gamestorage", "ui", "uiplanetscreen", "gamesettings", "noty"]);
+require(["game", "gameminer", "gamecombatant", "gamestorage", "ui", "uiplanetscreen", "gamesettings", "noty","simplemodal"]);
 
 function Player() {
     this.id = 'player';
@@ -186,13 +186,17 @@ function Player() {
         }
         removedString = removedString.substring(0, removedString.length - 2);
         gainedString = gainedString.substring(0, gainedString.length - 2);
-        //$('#scavmodal').dialog({positon: {my: "center", at: "center", of: window} }).empty();
-        $(this).custombox({
-            url: "#scavmodal",
-            customClass: 'scavModal',
-            overlayClose: 'true',
-            opacity: '0.7'
-        });
+        // jquery style
+		//$('#scavmodal').dialog({positon: {my: "center", at: "center", of: window} }).empty();
+        // custombox style
+		//$(this).custombox({
+        //   url: "#scavmodal",
+        //    customClass: 'scavModal',
+        //    overlayClose: 'true',
+        //    opacity: '0.7'
+        //});
+		// simplemodal style
+		$('#scavmodal').modal();
         $("#scavmodal").append(gainedString + "" + removedString);
         delete scavengedItems;
     };

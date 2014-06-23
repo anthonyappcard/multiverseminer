@@ -63,7 +63,8 @@ module.exports = function(grunt) {
                         toolbar     : 'external/jquery.toolbar',
                         collapsable : 'external/collapsable-list',
                         contextmenu : 'external/jquery.ui-contextmenu',
-                        ws          : 'external/jquery.WebSocket'
+                        ws          : 'external/jquery.WebSocket',
+						simplemodal : 'external/jquery.simplemodal-1.4.4'
 					}
 				}
 			}
