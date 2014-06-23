@@ -336,7 +336,8 @@ function Game() {
                 return true;
             } else {
                 // Changed for testing.
-                return true;
+                ui.notifyError("You can't get past the moon for now.");
+                return false;
             }
         }
 
@@ -430,8 +431,8 @@ function Game() {
             this.moveItems(items[i], this.currentPlanet.storage, this.player.storage, count);
 
             // Todo: test code, remove when we can properly animate this
-            var float = ui.createFloat('+' + count + ' ' + item.name, 'lootFloating', utils.getRandomInt(800, 900), utils.getRandomInt(-190, -125));
-            float.getMainElement().animate({
+            var _float = ui.createFloat('+' + count + ' ' + item.name, 'lootFloating', utils.getRandomInt(800, 900), utils.getRandomInt(-190, -125));
+            _float.getMainElement().animate({
                 'marginLeft': '-=' + utils.getRandomInt(1500, 1900) + 'px'
             });
         }

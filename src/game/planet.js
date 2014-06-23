@@ -1,5 +1,5 @@
 require(["gameminer", "gamestorage", "gamegear", "uiplanetscreen"]);
-var uiplanetscreen = new UIPlanetScreen();
+//var uiplanetscreen = new UIPlanetScreen();
 
 function Planet(data) {
     this.data = data;
@@ -270,7 +270,7 @@ function Planet(data) {
     };
     this._finalizeAuto = function(totalItems) {
         this.storage.addItems(totalItems);
-
+        uiplanetscreen.updateStatsPanel();
         if (game.currentPlanet != this) {
             return;
         }
