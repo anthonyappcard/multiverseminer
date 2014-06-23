@@ -301,7 +301,7 @@ function UI() {
         if (slotType.substring(0, 8) == "building") {
             slot.classes = slotType + ' buildingSlot '
         } else {
-            slot.classes = slotType + ' gearSlot ';
+            slot.classes = slotType + ' gearSlot hasMenu';
         }
         slot.init();
 

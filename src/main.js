@@ -121,7 +121,7 @@ function onDocumentReady() {
                 if (itemId.category == "scavenge") {
                     game.player.decompose(itemId);
                 } else {
-                    noty({type: "notification", text: "This can't be scavenged", timeout: 2000});
+                    noty({type: "notification", text: "This can't be decomposed.", timeout: 2000});
                 }
             }
         }]
