@@ -83,18 +83,30 @@ function onDocumentReady() {
             }
         });
     };
-    //$(document).contextmenu({
-    //    delegate: ".hasMenu",
-    //    preventSelect: true,
-    //    autoTrigger: true,
-    //    taphold: true,
-    //    menu: [{
-    //        title: "Info",
-    //        action: function(event, ui) {
-    //            console.log(ui.target.children().last().attr("id"));
-    //        }
-    //    }]
-    //});
+    $(document).contextmenu({
+        delegate: ".hasMenu",
+        preventSelect: true,
+        autoTrigger: true,
+        taphold: true,
+        menu: [{
+            title: "Info",
+            action: function(event, ui) {
+                info = game.getItem(ui.target.children().last().attr("id"));
+                itemName = info.name;
+                itemDescription = info.description;
+                console.log(itemDescription);
+                dialogDiv = $("#itemInfo");
+                dialogDiv.dialog();
+                dialogDiv.dialog("open");
+                dialogDiv.html("Name: " + itemName + "<p>");
+                if (typeof itemDescription === "undefined") {
+                    dialogDiv.append("Description: A mysterious item.");
+                } else {
+                    dialogDiv.append("Description: " + itemDescription + "<p>");
+                }
+            }
+        }]
+    });
 };
 
 function selectClass(playerClass) {
@@ -193,8 +205,9 @@ function importStorage() {
         modal: true
     });
 }
+
 function doImport() {
-    $("input[type=input]").on("change", function () {
+    $("input[type=input]").on("change", function() {
         if (confirm("Are you sure you put the correct value in the box?")) {
             localStorage.clear();
             localStorage.setItem(this.id, $(this).val());
@@ -255,8 +268,10 @@ function onGather() {
 };
 
 function onScavenge() {
-    if (game.playerDied > 0)
+    if (game.playerDied > 0 || game.currentPlanet.data.id != "1") {
+        console.log("Player not on earth, scavenging disabled.");
         return false;
+    };
     game.settings.addStat('manualScavengeCount');
     if ($("#leftCategory2").hasClass("genericButtonSelected"))
         uiplanetscreen.updateStatsPanel();
@@ -419,6 +434,10 @@ function showFight() {
     });
     game.currentFight = new Fight();
     game.currentFight.init();
+}
+
+function onReset() {
+    $("#resetModal").dialog();
 }
 
 function changeLeftCategoryButton(selected) {

@@ -274,7 +274,6 @@ function Player() {
         this.combatant.reset(fullReset);
         this.storage.reset(fullReset);
         this.gear.reset(fullReset);
-        delete this.stats;
         window.localStorage.clear();
         localStorage.clear();
         this.oxygenConsumption = 1;

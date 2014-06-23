@@ -56,10 +56,10 @@ function UIPlanetScreen() {
         this.playerInventoryFilter.init();
         this.playerInventoryFilter.setSelection(game.settings.selectedPlayerInventoryFilter);
 
-        this.playerInventory = new UIInventory('playerInventorySlots', 55);
+        this.playerInventory = new UIInventory('playerInventorySlots', 56);
         this.playerInventory.setStorage(game.player.storage);
         this.playerInventory.itemContext = game.itemContexts.playerInventory;
-        this.playerInventory.slotCount = 55;
+        this.playerInventory.slotCount = 56;
         this.playerInventory.init();
         this.playerInventory.setCategory(game.settings.selectedPlayerInventoryFilter);
 
@@ -70,9 +70,9 @@ function UIPlanetScreen() {
         this.planetInventoryFilter.init();
         this.planetInventoryFilter.setSelection(game.settings.selectedPlanetInventoryFilter);
 
-        this.planetInventory = new UIInventory('planetInventorySlots', 55);
+        this.planetInventory = new UIInventory('planetInventorySlots', 56);
         this.planetInventory.itemContext = game.itemContexts.planetInventory;
-        this.planetInventory.slotCount = 55;
+        this.planetInventory.slotCount = 56;
         this.planetInventory.init();
         this.planetInventory.setCategory(game.settings.selectedPlanetInventoryFilter);
 
@@ -555,9 +555,9 @@ function UIPlanetScreen() {
                         }
                         var element = $('.craft_' + item.id);
                         var jxMax = element.find(".craftMax");
-                        element.find(".craft1").css("visibility", maxCraftable >= 1 ? "visible" : "hidden");
-                        element.find(".craft10").css("visibility", maxCraftable >= 10 ? "visible" : "hidden");
-                        element.find(".craft100").css("visibility", maxCraftable >= 100 ? "visible" : "hidden");
+							element.find(".craft1").css("visibility", maxCraftable >= 1 ? "visible" : "hidden");
+							element.find(".craft10").css("visibility", maxCraftable >= 10 ? "visible" : "hidden");
+							element.find(".craft100").css("visibility", maxCraftable >= 100 ? "visible" : "hidden");
                         if (maxCraftable > 0) {
                             element.removeClass('craftDisabled').addClass('craftEnabled');
                             jxMax.html(" x " + maxCraftable.toFixed() + " ");
@@ -732,7 +732,7 @@ function UIPlanetScreen() {
             var background = game.currentPlanet.getBackground();
             if (background) {
                 if (game.currentPlanet.getName() === "Earth") {
-                    $('#planetDisplayBackground').append('<img class="planetImage" src="assets/images/bigEarth.png"/>');
+                    $('#planetDisplayBackground').append('<img class="planetBigEarth" src="assets/images/bigEarth.png"/>');
                 } else {
                     $('#planetDisplayBackground').append('<img class="planetImage" src="' + background + '"/>');
                 }
@@ -850,10 +850,10 @@ function UIPlanetScreen() {
         content.append('<image class="craftingIcon" src="' + sys.iconRoot + icon + '" />');
         content.append('<span id="craftingText" class="craftingText">' + item.name + '</span>');
         content.append('<span class="craftingCount"></span>');
-        content.append('<span class="craftMax" onclick="newCraft(\'' + item.id + '\',\'max\');(arguments[0] || event || window.event).stopPropagation();"></span>');
-        content.append('<span class="craft100" onclick="newCraft(\'' + item.id + '\',100);(arguments[0] || event || window.event).stopPropagation();">x100</span>');
-        content.append('<span class="craft10"  onclick="newCraft(\'' + item.id + '\',10);(arguments[0] || event || window.event).stopPropagation();">x10</span>');
-        content.append('<span class="craft1"   onclick="newCraft(\'' + item.id + '\',1);(arguments[0] || event || window.event).stopPropagation();">x1</span>');
+		content.append('<span class="craft1"   onclick="newCraft(\'' + item.id + '\',1);(arguments[0] || event || window.event).stopPropagation();"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x1</span>');
+		content.append('<span class="craft10"  onclick="newCraft(\'' + item.id + '\',10);(arguments[0] || event || window.event).stopPropagation();">&nbsp;&nbsp;&nbsp;x10</span>');
+        content.append('<span class="craft100" onclick="newCraft(\'' + item.id + '\',100);(arguments[0] || event || window.event).stopPropagation();">&nbsp;&nbsp;&nbsp;	x100</span>');
+		/* content.append('<span class="craftMax" onclick="newCraft(\'' + item.id + '\',\'max\');(arguments[0] || event || window.event).stopPropagation();"></span>') */
         content.disableSelection();
 
         return content;
