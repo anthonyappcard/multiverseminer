@@ -385,14 +385,6 @@ function onSetInventoryFilter(filter) {
     ui.updateComponent(ui.componentPlayerInventory);
 }
 
-function showChat() {
-    $("#chat-modal").dialog({
-        height: 500,
-        maxHeight: 800,
-        width: 500
-    });
-}
-
 function newCraftingModal(itemId) {
     var name = game.getItem(itemId).name;
     if (game.getItem(itemId).description) {
