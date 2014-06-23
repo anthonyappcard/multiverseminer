@@ -104,7 +104,7 @@ function onDocumentReady() {
                 }
             }
         }, {
-            title: "Equip",
+            title: "Equip / Unequip",
             action: function(event, ui) {
                 itemId = game.getItem(ui.target.children().last().attr("id"));
                 if (itemId.gearType == "building") {
