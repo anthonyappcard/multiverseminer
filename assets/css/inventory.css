@@ -15,29 +15,15 @@
     padding-top: 10px;
 }
 
-.inventoryContentPlanet {
-    clear: left;
-    height: 435px;
-    overflow: scroll;
-    position: inherit;
-    width: 325px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    vertical-align: middle;
-    float: initial;
-}
-
 .inventoryContentPlayer,.inventoryContentPlanet {
-clear: left;
-overflow: scroll;
-position: inherit;
-height: 435px;
-width: 381px;
-margin-left: auto;
-margin-right: auto;
-display: block;
-vertical-align: middle;
+	/* clear: left; */
+	overflow: scroll;
+	overflow-x: hidden;
+	position: inherit;
+	height: 435px;
+	width: 381px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	vertical-align: middle;
 }
