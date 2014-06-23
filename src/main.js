@@ -255,8 +255,10 @@ function onGather() {
 };
 
 function onScavenge() {
-    if (game.playerDied > 0)
+    if (game.playerDied > 0 || game.currentPlanet.data.id != "1") {
+        console.log("Player not on earth, scavenging disabled.");
         return false;
+    };
     game.settings.addStat('manualScavengeCount');
     if ($("#leftCategory2").hasClass("genericButtonSelected"))
         uiplanetscreen.updateStatsPanel();
