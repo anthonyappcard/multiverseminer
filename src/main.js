@@ -350,11 +350,7 @@ function onMovePlanetItemsToPlayer() {
 
 function onSave() {
     game.save();
-    noty({
-        text: "Game saved.",
-        type: "information",
-        timeout: 2000
-    });
+    noty({text: "Game saved",type: "notification",timeout: 1500});
 };
 
 function onPlayerDied() {
