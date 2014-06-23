@@ -1,5 +1,4 @@
 require(["gameminer", "gamestorage", "gamegear", "uiplanetscreen"]);
-//var uiplanetscreen = new UIPlanetScreen();
 
 function Planet(data) {
     this.data = data;

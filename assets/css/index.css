@@ -79,17 +79,18 @@ position: relative;
 /* margin-right: 10px; */
 }
 .panelBottom {
-font-size: 14px;
-font-family: overpassregular,Arial,sans-serif;
-font-weight: 400;
-font-style: normal;
-letter-spacing: 1px;
-top: 0;
-width: calc(100% - 16px);
-text-align: center;
-border-top: 1px #000;
-outline: solid 1px #8a8a8a;
-position:fixed;
+    border-top: 1px none #000;
+    font-family: overpassregular,Arial,sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 1px;
+    outline: 1px solid #8a8a8a;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    margin-top: -39px;
 }
 
 .panelBottomLeft {
