@@ -58,31 +58,31 @@ function onDocumentReady() {
     }, interval);
 
     //$('<div class=\'hide-left\'><button onclick=\'$("#leftCategory").toggle()\'>Hide Panel</button></div>').insertAfter('#leftCategoryContent');
-    var ws = $.WebSocket('ws://dev.multiverseminer.com:8080', null, {
-        http: 'http://127.0.0.1:81/Lab/Websocket/Data/poll.php'
-    });
-    ws.onerror = function(e) {
-        console.log('Error with WebSocket uid: ' + e.target.uid);
-    };
-    var pipe1;
-    // if connection is opened => start opening a pipe (multiplexing)
-    ws.onopen = function() {
-        //
-        pipe1 = ws.registerPipe('user/all', null, {
-            onopen: function() {
-                console.log('pipe1 (' + this.uid + ') connected!');
-            },
-            onmessage: function(e) {
-                console.log('< pipe1 : ' + e.data);
-            },
-            onerror: function(e) {
-                console.log('< pipe1 error : ' + e.data);
-            },
-            onclose: function() {
-                console.log('pipe1 (' + pipe.uid + ') connection closed!');
-            }
-        });
-    };
+    //var ws = $.WebSocket('ws://dev.multiverseminer.com:8080', null, {
+    //    http: 'http://127.0.0.1:81/Lab/Websocket/Data/poll.php'
+    //});
+    //ws.onerror = function(e) {
+    //    console.log('Error with WebSocket uid: ' + e.target.uid);
+    //};
+    //var pipe1;
+    //// if connection is opened => start opening a pipe (multiplexing)
+    //ws.onopen = function() {
+      //  //
+      //  pipe1 = ws.registerPipe('user/all', null, {
+      //      onopen: function() {
+      //          console.log('pipe1 (' + this.uid + ') connected!');
+      //      },
+      //      onmessage: function(e) {
+      //          console.log('< pipe1 : ' + e.data);
+      //      },
+      //      onerror: function(e) {
+      //          console.log('< pipe1 error : ' + e.data);
+      //      },
+      //      onclose: function() {
+      //          console.log('pipe1 (' + pipe.uid + ') connection closed!');
+      //      }
+      //  });
+    //};
     $(document).contextmenu({
         delegate: ".hasMenu",
         preventSelect: true,
@@ -94,7 +94,6 @@ function onDocumentReady() {
                 info = game.getItem(ui.target.children().last().attr("id"));
                 itemName = info.name;
                 itemDescription = info.description;
-                console.log(itemDescription);
                 dialogDiv = $("#itemInfo");
                 dialogDiv.dialog();
                 dialogDiv.dialog("open");
@@ -103,6 +102,26 @@ function onDocumentReady() {
                     dialogDiv.append("Description: A mysterious item.");
                 } else {
                     dialogDiv.append("Description: " + itemDescription + "<p>");
+                }
+            }
+        }, {
+            title: "Equip",
+            action: function(event, ui) {
+                itemId = game.getItem(ui.target.children().last().attr("id"));
+                if (game.player.canEquip(itemId.id)) {
+                    game.player.equip(itemId.id);
+                } else {
+                    noty({text: "You can't equip this item.", timeout: 2000, type: "notification"});
+                }
+            }
+        },{
+            title: "Decompose",
+            action: function(event, ui) {
+                itemId = game.getItem(ui.target.children().last().attr("id"));
+                if (itemId.category == "scavenge") {
+                    game.player.decompose(itemId);
+                } else {
+                    noty({type: "notification", text: "This can't be decomposed.", timeout: 2000});
                 }
             }
         }]
@@ -224,19 +243,11 @@ function toggleAudio() {
         document.getElementById('audioDigSuccess').muted = true;
         $("#audioDig").trigger('stop');
         $("#audioDigSuccess").trigger('stop');
-        noty({
-            text: "Audio muted.",
-            type: "information",
-            timeout: 2000
-        });
+        noty({text: "Audio muted.",type: "notification",timeout: 2000});
     } else {
         document.getElementById('audioDig').muted = false;
         document.getElementById('audioDigSuccess').muted = false;
-        noty({
-            text: "Audio unmuted.",
-            type: "information",
-            timeout: 2000
-        });
+        noty({text: "Audio unmuted.",type: "notification",timeout: 2000});
     }
 };
 
@@ -339,11 +350,7 @@ function onMovePlanetItemsToPlayer() {
 
 function onSave() {
     game.save();
-    noty({
-        text: "Game saved.",
-        type: "information",
-        timeout: 2000
-    });
+    noty({text: "Game saved",type: "notification",timeout: 1500});
 };
 
 function onPlayerDied() {
@@ -376,14 +383,6 @@ function onTravelToPlanet(target) {
 function onSetInventoryFilter(filter) {
     ui.inventoryPlayerCategoryFilter = filter;
     ui.updateComponent(ui.componentPlayerInventory);
-}
-
-function showChat() {
-    $("#chat-modal").dialog({
-        height: 500,
-        maxHeight: 800,
-        width: 500
-    });
 }
 
 function newCraftingModal(itemId) {

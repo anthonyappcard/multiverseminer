@@ -32,9 +32,6 @@ function UIInventory(id, parent) {
     // main functions
     // ---------------------------------------------------------------------------
     this.init = function() {
-        if(this.category == "scavenge") {
-            $("#decompButton").show()
-        }
     	this.baseInit();
         var slotId = 0;
         
@@ -57,12 +54,6 @@ function UIInventory(id, parent) {
         var items = undefined;
         if(this.storage) {
         	if(this.category) {
-                if(this.category == "scavenge") {
-                    $("#decompButton").show()
-                }
-                else {
-                    $("#decompButton").hide()
-                }
         		items = this.storage.getItemsOfCategory(this.category);
         	} else {
         		items = this.storage.getItems();

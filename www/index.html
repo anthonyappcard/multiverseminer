@@ -8,6 +8,8 @@
 </head>
 
 <body class="body">
+    <audio id="audioDig" preload="none"><source src="assets/sounds/Dig.mp3" type="audio/mp3"></audio>
+    <audio id="audioDigSuccess" preload="none"><source src="assets/sounds/Dig-FoundMineral.mp3" type="audio/mp3"></audio>
   <div class="screen" id="planetScreen">
     <div class="panelPlanetLeft" id="panelPlanetLeft">
       <div id="leftCategory">
@@ -52,10 +54,6 @@
             <div class="inventoryFilter" id="playerInventoryFilter"></div>
 
             <div class="inventoryContentPlayer panelContent" id="playerInventorySlots">
-            </div>
-
-            <div class="decompbutton" id="decompButton" style="display:none;">
-              <button id="decomp" onclick="game.player.decomposeScavenged()" title="Click to decompose">Decompose All</button>
             </div>
           </div>
         </div>
@@ -152,8 +150,8 @@
             </div>
           </div>
 
-          <div class="clickable" onclick="onMovePlanetItemsToPlayer()">
-            Get all
+          <div class="clickable" onclick="onMovePlanetItemsToPlayer()" style="font-size:10px;">
+            Move all to your inventory
           </div>
         </div>
 

@@ -336,7 +336,7 @@ function Game() {
                 return true;
             } else {
                 // Changed for testing.
-                ui.notifyError("You can't get past the moon for now.");
+                ui.notifyError("You can't get past the moon for now. We are currently working on the other planets.");
                 return false;
             }
         }
@@ -489,7 +489,7 @@ function Game() {
             case this.itemContexts.planetInventory:
                 return this._processItemContextPlanetInventory(itemId, target);
             case this.itemContexts.playerGear:
-                return this._processItemContextPlayerGear(itemId, target);
+                return; //this._processItemContextPlayerGear(itemId, target);
             case this.itemContexts.planetGear:
                 return this._processItemContextPlanetGear(itemId, target);
             case this.itemContexts.playerShip:
@@ -582,10 +582,10 @@ function Game() {
 
             case this.itemContexts.playerGear:
                 {
-                    if (this.player.canEquip(itemId)) {
-                        this.player.equip(itemId);
-                    }
-
+                   // if (this.player.canEquip(itemId)) {
+                   //     this.player.equip(itemId);
+                   // }
+                   //
                     return true;
                 }
 
