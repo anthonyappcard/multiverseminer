@@ -243,19 +243,11 @@ function toggleAudio() {
         document.getElementById('audioDigSuccess').muted = true;
         $("#audioDig").trigger('stop');
         $("#audioDigSuccess").trigger('stop');
-        noty({
-            text: "Audio muted.",
-            type: "information",
-            timeout: 2000
-        });
+        noty({text: "Audio muted.",type: "notification",timeout: 2000});
     } else {
         document.getElementById('audioDig').muted = false;
         document.getElementById('audioDigSuccess').muted = false;
-        noty({
-            text: "Audio unmuted.",
-            type: "information",
-            timeout: 2000
-        });
+        noty({text: "Audio unmuted.",type: "notification",timeout: 2000});
     }
 };
 
