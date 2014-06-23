@@ -111,7 +111,7 @@ function onDocumentReady() {
                 if (game.player.canEquip(itemId.id)) {
                     game.player.equip(itemId.id);
                 } else {
-                    noty({text: "You can't equip this item", timeout: 2000, type: "notification"});
+                    noty({text: "You can't equip this item.", timeout: 2000, type: "notification"});
                 }
             }
         },{
