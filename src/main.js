@@ -107,10 +107,20 @@ function onDocumentReady() {
             title: "Equip",
             action: function(event, ui) {
                 itemId = game.getItem(ui.target.children().last().attr("id"));
-                if (game.player.canEquip(itemId.id)) {
-                    game.player.equip(itemId.id);
+                if (itemId.gearType == "building") {
+                    if (game.currentPlanet.storage.hasItem(itemId.id)) {
+                        game.currentPlanet.storage.removeItem(itemId.id);
+                        game.player.storage.addItem(itemId.id);
+                    } else {
+                        game.currentPlanet.storage.addItem(itemId.id);
+                        game.player.storage.removeItem(itemId.id);
+                    }
                 } else {
-                    noty({text: "You can't equip this item.", timeout: 2000, type: "notification"});
+                    if (game.player.canEquip(itemId.id)) {
+                        game.player.equip(itemId.id);
+                    } else {
+                        noty({text: "You can't equip this item.", timeout: 2000, type: "notification"});
+                    }
                 }
             }
         },{

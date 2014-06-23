@@ -60,7 +60,7 @@ function UI() {
             position: "bottom",
             onlyOne: true,
             interactiveTolerance: 10,
-            speed: 10
+            speed: 1
         });
 
         // Todo: function to switch screens

@@ -106,7 +106,9 @@ function Game() {
         if (this.currentPlanet) {
             this.currentPlanet.reset(fullReset);
         }
-
+        
+        this.settings.currentPlanet = Planets.earth.id;
+        
         //window.localStorage.clear();
         this.setNewGame();
         this.setStartupState();
