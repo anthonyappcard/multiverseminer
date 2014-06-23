@@ -80,6 +80,7 @@ function Planet(data) {
     };
 
     this.equip = function(itemId) {
+        console.log(itemId);
         if (!itemId || (!this.storage.hasItem(itemId) && !game.player.storage.hasItem(itemId))) {
             utils.logError("Unable to equip item, invalid or don't have it");
             return;
@@ -91,11 +92,11 @@ function Planet(data) {
         
         this._updateStats();
         this.update();
-        noty({
-            text: game.getItem(itemId).name + " equipped",
-            type: "information",
-            timeout: 3500
-        });
+        if (game.getItem(itemId).category == "rawMaterial") {
+            noty({text: game.getItem(itemId).name + " moved to other storage.",type: "notification",timeout: 1500});
+        } else {
+            noty({text: game.getItem(itemId).name + " equipped",type: "notification",timeout: 1500});
+        };
     };
 
     this.unEquip = function(itemId) {

@@ -485,9 +485,9 @@ function Game() {
         // Todo
         switch (sourceContext) {
             case this.itemContexts.playerInventory:
-                return this._processItemContextPlayerInventory(itemId, target);
+                return; //this._processItemContextPlayerInventory(itemId, target);
             case this.itemContexts.planetInventory:
-                return this._processItemContextPlanetInventory(itemId, target);
+                return; //this._processItemContextPlanetInventory(itemId, target);
             case this.itemContexts.playerGear:
                 return; //this._processItemContextPlayerGear(itemId, target);
             case this.itemContexts.planetGear:

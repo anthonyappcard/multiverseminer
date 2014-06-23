@@ -849,6 +849,4 @@ function UIPlanetScreen() {
 
         return content;
     };
-
-
 }
