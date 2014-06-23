@@ -20,10 +20,6 @@ function UIComponent(id) {
     // main functions
     // ---------------------------------------------------------------------------
     this.init = function() {
-        // We have to check the state, because the page could load on scavenge.
-        if($("#playerInventoryFilter").text() == "Scavenge") {
-            $("#decompButton").show();
-        }
     	// Check if the component holder exist, if not create it
     	this.mainDiv = $('#' + this.id);
     	if(this.mainDiv.length == 0) {

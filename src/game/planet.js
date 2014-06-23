@@ -26,10 +26,6 @@ function Planet(data) {
     // general
     // ---------------------------------------------------------------------------
     this.initialize = function() {
-        if ($("#playerInventoryFilter").text() == "Scavenge") {
-            $("#decompButton").show();
-        }
-
         this.miner.initialize();
         this.storage.initialize();
 

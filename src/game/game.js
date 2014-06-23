@@ -336,7 +336,7 @@ function Game() {
                 return true;
             } else {
                 // Changed for testing.
-                ui.notifyError("You can't get past the moon for now.");
+                ui.notifyError("You can't get past the moon for now. We are currently working on the other planets.");
                 return false;
             }
         }
