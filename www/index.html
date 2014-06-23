@@ -246,17 +246,21 @@
     </div>
   </div>
 
-  <div class="hidden" id="scavmodal" style="margin-left:auto;margin-right:auto;" />
-  
-    <div class="hidden" id="resetModal" style="font-family: Lucida Console;font-size:14px;">
-      <p>Are you sure you would like to reset?<br />
-      You'll lose all of your gear, items, and stats.</p>
+	<div class="hidden" id="scavmodal">
+	</div>	
+	
+	<div class="hidden" id="resetModal">
+      		Are you <strong>sure</strong> you would like to reset?<br><br>
+			You'll lose all of your gear, items, and stats.
+			<br><br><br><br><br>
+			<div class="resetButtons">
+				<img src="assets/images/thumbU.png" class="resetYes" onclick="doReset()"></img>
+				<img src="assets/images/thumbD.png" class="simplemodal-close">
+			</div>
+	</div>
+	
 
-      <div class="yes" onclick="doReset()">
-        Reset
-      </div>
-  </div>
-
+<div>
     <ol id="joyRideTipContent">
       <li data-id="leftCategory0" data-options="tipLocation:bottom;" data-text="Next">
         <h2>Inventory</h2>
