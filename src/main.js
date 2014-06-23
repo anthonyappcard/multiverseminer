@@ -435,7 +435,9 @@ function showFight() {
 }
 
 function onReset() {
-    $("#resetModal").dialog();
+	// jquery style
+    // $("#resetModal").dialog();
+	$("#resetModal").modal({opacity: 80});
 }
 
 function changeLeftCategoryButton(selected) {
