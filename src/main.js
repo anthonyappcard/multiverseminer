@@ -111,7 +111,17 @@ function onDocumentReady() {
                 if (game.player.canEquip(itemId.id)) {
                     game.player.equip(itemId.id);
                 } else {
-                    noty({text: "You can't equip this item", timeout: 2000, type: "information"});
+                    noty({text: "You can't equip this item", timeout: 2000, type: "notification"});
+                }
+            }
+        },{
+            title: "Decompose",
+            action: function(event, ui) {
+                itemId = game.getItem(ui.target.children().last().attr("id"));
+                if (itemId.category == "scavenge") {
+                    game.player.decompose(itemId);
+                } else {
+                    noty({type: "notification", text: "This can't be decomposed.", timeout: 2000});
                 }
             }
         }]
