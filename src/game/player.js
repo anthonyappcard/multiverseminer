@@ -1,4 +1,4 @@
-require(["gameminer", "gamecombatant", "gamestorage", "ui", "uiplanetscreen", "gamesettings", "noty"]);
+require(["game", "gameminer", "gamecombatant", "gamestorage", "ui", "uiplanetscreen", "gamesettings", "noty"]);
 
 function Player() {
     this.id = 'player';
@@ -81,7 +81,7 @@ function Player() {
         	if(game.settings.showPopups) {
 	            for (var i = 0; i < items.length; i++) {
 	                var name = game.getItemName(items[i]);
-	                var float = ui.createFloat('+1 ' + name, 'lootFloating', utils.getRandomInt(-100, 100), utils.getRandomInt(-100, 0));
+	                var _float = ui.createFloat('+1 ' + name, 'lootFloating', utils.getRandomInt(-100, 100), utils.getRandomInt(-100, 0));
 	            }
         	}
             // TODO - Add stat for whatever items you found.
@@ -131,7 +131,16 @@ function Player() {
 
         return false;
     };
-
+    this.decompose = function(item) {
+        itemId = item.id;
+        item = game.getItem(itemId).craftCost;
+        for (var key in item) {
+          if (item.hasOwnProperty(key)) {
+            this.storage.addItem(key, item[key]);
+          }
+        }
+        this.storage.removeItem(itemId);
+    };
     this.decomposeScavenged = function() {
         // Decomposing scavenged items
         // TODO - Add stat for whatever items you found.

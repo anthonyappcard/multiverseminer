@@ -114,6 +114,12 @@ function onDocumentReady() {
                     noty({text: "You can't equip this item", timeout: 2000, type: "information"});
                 }
             }
+        },{
+            title: "Decompose",
+            action: function(event, ui) {
+                itemId = game.getItem(ui.target.children().last().attr("id"));
+                game.player.decompose(itemId);
+            }
         }]
     });
 };
