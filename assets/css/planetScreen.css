@@ -54,6 +54,11 @@
 	height: 100px;
 }
 
+.planetBigEarth {
+	margin-top: 5px;
+	height: 320px;
+}
+
 /* Frame to hold planet image
 .planetDisplayBackground {
     margin-top: 5px;
@@ -66,7 +71,7 @@
     height: 91px;
     /* position: inherit; */
     /* top: 60%; */
-	margin-top: 90px;
+	margin-top: 2px;
     width: 100%;
 }
 
