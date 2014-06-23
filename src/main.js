@@ -32,7 +32,6 @@ Number.prototype.formatNumber = function() {
 // ---------------------------------------------------------------------------
 
 function onDocumentReady() {
-
     //Initialize the audio
     $('#audioDig').trigger('load');
     $('#audioDigSuccess').trigger('load');
