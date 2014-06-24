@@ -294,6 +294,18 @@ function onGather() {
     game.player.gather();
 };
 
+function scavengeQuest() {
+	var src = "scavenge.html";
+	
+	$.modal('<iframe src="' + src + '" height="300" width="400" style="border:0">', {
+        opacity: 80,
+		escClose: true,
+		overlayClose: true,
+		overlayCss: {backgroundColor:"#000"},
+		containerId: 'scavengeQuest'
+	});
+};
+
 function onScavenge() {
     if (game.playerDied > 0 || game.currentPlanet.data.id != "1") {
         console.log("Player not on earth, scavenging disabled.");
