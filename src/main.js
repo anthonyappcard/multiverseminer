@@ -66,21 +66,21 @@ function onDocumentReady() {
     //var pipe1;
     //// if connection is opened => start opening a pipe (multiplexing)
     //ws.onopen = function() {
-      //  //
-      //  pipe1 = ws.registerPipe('user/all', null, {
-      //      onopen: function() {
-      //          console.log('pipe1 (' + this.uid + ') connected!');
-      //      },
-      //      onmessage: function(e) {
-      //          console.log('< pipe1 : ' + e.data);
-      //      },
-      //      onerror: function(e) {
-      //          console.log('< pipe1 error : ' + e.data);
-      //      },
-      //      onclose: function() {
-      //          console.log('pipe1 (' + pipe.uid + ') connection closed!');
-      //      }
-      //  });
+    //  //
+    //  pipe1 = ws.registerPipe('user/all', null, {
+    //      onopen: function() {
+    //          console.log('pipe1 (' + this.uid + ') connected!');
+    //      },
+    //      onmessage: function(e) {
+    //          console.log('< pipe1 : ' + e.data);
+    //      },
+    //      onerror: function(e) {
+    //          console.log('< pipe1 error : ' + e.data);
+    //      },
+    //      onclose: function() {
+    //          console.log('pipe1 (' + pipe.uid + ') connection closed!');
+    //      }
+    //  });
     //};
     $(document).contextmenu({
         delegate: ".hasMenu",
@@ -119,19 +119,18 @@ function onDocumentReady() {
                     if (game.player.canEquip(itemId.id)) {
                         game.player.equip(itemId.id);
                     } else {
-                        noty({text: "You can't equip this item.", timeout: 2000, type: "notification"});
+                        noty({
+                            text: "You can't equip this item.",
+                            timeout: 2000,
+                            type: "notification"
+                        });
                     }
                 }
             }
-        },{
-            title: "Decompose",
+        }, {
+            title: "Decompose All",
             action: function(event, ui) {
-                itemId = game.getItem(ui.target.children().last().attr("id"));
-                if (itemId.category == "scavenge") {
-                    game.player.decompose(itemId);
-                } else {
-                    noty({type: "notification", text: "This can't be decomposed.", timeout: 2000});
-                }
+                game.player.decomposeScavenged();
             }
         }]
     });
@@ -252,11 +251,19 @@ function toggleAudio() {
         document.getElementById('audioDigSuccess').muted = true;
         $("#audioDig").trigger('stop');
         $("#audioDigSuccess").trigger('stop');
-        noty({text: "Audio muted.",type: "notification",timeout: 2000});
+        noty({
+            text: "Audio muted.",
+            type: "notification",
+            timeout: 2000
+        });
     } else {
         document.getElementById('audioDig').muted = false;
         document.getElementById('audioDigSuccess').muted = false;
-        noty({text: "Audio unmuted.",type: "notification",timeout: 2000});
+        noty({
+            text: "Audio unmuted.",
+            type: "notification",
+            timeout: 2000
+        });
     }
 };
 
@@ -359,7 +366,11 @@ function onMovePlanetItemsToPlayer() {
 
 function onSave() {
     game.save();
-    noty({text: "Game saved",type: "notification",timeout: 1500});
+    noty({
+        text: "Game saved",
+        type: "notification",
+        timeout: 1500
+    });
 };
 
 function onPlayerDied() {
@@ -445,9 +456,11 @@ function showFight() {
 }
 
 function onReset() {
-	// jquery style
+    // jquery style
     // $("#resetModal").dialog();
-	$("#resetModal").modal({opacity: 80});
+    $("#resetModal").modal({
+        opacity: 80
+    });
 }
 
 function changeLeftCategoryButton(selected) {
