@@ -1,15 +1,4 @@
 /* -------------------------------------- */
-/* Custom CSS for the reset button */
-/* -------------------------------------- */
-
-.custombox-modal.resetGame {
-  border-style: solid;
-  border-width: 27px 27px 27px 30px;
-  border-image: url(assets/images/resetBorder.png) 27 27 27 35 stretch;
-  padding: 10px;
-}
-
-/* -------------------------------------- */
 /* Custom CSS for the scavenge window     */
 /* -------------------------------------- */
 
@@ -26,24 +15,21 @@
   font-size: 12px;
 }  
 
-/* Simple Modal Reset */
+/* -------------------------- */
+/* Reset Dialog Styling Begin */
+/* -------------------------- */
 #resetModal {
 	font-family: Lucida Console;
 	font-size:14px;
 	text-align: center;
 }
 
-#basic-modal-content {
+#resetDialog {
 	display:none;
 }
 
-/* Overlay */
-#simplemodal-overlay {
-	background-color:#000;
-}
-
 /* Container */
-#simplemodal-container {
+#resetDialog {
 	height:200px; 
 	width:400px; 
 	color:#bbb; 
@@ -52,26 +38,15 @@
 	padding:12px;
 }
 
-#simplemodal-container .simplemodal-data {
+#resetDialog {
 	padding:8px;
 }
 
-#simplemodal-container code {
-	background:#141414; 
-	border-left: 3px solid #65B43D; 
-	color:#bbb; 
-	display:block; 
-	font-size:12px; 
-	margin-bottom:12px; 
-	padding:4px 6px 6px;
-}
-
-#simplemodal-container a {
+#resetDialog a {
 	color:#ddd;
 }
 
-/*
-#simplemodal-container a.modalCloseImg {
+#resetDialog a.modalCloseImg {
 	background:url(assets/images/x.png) no-repeat; 
 	width:25px; 
 	height:29px; 
@@ -82,11 +57,12 @@
 	right:-16px; 
 	cursor:pointer;
 }
-*/
 
-#simplemodal-container h3 {
+#resetDialog h3 {
 	color:#84b8d9;
 }
+
+/* Reset Dialog Styling End */
 
 .resetButtons {
 	display: inline-block;
