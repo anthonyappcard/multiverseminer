@@ -392,52 +392,19 @@ function onTravelToPlanet(target) {
         return;
     }
     $("#solarsystem").dialog("close");
+    $(".panelBottom").hide();
     $(window).one("scroll", function() {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
     });
     ui.screenPlanet.hide();
     ui.screenTravel.show();
     game.travelTo(target);
+    $(".panelBottom").show();
 };
 
 function onSetInventoryFilter(filter) {
     ui.inventoryPlayerCategoryFilter = filter;
     ui.updateComponent(ui.componentPlayerInventory);
-}
-
-function newCraftingModal(itemId) {
-    var name = game.getItem(itemId).name;
-    if (game.getItem(itemId).description) {
-        var description = "Description: " + game.getItem(itemId).description;
-        $("#item-description").val(description);
-        $("#item-description").css("display", "block");
-    }
-    $("#new-crafting-modal").dialog({
-        resizable: false,
-        height: 300,
-        modal: true,
-        title: "Crafting: " + name,
-        close: function(ev, ui) {
-            $(this).dialog("close");
-        },
-        buttons: {
-            'Craft It': function() {
-                if ($("#quantity").val() > 0) {
-                    if (newCraft(itemId, $("#quantity").val())) {
-                        $(this).dialog("close");
-                    } else {
-                        noty({
-                            text: "You can't craft that few.",
-                            type: "information",
-                            timeout: 2000
-                        });
-                    }
-                }
-            }
-        }
-    });
-    $("#hidden-input").val(itemId);
-    $("new-crating-modal").dialog('open');
 }
 
 function showFight() {
@@ -456,8 +423,6 @@ function showFight() {
 }
 
 function onReset() {
-    // jquery style
-    // $("#resetModal").dialog();
     $("#resetModal").modal({
         opacity: 80
     });
