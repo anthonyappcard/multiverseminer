@@ -197,7 +197,7 @@ function Player() {
         //});
 		// simplemodal style
 		$('#scavmodal').modal();
-        $("#scavmodal").append(gainedString + "" + removedString);
+        $("#scavmodal").append(gainedString + "" + removedString + "<p>Press escape to close</p>");
         delete scavengedItems;
     };
 
