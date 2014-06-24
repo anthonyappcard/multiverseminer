@@ -196,7 +196,7 @@ function Player() {
         //    opacity: '0.7'
         //});
 		// simplemodal style
-		$('#scavmodal').modal();
+		$('#scavmodal').modal({escClose: true, overlayClose: true});
         $("#scavmodal").append(gainedString + "" + removedString + "<p>Press escape to close</p>");
         delete scavengedItems;
     };
