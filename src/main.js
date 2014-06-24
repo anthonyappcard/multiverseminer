@@ -424,7 +424,9 @@ function showFight() {
 
 function onReset() {
     $("#resetModal").modal({
-        opacity: 80
+        opacity: 80,
+		overlayCss: {backgroundColor:"#000"},
+		containerId: 'resetDialog'
     });
 }
 

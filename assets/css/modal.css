@@ -33,17 +33,17 @@
 	text-align: center;
 }
 
-#basic-modal-content {
+#resetDialog {
 	display:none;
 }
 
 /* Overlay */
-#simplemodal-overlay {
+#resetDialog {
 	background-color:#000;
 }
 
 /* Container */
-#simplemodal-container {
+#resetDialog {
 	height:200px; 
 	width:400px; 
 	color:#bbb; 
@@ -52,11 +52,12 @@
 	padding:12px;
 }
 
-#simplemodal-container .simplemodal-data {
+#resetDialog {
 	padding:8px;
 }
 
-#simplemodal-container code {
+/*
+#resetDialog {
 	background:#141414; 
 	border-left: 3px solid #65B43D; 
 	color:#bbb; 
@@ -65,13 +66,13 @@
 	margin-bottom:12px; 
 	padding:4px 6px 6px;
 }
+*/
 
-#simplemodal-container a {
+#resetDialog a {
 	color:#ddd;
 }
 
-/*
-#simplemodal-container a.modalCloseImg {
+#resetDialog a.modalCloseImg {
 	background:url(assets/images/x.png) no-repeat; 
 	width:25px; 
 	height:29px; 
@@ -82,9 +83,8 @@
 	right:-16px; 
 	cursor:pointer;
 }
-*/
 
-#simplemodal-container h3 {
+#resetDialog h3 {
 	color:#84b8d9;
 }
 
