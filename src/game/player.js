@@ -210,8 +210,14 @@ function Player() {
         //    opacity: '0.7'
         //});
 		// simplemodal style
-		$('#decompModal').modal({escClose: true, overlayClose: true});
-        $("#decompModal").append(gainedString + "" + removedString + "<p>Press escape to close</p>");
+		$('#decompModal').modal({
+						opacity: 80,
+						escClose: true,
+						overlayClose: true,
+						overlayCss: {backgroundColor:"#000"},
+						containerId: 'decompBox'
+				});
+        $("#decompModal").append(gainedString + "" + removedString + "");
         delete scavengedItems;
     };
 
