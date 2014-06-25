@@ -122,15 +122,29 @@ function Player() {
         }
         // TODO - Add stat for whatever items you found.
         //game.settings.addStat('manualScavengeCount');
-
+        $("#actionText").html("You search quickly through an abandoned building.");
         var items = this.miner.scavenge(game.currentPlanet);
-        if (items) {
+        if (items != "") {
+            var results = items;
+            if (results.length > 1) {
+              x = [
+              ];
+              for (var i = 0; i < results.length; i++) {
+                x.push(game.getItemName(results[i]));
+              };
+              $('#resultsText2') .html('You found: ' + x.join(', ') + ".");
+            } else {
+              $('#resultsText2') .html('You found: ' + game.getItemName(items) + ".");
+            }
+
             this.storage.addItems(items);
             return true;
-        }
-
+        } else {
+            $("#resultsText2").html("You found nothing.");
+        };
         return false;
     };
+
     this.decompose = function(item) {
         itemId = item.id;
         item = game.getItem(itemId).craftCost;
@@ -196,8 +210,8 @@ function Player() {
         //    opacity: '0.7'
         //});
 		// simplemodal style
-		$('#scavmodal').modal({escClose: true, overlayClose: true});
-        $("#scavmodal").append(gainedString + "" + removedString + "<p>Press escape to close</p>");
+		$('#decompModal').modal({escClose: true, overlayClose: true});
+        $("#decompModal").append(gainedString + "" + removedString + "<p>Press escape to close</p>");
         delete scavengedItems;
     };
 

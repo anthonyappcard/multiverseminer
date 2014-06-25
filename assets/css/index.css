@@ -1,17 +1,17 @@
 html {
-    background: url(assets/images/bg.png) no-repeat center center fixed;
+
+}
+
+.body {
+    color:white;
+    margin-top: 39px;
+    position: relative;
+	background: url(assets/images/bg.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 99%;
-    width:100%;
-}
-
-body {
-    color:white;
-    margin-top: 39px;
-    position: relative;
+    height: 95%;
 }
 a {
     color:white;

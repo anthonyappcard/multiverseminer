@@ -180,7 +180,9 @@
         </div>
         </button>
         
-        <button class="mainButton tooltip" id="scavengeButton" onclick="onScavenge()" title="Click to scavenge."><img class="categoryButtonIcon" src="assets/images/itemIcons/binoculars.gif" />
+        <!-- <button class="mainButton tooltip" id="scavengeButton" onclick="onScavenge()" title="Click to scavenge."> -->
+		<button class="mainButton tooltip" id="scavengeButton" onclick="scavengeQuest()" title="Click to scavenge.">
+		<img class="categoryButtonIcon" src="assets/images/itemIcons/binoculars.gif" />
 
         <div class="categoryButtonText">
           SCAVENGE [S]
@@ -246,8 +248,7 @@
     </div>
   </div>
 
-	<div class="hidden" id="scavmodal">
-	</div>	
+	<div id="decompModal" style="display:none;"></div>	
 	
 	<div class="hidden" id="resetModal">
       		Are you <strong>sure</strong> you would like to reset?<br><br>
@@ -452,5 +453,23 @@
     </div>
   </div>
   <div id="itemInfo"></div>
+  <div id="scavModal" class="scavengeQuest" style="display:none;">
+  	<div id="actionText">Press S to scavenge</div>
+    <p /><p />
+  	<div id="resultsText2"></div>
+	<p /><p />
+  	<div class="genericButton bottomBarBottom clickable" onclick="onScavenge()">
+  	&nbsp;&nbsp;Scavenge&nbsp;&nbsp;
+  	</div>
+</div>
+<div id="bulletin" class="bulletin">
+    <ul>
+      <li>Change: New crafting workflow for pickaxes, recipes modified to be a bit simpler.</li>
+      <li>Change: Decompose All now found on context menu.</li>
+      <li>Change: Added more icons, and cleaned up some that had whitespace in the background.</li>
+      <li>Change: Ship recipe improved<li>
+    </ul>
+    <div class="close"><a href="javascript:void(0)">x</a></div>
+  </div>
 </body>
 </html>
