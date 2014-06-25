@@ -313,12 +313,14 @@ function onScavenge() {
         console.log("Player not on earth, scavenging disabled.");
         return false;
     };
-    game.settings.addStat('manualScavengeCount');
-    if ($("#leftCategory2").hasClass("genericButtonSelected"))
-        uiplanetscreen.updateStatsPanel();
+    //if ($("#leftCategory2").hasClass("genericButtonSelected"))
+    //    uiplanetscreen.updateStatsPanel();
     if (!$("#scavengeQuest").is(':visible')) {
         scavengeQuest();
     }
+    game.settings.addStat('manualScavengeCount');
+    $("#actionText").html(' ');
+    $("#resultsText2").html(' ');
     game.player.scavenge();
 };
 
