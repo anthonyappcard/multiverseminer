@@ -131,8 +131,7 @@ function Player() {
         if (items != "") {
             var results = items;
             if (results.length > 1) {
-              x = [
-              ];
+              x = [];
               for (var i = 0; i < results.length; i++) {
                 x.push(game.getItemName(results[i]));
               };

@@ -208,8 +208,7 @@ function onMine() {
     if (game.playerDied > 0)
         return false;
     game.settings.addStat('manualDigCount');
-    if ($("#leftCategory2").hasClass("genericButtonSelected"))
-        uiplanetscreen.updateStatsPanel();
+    if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
     if (game.player.mine()) {
         $('#audioDigSuccess').trigger('play');
     } else {
@@ -293,8 +292,7 @@ function onGather() {
     if (game.playerDied > 0)
         return false;
     game.settings.addStat('manualGatherCount');
-    if ($("#leftCategory2").hasClass("genericButtonSelected"))
-        uiplanetscreen.updateStatsPanel();
+    if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
     game.player.gather();
 };
 
@@ -313,15 +311,20 @@ function onScavenge() {
         console.log("Player not on earth, scavenging disabled.");
         return false;
     };
-    //if ($("#leftCategory2").hasClass("genericButtonSelected"))
-    //    uiplanetscreen.updateStatsPanel();
+    if (this.lastRun !== "undefined") {
+      if (this.lastRun >= new Date().getSeconds()) {
+        console.log('Rate limited');
+        return false;
+      }
+    };
+    console.log('Allowed');
     if (!$("#scavengeQuest").is(':visible')) {
         scavengeQuest();
     }
     game.settings.addStat('manualScavengeCount');
-    $("#actionText").html(' ');
-    $("#resultsText2").html(' ');
+    if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
     game.player.scavenge();
+    this.lastRun = new Date().getSeconds();
 };
 
 function onActivatePlayerInventory() {
