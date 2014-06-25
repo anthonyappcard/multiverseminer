@@ -785,9 +785,11 @@ function Game() {
             return;
         }
 
+		// Here is your issue with the reset troubles antlong. Disabling these two lines allows a proper reset.
         this.player.load();
         this.settings.load();
-
+		//////////////////////////////////////////////////////////////////////////
+		
         if (this.currentPlanet) {
             this.currentPlanet.load();
         }
