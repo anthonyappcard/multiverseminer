@@ -537,8 +537,17 @@ function UIPlanetScreen() {
                 continue;
             }
 
-            var headerContent = $('<div/>');
-            parent.append('<p>' + ItemCategory[key] + '</p>').append(headerContent);
+			function countProperties(items) {
+			var count = 0;
+			for(var prop in items) {
+				if(items.hasOwnProperty(prop))
+					++count;
+			}
+			return count;
+			}
+			
+            var headerContent = $('<div>');
+            parent.append('<p>' + ItemCategory[key] + '&nbsp;(' + countProperties(items) +')</p>').append(headerContent);
             for (var i = 0; i < craftableItems.length; i++) {
                 var entry = self.buildCraftingEntry(craftableItems[i]);
                 headerContent.append(entry);
