@@ -172,7 +172,7 @@ function openNotifications() {
 };
 
 function newCraft(itemId, quantity) {
-    console.log(itemId, quantity);
+    //console.log(itemId, quantity);
     if (itemId == undefined) {
         utils.logError("onCraft with no item specified.");
         return false;
@@ -181,7 +181,7 @@ function newCraft(itemId, quantity) {
         quantity = 1;
     };
     if (quantity == "max") quantity = game.player.storage.getMaxCrafts(itemId);
-    console.log("Final quantity: " + quantity);
+    //console.log("Final quantity: " + quantity);
     try {
         if (game.player.craft(itemId, quantity)) {
             return true;
@@ -222,12 +222,14 @@ function exportStorage() {
     var x = base64;
     // var link = 'data:application/octet-stream;base64,' + base64;
     // x.append("<a href=" + link + ">Download</a>");
-    $.modal('<textarea cols="59" rows="80" wrap="hard">' + x + '</textarea>',{
-		opacity: 80,
-		overlayCss: {backgroundColor:"#000"},
-		escClose: true,
-		containerId: 'exportBox'
-	});
+    $.modal('<textarea cols="59" rows="80" wrap="hard">' + x + '</textarea>', {
+        opacity: 80,
+        overlayCss: {
+            backgroundColor: "#000"
+        },
+        escClose: true,
+        containerId: 'exportBox'
+    });
 };
 
 function importStorage() {
@@ -297,34 +299,35 @@ function onGather() {
 };
 
 function scavengeQuest() {
-	$("#scavModal").modal({
+    $("#scavModal").modal({
         opacity: 80,
-		escClose: true,
-		overlayClose: true,
-		overlayCss: {backgroundColor:"#000"},
-		containerId: 'scavengeQuest'
-	});
+        escClose: true,
+        overlayClose: true,
+        overlayCss: {
+            backgroundColor: "#000"
+        },
+        containerId: 'scavengeQuest'
+    });
 };
 
 function onScavenge() {
-    if (game.playerDied > 0 || game.currentPlanet.data.id != "1") {
-        console.log("Player not on earth, scavenging disabled.");
-        return false;
-    };
-    if (this.lastRun !== "undefined") {
-      if (this.lastRun >= new Date().getSeconds()) {
-        console.log('Rate limited');
-        return false;
-      }
-    };
-    console.log('Allowed');
     if (!$("#scavengeQuest").is(':visible')) {
         scavengeQuest();
     }
+    if (game.playerDied > 0 || game.currentPlanet.data.id != "1") {
+        return false;
+    };
+    if (this.lastRun !== "undefined") {
+        if (this.lastRun >= Math.floor(new Date() / 1000)) {
+            //console.log('Rate limited');
+            return false;
+        };
+    };
+    //console.log('Allowed');
     game.settings.addStat('manualScavengeCount');
     if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
     game.player.scavenge();
-    this.lastRun = new Date().getSeconds();
+    this.lastRun = Math.floor(new Date() / 1000);
 };
 
 function onActivatePlayerInventory() {
@@ -448,10 +451,12 @@ function showFight() {
 function onReset() {
     $("#resetModal").modal({
         opacity: 80,
-		escClose: true,
-		overlayClose: true,
-		overlayCss: {backgroundColor:"#000"},
-		containerId: 'resetDialog'
+        escClose: true,
+        overlayClose: true,
+        overlayCss: {
+            backgroundColor: "#000"
+        },
+        containerId: 'resetDialog'
     });
 }
 
