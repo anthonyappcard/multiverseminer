@@ -5,10 +5,6 @@ var game = new Game();
 var ui = new UI();
 var uiplanetscreen = new UIPlanetScreen();
 
-// Save before closing the page.
-window.onbeforeunload = function() {
-    game.save();
-};
 // Add hook for document ready
 $(document).ready(onDocumentReady);
 

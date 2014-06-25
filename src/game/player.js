@@ -73,9 +73,7 @@ function Player() {
         if (!game.currentPlanet) {
             return false;
         }
-
-        //game.settings.addStat('manualDigCount');
-
+        
         var items = this.miner.mine(game.currentPlanet, this.pickPower, this.miningLuck);
         if (items) {
         	if(game.settings.showPopups) {
@@ -103,9 +101,7 @@ function Player() {
         if (!game.currentPlanet) {
             return false;
         }
-
-        //game.settings.addStat('manualGatherCount');
-
+        
         var items = this.miner.gather(game.currentPlanet);
         if (items) {
             // TODO - Add stat for whatever items you found.
@@ -200,16 +196,6 @@ function Player() {
         }
         removedString = removedString.substring(0, removedString.length - 2);
         gainedString = gainedString.substring(0, gainedString.length - 2);
-        // jquery style
-		//$('#scavmodal').dialog({positon: {my: "center", at: "center", of: window} }).empty();
-        // custombox style
-		//$(this).custombox({
-        //   url: "#scavmodal",
-        //    customClass: 'scavModal',
-        //    overlayClose: 'true',
-        //    opacity: '0.7'
-        //});
-		// simplemodal style
 		$('#decompModal').modal({
 						opacity: 80,
 						escClose: true,
