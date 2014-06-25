@@ -788,10 +788,9 @@ function Game() {
         }
 
 		// Here is your issue with the reset troubles antlong. Disabling these two lines allows a proper reset.
-        if (this.wasReset == true) {
+        if (this.wasReset === false) {
             this.player.load();
             this.settings.load();
-            this.wasReset == false;
         };
 		//////////////////////////////////////////////////////////////////////////
 		
