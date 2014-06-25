@@ -12,7 +12,7 @@ function Game() {
     this.lastUpdateTime = Date.now();
     this.lastAutoSaveTime = Date.now();
     this.lastTravelTime = Date.now();
-    this.wasReset = false;
+    this.wasReset = undefined;
 
     this.planetChanged = true;
 
@@ -108,14 +108,12 @@ function Game() {
         if (this.currentPlanet) {
             this.currentPlanet.reset(fullReset);
         }
-        
         this.settings.currentPlanet = Planets.earth.id;
-        
         this.setNewGame();
         this.setStartupState();
-        this.wasReset = false;
         //this.save();
         location.reload();
+        this.wasReset = false;
     };
 
     this.update = function(currentTime) {
@@ -787,8 +785,7 @@ function Game() {
             return;
         }
 
-		// Here is your issue with the reset troubles antlong. Disabling these two lines allows a proper reset.
-        if (this.wasReset === false) {
+        if (!this.wasReset) {
             this.player.load();
             this.settings.load();
         };
