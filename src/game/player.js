@@ -111,14 +111,22 @@ function Player() {
 
         return false;
     };
-
+    this.generateActionText = function() {
+        choices = [
+            "<img src='assets/images/itemIcons/buildings/home.png'></img><p />Off in the distance, you see an abandoned house.<br />You enter, and take a look around.",
+            "<img src='assets/images/itemIcons/buildings/shed.png'></img><p />Just north, you see a shed.<br />You cautiously enter."
+        ];
+        var choice = choices[Math.floor(Math.random() * choices.length)];
+        return choice;
+    };
+    
     this.scavenge = function() {
         if (!game.currentPlanet) {
             return false;
         }
         // TODO - Add stat for whatever items you found.
-        //game.settings.addStat('manualScavengeCount');
-        $("#actionText").html("You search quickly through an abandoned building.");
+        // TODO - Don't overwrite the html unless it's changed.
+        $("#actionText").html(this.generateActionText);
         var items = this.miner.scavenge(game.currentPlanet);
         if (items != "") {
             var results = items;
@@ -128,15 +136,19 @@ function Player() {
               for (var i = 0; i < results.length; i++) {
                 x.push(game.getItemName(results[i]));
               };
-              $('#resultsText2') .html('You found: ' + x.join(', ') + ".");
+              $('#resultsText2').html('After a thorough inspection, you exit with: ' + x.join(', ') + ".");
             } else {
-              $('#resultsText2') .html('You found: ' + game.getItemName(items) + ".");
+              $('#resultsText2').html('After a thorough inspection, you exit with: ' + game.getItemName(items) + ".");
             }
-
             this.storage.addItems(items);
             return true;
         } else {
-            $("#resultsText2").html("You found nothing.");
+            resultsNothingChoices = [
+                "A loud noise spooks you, and you run out empty handed.",
+                "After a thorough examination, you determine there is nothing useful."
+            ];
+            var choice = resultsNothingChoices[Math.floor(Math.random() * resultsNothingChoices.length)];
+            $("#resultsText2").html(choice);
         };
         return false;
     };
@@ -289,11 +301,11 @@ function Player() {
     };
 
     this.reset = function(fullReset) {
+        $(window).off('onbeforeunload');
         this.miner.reset(fullReset);
         this.combatant.reset(fullReset);
         this.storage.reset(fullReset);
         this.gear.reset(fullReset);
-        window.localStorage.clear();
         localStorage.clear();
         this.oxygenConsumption = 1;
         this.pickPower = 1;

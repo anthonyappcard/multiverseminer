@@ -5,6 +5,10 @@ var game = new Game();
 var ui = new UI();
 var uiplanetscreen = new UIPlanetScreen();
 
+// Save before closing the page.
+window.onbeforeunload = function() {
+    game.save();
+};
 // Add hook for document ready
 $(document).ready(onDocumentReady);
 
@@ -216,12 +220,15 @@ function onMine() {
 function exportStorage() {
     // encode the data into base64
     base64 = window.btoa(JSON.stringify(localStorage));
-    var x = $("#exportStorageText");
-    var link = 'data:application/octet-stream;base64,' + base64;
-    x.append("<a href=" + link + ">Download</a>");
-    $("#exportStorageModal").dialog({
-        modal: true
-    });
+    var x = base64;
+    // var link = 'data:application/octet-stream;base64,' + base64;
+    // x.append("<a href=" + link + ">Download</a>");
+    $.modal('<textarea cols="59" rows="80" wrap="hard">' + x + '</textarea>',{
+		opacity: 80,
+		overlayCss: {backgroundColor:"#000"},
+		escClose: true,
+		containerId: 'exportBox'
+	});
 };
 
 function importStorage() {
@@ -306,12 +313,14 @@ function onScavenge() {
         console.log("Player not on earth, scavenging disabled.");
         return false;
     };
-    game.settings.addStat('manualScavengeCount');
-    if ($("#leftCategory2").hasClass("genericButtonSelected"))
-        uiplanetscreen.updateStatsPanel();
+    //if ($("#leftCategory2").hasClass("genericButtonSelected"))
+    //    uiplanetscreen.updateStatsPanel();
     if (!$("#scavengeQuest").is(':visible')) {
         scavengeQuest();
     }
+    game.settings.addStat('manualScavengeCount');
+    $("#actionText").html(' ');
+    $("#resultsText2").html(' ');
     game.player.scavenge();
 };
 

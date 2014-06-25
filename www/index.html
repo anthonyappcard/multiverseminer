@@ -185,7 +185,7 @@
 		<img class="categoryButtonIcon" src="assets/images/itemIcons/binoculars.gif" />
 
         <div class="categoryButtonText">
-          SCAVENGE [S]
+          SCAVENGE
         </div>
         </button>
       </div>
@@ -396,12 +396,16 @@
     You have no notifications.
   </div>
 
-  <div id="exportStorageModal" style="display:none;">
-    <div id="exportStorageText">
-      Save your data.
-    </div>
-  </div>
-  <div class="panelBottomRight">
+	<!-- Export your game to use in another place
+	<div id="exportStorageModal" style="display:none;">
+		<div id="exportStorageText">
+		Save your data.
+		</div>
+	</div>
+	-->
+	
+	
+    <div class="panelBottomRight">
       <div class="genericButton bottomBarButton clickable noselect" style="text-decoration: none;">
           <a href="http://webchat.freenode.net?channels=%23multiverseminer&amp;uio=d4" target="_new">
         <div class="bottomBarButton noSelect">
@@ -446,20 +450,22 @@
       </div>
     </div>
 
-    <div class="genericButton bottomBarButton clickable" onclick="exportStorage()">
+	<div class="genericButton bottomBarButton clickable" onclick="exportStorage()">
       <div id="exportSave" class="bottomBarButtonText noSelect">
         Export
       </div>
     </div>
+	
   </div>
+
   <div id="itemInfo"></div>
   <div id="scavModal" class="scavengeQuest" style="display:none;">
   	<div id="actionText">Press S to scavenge</div>
     <p /><p />
-  	<div id="resultsText2"></div>
+  	<div id="resultsText2">&nbsp;</div>
 	<p /><p />
-  	<div class="genericButton bottomBarButton clickable" onclick="onScavenge()">
-        Scavenge
+  	<div class="genericButton bottomBarButton2 clickable" onclick="onScavenge()">
+        Scavenge [S]
   	</div>
 </div>
 <div id="bulletin" class="bulletin">
