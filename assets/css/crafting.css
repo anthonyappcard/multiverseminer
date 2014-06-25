@@ -1,20 +1,37 @@
 .craft1, .craft10, .craft100, .craftMax {
-	width:13%;
+/*	width:13%;
 	min-width: 4em;
-	padding-top: 1.5em;
-	cursor: pointer;
+	cursor: hand; */
+	box-shadow:0 1px 2px #000, 0 -1px 1px #000, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
+	background-color:#444;
+	text-align: middle;
+	min-width: 300px;
+	cursor: hand;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-top:10px;
 }
 
 .craftingIcon {
 	vertical-align:middle;
 	width:30px;
 	height:30px;
-	cursor:pointer;
+	cursor: hand;
 	margin:10px;
 }
 
 .craftEnabled .craftingText {
 	cursor:pointer;
+}
+
+/* Item Display Panel */
+.craftingItemPanel {
+    background-color: #2B2B2B;
+    font-size: 11px;
+    margin-bottom: 2px;
+    text-align: left;
+    width: 98%;
+	padding-left: 5px;
 }
 
 /* Outer Container */
@@ -28,10 +45,26 @@
 	margin-top: 10px;
 }
 
+/* Category Name Closed */
+#playerCraftingContent .ui-state-default {
+	background: #444D57;
+	font-family: overpassregular,Arial,sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	padding-left: 15px;
+	text-align: left;
+	margin-top: 5px;
+    display:block;
+	border: 1px solid #828282;
+	width: 90%;
+}
+
 /* Headers */
 #playerCraftingContent .ui-accordion-header p {
-    display: block;
+    background-color: #242424;
+	font-family: overpassregular,Arial,sans-serif;
     font-weight: bold;
+	display: block;
     margin: 1px;
     cursor: pointer;
     padding: 5 5 5 7px;
@@ -39,7 +72,6 @@
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    width:320px;
     display:block;
 }
 
@@ -47,20 +79,13 @@
 #playerCraftingContent .ui-accordion-content {
 	margin: 0px;
 	padding: 0px;
-	border: 1px solid #5c5c5c;
+	border-left: 1px solid #5c5c5c;
+	border-right: 1px solid #5c5c5c;
+	border-bottom: 1px solid #5c5c5c;
+	background: none;
+	background-color: #1C1C1C;
+	width: 351px;
 }
-
-/* Category Name */
-#playerCraftingContent .ui-state-default {
-	background: #000;
-	font-size: 16px;
-	padding: 5px 0px 5px 10px;
-	text-align: left;
-	margin-top: 5px;
-    display:block;
-	border: 1px solid #828282;
-}
-
 
 #playerCraftingContent .ui-icon {
 	display: none;

@@ -114,19 +114,13 @@
     margin: 1px 10px;
 }
 
-.craftingItemPanel {
-    background: none repeat scroll 0 0 #000;
-    font-size: 11px;
-    margin-bottom: 2px;
-    text-align: left;
-    width: auto;
-}
-
 .empirePanel,.statsPanel {
 	margin:20px 20px;
 }
 
 .craftingPanel {
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 .planetPanel {
