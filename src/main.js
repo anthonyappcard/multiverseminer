@@ -1,4 +1,4 @@
-require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "custombox", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "ws", "contextmenu"]);
+require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "custombox", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "ws", "contextmenu", "bulletin"]);
 
 // Create components
 var game = new Game();
@@ -134,6 +134,7 @@ function onDocumentReady() {
             }
         }]
     });
+    $("#bulletin").bulletin();
 };
 
 function selectClass(playerClass) {
@@ -295,9 +296,7 @@ function onGather() {
 };
 
 function scavengeQuest() {
-	var src = "scavenge.html";
-	
-	$.modal('<iframe src="' + src + '" height="300" width="400" style="border:0">', {
+	$("#scavModal").modal({
         opacity: 80,
 		escClose: true,
 		overlayClose: true,

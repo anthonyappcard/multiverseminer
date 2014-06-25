@@ -128,7 +128,7 @@
 .resetNo {
 }
 
-#resultsText {
+#resultsText,#resultsText2 {
 	border: 1px dotted black;
 	width: 100%;
 	height: 25%;
