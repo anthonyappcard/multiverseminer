@@ -223,7 +223,7 @@ function exportStorage() {
     var x = base64;
     // var link = 'data:application/octet-stream;base64,' + base64;
     // x.append("<a href=" + link + ">Download</a>");
-    $.modal('<div>' + x + '</div>',{
+    $.modal('<textarea cols="59" rows="80" wrap="hard">' + x + '</textarea>',{
 		opacity: 80,
 		overlayCss: {backgroundColor:"#000"},
 		escClose: true,
