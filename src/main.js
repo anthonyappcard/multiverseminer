@@ -216,12 +216,15 @@ function onMine() {
 function exportStorage() {
     // encode the data into base64
     base64 = window.btoa(JSON.stringify(localStorage));
-    var x = $("#exportStorageText");
-    var link = 'data:application/octet-stream;base64,' + base64;
-    x.append("<a href=" + link + ">Download</a>");
-    $("#exportStorageModal").dialog({
-        modal: true
-    });
+    var x = base64;
+    // var link = 'data:application/octet-stream;base64,' + base64;
+    // x.append("<a href=" + link + ">Download</a>");
+    $.modal('<div>' + x + '</div>',{
+		opacity: 80,
+		overlayCss: {backgroundColor:"#000"},
+		escClose: true,
+		containerId: 'exportBox'
+	});
 };
 
 function importStorage() {

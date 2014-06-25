@@ -1,4 +1,49 @@
 /* -------------------------- */
+/* Export Box Styling Begin */
+/* -------------------------- */
+/*
+#exportBox {
+}
+*/
+
+/* Container */
+#exportBox {
+	font-family: Lucida Console;
+	font-size:14px;
+	display: none;
+	height:500px; 
+	width:500px; 
+	color:#bbb; 
+	background-color:#333; 
+	border:4px solid #444; 
+	padding:20px;
+	word-wrap: break-word;
+}
+
+#exportBox a {
+	color:#ddd;
+}
+
+#exportBox a.modalCloseImg {
+	background:url(assets/images/x.png) no-repeat; 
+	width:25px; 
+	height:29px; 
+	display:inline; 
+	z-index:3200; 
+	position:absolute; 
+	top:-15px; 
+	right:-16px; 
+	cursor:pointer;
+}
+
+#exportBox h3 {
+	color:#84b8d9;
+}
+
+/* Export Box Styling End */
+
+
+/* -------------------------- */
 /* Decompose Box Styling Begin */
 /* -------------------------- */
 #decompBox {
