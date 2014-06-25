@@ -12,6 +12,7 @@ function Game() {
     this.lastUpdateTime = Date.now();
     this.lastAutoSaveTime = Date.now();
     this.lastTravelTime = Date.now();
+    this.wasReset = false;
 
     this.planetChanged = true;
 
@@ -93,9 +94,10 @@ function Game() {
     };
 
     this.reset = function(fullReset) {
+        this.wasReset = true;
         // Clear the storage
-        localStorage.clear();
-
+        window.localStorage.clear();
+        
         // Clear the local variables
         this.planets = {};
 
@@ -786,8 +788,11 @@ function Game() {
         }
 
 		// Here is your issue with the reset troubles antlong. Disabling these two lines allows a proper reset.
-        this.player.load();
-        this.settings.load();
+        if (this.wasReset == true) {
+            this.player.load();
+            this.settings.load();
+            this.wasReset == false;
+        };
 		//////////////////////////////////////////////////////////////////////////
 		
         if (this.currentPlanet) {
