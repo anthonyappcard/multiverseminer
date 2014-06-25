@@ -318,22 +318,8 @@ function UIPlanetScreen() {
                 if (item.description) {
                     content += "<p><strong>Description: </strong>" + "</br>&nbsp;" + item.description + "</br>";
                 }
-                content += "</br><strong>Stats:</strong></br>";
-                /* content += "&nbsp;Strength: " + item.strength + "</br>";
-                content += "&nbsp;Accuracy: " + item.accuracy + "</br>"; */
-                content += "&nbsp;Defense: " + item.defense + "</br>";
-                /* content += "&nbsp;Evasion: " + item.evasion + "</br>";
-                content += "&nbsp;Attack Speed: " + item.attackSpeed + "</br>";
-                content += "&nbsp;Ship Speed: " + item.shipSpeed + "</br>";
-                content += "&nbsp;Health: " + item.health + "</br>";
-                content += "&nbsp;Mining Luck: " + item.miningLuck + "</br>";
-                content += "&nbsp;Scavenge Luck: " + item.scavengeLuck + "</br>";
-                content += "&nbsp;Loot Luck: " + item.lootLuck + "</br>";
-                content += "&nbsp;Counter: " + item.counter + "</br>";
-                content += "&nbsp;Regeneration: " + item.regeneration + "</br>";
-                content += "&nbsp;Resillience: " + item.resillience + "</br>";
-                content += "&nbsp;Perception: " + item.perception + "</br>";
-                content += "&nbsp;Experience: " + item.experience + "</br>"; */
+					content += "</br><strong>Stats:</strong></br>";
+					content += "&nbsp;Defense: " + item.defense + "</br>";
                 break;
 
                 /* Chest Gear */
@@ -348,22 +334,8 @@ function UIPlanetScreen() {
                 if (item.description) {
                     content += "<p><strong>Description: </strong>" + "</br>&nbsp;" + item.description + "</br>";
                 }
-                content += "</br><strong>Stats:</strong></br>";
-                /* content += "&nbsp;Strength: " + item.strength + "</br>";
-                content += "&nbsp;Accuracy: " + item.accuracy + "</br>"; */
-                content += "&nbsp;Defense: " + item.defense + "</br>";
-                /* content += "&nbsp;Evasion: " + item.evasion + "</br>";
-                content += "&nbsp;Attack Speed: " + item.attackSpeed + "</br>";
-                content += "&nbsp;Ship Speed: " + item.shipSpeed + "</br>";
-                content += "&nbsp;Health: " + item.health + "</br>";
-                content += "&nbsp;Mining Luck: " + item.miningLuck + "</br>";
-                content += "&nbsp;Scavenge Luck: " + item.scavengeLuck + "</br>";
-                content += "&nbsp;Loot Luck: " + item.lootLuck + "</br>";
-                content += "&nbsp;Counter: " + item.counter + "</br>";
-                content += "&nbsp;Regeneration: " + item.regeneration + "</br>";
-                content += "&nbsp;Resillience: " + item.resillience + "</br>";
-                content += "&nbsp;Perception: " + item.perception + "</br>";
-                content += "&nbsp;Experience: " + item.experience + "</br>"; */
+					content += "</br><strong>Stats:</strong></br>";
+					content += "&nbsp;Defense: " + item.defense + "</br>";
                 break;
 
                 /* Main Hand */
@@ -378,22 +350,8 @@ function UIPlanetScreen() {
                 if (item.description) {
                     content += "<p><strong>Description: </strong>" + "</br>&nbsp;" + item.description + "</br>";
                 }
-                content += "</br><strong>Stats:</strong></br>";
-                /* content += "&nbsp;Strength: " + item.strength + "</br>";
-                content += "&nbsp;Accuracy: " + item.accuracy + "</br>";
-                content += "&nbsp;Defense: " + item.defense + "</br>";
-                content += "&nbsp;Evasion: " + item.evasion + "</br>"; */
-                content += "&nbsp;Attack Speed: " + item.attackSpeed + "</br>";
-                /* content += "&nbsp;Ship Speed: " + item.shipSpeed + "</br>";
-                content += "&nbsp;Health: " + item.health + "</br>";
-                content += "&nbsp;Mining Luck: " + item.miningLuck + "</br>";
-                content += "&nbsp;Scavenge Luck: " + item.scavengeLuck + "</br>";
-                content += "&nbsp;Loot Luck: " + item.lootLuck + "</br>";
-                content += "&nbsp;Counter: " + item.counter + "</br>";
-                content += "&nbsp;Regeneration: " + item.regeneration + "</br>";
-                content += "&nbsp;Resillience: " + item.resillience + "</br>";
-                content += "&nbsp;Perception: " + item.perception + "</br>";
-                content += "&nbsp;Experience: " + item.experience + "</br>"; */
+					content += "</br><strong>Stats:</strong></br>";
+					content += "&nbsp;Attack Speed: " + item.attackSpeed + "</br>";
                 break;
 
                 /* Leg Gear */
@@ -408,22 +366,8 @@ function UIPlanetScreen() {
                 if (item.description) {
                     content += "<p><strong>Description: </strong>" + "</br>&nbsp;" + item.description + "</br>";
                 }
-                content += "</br><strong>Stats:</strong></br>";
-                /* content += "&nbsp;Strength: " + item.strength + "</br>";
-                content += "&nbsp;Accuracy: " + item.accuracy + "</br>"; */
-                content += "&nbsp;Defense: " + item.defense + "</br>";
-                /* content += "&nbsp;Evasion: " + item.evasion + "</br>";
-                content += "&nbsp;Attack Speed: " + item.attackSpeed + "</br>";
-                content += "&nbsp;Ship Speed: " + item.shipSpeed + "</br>";
-                content += "&nbsp;Health: " + item.health + "</br>";
-                content += "&nbsp;Mining Luck: " + item.miningLuck + "</br>";
-                content += "&nbsp;Scavenge Luck: " + item.scavengeLuck + "</br>";
-                content += "&nbsp;Loot Luck: " + item.lootLuck + "</br>";
-                content += "&nbsp;Counter: " + item.counter + "</br>";
-                content += "&nbsp;Regeneration: " + item.regeneration + "</br>";
-                content += "&nbsp;Resillience: " + item.resillience + "</br>";
-                content += "&nbsp;Perception: " + item.perception + "</br>";
-                content += "&nbsp;Experience: " + item.experience + "</br>"; */
+					content += "</br><strong>Stats:</strong></br>";
+					content += "&nbsp;Defense: " + item.defense + "</br>";
                 break;
 
                 /* Foot Gear */
@@ -438,26 +382,13 @@ function UIPlanetScreen() {
                 if (item.description) {
                     content += "<p><strong>Description: </strong>" + "</br>&nbsp;" + item.description + "</br>";
                 }
-                content += "</br><strong>Stats:</strong></br>";
-                /* content += "&nbsp;Strength: " + item.strength + "</br>";
-                content += "&nbsp;Accuracy: " + item.accuracy + "</br>"; */
-                content += "&nbsp;Defense: " + item.defense + "</br>";
-                /* content += "&nbsp;Evasion: " + item.evasion + "</br>";
-                content += "&nbsp;Attack Speed: " + item.attackSpeed + "</br>";
-                content += "&nbsp;Ship Speed: " + item.shipSpeed + "</br>";
-                content += "&nbsp;Health: " + item.health + "</br>";
-                content += "&nbsp;Mining Luck: " + item.miningLuck + "</br>";
-                content += "&nbsp;Scavenge Luck: " + item.scavengeLuck + "</br>";
-                content += "&nbsp;Loot Luck: " + item.lootLuck + "</br>";
-                content += "&nbsp;Counter: " + item.counter + "</br>";
-                content += "&nbsp;Regeneration: " + item.regeneration + "</br>";
-                content += "&nbsp;Resillience: " + item.resillience + "</br>";
-                content += "&nbsp;Perception: " + item.perception + "</br>";
-                content += "&nbsp;Experience: " + item.experience + "</br>"; */
+					content += "</br><strong>Stats:</strong></br>";
+					content += "&nbsp;Defense: " + item.defense + "</br>";
                 break;
 
-                /* Buildings */
-            case "gearBuilding":
+            
+			/* Buildings */
+			case "gearBuilding":
                 if (item.craftCost) {
                     content = "<strong>" + item.name + "</strong><p>";
                     if (item.description) {
@@ -487,9 +418,24 @@ function UIPlanetScreen() {
                 if (item.id == "crudeOilDrone") {
                     content += "</br><strong>Stats:</strong></br>";
                     var aMatch = item.statchange.match("(\\w+)\":([0-9.]+)");
-                    content += "&nbsp;Gather: " + game.getItemName(aMatch[1]) + " +" + aMatch[2];
+                    content += "&nbsp;" + game.getItemName(aMatch[1]) + " +" + aMatch[2] + "&#37;";
                 }
-                break;
+	            if (item.id == "ironDetector") {
+                    content += "</br><strong>Stats:</strong></br>";
+                    var aMatch = item.statchange.match("(\\w+)\":([0-9.]+)");
+                    content += "&nbsp;" + game.getItemName(aMatch[1]) + " +" + aMatch[2] + "&#37;";
+                }
+	            if (item.id == "oilPump") {
+                    content += "</br><strong>Stats:</strong></br>";
+                    var aMatch = item.statchange.match("(\\w+)\":([0-9.]+)");
+                    content += "&nbsp;" + game.getItemName(aMatch[1]) + " +" + aMatch[2] + "&#37;";
+                }				
+	            if (item.id == "carbonDetector") {
+                    content += "</br><strong>Stats:</strong></br>";
+                    var aMatch = item.statchange.match("(\\w+)\":([0-9.]+)");
+                    content += "&nbsp;" + game.getItemName(aMatch[1]) + " +" + aMatch[2] + "&#37;";
+                }                
+				break;
 
                 /* Spaceship */
             case "spaceship":
