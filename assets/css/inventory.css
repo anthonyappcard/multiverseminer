@@ -15,15 +15,14 @@
     padding-top: 10px;
 }
 
-.inventoryContentPlayer,.inventoryContentPlanet {
-	/* clear: left; */
-	overflow: scroll;
-	overflow-x: hidden;
-	position: inherit;
-	height: 435px;
-	width: 381px;
-	margin-left: auto;
-	margin-right: auto;
-	display: block;
-	vertical-align: middle;
+.inventoryContentPlanet, .inventoryContentPlayer {
+        display: block;
+        height: 436px;
+        margin-left: auto;
+        margin-right: auto;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        position: inherit;
+        vertical-align: middle;
+        width: 382px;
 }
