@@ -289,11 +289,11 @@ function Player() {
     };
 
     this.reset = function(fullReset) {
+        $(window).off('onbeforeunload');
         this.miner.reset(fullReset);
         this.combatant.reset(fullReset);
         this.storage.reset(fullReset);
         this.gear.reset(fullReset);
-        window.localStorage.clear();
         localStorage.clear();
         this.oxygenConsumption = 1;
         this.pickPower = 1;
