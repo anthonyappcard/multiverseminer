@@ -313,6 +313,9 @@ function onScavenge() {
     game.settings.addStat('manualScavengeCount');
     if ($("#leftCategory2").hasClass("genericButtonSelected"))
         uiplanetscreen.updateStatsPanel();
+    if (!$("#scavengeQuest").is(':visible')) {
+        scavengeQuest();
+    }
     game.player.scavenge();
 };
 
