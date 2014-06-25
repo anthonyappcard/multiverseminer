@@ -111,9 +111,9 @@ function Game() {
         
         this.settings.currentPlanet = Planets.earth.id;
         
-        //window.localStorage.clear();
         this.setNewGame();
         this.setStartupState();
+        this.wasReset = false;
         //this.save();
         location.reload();
     };
