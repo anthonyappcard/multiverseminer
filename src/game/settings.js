@@ -1,4 +1,4 @@
-require(["gamestatistics", "uiplanetscreen" ]);
+require(["gamestatistics"]);
 
 function Settings() {
 	this.totalStats = new Statistics('total');
@@ -50,7 +50,6 @@ function Settings() {
 
 		this.totalStats[key] += value;
 		this.sessionStats[key] += value;
-        uiplanetscreen.updateStatsPanel();
 	};
 
 	// ---------------------------------------------------------------------------
