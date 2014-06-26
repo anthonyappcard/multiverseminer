@@ -316,7 +316,7 @@ function goDigging() {
 };
 
 function goGathering() {
-    $("#gatheringModal").modal({
+    $("#gatherModal").modal({
         opacity: 80,
         escClose: true,
         overlayClose: true,
@@ -328,7 +328,7 @@ function goGathering() {
 };
 
 function scavengeQuest() {
-    $("#scavModal").modal({
+    $("#scavengeModal").modal({
         opacity: 80,
         escClose: true,
         overlayClose: true,
@@ -341,11 +341,19 @@ function scavengeQuest() {
 // Digging, Gathering, Scavenging Modals End
 
 function onGather() {
-    if (game.playerDied > 0)
+    if (!$("#gatherModal").is(':visible')) goGathering();
+    if (game.playerDied > 0) {
         return false;
+    };
+    if (this.lastRun !== "undefined") {
+        if (this.lastRun >= ~~new Date() /1000|0) {
+            return false;
+        };
+    };
     game.settings.addStat('manualGatherCount');
     if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
     game.player.gather();
+    this.lastRun = ~~new Date() /1000|0;
 };
 
 function onScavenge() {
@@ -355,11 +363,9 @@ function onScavenge() {
     };
     if (this.lastRun !== "undefined") {
         if (this.lastRun >= ~~new Date() /1000|0) {
-            //console.log('Rate limited');
             return false;
         };
     };
-    //console.log('Allowed');
     game.settings.addStat('manualScavengeCount');
     if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
     game.player.scavenge();

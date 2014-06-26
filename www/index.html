@@ -172,7 +172,7 @@
         </button>
         
         <button class="a_demo_two tooltip" id="gatherButton" onclick="goGathering()" title="Click to gather atmosphere.">
-            <div class="categoryButtonText">GATHER [G]</div>
+            <div class="categoryButtonText">GATHER</div>
         </button>
         
 		<button class="a_demo_two tooltip" id="scavengeButton" onclick="scavengeQuest()" title="Click to scavenge.">
@@ -447,14 +447,24 @@
   </div>
 
   <div id="itemInfo"></div>
-  <div id="scavModal" class="scavengeQuest" style="display:none;">
-  	<div id="actionText">Press S to scavenge</div>
-    <p /><p />
-  	<div id="resultsText2">&nbsp;</div>
-	<p /><p />
-  	<div class="genericButton bottomBarButton2 clickable" onclick="onScavenge()">
-        Scavenge [S]
-  	</div>
+  
+    <div id="scavengeModal" class="scavengeQuest" style="display:none;">
+        <div id="actionText">Press S to scavenge</div>
+          <p /><p />
+  	    <div id="resultsText">&nbsp;</div>
+	      <p /><p />
+  	    <div class="genericButton bottomBarButton2 clickable" onclick="onScavenge()">Scavenge [S]</div>
+    </div>
+
+    <!-- Gathering modal contents -->
+    <div id="gatherModal" class="gatheringBox" style="display:none;">
+    	<div id="gatherActionText">Press G to gather</div>
+          <p /><p />
+    	<div id="gatherResultsText">&nbsp;</div>
+  	    <p /><p />
+        <div class="genericButton bottomBarButton2 clickable" onclick="onGather()">Gather [G]</div>
+    </div>
+
 </div>
 <div id="bulletin" class="bulletin">
     <ul>
