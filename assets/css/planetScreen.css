@@ -12,7 +12,7 @@
     outline: 1px solid #8A8A8A;
     text-align: center;
     width: 410px;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 }
 .panelPlanetDisplay {
     font-family: overpassregular,Arial,sans-serif;
@@ -100,7 +100,7 @@
 }
 
 .buildingsPanel {
-    height: 100%;
+    height: 100px;
     margin: 10px 10px 1px;
 }
 
@@ -115,8 +115,11 @@
     margin: 1px 10px;
 }
 
-.empirePanel,.statsPanel {
-	margin:20px 20px;
+.empirePanel {
+}
+
+.statsPanel {
+	overflow-y: hidden;
 }
 
 .craftingPanel {
