@@ -12,7 +12,6 @@ function Game() {
     this.lastUpdateTime = Date.now();
     this.lastAutoSaveTime = Date.now();
     this.lastTravelTime = Date.now();
-    this.wasReset = undefined;
 
     this.planetChanged = true;
 
@@ -45,11 +44,11 @@ function Game() {
         // Initialize all the components
         this.player.initialize();
         this.settings.initialize();
-        
+
         initQuests();
-        
+
         this.questProgress("event", "example"); //this is an example of how to progress in event type quests
-        
+
         // Load the settings
         this.load();
 
@@ -96,19 +95,21 @@ function Game() {
     this.reset = function(fullReset) {
         this.wasReset = true;
         // Clear the storage
-        window.localStorage.clear();
-        
+        localStorage.clear();
+
         // Clear the local variables
         this.planets = {};
 
         // Reset the saved settings
         this.player.reset(fullReset);
         this.settings.reset(fullReset);
+        
+        this.settings.currentPlanet = Planets.earth.id;
 
         if (this.currentPlanet) {
             this.currentPlanet.reset(fullReset);
         }
-        this.settings.currentPlanet = Planets.earth.id;
+        
         this.setNewGame();
         this.setStartupState();
         //this.save();
@@ -124,12 +125,12 @@ function Game() {
         if (this.settings.autoSaveEnabled && elapsedSinceAutoSave > this.settings.autoSaveInterval && !this.settings.travelActive) {
 
             // ui.notify("Auto-saving");
-			var notify = noty({
-							layout: 'bottomCenter',
-							type: 'success',
-							timeout: 3500,
-							text: 'Auto Saved'
-						});
+            var notify = noty({
+                layout: 'bottomCenter',
+                type: 'success',
+                timeout: 3500,
+                text: 'Auto Saved'
+            });
             this.save();
             this.lastAutoSaveTime = currentTime;
         }
@@ -186,7 +187,9 @@ function Game() {
         var targetItem = game.itemDictionary[what];
         // Check if we have enough storage to store the result
         if (!storageTarget.canAdd(what, count)) {
-            noty({text: "Can not craft, storage limit exceeded!"});
+            noty({
+                text: "Can not craft, storage limit exceeded!"
+            });
             return false;
         }
         var cost = this.getCraftingCost(what, count);
@@ -216,7 +219,11 @@ function Game() {
         }
         var totalQuantity = count * quantity;
         storageTarget.addItem(what, totalQuantity);
-        noty({text:"Crafted " + totalQuantity + " " + targetItem.name,type:"information",timeout:2000});
+        noty({
+            text: "Crafted " + totalQuantity + " " + targetItem.name,
+            type: "information",
+            timeout: 2000
+        });
         return true;
     };
 
@@ -584,10 +591,10 @@ function Game() {
 
             case this.itemContexts.playerGear:
                 {
-                   // if (this.player.canEquip(itemId)) {
-                   //     this.player.equip(itemId);
-                   // }
-                   //
+                    // if (this.player.canEquip(itemId)) {
+                    //     this.player.equip(itemId);
+                    // }
+                    //
                     return true;
                 }
 
@@ -706,25 +713,26 @@ function Game() {
             results.push(entry);
         }
     };
-    
+
     this._calculateChance = function(entry, luck) { //array 
-    	//TODO: gather extra chances from planet buildings
-    	var chance  = entry[1] * Math.sqrt(Math.pow(1.1, luck - 1)); //TODO: find a proper formula
-    	//TODO: add modifiers?
-    	var buildings = game.currentPlanet.storage.getItemsOfCategory('gearBuilding');
-    	if(buildings) {
-	    	for(var i = 0; i < buildings.length; i++) {
-	    		var building = buildings[i];
-	    		var count = game.currentPlanet.storage.getItemCount(building);
-	    		var stats = game.getItem(building).statchange;
-	    		if(!stats) continue;
-	    		var aMatch = stats.match("(\\w+)\":([0-9.]+)");
-	    		var material = aMatch[1], extraChance = aMatch[2];
-	    		if(material == entry[0])
-	    			chance += (parseFloat(extraChance) * count);
-	    	}
-    	}
-    	return chance;
+        //TODO: gather extra chances from planet buildings
+        var chance = entry[1] * Math.sqrt(Math.pow(1.1, luck - 1)); //TODO: find a proper formula
+        //TODO: add modifiers?
+        var buildings = game.currentPlanet.storage.getItemsOfCategory('gearBuilding');
+        if (buildings) {
+            for (var i = 0; i < buildings.length; i++) {
+                var building = buildings[i];
+                var count = game.currentPlanet.storage.getItemCount(building);
+                var stats = game.getItem(building).statchange;
+                if (!stats) continue;
+                var aMatch = stats.match("(\\w+)\":([0-9.]+)");
+                var material = aMatch[1],
+                    extraChance = aMatch[2];
+                if (material == entry[0])
+                    chance += (parseFloat(extraChance) * count);
+            }
+        }
+        return chance;
     };
 
     this._leaveOrbit = function(target) {
@@ -773,11 +781,13 @@ function Game() {
         if (typeof(Storage) == "undefined") {
             return;
         }
-        this.player.save();
-        this.settings.save();
+        if (!this.wasReset) {
+            this.player.save();
+            this.settings.save();
+        };
         if (this.currentPlanet) {
             this.currentPlanet.save();
-        }
+            }
     };
 
     this.load = function() {
@@ -785,11 +795,9 @@ function Game() {
             return;
         }
 
-        if (!this.wasReset) {
-            this.player.load();
-            this.settings.load();
-        };
-		
+        this.player.load();
+        this.settings.load();
+
         if (this.currentPlanet) {
             this.currentPlanet.load();
         }

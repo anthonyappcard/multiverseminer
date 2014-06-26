@@ -121,9 +121,7 @@ function Settings() {
 		
 		this.showPopups = true;
 
-		if (fullReset) {
-			this.totalStats = new Statistics('total');
-			this.totalStats.initialize();
-		}
+		this.totalStats = new Statistics('total');
+		this.totalStats.initialize();
 	};
 }

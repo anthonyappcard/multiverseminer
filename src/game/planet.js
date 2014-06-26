@@ -304,7 +304,6 @@ function Planet(data) {
         this.miner.load();
         this.storage.load();
         this._updateStats();
-        uiplanetscreen.updateStatsPanel();
     };
 
     this.reset = function() {

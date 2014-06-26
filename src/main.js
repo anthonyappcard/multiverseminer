@@ -441,7 +441,9 @@ function onPlayerDied() {
 };
 
 function doReset() {
+    console.log(window.game.wasReset);
     game.wasReset = true;
+    console.log(window.game.wasReset);
     game.reset();
     onActivatePlayerInventory();
     onActivatePlayerGear();
