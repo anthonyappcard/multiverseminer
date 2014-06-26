@@ -101,16 +101,32 @@ function Player() {
         if (!game.currentPlanet) {
             return false;
         }
-        
+        $("#gatherActionText").html("You power on your atmospheric concentrator.");
         var items = this.miner.gather(game.currentPlanet);
-        if (items) {
-            // TODO - Add stat for whatever items you found.
+        if (items != "") {
+            var results = items;
+            if (results.length > 1) {
+              x = [];
+              for (var i = 0; i < results.length; i++) {
+                x.push(game.getItemName(results[i]));
+              };
+              $('#gatherResultsText').html('After a cycle, the machine powers down and you collect:<br>' + x.join(', ') + ".");
+            } else {
+              $('#gatherResultsText').html('After a cycle, the machine powers down and you collect:<br>' + game.getItemName(items) + ".");
+            }
             this.storage.addItems(items);
             return true;
-        }
-
+        } else {
+            resultsNothingChoices = [
+                "There was a kink in the cog; your machine shut off prematurely.",
+                "The battery light comes on, and the machine shuts off. You smack the machine and it goes back on."
+            ];
+            var choice = resultsNothingChoices[Math.floor(Math.random() * resultsNothingChoices.length)];
+            $("#gatherResultsText").html(choice);
+        };
         return false;
     };
+    
     this.generateActionText = function() {
         choices = [
             "<img src='assets/images/itemIcons/buildings/home.png'></img><p />Off in the distance, you see an abandoned house.<br />You enter, and take a look around.",
@@ -135,9 +151,9 @@ function Player() {
               for (var i = 0; i < results.length; i++) {
                 x.push(game.getItemName(results[i]));
               };
-              $('#resultsText2').html('After a thorough inspection, you exit with: ' + x.join(', ') + ".");
+              $('#resultsText').html('After a thorough inspection, you exit with: ' + x.join(', ') + ".");
             } else {
-              $('#resultsText2').html('After a thorough inspection, you exit with: ' + game.getItemName(items) + ".");
+              $('#resultsText').html('After a thorough inspection, you exit with: ' + game.getItemName(items) + ".");
             }
             this.storage.addItems(items);
             return true;
@@ -147,7 +163,7 @@ function Player() {
                 "After a thorough examination, you determine there is nothing useful."
             ];
             var choice = resultsNothingChoices[Math.floor(Math.random() * resultsNothingChoices.length)];
-            $("#resultsText2").html(choice);
+            $("#resultsText").html(choice);
         };
         return false;
     };
