@@ -43,10 +43,11 @@
 }
 
 #exportbox .textarea {
-	  white-space: pre;
-	  word-wrap: normal;
-	  overflow-x: hidden;
-	  overflow-y: scroll;
+    display:block;
+	white-space: pre;
+	word-wrap: normal;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 
 /* Export Box Styling End */
