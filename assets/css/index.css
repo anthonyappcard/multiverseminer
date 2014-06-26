@@ -43,10 +43,11 @@ opacity:0.7;
 }
 
 .logo {
-max-width:600px;
-max-height:89px;
-width:65%;
-height:auto;
+    height: 30px;
+    max-height: 89px;
+    max-width: 600px;
+    width: 25%;
+    margin-right: 40px;
 }
 
 .screen {

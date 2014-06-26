@@ -13,11 +13,11 @@
 	position: absolute;				
 }
 
-.tool-container.tool-top, .tool-container.tool-bottom {
-	height: 34px;
-	border-bottom: 1px solid #beb8b8 ; /* #B1A9A9 */
+.tool-container.tool-bottom, .tool-container.tool-top {
+    border-bottom: 1px solid #beb8b8;
+    height: 28px;
+    padding-top: 4px;
 }
-
 .tool-items {
 	height: 100%;	
 }
@@ -33,7 +33,6 @@
 	border-top: 1px solid #e2dfdf;
 	border-bottom: 1px solid #9f9898;
 }
-
 
 .tool-item {
 	height: 100%;

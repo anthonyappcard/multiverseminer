@@ -166,27 +166,17 @@
     </div>
 
     <div class="panelPlanetDisplay" id="planetDisplay">
-      <img alt="logo" class="logo" src="assets/images/logo.png" /> 
-
       <div>
-        <button class="mainButton tooltip" id="mineButton" onclick="onMine()" title="Click to mine."><img alt="pick_1" class="categoryButtonIcon" src="assets/images/itemIcons/pick_1.png" />
-
-        <div class="categoryButtonText">
-          DIG [D]
-        </div></button>  <button class="mainButton tooltip" id="gatherButton" onclick="onGather()" title="Click to gather atmosphere."><img alt="pick" class="categoryButtonIcon" src="assets/images/itemIcons/pick.png" />
-
-        <div class="categoryButtonText">
-          GATHER [G]
-        </div>
+        <button class="a_demo_two tooltip" id="mineButton" onclick="onMine()" title="Click to mine.">
+            <div class="categoryButtonText">DIG [D]</div>
         </button>
         
-        <!-- <button class="mainButton tooltip" id="scavengeButton" onclick="onScavenge()" title="Click to scavenge."> -->
-		<button class="mainButton tooltip" id="scavengeButton" onclick="scavengeQuest()" title="Click to scavenge.">
-		<img class="categoryButtonIcon" src="assets/images/itemIcons/binoculars.gif" />
-
-        <div class="categoryButtonText">
-          SCAVENGE
-        </div>
+        <button class="a_demo_two tooltip" id="gatherButton" onclick="onGather()" title="Click to gather atmosphere.">
+            <div class="categoryButtonText">GATHER [G]</div>
+        </button>
+        
+		<button class="a_demo_two tooltip" id="scavengeButton" onclick="scavengeQuest()" title="Click to scavenge.">
+            <div class="categoryButtonText">SCAVENGE</div>
         </button>
       </div>
 
@@ -195,12 +185,9 @@
         <div class="planetDisplayBackground" id="planetDisplayBackground"></div>
 
         <div class="planetDisplayNameFrame">
-          <div class="planetDisplayNameTitle">
-            PLANET
-          </div>
-
+          <div class="planetDisplayNameTitle">PLANET</div>
           <div class="planetDisplayName">
-          <div class="planetDisplayNameText" id="planetDisplayNameText"></div>
+              <div class="planetDisplayNameText" id="planetDisplayNameText"></div>
           </div>
         </div>
       </div>
@@ -392,6 +379,7 @@
 
   <div id="release-notes" style="display:none;"></div>
   <div class="panelBottom">
+  <img alt="logo" class="logo" src="assets/images/logo.png" />
   <div id="notification-list" style="display:none;">
     You have no notifications.
   </div>
@@ -477,7 +465,7 @@
         <li>Change: Added more icons, and cleaned up some that had whitespace in the background.</li>
         <li>Change: Ship recipe improved<li>
     </ul>
-    <div class="close"><a href="javascript:void(0)">x</a></div>
+    <div class="close"><a href="javascript:void(0)">X</a></div>
   </div>
 </body>
 </html>
