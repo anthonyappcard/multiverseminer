@@ -43,11 +43,9 @@ opacity:0.7;
 }
 
 .logo {
-    height: 30px;
-    max-height: 89px;
-    max-width: 600px;
-    width: 25%;
-    margin-right: 40px;
+height: 33px;
+max-width: 600px;
+margin-right: 50px;
 }
 
 .screen {
@@ -72,21 +70,22 @@ width: 100%;
 float: left;
 display: block;
 position: relative;
-/* margin-right: 10px; */
 }
 .panelBottom {
-    border-top: 1px none #000;
-    font-family: overpassregular,Arial,sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    letter-spacing: 1px;
-    outline: 1px solid #8a8a8a;
-    position: absolute;
-    text-align: center;
-    top: 0;
-    width: 100%;
-    margin-top: -39px;
+border-top: 1px none #000;
+font-family: overpassregular,Arial,sans-serif;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+height: auto;
+letter-spacing: 1px;
+margin-top: -39px;
+outline: 1px solid #8a8a8a;
+position: absolute;
+text-align: center;
+top: 0;
+width: 100%;
+padding-bottom: 5px;
 }
 
 .panelBottomLeft {
