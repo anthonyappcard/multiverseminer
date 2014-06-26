@@ -580,27 +580,31 @@ function UIPlanetScreen() {
     };
 
     this.updateStatsPanel = function() {
-        $('#statsContent').empty();
+        $("#statsContent").html("");
         var stats = game.player.stats;
         var x = [];
         var y = [];
         var myObj = game.settings.totalStats;
-        for (var prop in myObj) {
-            if (myObj.hasOwnProperty(prop) && prop !== 'key' && typeof myObj[prop] != 'function' && prop != 'id') {
-                if (myObj[prop] == null) myObj[prop] = 0;
-                x.push((prop + ': ' + myObj[prop] + '</br>'));
-            }
-        };
-        for (var key in stats) {
-            var value = stats[key];
-            // TODO
-            //isNaN(value) set to 0
-            y.push((key) + ': ' + value + '</br>');
-        };
-        $('#statsContent').html("Player Stats:</br>");
-        $('#statsContent').append(y);
-        $('#statsContent').append('</br>Game Stats:</br>');
-        $('#statsContent').append(x);
+        Object.keys(myObj) .forEach(function (prop) {
+          if (myObj.hasOwnProperty(prop) && prop !== 'key' && typeof myObj[prop] != 'function' && prop != 'id') {
+            if (myObj[prop] == null) myObj[prop] = 0;
+            x.push($('<div>') .append($('<tr>') .append($('<td>' + prop + '</td>')) .append('<td>' + myObj[prop] + '</td>')) .html());
+          };
+        });
+        Object.keys(stats) .forEach(function (key) {
+          var value = stats[key];
+          if (isNaN(value)) {
+              value = 0;
+          };
+          y.push($('<div>') .append($('<tr>') .append($('<td>' + key + '</td>')) .append('<td>' + value + '</td>')) .html());
+        });
+        var statsContent = $('#statsContent');
+        var playerStats = $('<div class=\'statTable\'></div>');
+        playerStats.append($('<table>') .append($('<tr>') .append($('<td>Player</td><td>#</td>'))) .append(y.join('')));
+        statsContent.append(playerStats);
+        var gameStats = $('<div class=\'statTable\'></div>');
+        gameStats.append($('<table>') .append($('<tr>') .append($('<td>Game</td><td>#</td>'))) .append(x.join('')));
+        statsContent.append(gameStats);
     };
 
     this.updateShipPanel = function() {
@@ -743,27 +747,33 @@ function UIPlanetScreen() {
     };
 
     this.activateStats = function() {
+        $("#statsContent").html("");
         this.hideLeftSideComponents();
         this.componentStats.show();
-        $('#statsContent').empty();
         var stats = game.player.stats;
         var x = [];
         var y = [];
         var myObj = game.settings.totalStats;
-        for (var prop in myObj) {
-            if (myObj.hasOwnProperty(prop) && prop !== 'key' && typeof myObj[prop] != 'function' && prop !== 'id') {
-                if (typeof myObj[prop] !== 'number') myObj[prop] = 0;
-                x.push((prop + ': ' + myObj[prop] + '</br>'));
-            }
-        };
-        for (var key in stats) {
-            var value = stats[key];
-            y.push((key) + ': ' + value + '</br>');
-        };
-        $('#statsContent').html("Player Stats:</br>");
-        $('#statsContent').append(y);
-        $('#statsContent').append('</br>Game Stats:</br>');
-        $('#statsContent').append(x);
+        Object.keys(myObj) .forEach(function (prop) {
+          if (myObj.hasOwnProperty(prop) && prop !== 'key' && typeof myObj[prop] != 'function' && prop != 'id') {
+            if (myObj[prop] == null) myObj[prop] = 0;
+            x.push($('<div>') .append($('<tr>') .append($('<td>' + prop + '</td>')) .append('<td>' + myObj[prop] + '</td>')) .html());
+          };
+        });
+        Object.keys(stats) .forEach(function (key) {
+          var value = stats[key];
+          if (isNaN(value)) {
+              value = 0;
+          };
+          y.push($('<div>') .append($('<tr>') .append($('<td>' + key + '</td>')) .append('<td>' + value + '</td>')) .html());
+        });
+        var statsContent = $('#statsContent');
+        var playerStats = $('<div class=\'statTable\'></div>');
+        playerStats.append($('<table>') .append($('<tr>') .append($('<td>Player Stat</td><td>#</td>'))) .append(y.join('')));
+        statsContent.append(playerStats);
+        var gameStats = $('<div class=\'statTable\'></div>');
+        gameStats.append($('<table>') .append($('<tr>') .append($('<td>Game Actions</td><td>#</td>'))) .append(x.join('')));
+        statsContent.append(gameStats);
     };
 
     this.activatePlayerGear = function() {

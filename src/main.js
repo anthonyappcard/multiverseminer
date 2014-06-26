@@ -311,9 +311,7 @@ function scavengeQuest() {
 };
 
 function onScavenge() {
-    if (!$("#scavengeQuest").is(':visible')) {
-        scavengeQuest();
-    }
+    if (!$("#scavengeQuest").is(':visible')) scavengeQuest();
     if (game.playerDied > 0 || game.currentPlanet.data.id != "1") {
         return false;
     };
