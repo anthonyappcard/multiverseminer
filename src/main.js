@@ -115,9 +115,12 @@ function onDocumentReady() {
                         game.currentPlanet.storage.addItem(itemId.id);
                         game.player.storage.removeItem(itemId.id);
                     }
+                    game.currentPlanet._updateStats();
+                    game.currentPlanet.update();
                 } else {
                     if (game.player.canEquip(itemId.id)) {
                         game.player.equip(itemId.id);
+                        game.player.update();
                     } else {
                         noty({
                             text: "You can't equip this item.",
@@ -206,16 +209,18 @@ function onCraft(what) {
 
 function exportStorage() {
     // encode the data into base64
-	base64 = window.btoa(JSON.stringify(localStorage));
+    base64 = window.btoa(JSON.stringify(localStorage));
     var x = base64;
-    console.log(x);
+    //console.log(x);
 
-	$.modal('<p class="selectExportGame" onClick="this.select();">'+ x +'</p>', {
+    $.modal('<p class="selectExportGame" onClick="this.select();">' + x + '</p>', {
         opacity: 80,
         escClose: true,
         containerId: 'exportBox',
-		focus: true,
-		overlayCss: { backgroundColor: "#000"}
+        focus: true,
+        overlayCss: {
+            backgroundColor: "#000"
+        }
     });
 };
 
@@ -277,6 +282,7 @@ function togglePopup() {
 };
 
 // Mining, Gathering, Scavenging Modals //
+
 function goMining() {
     $("#miningModal").modal({
         opacity: 80,
@@ -318,34 +324,34 @@ function onMine() {
     if (!$("#miningModal").is(':visible')) goMining();
     if (game.playerDied > 0) return false;
     if (this.lastRun !== "undefined") {
-        if (this.lastRun >= ~~new Date() / 1000|0) {
+        if (this.lastRun >= ~~new Date() / 1000 | 0) {
             return false;
         };
     };
     game.settings.addStat('manualDigCount');
-    
+
     if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
-    
+
     if (game.player.mine()) {
         $('#audioDigSuccess').trigger('play');
     } else {
         $('#audioDig').trigger('play');
     }
-    this.lastRun = ~~new Date() /1000|0;
+    this.lastRun = ~~new Date() / 1000 | 0;
 };
 
 function onGather() {
     if (!$("#gatheringModal").is(':visible')) goGathering();
     if (game.playerDied > 0) return false;
     if (this.lastRun !== "undefined") {
-        if (this.lastRun >= ~~new Date() /1000|0) {
+        if (this.lastRun >= ~~new Date() / 1000 | 0) {
             return false;
         };
     };
     game.settings.addStat('manualGatherCount');
     if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
     game.player.gather();
-    this.lastRun = ~~new Date() /1000|0;
+    this.lastRun = ~~new Date() / 1000 | 0;
 };
 
 function onScavenge() {
@@ -354,14 +360,14 @@ function onScavenge() {
         return false;
     };
     if (this.lastRun !== "undefined") {
-        if (this.lastRun >= ~~new Date() /1000|0) {
+        if (this.lastRun >= ~~new Date() / 1000 | 0) {
             return false;
         };
     };
     game.settings.addStat('manualScavengeCount');
     if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
     game.player.scavenge();
-    this.lastRun = ~~new Date() /1000|0;
+    this.lastRun = ~~new Date() / 1000 | 0;
 };
 
 function onActivatePlayerInventory() {

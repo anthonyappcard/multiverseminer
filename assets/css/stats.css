@@ -63,7 +63,7 @@
     font-family: Arial;
     font-weight: normal;
     color: #000000;
-    text-transform: absolutetalize;
+    text-transform: capitalize;
 }
 .statTable tr:last-child td {
     border-width: 0px 1px 0px 0px;

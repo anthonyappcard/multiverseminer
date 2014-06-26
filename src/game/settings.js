@@ -1,5 +1,3 @@
-require(["gamestatistics"]);
-
 function Settings() {
 	this.totalStats = new Statistics('total');
 	this.sessionStats = new Statistics('session');
@@ -121,9 +119,7 @@ function Settings() {
 		
 		this.showPopups = true;
 
-		if (fullReset) {
-			this.totalStats = new Statistics('total');
-			this.totalStats.initialize();
-		}
+		this.totalStats = new Statistics('total');
+		this.totalStats.initialize();
 	};
 }

@@ -336,17 +336,18 @@ function Player() {
     };
 
     this.reset = function(fullReset) {
+        game.wasReset = true;
         $(window).off('onbeforeunload');
         this.miner.reset(fullReset);
         this.combatant.reset(fullReset);
         this.storage.reset(fullReset);
         this.gear.reset(fullReset);
-        localStorage.clear();
         this.oxygenConsumption = 1;
         this.pickPower = 1;
         this.miningLuck = 1;
         this.baseMineSpeed = 1;
         this.playerClass = null;
         this.totalPower = 1;
+        game.wasReset = false;
     };
 }
