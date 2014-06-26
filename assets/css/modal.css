@@ -304,6 +304,15 @@
 .resetNo {
 }
 
+.selectExportGame {
+	font: #E8E8E8;
+	padding: 0px 20px 0px 20px;
+	-moz-user-select: text;
+	-webkit-user-select: text;
+	-ms-user-select: text;
+}
+}
+
 #scavengingActionText,#scavengingResultsText,#gatheringResultsText,#gatheringActionText,#miningActionText,#miningResultsText {
 	border: 1px dotted black;
 	width: 98.5%;
