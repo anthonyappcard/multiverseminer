@@ -311,14 +311,12 @@ function scavengeQuest() {
 };
 
 function onScavenge() {
-    if (!$("#scavengeQuest").is(':visible')) {
-        scavengeQuest();
-    }
+    if (!$("#scavengeQuest").is(':visible')) scavengeQuest();
     if (game.playerDied > 0 || game.currentPlanet.data.id != "1") {
         return false;
     };
     if (this.lastRun !== "undefined") {
-        if (this.lastRun >= Math.floor(new Date() / 1000)) {
+        if (this.lastRun >= ~~new Date() /1000|0) {
             //console.log('Rate limited');
             return false;
         };
@@ -327,7 +325,7 @@ function onScavenge() {
     game.settings.addStat('manualScavengeCount');
     if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
     game.player.scavenge();
-    this.lastRun = Math.floor(new Date() / 1000);
+    this.lastRun = ~~new Date() /1000|0;
 };
 
 function onActivatePlayerInventory() {

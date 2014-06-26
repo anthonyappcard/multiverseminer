@@ -1,4 +1,4 @@
-require(["gameplayer", "gameplanet", "gamenpc", "gamefight", "gamesettings", "utils", "gamequest", "noty"]);
+require(["gameplayer", "gameplanet", "gamenpc", "gamefight", "gamesettings", "gamestatistics", "utils", "gamequest", "noty"]);
 
 function Game() {
     this.player = new Player();
@@ -789,7 +789,6 @@ function Game() {
             this.player.load();
             this.settings.load();
         };
-		//////////////////////////////////////////////////////////////////////////
 		
         if (this.currentPlanet) {
             this.currentPlanet.load();
