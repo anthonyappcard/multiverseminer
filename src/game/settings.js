@@ -1,5 +1,3 @@
-require(["gamestatistics"]);
-
 function Settings() {
 	this.totalStats = new Statistics('total');
 	this.sessionStats = new Statistics('session');

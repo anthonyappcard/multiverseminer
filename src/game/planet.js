@@ -28,9 +28,7 @@ function Planet(data) {
     this.initialize = function() {
         this.miner.initialize();
         this.storage.initialize();
-
         this._updateStats();
-        uiplanetscreen.updateStatsPanel();
     };
 
     this.update = function(currentTime) {
