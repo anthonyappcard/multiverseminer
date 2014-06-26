@@ -1,4 +1,4 @@
-require(["game", "gameminer", "gamecombatant", "gamestorage", "ui", "uiplanetscreen", "gamesettings", "noty","simplemodal"]);
+require(["game", "gameminer", "gamecombatant", "gamestorage", "ui", "uiplanetscreen", "gamesettings", "noty", "simplemodal"]);
 
 function Player() {
     this.id = 'player';
@@ -47,7 +47,7 @@ function Player() {
         this.totalPower = this.pickPower * this.miningLuck;
         return this.totalPower;
     };
-    
+
     this.update = function(currentTime) {
         this.miner.update(currentTime);
         this.combatant.update(currentTime);
@@ -72,28 +72,46 @@ function Player() {
     this.mine = function() {
         if (!game.currentPlanet) {
             return false;
-        }
-        
+        };
+        $("#miningActionText").html("You enter the mine.");
         var items = this.miner.mine(game.currentPlanet, this.pickPower, this.miningLuck);
-        if (items) {
-        	if(game.settings.showPopups) {
-	            for (var i = 0; i < items.length; i++) {
-	                var name = game.getItemName(items[i]);
-	                var _float = ui.createFloat('+1 ' + name, 'lootFloating', utils.getRandomInt(-100, 100), utils.getRandomInt(-100, 0));
-	            }
-        	}
+        if (items.length > 0) {
+            console.log("this.mine: items = " + items);
+            if (game.settings.showPopups) {
+                for (var i = 0; i < items.length; i++) {
+                    var name = game.getItemName(items[i]);
+                    var _float = ui.createFloat('+1 ' + name, 'lootFloating', utils.getRandomInt(-100, 100), utils.getRandomInt(-100, 0));
+                }
+            }
             // TODO - Add stat for whatever items you found.
-        	var questProgress = {};
+
+            var questProgress = {};
             for (var i = 0; i < items.length; i++) {
-            	questProgress[items[i]] = questProgress[items[i]] ? (questProgress[items[i]] + 1) : 1;
+                questProgress[items[i]] = questProgress[items[i]] ? (questProgress[items[i]] + 1) : 1;
             }
             for (var name in questProgress) {
-            	game.questProgress('mine', questProgress[name] + " " + name);
-            	this.storage.addItem(name, questProgress[name]);
+                game.questProgress('mine', questProgress[name] + " " + name);
+                this.storage.addItem(name, questProgress[name]);
+            }
+            var results = items;
+            if (results.length > 1) {
+                x = [];
+                for (var i = 0; i < results.length; i++) {
+                    x.push(game.getItemName(results[i]));
+                };
+                $("#miningResultsText").html("You take a rest, having found:<br>" + x.sort().join(', ') + ".");
+            } else {
+                $("#miningResultsText").html("You take a rest, having found:<br>" + game.getItemName(items) + ".");
             }
             return true;
-        }
-
+        } else {
+            resultsNothingChoices = [
+                'You lose your grip on the pickaxe, and it goes flying.',
+                'You\'ve unearthered nothing of value.'
+            ];
+            var choice = resultsNothingChoices[Math.floor(Math.random() * resultsNothingChoices.length)];
+            $("#miningResultsText").html(choice);
+        };
         return false;
     };
 
@@ -101,18 +119,18 @@ function Player() {
         if (!game.currentPlanet) {
             return false;
         }
-        $("#gatherActionText").html("You power on your atmospheric concentrator.");
+        $("#gatheringActionText").html("You power on your atmospheric concentrator.");
         var items = this.miner.gather(game.currentPlanet);
-        if (items != "") {
+        if (items.length > 0) {
             var results = items;
             if (results.length > 1) {
-              x = [];
-              for (var i = 0; i < results.length; i++) {
-                x.push(game.getItemName(results[i]));
-              };
-              $('#gatherResultsText').html('After a cycle, the machine powers down and you collect:<br>' + x.join(', ') + ".");
+                x = [];
+                for (var i = 0; i < results.length; i++) {
+                    x.push(game.getItemName(results[i]));
+                };
+                $('#gatheringResultsText').html('After a cycle, the machine powers down and you collect:<br>' + x.sort().join(', ') + ".");
             } else {
-              $('#gatherResultsText').html('After a cycle, the machine powers down and you collect:<br>' + game.getItemName(items) + ".");
+                $('#gatheringResultsText').html('After a cycle, the machine powers down and you collect:<br>' + game.getItemName(items) + ".");
             }
             this.storage.addItems(items);
             return true;
@@ -122,11 +140,11 @@ function Player() {
                 "The battery light comes on, and the machine shuts off. You smack the machine and it goes back on."
             ];
             var choice = resultsNothingChoices[Math.floor(Math.random() * resultsNothingChoices.length)];
-            $("#gatherResultsText").html(choice);
+            $("#gatheringResultsText").html(choice);
         };
         return false;
     };
-    
+
     this.generateActionText = function() {
         choices = [
             "<img src='assets/images/itemIcons/buildings/home.png'></img><p />Off in the distance, you see an abandoned house.<br />You enter, and take a look around.",
@@ -135,25 +153,25 @@ function Player() {
         var choice = choices[Math.floor(Math.random() * choices.length)];
         return choice;
     };
-    
+
     this.scavenge = function() {
         if (!game.currentPlanet) {
             return false;
         }
         // TODO - Add stat for whatever items you found.
         // TODO - Don't overwrite the html unless it's changed.
-        $("#actionText").html(this.generateActionText);
+        $("#scavengingActionText").html(this.generateActionText);
         var items = this.miner.scavenge(game.currentPlanet);
-        if (items != "") {
+        if (items.length > 0) {
             var results = items;
             if (results.length > 1) {
-              x = [];
-              for (var i = 0; i < results.length; i++) {
-                x.push(game.getItemName(results[i]));
-              };
-              $('#resultsText').html('After a thorough inspection, you exit with: ' + x.join(', ') + ".");
+                x = [];
+                for (var i = 0; i < results.length; i++) {
+                    x.push(game.getItemName(results[i]));
+                };
+                $('#scavengingResultsText').html('After a thorough inspection, you exit with: ' + x.sort().join(', ') + ".");
             } else {
-              $('#resultsText').html('After a thorough inspection, you exit with: ' + game.getItemName(items) + ".");
+                $('#scavengingResultsText').html('After a thorough inspection, you exit with: ' + game.getItemName(items) + ".");
             }
             this.storage.addItems(items);
             return true;
@@ -163,7 +181,7 @@ function Player() {
                 "After a thorough examination, you determine there is nothing useful."
             ];
             var choice = resultsNothingChoices[Math.floor(Math.random() * resultsNothingChoices.length)];
-            $("#resultsText").html(choice);
+            $("#scavengingResultsText").html(choice);
         };
         return false;
     };
@@ -172,12 +190,13 @@ function Player() {
         itemId = item.id;
         item = game.getItem(itemId).craftCost;
         for (var key in item) {
-          if (item.hasOwnProperty(key)) {
-            this.storage.addItem(key, item[key]);
-          }
+            if (item.hasOwnProperty(key)) {
+                this.storage.addItem(key, item[key]);
+            }
         }
         this.storage.removeItem(itemId);
     };
+
     this.decomposeScavenged = function() {
         // Decomposing scavenged items
         // TODO - Add stat for whatever items you found.
@@ -223,13 +242,15 @@ function Player() {
         }
         removedString = removedString.substring(0, removedString.length - 2);
         gainedString = gainedString.substring(0, gainedString.length - 2);
-		$('#decompModal').modal({
-						opacity: 80,
-						escClose: true,
-						overlayClose: true,
-						overlayCss: {backgroundColor:"#000"},
-						containerId: 'decompBox'
-				});
+        $('#decompModal').modal({
+            opacity: 80,
+            escClose: true,
+            overlayClose: true,
+            overlayCss: {
+                backgroundColor: "#000"
+            },
+            containerId: 'decompBox'
+        });
         $("#decompModal").append(gainedString + "" + removedString + "");
         delete scavengedItems;
     };
@@ -237,15 +258,14 @@ function Player() {
     this.craft = function(itemId, count) {
         // For now we craft with our inventory into our inventory
         try {
-            if(game.craft(this.storage, this.storage, itemId, count));
+            if (game.craft(this.storage, this.storage, itemId, count));
             return true;
-        }
-        catch(err) {
+        } catch (err) {
             console.log(e);
             return false;
-        }   
+        }
         //game.questProgress('craft', count + " " + itemId);
-        
+
         //this.equipBestGear();
 
         return true;

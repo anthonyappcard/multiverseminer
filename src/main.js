@@ -204,18 +204,6 @@ function onCraft(what) {
     }
 };
 
-function onMine() {
-    if (game.playerDied > 0)
-        return false;
-    game.settings.addStat('manualDigCount');
-    if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
-    if (game.player.mine()) {
-        $('#audioDigSuccess').trigger('play');
-    } else {
-        $('#audioDig').trigger('play');
-    }
-};
-
 function exportStorage() {
     // encode the data into base64
     base64 = window.btoa(JSON.stringify(localStorage));
@@ -244,6 +232,7 @@ function exportStorage() {
         }
     });
 };
+
 function importStorage() {
     $("#importStorageModal").dialog({
         modal: true
@@ -259,7 +248,6 @@ function doImport() {
         }
     });
 };
-
 
 function toggleAudio() {
     //pause playing
@@ -302,21 +290,21 @@ function togglePopup() {
     }
 };
 
-// Digging, Gathering, Scavenging Modals //
-function goDigging() {
-    $("#diggingModal").modal({
+// Mining, Gathering, Scavenging Modals //
+function goMining() {
+    $("#miningModal").modal({
         opacity: 80,
         escClose: true,
         overlayClose: true,
         overlayCss: {
             backgroundColor: "#000"
         },
-        containerId: 'diggingBox'
+        containerId: 'miningBox'
     });
 };
 
 function goGathering() {
-    $("#gatherModal").modal({
+    $("#gatheringModal").modal({
         opacity: 80,
         escClose: true,
         overlayClose: true,
@@ -327,24 +315,42 @@ function goGathering() {
     });
 };
 
-function scavengeQuest() {
-    $("#scavengeModal").modal({
+function goScavenging() {
+    $("#scavengingModal").modal({
         opacity: 80,
         escClose: true,
         overlayClose: true,
         overlayCss: {
             backgroundColor: "#000"
         },
-        containerId: 'scavengeQuest'
+        containerId: 'scavengingBox'
     });
 };
-// Digging, Gathering, Scavenging Modals End
+// Mining, Gathering, Scavenging Modals End
+
+function onMine() {
+    if (!$("#miningModal").is(':visible')) goMining();
+    if (game.playerDied > 0) return false;
+    if (this.lastRun !== "undefined") {
+        if (this.lastRun >= ~~new Date() / 1000|0) {
+            return false;
+        };
+    };
+    game.settings.addStat('manualDigCount');
+    
+    if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
+    
+    if (game.player.mine()) {
+        $('#audioDigSuccess').trigger('play');
+    } else {
+        $('#audioDig').trigger('play');
+    }
+    this.lastRun = ~~new Date() /1000|0;
+};
 
 function onGather() {
-    if (!$("#gatherModal").is(':visible')) goGathering();
-    if (game.playerDied > 0) {
-        return false;
-    };
+    if (!$("#gatheringModal").is(':visible')) goGathering();
+    if (game.playerDied > 0) return false;
     if (this.lastRun !== "undefined") {
         if (this.lastRun >= ~~new Date() /1000|0) {
             return false;
@@ -357,7 +363,7 @@ function onGather() {
 };
 
 function onScavenge() {
-    if (!$("#scavengeQuest").is(':visible')) scavengeQuest();
+    if (!$("#goScavenging").is(':visible')) goScavenging();
     if (game.playerDied > 0 || game.currentPlanet.data.id != "1") {
         return false;
     };

@@ -156,20 +156,20 @@
 }
 
 /* ---------------------------- */
-/* Digging Box Begin */
+/* Mining Box Begin */
 /* ---------------------------- */
-#diggingBox {
+#miningBox {
 	font-family: Lucida Console;
 	font-size:14px;
 	text-align: center;
 }
 
-#diggingBox {
+#miningBox {
 	display:none;
 }
 
 /* Container */
-#diggingBox {
+#miningBox {
     min-height: 210px;
 	width: 400px; 
 	color:#bbb; 
@@ -178,11 +178,11 @@
 	padding:2px;
 }
 
-#diggingBox a {
+#miningBox a {
 	color:#ddd;
 }
 
-#diggingBox a.modalCloseImg {
+#miningBox a.modalCloseImg {
 	background:url(assets/images/x.png) no-repeat; 
 	width:25px; 
 	height:29px; 
@@ -194,7 +194,7 @@
 	cursor:pointer;
 }
 
-#diggingBox h3 {
+#miningBox h3 {
 	color:#84b8d9;
 }
 
@@ -248,18 +248,18 @@
 /* ---------------------------- */
 /* Scavenge Quest Styling Begin */
 /* ---------------------------- */
-#scavengeQuest {
+#scavengingBox {
 	font-family: Lucida Console;
 	font-size:14px;
 	text-align: center;
 }
 
-#scavengeQuest {
+#scavengingBox {
 	display:none;
 }
 
 /* Container */
-#scavengeQuest {
+#scavengingBox {
     min-height: 210px;
 	width:400px; 
 	color:#bbb; 
@@ -268,11 +268,11 @@
 	padding:2px;
 }
 
-#scavengeQuest a {
+#scavengingBox a {
 	color:#ddd;
 }
 
-#scavengeQuest a.modalCloseImg {
+#scavengingBox a.modalCloseImg {
 	background:url(assets/images/x.png) no-repeat; 
 	width:25px; 
 	height:29px; 
@@ -284,7 +284,7 @@
 	cursor:pointer;
 }
 
-#scavengeQuest h3 {
+#scavengingBox h3 {
 	color:#84b8d9;
 }
 
@@ -304,7 +304,7 @@
 .resetNo {
 }
 
-#actionText,#resultsText,#gatherResultsText,#gatherActionText {
+#scavengingActionText,#scavengingResultsText,#gatheringResultsText,#gatheringActionText,#miningActionText,#miningResultsText {
 	border: 1px dotted black;
 	width: 98.5%;
 	height: 25%;
