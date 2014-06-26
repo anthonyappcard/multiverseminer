@@ -206,30 +206,16 @@ function onCraft(what) {
 
 function exportStorage() {
     // encode the data into base64
-    base64 = window.btoa(JSON.stringify(localStorage));
+	base64 = window.btoa(JSON.stringify(localStorage));
     var x = base64;
-    // var link = 'data:application/octet-stream;base64,' + base64;
-    // x.append("<a href=" + link + ">Download</a>");
-    $.modal('<textarea style="height:394px;width:460px;" cols="59" rows="44" wrap="hard">' + x + '</textarea>', {
+    console.log(x);
+
+	$.modal('<p class="selectExportGame" onClick="this.select();">'+ x +'</p>', {
         opacity: 80,
-        overlayCss: {
-            backgroundColor: "#000"
-        },
         escClose: true,
         containerId: 'exportBox',
-        onShow: function() {
-            $("body").css("overflow", "hidden");
-            $(".simplemodal-container").css("width", "467px");
-            $(".simplemodal-container").css("left", "582.5px");
-            $(".simplemodal-container").css("display", "inline-block");
-        },
-        onClose: function() {
-            $("body").css("overflow", "");
-            $(".simplemodal-container").css("width", "410px");
-            $(".simplemodal-container").css("left", "611px");
-            $(".simplemodal-container").css("display", "block");            
-            $.modal.close();
-        }
+		focus: true,
+		overlayCss: { backgroundColor: "#000"}
     });
 };
 
