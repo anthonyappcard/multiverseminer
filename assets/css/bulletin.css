@@ -25,6 +25,8 @@
 	left: 25px;
 	display: block;
 	white-space: nowrap;
+    font-size: 13px;
+    font-family:overpassregular,Arial,sans-serif;
 }
 .bulletin a {
 	height: 23px;
