@@ -17,7 +17,7 @@
 	overflow: hidden;
 	left: 0;
 	right: 20px;
-	background: url(bulletin.gif) no-repeat;
+	background: url(assets/images/bulletin.gif) no-repeat;
 }
 .bulletin li {
 	position: absolute;

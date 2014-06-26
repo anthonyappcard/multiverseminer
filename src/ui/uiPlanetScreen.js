@@ -600,10 +600,10 @@ function UIPlanetScreen() {
         });
         var statsContent = $('#statsContent');
         var playerStats = $('<div class=\'statTable\'></div>');
-        playerStats.append($('<table>') .append($('<tr>') .append($('<td>Player</td><td>#</td>'))) .append(y.join('')));
+        playerStats.append($('<table>') .append($('<tr>') .append($('<td>Player Stats</td><td>#</td>'))) .append(y.join('')));
         statsContent.append(playerStats);
         var gameStats = $('<div class=\'statTable\'></div>');
-        gameStats.append($('<table>') .append($('<tr>') .append($('<td>Game</td><td>#</td>'))) .append(x.join('')));
+        gameStats.append($('<table>') .append($('<tr>') .append($('<td>Game Stats</td><td>#</td>'))) .append(x.join('')));
         statsContent.append(gameStats);
     };
 
@@ -769,7 +769,7 @@ function UIPlanetScreen() {
         });
         var statsContent = $('#statsContent');
         var playerStats = $('<div class=\'statTable\'></div>');
-        playerStats.append($('<table>') .append($('<tr>') .append($('<td>Player Stat</td><td>#</td>'))) .append(y.join('')));
+        playerStats.append($('<table>') .append($('<tr>') .append($('<td>Player Stats</td><td>#</td>'))) .append(y.join('')));
         statsContent.append(playerStats);
         var gameStats = $('<div class=\'statTable\'></div>');
         gameStats.append($('<table>') .append($('<tr>') .append($('<td>Game Actions</td><td>#</td>'))) .append(x.join('')));

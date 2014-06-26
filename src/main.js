@@ -222,16 +222,28 @@ function exportStorage() {
     var x = base64;
     // var link = 'data:application/octet-stream;base64,' + base64;
     // x.append("<a href=" + link + ">Download</a>");
-    $.modal('<textarea cols="59" rows="80" wrap="hard">' + x + '</textarea>', {
+    $.modal('<textarea style="height:394px;width:460px;" cols="59" rows="44" wrap="hard">' + x + '</textarea>', {
         opacity: 80,
         overlayCss: {
             backgroundColor: "#000"
         },
         escClose: true,
-        containerId: 'exportBox'
+        containerId: 'exportBox',
+        onShow: function() {
+            $("body").css("overflow", "hidden");
+            $(".simplemodal-container").css("width", "467px");
+            $(".simplemodal-container").css("left", "582.5px");
+            $(".simplemodal-container").css("display", "inline-block");
+        },
+        onClose: function() {
+            $("body").css("overflow", "");
+            $(".simplemodal-container").css("width", "410px");
+            $(".simplemodal-container").css("left", "611px");
+            $(".simplemodal-container").css("display", "block");            
+            $.modal.close();
+        }
     });
 };
-
 function importStorage() {
     $("#importStorageModal").dialog({
         modal: true
@@ -290,12 +302,29 @@ function togglePopup() {
     }
 };
 
-function onGather() {
-    if (game.playerDied > 0)
-        return false;
-    game.settings.addStat('manualGatherCount');
-    if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
-    game.player.gather();
+// Digging, Gathering, Scavenging Modals //
+function goDigging() {
+    $("#diggingModal").modal({
+        opacity: 80,
+        escClose: true,
+        overlayClose: true,
+        overlayCss: {
+            backgroundColor: "#000"
+        },
+        containerId: 'diggingBox'
+    });
+};
+
+function goGathering() {
+    $("#gatheringModal").modal({
+        opacity: 80,
+        escClose: true,
+        overlayClose: true,
+        overlayCss: {
+            backgroundColor: "#000"
+        },
+        containerId: 'gatheringBox'
+    });
 };
 
 function scavengeQuest() {
@@ -308,6 +337,15 @@ function scavengeQuest() {
         },
         containerId: 'scavengeQuest'
     });
+};
+// Digging, Gathering, Scavenging Modals End
+
+function onGather() {
+    if (game.playerDied > 0)
+        return false;
+    game.settings.addStat('manualGatherCount');
+    if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
+    game.player.gather();
 };
 
 function onScavenge() {
