@@ -290,12 +290,29 @@ function togglePopup() {
     }
 };
 
-function onGather() {
-    if (game.playerDied > 0)
-        return false;
-    game.settings.addStat('manualGatherCount');
-    if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
-    game.player.gather();
+// Digging, Gathering, Scavenging Modals //
+function goDigging() {
+    $("#diggingModal").modal({
+        opacity: 80,
+        escClose: true,
+        overlayClose: true,
+        overlayCss: {
+            backgroundColor: "#000"
+        },
+        containerId: 'diggingBox'
+    });
+};
+
+function goGathering() {
+    $("#gatheringModal").modal({
+        opacity: 80,
+        escClose: true,
+        overlayClose: true,
+        overlayCss: {
+            backgroundColor: "#000"
+        },
+        containerId: 'gatheringBox'
+    });
 };
 
 function scavengeQuest() {
@@ -308,6 +325,15 @@ function scavengeQuest() {
         },
         containerId: 'scavengeQuest'
     });
+};
+// Digging, Gathering, Scavenging Modals End
+
+function onGather() {
+    if (game.playerDied > 0)
+        return false;
+    game.settings.addStat('manualGatherCount');
+    if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
+    game.player.gather();
 };
 
 function onScavenge() {
