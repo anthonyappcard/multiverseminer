@@ -537,17 +537,17 @@ function UIPlanetScreen() {
                 continue;
             }
 
-			function countProperties(items) {
+			function countProperties(craftableItems) {
 			var count = 0;
-			for(var prop in items) {
-				if(items.hasOwnProperty(prop))
+			for(var prop in craftableItems) {
+				if(craftableItems.hasOwnProperty(prop))
 					++count;
 			}
 			return count;
 			}
 			
             var headerContent = $('<div>');
-            parent.append('<p>' + ItemCategory[key] + '&nbsp;(' + countProperties(items) +')</p>').append(headerContent);
+            parent.append('<p>' + ItemCategory[key] + '&nbsp;(' + countProperties(craftableItems) +')</p>').append(headerContent);
             for (var i = 0; i < craftableItems.length; i++) {
                 var entry = self.buildCraftingEntry(craftableItems[i]);
                 headerContent.append(entry);
