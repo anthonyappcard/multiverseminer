@@ -167,15 +167,15 @@
 
     <div class="panelPlanetDisplay" id="planetDisplay">
       <div>
-        <button class="a_demo_two tooltip" id="mineButton" onclick="goDigging()" title="Click to mine.">
-            <div class="categoryButtonText">DIG [D]</div>
+        <button class="a_demo_two tooltip" id="mineButton" onclick="goMining()" title="Click to mine.">
+            <div class="categoryButtonText">MINE</div>
         </button>
         
         <button class="a_demo_two tooltip" id="gatherButton" onclick="goGathering()" title="Click to gather atmosphere.">
             <div class="categoryButtonText">GATHER</div>
         </button>
         
-		<button class="a_demo_two tooltip" id="scavengeButton" onclick="scavengeQuest()" title="Click to scavenge.">
+		<button class="a_demo_two tooltip" id="scavengeButton" onclick="goScavenging()" title="Click to scavenge.">
             <div class="categoryButtonText">SCAVENGE</div>
         </button>
       </div>
@@ -200,10 +200,6 @@
     <div class="panelTravelDisplay" id="travelDisplay">
       <div id="travelDistance"></div>
     </div>
-  </div>
-
-  <div class="hidden" id="get-a-ship" title="Thou shall not travel!">
-    You need to craft a ship in order to travel away from Earth<br />
   </div>
 
   <div class="solarsystem" id="solarsystem"></div>
@@ -288,11 +284,11 @@
       </li>
 
       <li data-button="Next" data-id="mineButton" data-options="tipLocation:bottom;">
-        <h2>Digging</h2>
+        <h2>Mining</h2>
 
-        <p>Click this button to manually dig.<br />
+        <p>Click this button to manually mine.<br />
         You also can press/hold D.<br />
-        There is a chance to find elements when digging<br />
+        There is a chance to find elements when mining<br />
         Craft a better pickaxe for a higher chance of finding elements, and finding more
         at once.</p>
       </li>
@@ -443,28 +439,45 @@
         Export
       </div>
     </div>
-	
   </div>
-
+  
+  <div class="hidden" id="get-a-ship" title="Thou shall not travel!">
+    You need to craft a ship in order to travel away from Earth<br />
+  </div>
+  
   <div id="itemInfo"></div>
   
-    <div id="scavengeModal" class="scavengeQuest" style="display:none;">
-        <div id="actionText">Press S to scavenge</div>
+  <!-- Mining modal contents -->
+  <div id="miningModal" class="miningBox" style="display:none;">
+    <div id="miningActionText">Press or hold D to mine</div>
+    <img src='assets/images/itemIcons/picks/copperPick1.png' id="pickaxe-image" class="mining"><br />
+      <p><p>
+    <div id="miningResultsText">&nbsp;</div>
+      <p><p>
+    <div class="genericButton bottomBarButton2 clickable" onclick="onMine()">Mine [D]</div>
+  </div>
+  <!-- end of mining modal -->
+  
+  <!-- Gathering modal contents -->
+  <div id="gatheringModal" class="gatheringBox" style="display:none;">
+  	<div id="gatheringActionText">Press or hold G to gather</div>
+        <p /><p />
+  	<div id="gatheringResultsText">&nbsp;</div>
+	    <p /><p />
+      <div class="genericButton bottomBarButton2 clickable" onclick="onGather()">Gather [G]</div>
+  </div>
+  <!-- End of gathering modal -->
+  
+  <!-- Scavenging modal contents -->
+    <div id="scavengingModal" class="scavengingBox" style="display:none;">
+        <div id="scavengingActionText">Press or hold S to scavenge</div>
           <p /><p />
-  	    <div id="resultsText">&nbsp;</div>
+  	    <div id="scavengingResultsText">&nbsp;</div>
 	      <p /><p />
   	    <div class="genericButton bottomBarButton2 clickable" onclick="onScavenge()">Scavenge [S]</div>
     </div>
-
-    <!-- Gathering modal contents -->
-    <div id="gatherModal" class="gatheringBox" style="display:none;">
-    	<div id="gatherActionText">Press G to gather</div>
-          <p /><p />
-    	<div id="gatherResultsText">&nbsp;</div>
-  	    <p /><p />
-        <div class="genericButton bottomBarButton2 clickable" onclick="onGather()">Gather [G]</div>
-    </div>
-
+    <!-- End of scavenging modal -->
+    
 </div>
 <div id="bulletin" class="bulletin">
     <ul>
@@ -476,7 +489,7 @@
         <li>Change: Added more icons, and cleaned up some that had whitespace in the background.</li>
         <li>Change: Ship recipe improved<li>
     </ul>
-    <div class="close"><a href="javascript:void(0)">X</a></div>
-  </div>
+    <div class="close" onclick="javascript:void(0)" style="pointer:cursor;">X</div>
+</div>
 </body>
 </html>
