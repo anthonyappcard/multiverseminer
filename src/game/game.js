@@ -1,4 +1,5 @@
 require(["gameplayer", "gameplanet", "gamenpc", "gamefight", "gamesettings", "gamestatistics", "utils", "gamequest", "noty", "uiplanetscreen"]);
+var uiplanetscreen = new UIPlanetScreen();
 
 function Game() {
     this.player = new Player();
