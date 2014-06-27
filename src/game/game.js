@@ -372,7 +372,7 @@ function Game() {
         }
         this.currentPlanet = this.planetDictionary[target.id];
         this.planetChanged = true;
-        this.update();
+        this.save();
         //this.currentPlanet.load();
         
     };
