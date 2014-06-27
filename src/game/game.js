@@ -372,7 +372,7 @@ function Game() {
         }
         this.currentPlanet = this.planetDictionary[target.id];
         this.planetChanged = true;
-        this.save();
+        //this.save();
         //this.currentPlanet.load();
         
     };
@@ -746,21 +746,20 @@ function Game() {
         }
 
         // Save the planet before leaving for another one
+        this.save();
         this.currentPlanet.save();
         this.currentPlanet = undefined;
-
         this.settings.targetPlanet = target;
     };
 
     this._enterOrbit = function(target) {
         this.currentPlanet = this.planets[target];
-        this.currentPlanet.save();
-        this.currentPlanet.load();
-
+        //this.currentPlanet.save();
+        //this.currentPlanet.load();
         this.settings.targetPlanet = undefined;
-
         this.settings.travelActive = false;
         this.planetChanged = true;
+        this.currentPlanet.save();
     };
 
     // ---------------------------------------------------------------------------
@@ -790,10 +789,11 @@ function Game() {
         if (!this.wasReset) {
             this.player.save();
             this.settings.save();
-        };
-        if (this.currentPlanet) {
             this.currentPlanet.save();
-            }
+        };
+        //if (this.currentPlanet) {
+        //    this.currentPlanet.save();
+        //    }
     };
 
     this.load = function() {
