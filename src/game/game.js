@@ -370,6 +370,9 @@ function Game() {
             this.settings.travelDistanceRemaining = Math.abs(this.settings.travelDistanceRemaining - this.currentPlanet.data.distance);
             this._leaveOrbit(target);
         }
+        this.currentPlanet = this.planetDictionary[target.id];
+        //this.currentPlanet.load();
+        
     };
 
     this.getDefaultItemIcon = function(item) {
