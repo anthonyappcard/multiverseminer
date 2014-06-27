@@ -749,12 +749,13 @@ function Game() {
 
     this._enterOrbit = function(target) {
         this.currentPlanet = this.planets[target];
+        this.currentPlanet.save();
         this.currentPlanet.load();
-        this.planetChanged = true;
 
         this.settings.targetPlanet = undefined;
 
         this.settings.travelActive = false;
+        this.planetChanged = true;
     };
 
     // ---------------------------------------------------------------------------
