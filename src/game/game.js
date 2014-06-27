@@ -1,4 +1,4 @@
-require(["gameplayer", "gameplanet", "gamenpc", "gamefight", "gamesettings", "gamestatistics", "utils", "gamequest", "noty"]);
+require(["gameplayer", "gameplanet", "gamenpc", "gamefight", "gamesettings", "gamestatistics", "utils", "gamequest", "noty", "uiplanetscreen"]);
 
 function Game() {
     this.player = new Player();
@@ -372,7 +372,7 @@ function Game() {
         }
         this.currentPlanet = this.planetDictionary[target.id];
         this.planetChanged = true;
-        this.load();
+        uiplanetscreen.activatePlanet;
         //this.currentPlanet.load();
         
     };
