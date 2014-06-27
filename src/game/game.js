@@ -183,7 +183,6 @@ function Game() {
     };
 
     this.craft = function(storageSource, storageTarget, what, count) {
-        console.log("Inside game.js");
         var targetItem = game.itemDictionary[what];
         // Check if we have enough storage to store the result
         if (!storageTarget.canAdd(what, count)) {
@@ -746,7 +745,6 @@ function Game() {
         }
 
         // Save the planet before leaving for another one
-        this.save();
         this.currentPlanet.save();
         this.currentPlanet = undefined;
         this.settings.targetPlanet = target;
@@ -754,12 +752,10 @@ function Game() {
 
     this._enterOrbit = function(target) {
         this.currentPlanet = this.planets[target];
-        //this.currentPlanet.save();
-        //this.currentPlanet.load();
+        this.currentPlanet.save();
+        this.currentPlanet.load();
         this.settings.targetPlanet = undefined;
         this.settings.travelActive = false;
-        this.planetChanged = true;
-        this.currentPlanet.save();
     };
 
     // ---------------------------------------------------------------------------
@@ -791,21 +787,16 @@ function Game() {
             this.settings.save();
             this.currentPlanet.save();
         };
-        //if (this.currentPlanet) {
-        //    this.currentPlanet.save();
-        //    }
+        if (this.currentPlanet) {
+            this.currentPlanet.save();
+        }
     };
 
     this.load = function() {
         if (typeof(Storage) == "undefined") {
             return;
-        }
-
+        };
         this.player.load();
         this.settings.load();
-
-        if (this.currentPlanet) {
-            this.currentPlanet.load();
-        }
     };
-}
+};

@@ -223,7 +223,7 @@ function Storage(id) {
 		var propertyValue = itemInfo[property];
 		if (propertyValue) {
 			if (!dictionary[propertyValue]) {
-				return
+				return;
 			}
 
 			// Unregister the item
@@ -298,6 +298,7 @@ function Storage(id) {
 	};
 
 	this.load = function() {
+        this.items = {};
 		var storageKey = this._getStorageKey();
 		var keys = game.getItems();
 		for ( var i = 0; i < keys.length; i++) {
@@ -309,6 +310,7 @@ function Storage(id) {
 		}
 		this.storageChanged = true;
 	};
+    
 	this.reset = function(fullReset) {
 		this.items = {};	
 		this.itemCategoryDictionary = {};
