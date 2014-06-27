@@ -371,6 +371,7 @@ function Game() {
             this._leaveOrbit(target);
         }
         this.currentPlanet = this.planetDictionary[target.id];
+        this.planetChanged = true;
         //this.currentPlanet.load();
         
     };
