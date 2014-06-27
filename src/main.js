@@ -329,7 +329,6 @@ function onMine() {
         };
     };
     game.settings.addStat('manualDigCount');
-    sessionStorage["clicks"] += 1;
 
     if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
 
