@@ -457,7 +457,7 @@ function onTravelToPlanet(target) {
     if (!game.canTravelTo(target)) {
         return;
     }
-    $("#solarsystem").hide();
+    $("#solarsystem").close();
     $(".panelBottom").hide();
     $(window).one("scroll", function() {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
