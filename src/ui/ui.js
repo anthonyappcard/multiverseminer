@@ -301,11 +301,11 @@ function UI() {
         var item = undefined;
         if (itemId) {
             item = game.getItem(itemId);
-        }
+        };
 
         var slot = new UISlot(id + '_' + slotType, parent);
         if (slotType.substring(0, 8) == "building") {
-            slot.classes = slotType + ' buildingSlot '
+            slot.classes = slotType + ' buildingSlot ';
         } else {
             slot.classes = slotType + ' gearSlot hasMenu';
         }
