@@ -22,8 +22,7 @@ function Planet(data) {
     this.autorefineValue = 0;
     this.autorefine = false;
     
-    this.autoProduce = false;;
-    this.autoProduceLastTime = 0;
+    this.autoProduce = false;
     this.autoProduceItems = {};
 
     // ---------------------------------------------------------------------------
@@ -153,6 +152,7 @@ function Planet(data) {
         this.autorefine = false;
         
         this.autoProduce = false;
+        this.autoProduceItems = {};
 
         var items = this.storage.getItemsOfCategory('gearBuilding');
         if (!items) {
@@ -163,12 +163,9 @@ function Planet(data) {
             var item = game.getItem(items[i]);
             
             if(item.autoproduce) {
-                setTimeout(function() {
-                    // The object will be {"iron": 1} for example, meaning 1 iron, the every minute is assumed.
-                    var obj = jQuery.parseJSON(item.autoproduce);
-                    this._finalizeAuto(obj.name);
-                    game.settings.addStat("autoProduceCount");
-                }, 1000);
+                this.autoProduce = true;
+                // I think the line below this will be wrong.
+                this.autoProduceItems += item.autoproduce;
             }
             
             if (item.automine) {
@@ -208,7 +205,7 @@ function Planet(data) {
             }
         };
     };
-
+    
     this._autoMine = function(attempts) {
         if (attempts > 100) {
             throw new Error("Way too many auto attempts pending, check the timer code!");
@@ -269,6 +266,7 @@ function Planet(data) {
 
         this._finalizeAuto(totalItems);
     };
+    
     this._autorefine = function(attempts) {
         if (attempts > 100) {
             throw new Error("Way too many auto attempts pending, check the timer code!");
@@ -284,6 +282,18 @@ function Planet(data) {
                 game.player.storage.addItem(rand);
             }
     };
+    
+    this._autoProduce = function(){
+        setTimeout(function() {
+            var x = this.autoProduceItems.length;
+            for (var i = 0; i < x; i++) {
+                var obj = this.autoProduceItems[i];
+                this.storage.addItem(obj.name);
+                game.settings.addStat("autoProduceCount");
+            };            
+        }, 1000);
+    };
+    
     this._finalizeAuto = function(totalItems) {
         this.storage.addItems(totalItems);
         uiplanetscreen.updateStatsPanel();
