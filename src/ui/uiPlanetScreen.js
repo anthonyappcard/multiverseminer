@@ -588,7 +588,8 @@ function UIPlanetScreen() {
         Object.keys(myObj) .forEach(function (prop) {
           if (myObj.hasOwnProperty(prop) && prop !== 'key' && typeof myObj[prop] != 'function' && prop != 'id') {
             if (myObj[prop] == null) myObj[prop] = 0;
-            x.push($('<div>') .append($('<tr>') .append($('<td>' + prop + '</td>')) .append('<td>' + myObj[prop] + '</td>')) .html());
+            //x.push($('<div>') .append($('<tr>') .append($('<td>' + prop + '</td>')) .append('<td>' + myObj[prop] + '</td>')) .html());
+            x.push('<tr><td>' + prop + '</td><td>' + myObj[prop] + '</td></tr>');
           };
         });
         Object.keys(stats) .forEach(function (key) {
@@ -596,7 +597,8 @@ function UIPlanetScreen() {
           if (isNaN(value)) {
               value = 0;
           };
-          y.push($('<div>') .append($('<tr>') .append($('<td>' + key + '</td>')) .append('<td>' + value + '</td>')) .html());
+          //y.push($('<div>') .append($('<tr>') .append($('<td>' + key + '</td>')) .append('<td>' + value + '</td>')) .html());
+          y.push('<tr><td>' + key + '</td><td>' + value + '</td></tr>');
         });
         var statsContent = $('#statsContent');
         var playerStats = $('<div class=\'statTable\'></div>');
