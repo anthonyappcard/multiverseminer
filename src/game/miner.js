@@ -100,7 +100,6 @@ function Miner(id) {
 
 	this.reset = function(fullReset) {
 		this.baseMineSpeed = 1;
-        
         this.exp = 0;
         this.expRequired = 500;
         this.level = 1;
