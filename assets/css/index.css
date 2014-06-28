@@ -202,7 +202,14 @@ padding-top: 2%;
 	height: 533px;
 	overflow-x: hidden;
 }
-
+.statsContentPlayer {
+    font-size: 12px;
+    text-align: left;
+	padding-right: 5px;
+	height: 533px;
+    width:50%;
+	overflow-x: hidden;
+}
 .notifications {
     text-align: left;
     width: 120px;

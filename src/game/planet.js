@@ -21,6 +21,11 @@ function Planet(data) {
     this.autorefinePerSecond = 0;
     this.autorefineValue = 0;
     this.autorefine = false;
+    
+    this.autoProduce = false;
+    this.autoProducePerMinute = 0;
+    this.autoProduceLastTime = ~~new Date() / 60000 | 0;
+    this.autoProduceItems = {};
 
     // ---------------------------------------------------------------------------
     // general
@@ -33,7 +38,13 @@ function Planet(data) {
 
     this.update = function(currentTime) {
         this.miner.update(currentTime);
-
+        
+        if (this.autoProduce) {
+            if ( Math.floor((new Date() - this.autoProduceLastTime) / 60000) < 1 ) {
+                // TODO
+            }
+        }
+        
         var elapsedTime = currentTime - this.lastAutoTime;
         var autoCycles = Math.floor(elapsedTime / 1000); // account for inactive tab
 
