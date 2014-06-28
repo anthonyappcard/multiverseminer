@@ -23,7 +23,7 @@ function Planet(data) {
     this.autorefine = false;
     
     this.autoProduce = false;
-    this.autoProduceItems = {};
+    this.autoProduceItems = [];
 
     // ---------------------------------------------------------------------------
     // general
@@ -37,15 +37,9 @@ function Planet(data) {
     this.update = function(currentTime) {
         this.miner.update(currentTime);
         
-        if (this.autoProduce) {
-            if ( Math.floor((new Date() - this.autoProduceLastTime) / 60000) < 1 ) {
-                // TODO
-            }
-        }
-        
         var elapsedTime = currentTime - this.lastAutoTime;
         var autoCycles = Math.floor(elapsedTime / 1000); // account for inactive tab
-
+        
         for (var i = 0; i < autoCycles; i++) {
             this.lastAutoTime = currentTime;
             if (this.autoMine) {
@@ -82,6 +76,10 @@ function Planet(data) {
                     this.autorefineValue -= attempts;
                     this._autorefine(attempts);
                 }
+            }
+            
+            if (this.autoProduce) {
+                this._autoProduce();
             }
         }
     };
@@ -165,7 +163,9 @@ function Planet(data) {
             if(item.autoproduce) {
                 this.autoProduce = true;
                 // I think the line below this will be wrong.
-                this.autoProduceItems += item.autoproduce;
+                this.autoProduceItems = [];
+                this.autoProduceItems.push(item.autoproduce);
+                console.log(this.autoProduceItems);
             }
             
             if (item.automine) {
@@ -290,7 +290,7 @@ function Planet(data) {
                 var obj = this.autoProduceItems[i];
                 this.storage.addItem(obj.name);
                 game.settings.addStat("autoProduceCount");
-            };            
+            };
         }, 1000);
     };
     
