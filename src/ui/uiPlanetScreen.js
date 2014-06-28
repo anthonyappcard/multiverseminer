@@ -580,7 +580,7 @@ function UIPlanetScreen() {
 	};
 
 	this.updateStatsPanel = function() {
-		$("#statsContent").html("");
+		//$("#statsContent").html("");
 		var stats = game.player.stats;
 		var x = [];
 		var y = [];
@@ -600,6 +600,7 @@ function UIPlanetScreen() {
 			//y.push($('<div>') .append($('<tr>') .append($('<td>' + key + '</td>')) .append('<td>' + value + '</td>')) .html());
 			y.push('<tr><td>' + key + '</td><td>' + value + '</td></tr>');
 		});
+/*
 		var statsContent = $('#statsContent');
 		var playerStats = $('<div class=\'statTable\'></div>');
 		playerStats.append($('<table>') .append($('<tr>') .append($('<td>Stats</td><td>#</td>'))) .append(y.join('')));
@@ -607,6 +608,8 @@ function UIPlanetScreen() {
 		var gameStats = $('<div class=\'statTable\'></div>');
 		gameStats.append($('<table>') .append($('<tr>') .append($('<td>Actions</td><td>#</td>'))) .append(x.join('')));
 		statsContent.append(gameStats);
+*/
+		$("#statsContent").html('<div class=\'statTable\'><table><tbody>' + y.join('') + '</tbody></table></div><div class=\'statTable\'><table><tbody>' + x.join('') + '</tbody></table></div>');
 	};
 
 	this.updateShipPanel = function() {
