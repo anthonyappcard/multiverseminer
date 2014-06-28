@@ -85,7 +85,8 @@ function Player() {
             }
             // TODO - Add stat for whatever items you found.
 
-            var questProgress = {};
+            //Just removing the quest things....
+            /*var questProgress = {};
             for (var i = 0; i < items.length; i++) {
                 questProgress[items[i]] = questProgress[items[i]] ? (questProgress[items[i]] + 1) : 1;
             }
@@ -93,6 +94,7 @@ function Player() {
                 game.questProgress('mine', questProgress[name] + " " + name);
                 this.storage.addItem(name, questProgress[name]);
             }
+            */
             var results = items;
             if (results.length > 1) {
                 x = [];
@@ -273,7 +275,7 @@ function Player() {
             console.log(e);
             return false;
         }
-        game.questProgress('craft', count + " " + itemId);
+        //game.questProgress('craft', count + " " + itemId);
 
         //this.equipBestGear();
 
