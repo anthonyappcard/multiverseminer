@@ -1,4 +1,66 @@
 /* -------------------------- */
+/* Import Box Styling Begin */
+/* -------------------------- */
+
+/* Container */
+#importBox {
+    font-family: Lucida Console;
+    font-size: 14px;
+    display: none;
+    height: 400px;
+    width: 410px;
+    color: #bbb;
+    background-color: #333;
+    border: 4px solid #444;
+    padding: 20px;
+    word-wrap: break-word;
+    overflow-x: none;
+    overflow-y: none;
+}
+
+#importBox a.modalCloseImg {
+    background: url(assets/images/x.png) no-repeat;
+    width: 25px;
+    height: 29px;
+    display: inline;
+    z-index: 3200;
+    position: absolute;
+    top: -15px;
+    right: -16px;
+    cursor: pointer;
+}
+
+.selectImportGame {
+    font: #E8E8E8;
+    padding: 5px;
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    -ms-user-select: text;
+}
+
+/*
+#exportBox a {
+    color: #ddd;
+}
+*/
+
+/*
+#exportBox h3 {
+    color: #84b8d9;
+}
+*/
+/*
+#importBox .textarea {
+    display: block;
+    white-space: pre;
+    word-wrap: normal;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+*/
+/* Import Box Styling End */
+
+/* -------------------------- */
 /* Export Box Styling Begin */
 /* -------------------------- */
 /*
@@ -309,6 +371,9 @@
     -webkit-user-select: text;
     -ms-user-select: text;
 }
+
+
+
 #gatheringActionText, #miningActionText, #scavengingActionText {
     width: 396px;
     background-color: #444;

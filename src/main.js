@@ -225,7 +225,7 @@ function exportStorage() {
     var x = base64;
     //console.log(x);
 
-    $.modal('<p class="selectExportGame" onClick="this.select();">' + x + '</p>', {
+    $.modal('<p class="selectExportGame">' + x + '</p>', {
         opacity: 80,
         escClose: true,
         containerId: 'exportBox',
@@ -237,8 +237,14 @@ function exportStorage() {
 };
 
 function importStorage() {
-    $("#importStorageModal").dialog({
-        modal: true
+    $.modal('<strong>Import a Saved Game</strong<br><br><textarea cols="47" rows="20" class="selectImportGame"></textarea>', {
+        opacity: 80,
+        escClose: true,
+        containerId: 'importBox',
+        focus: true,
+        overlayCss: {
+            backgroundColor: "#000"
+        }
     });
 }
 
