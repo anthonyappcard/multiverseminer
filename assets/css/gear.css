@@ -39,9 +39,7 @@ top:80px;
 }
 
 .gearSlot.secondHand {
-position:absolute;
-left:140px;
-top:80px;
+display:none;
 }
 
 .gearSlot.legs {
