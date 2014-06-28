@@ -609,7 +609,7 @@ function UIPlanetScreen() {
 		gameStats.append($('<table>') .append($('<tr>') .append($('<td>Actions</td><td>#</td>'))) .append(x.join('')));
 		statsContent.append(gameStats);
 */
-		$("#statsContent").html('<div class=\'statTable\'><table><tbody>' + y.join('') + '</tbody></table></div><div class=\'statTable\'><table><tbody>' + x.join('') + '</tbody></table></div>');
+		$("#statsContent").html('<div class=\'statTable\'><table><tbody><tr><td>Stats</td><td>#</td></tr>' + y.join('') + '</tbody></table></div><div class=\'statTable\'><table><tbody><tr><td>Actions</td><td>#</td></tr>' + x.join('') + '</tbody></table></div>');
 	};
 
 	this.updateShipPanel = function() {
