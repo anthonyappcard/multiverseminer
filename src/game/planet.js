@@ -24,6 +24,8 @@ function Planet(data) {
     
     this.autoProduce = false;
     this.autoProduceItems = [];
+    this.lastProduceTime = Date.now();
+
 
     // ---------------------------------------------------------------------------
     // general
@@ -38,6 +40,12 @@ function Planet(data) {
         this.miner.update(currentTime);
         
         var elapsedTime = currentTime - this.lastAutoTime;
+        
+        
+        if (this.autoProduce && currentTime - this.lastProduceTime >= 6000) {
+                this._autoProduce();
+        };
+        
         var autoCycles = Math.floor(elapsedTime / 1000); // account for inactive tab
         
         for (var i = 0; i < autoCycles; i++) {
@@ -76,10 +84,6 @@ function Planet(data) {
                     this.autorefineValue -= attempts;
                     this._autorefine(attempts);
                 }
-            }
-            
-            if (this.autoProduce) {
-                this._autoProduce();
             }
         }
     };
@@ -282,14 +286,10 @@ function Planet(data) {
             }
     };
     
-    var ticker = setInterval(function() {
-        this._autoProduce;
-    }, 1000);
-    
     this._autoProduce = function() {
-        if(game === undefined) return;
-        this.storage.addItem(this.autoProduceItems);
         game.settings.addStat("autoProduceCount");
+        this._finalizeAuto(this.autoProduceItems);
+        this.lastProduceTime = Date.now();
     };
     
     this._finalizeAuto = function(totalItems) {
