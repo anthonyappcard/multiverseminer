@@ -1,4 +1,4 @@
-require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "custombox", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "ws", "contextmenu", "bulletin", "gamecombatant"]);
+require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "custombox", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "contextmenu", "bulletin"]);
 
 // Create components
 var game = new Game();
@@ -55,7 +55,6 @@ function onDocumentReady() {
     setInterval(function() {
         onUpdate();
     }, interval);
-
     //$('<div class=\'hide-left\'><button onclick=\'$("#leftCategory").toggle()\'>Hide Panel</button></div>').insertAfter('#leftCategoryContent');
     //var ws = $.WebSocket('ws://dev.multiverseminer.com:8080', null, {
     //    http: 'http://127.0.0.1:81/Lab/Websocket/Data/poll.php'
@@ -82,6 +81,10 @@ function onDocumentReady() {
     //      }
     //  });
     //};
+    //$(document).on("contextmenu", ".hasMenu", function(e) {
+    //    console.log(e.target.id);
+    //    return false;
+    //});
     $(document).contextmenu({
         delegate: ".hasMenu",
         preventSelect: true,
@@ -90,24 +93,30 @@ function onDocumentReady() {
         menu: [{
             title: "Info",
             action: function(event, ui) {
-                info = game.getItem(ui.target.children().last().attr("id"));
-                itemName = info.name;
-                itemDescription = info.description;
-                dialogDiv = $("#itemInfo");
-                dialogDiv.dialog();
-                dialogDiv.dialog("open");
-                dialogDiv.html("Name: " + itemName + "<p>");
-                if (typeof itemDescription === "undefined") {
-                    dialogDiv.append("Description: A mysterious item.");
-                } else {
-                    dialogDiv.append("Description: " + itemDescription + "<p>");
+                var info = game.getItem($("div:last-child", ui.target).attr("id"));
+                var itemName = info.name,
+                    itemDescription = info.description,
+                    dialogDiv = $("#itemInfo");
+
+                dialogDiv.dialog({
+                    title: "Item Info: " + itemName,
+                    autoOpen: true
+                });
+
+                dialogDiv.html("<p>Name: " + itemName + "</p>");
+
+                if (typeof itemDescription === undefined) {
+                    itemDescription = "A mysterious item.";
                 }
+
+                dialogDiv.append("<p>Description: " + itemDescription + "</p>");
             }
         }, {
             title: "Equip / Unequip",
             action: function(event, ui) {
-                itemId = game.getItem(ui.target.children().last().attr("id"));
-                if (itemId.gearType == "building") {
+                //console.log(ui.target);
+                var itemId = game.getItem($("div:last-child", ui.target).attr("id"));
+                if (itemId.gearType === "building") {
                     if (game.currentPlanet.storage.hasItem(itemId.id)) {
                         game.currentPlanet.storage.removeItem(itemId.id);
                         game.player.storage.addItem(itemId.id);
@@ -138,7 +147,9 @@ function onDocumentReady() {
         }]
     });
     $("#bulletin").bulletin();
-    $("#solarsystem").dialog({ autoOpen: false });
+    $("#solarsystem").dialog({
+        autoOpen: false
+    });
 };
 
 function selectClass(playerClass) {
