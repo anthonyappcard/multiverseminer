@@ -4,7 +4,7 @@ function Player() {
     this.id = 'player';
     this.pickPower = 1;
     this.miningLuck = 1;
-    //this.totalPower = 1;
+    this.totalPower = 1;
     this.miner = new Miner('player');
     this.storage = new Storage('player');
     this.gear = new Gear('player');
@@ -358,5 +358,6 @@ function Player() {
         this.playerClass = null;
         this.totalPower = 1;
         game.wasReset = false;
+        $(window).on('onbeforeunload');
     };
-}
+};

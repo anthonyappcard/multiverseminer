@@ -185,15 +185,14 @@ margin-right:4px;
 }
 .minerStats {
 display: block;
-float: left;
+right: 0;
 font-size: 14px;
-left: 87%;
-padding-left: 0;
-position: inherit;
+/* left: 87%; */
+position: fixed;
 text-align: left;
-width: 49%;
-padding-left: 1%;
-padding-top: 2%;
+/* width: 49%; */
+padding-right: 10%;
+/* padding-top: 2%; */
 }
 .statsContent {
     font-size: 12px;
