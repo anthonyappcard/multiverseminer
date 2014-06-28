@@ -287,7 +287,8 @@ function Planet(data) {
     }, 1000);
     
     this._autoProduce = function() {
-        this.addItem(this.autoProduceItems);
+        if(game === undefined) return;
+        this.storage.addItem(this.autoProduceItems);
         game.settings.addStat("autoProduceCount");
     };
     
