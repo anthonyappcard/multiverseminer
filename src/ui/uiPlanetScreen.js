@@ -609,7 +609,7 @@ function UIPlanetScreen() {
 		gameStats.append($('<table>') .append($('<tr>') .append($('<td>Actions</td><td>#</td>'))) .append(x.join('')));
 		statsContent.append(gameStats);
 */
-		$("#statsContent").html('<div class=\'statTable\'><table><tbody>' + y.join('') + '</tbody></table></div><div class=\'statTable\'><table><tbody>' + x.join('') + '</tbody></table></div>');
+		$("#statsContent").html('<div class=\'statTable\'><table><tbody><tr><td>Stats</td><td>#</td></tr>' + y.join('') + '</tbody></table></div><div class=\'statTable\'><table><tbody><tr><td>Actions</td><td>#</td></tr>' + x.join('') + '</tbody></table></div>');
 	};
 
 	this.updateShipPanel = function() {
@@ -786,15 +786,23 @@ function UIPlanetScreen() {
 		if (item.icon) {
 			icon = item.icon;
 		}
-		content.append('<image class="craftingIcon" src="' + sys.iconRoot + icon + '" />');
-		content.append('<span id="craftingText" class="craftingText">' + item.name + '</span>');
-		content.append('<span class="craftingCount">Disabled</span><br>');
-		content.append('<span class="craft1"   onclick="newCraft(\'' + item.id + '\',1);(arguments[0] || event || window.event).stopPropagation();">&nbsp;&nbsp;x1</span>');
-		content.append('<span class="craft10"  onclick="newCraft(\'' + item.id + '\',10);(arguments[0] || event || window.event).stopPropagation();">&nbsp;&nbsp;x10</span>');
-		content.append('<span class="craft100" onclick="newCraft(\'' + item.id + '\',100);(arguments[0] || event || window.event).stopPropagation();">&nbsp;&nbsp;x100</span>');
-		// content.append('<span class="craftMax" onclick="newCraft(\'' + item.id + '\',\'max\');(arguments[0] || event || window.event).stopPropagation();"></span>');
-		content.disableSelection();
-
+	
+		if (item.planetlimit == "1") {
+			content.append('<image class="craftingIcon" src="' + sys.iconRoot + icon + '" />');
+			content.append('<span id="craftingText" class="craftingText">' + item.name + '</span>');
+			content.append('<span class="craftingCount"></span><br>');
+			content.append('<span class="craft1"   onclick="newCraft(\'' + item.id + '\',1);(arguments[0] || event || window.event).stopPropagation();">&nbsp;&nbsp;Build&nbsp;&nbsp;</span>');
+			content.disableSelection();
+		} else {
+			content.append('<image class="craftingIcon" src="' + sys.iconRoot + icon + '" />');
+			content.append('<span id="craftingText" class="craftingText">' + item.name + '</span>');
+			content.append('<span class="craftingCount"></span><br>');
+			content.append('<span class="craft1"   onclick="newCraft(\'' + item.id + '\',1);(arguments[0] || event || window.event).stopPropagation();">&nbsp;&nbsp;Craft&nbsp;&nbsp;</span>');
+			content.append('<span class="craft10"  onclick="newCraft(\'' + item.id + '\',10);(arguments[0] || event || window.event).stopPropagation();">&nbsp;&nbsp;Craft (10)&nbsp;&nbsp;</span>');
+			content.append('<span class="craft100" onclick="newCraft(\'' + item.id + '\',100);(arguments[0] || event || window.event).stopPropagation();">&nbsp;&nbsp;Craft (100)&nbsp;&nbsp;</span>');
+			// content.append('<span class="craftMax" onclick="newCraft(\'' + item.id + '\',\'max\');(arguments[0] || event || window.event).stopPropagation();"></span>');
+			content.disableSelection();
+		}
 		return content;
 	};
 }
