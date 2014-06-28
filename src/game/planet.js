@@ -22,9 +22,8 @@ function Planet(data) {
     this.autorefineValue = 0;
     this.autorefine = false;
     
-    this.autoProduce = false;
-    this.autoProducePerMinute = 0;
-    this.autoProduceLastTime = ~~new Date() / 60000 | 0;
+    this.autoProduce = false;;
+    this.autoProduceLastTime = 0;
     this.autoProduceItems = {};
 
     // ---------------------------------------------------------------------------
@@ -152,6 +151,8 @@ function Planet(data) {
         this.autorefinePerSecond = 0;
         this.autorefineValue = 0;
         this.autorefine = false;
+        
+        this.autoProduce = false;
 
         var items = this.storage.getItemsOfCategory('gearBuilding');
         if (!items) {
@@ -160,6 +161,15 @@ function Planet(data) {
 
         for (var i = 0; i < items.length; i++) {
             var item = game.getItem(items[i]);
+            
+            if(item.autoproduce) {
+                setTimeout(function() {
+                    // The object will be {"iron": 1} for example, meaning 1 iron, the every minute is assumed.
+                    this._finalizeAuto();
+                    game.settings.addStat("autoProduceCount");
+                }, 1000);
+            }
+            
             if (item.automine) {
                 this.autoMinePerSecond += item.automine * this.storage.getItemCount(item.id);
                 this.autoMine = true;
