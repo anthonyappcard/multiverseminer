@@ -1,115 +1,127 @@
 .playerGearPaperdoll {
-    display: block;
-    position: absolute;
-    margin-top: 10px;
+clear: left;
+height: 400px;
+overflow: hidden;
+overflow-x: hidden;
+overflow-y: hidden;
+display: block;
+position: relative;
+padding-right: -134px;
+margin-right: 9;
+/* margin-left: -2px; */
+/* left: 2px; */
+margin-top: 10px;
 }
+
 .gearSlot {
-    height: 40px;
-    width: 40px;
-    position: absolute;
+width:50px;
+height:50px;
+background:gray;
+box-shadow:inset 0 0 15px #000;
 }
+
 .gearSlot.head {
-    height: 30px;
-    width: 30px;
-    position: absolute;
-    left: 25px;
-    top: 10px;
+position:absolute;
+left:75px;
+top:10px;
 }
 
 .gearSlot.chest {
-    position: absolute;
-    width: auto;
-    height: auto;
-    /* left: 50px; */
-    top: 40px;
+position:absolute;
+left:75px;
+top:80px;
 }
 
 .gearSlot.mainHand {
-    position: absolute;
-    left: 70px;
-    top: 60px;
+position:absolute;
+left:10px;
+top:80px;
 }
 
 .gearSlot.secondHand {
-    display: none;
+position:absolute;
+left:140px;
+top:80px;
 }
 
 .gearSlot.legs {
-    position: absolute;
-    left: 20px;
-    top: 92px;
+position:absolute;
+left:75px;
+top:150px;
 }
 
 .gearSlot.feet {
-    position: absolute;
-    left: 20px;
-    top: 130px;
+position:absolute;
+left:75px;
+top:220px;
 }
 
 .gearSlot.miningGear {
-    position: absolute;
-    left: 80px;
-    top: 10px;
+position:absolute;
+left:10px;
+top:10px;
 }
 .gearSlot.head img {
-    height: 30px;
-    width: 30px;
-    margin-left: auto;
-    margin-top: 5px;
-    margin-right: auto;
+    height:50px;
+    width:50px;
+    margin-left:0px;
+    margin-top:0px;
 }
 .gearSlot.chest img {
-    height: 75px;
-    width: 75px;
-    margin-left: auto;
-    margin-top: 2px;
-    margin-right: auto;
+    height:50px;
+    width:50px;
+    margin-left:0px;
+    margin-top:0px;
 }
 .gearSlot.mainHand img {
-    height: 150%;
-    width: 150%;
-    margin-left: auto;
-    margin-right: auto;
+    height:50px;
+    width:50px;
+    margin-left:0px;
+    margin-top:0px;
 }
 .gearSlot.secondHand img {
-    display: none;
+    height:50px;
+    width:50px;
+    margin-left:0px;
+    margin-top:0px;
 }
 .gearSlot.legs img {
-    height: 46px;
-    width: 40px;
-    margin-left: auto;
-    margin-right: auto;
+    height:50px;
+    width:50px;
+    margin-left:0px;
+    margin-top:0px;
 }
 .gearSlot.feet img {
-    height: 35px;
-    width: 40px;
-    margin-left: auto;
-    margin-right: auto;
+    height:50px;
+    width:50px;
+    margin-left:0px;
+    margin-top:0px;
 }
 .gearSlot.miningGear img {
-    height: 100%;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    height:50px;
+    width:50px;
+    margin-left:0px;
+    margin-top:0px;
 }
+
 .gearSlot.head div {
-    display: none;
+    display:none;
 }
 .gearSlot.chest div {
-    display: none;
+    display:none;
 }
 .gearSlot.mainHand div {
-    display: none;
+    display:none;
 }
 .gearSlot.secondHand div {
-    display: none;
+    display:none;
 }
 .gearSlot.legs div {
-    display: none;
+    display:none;
 }
 .gearSlot.feet div {
-    display: none;
+    display:none;
 }
 .gearSlot.miningGear div {
-    display: none;
+    display:none;
 }
