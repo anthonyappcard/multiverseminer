@@ -747,33 +747,9 @@ function UIPlanetScreen() {
     };
 
     this.activateStats = function() {
-        $("#statsContent").html("");
+        this.updateStatsPanel();
         this.hideLeftSideComponents();
         this.componentStats.show();
-        var stats = game.player.stats;
-        var x = [];
-        var y = [];
-        var myObj = game.settings.totalStats;
-        Object.keys(myObj) .forEach(function (prop) {
-          if (myObj.hasOwnProperty(prop) && prop !== 'key' && typeof myObj[prop] != 'function' && prop != 'id') {
-            if (myObj[prop] == null) myObj[prop] = 0;
-            x.push($('<div>') .append($('<tr>') .append($('<td>' + prop + '</td>')) .append('<td>' + myObj[prop] + '</td>')) .html());
-          };
-        });
-        Object.keys(stats) .forEach(function (key) {
-          var value = stats[key];
-          if (isNaN(value)) {
-              value = 0;
-          };
-          y.push($('<div>') .append($('<tr>') .append($('<td>' + key + '</td>')) .append('<td>' + value + '</td>')) .html());
-        });
-        var statsContent = $('#statsContent');
-        var playerStats = $('<div class=\'statTable\'></div>');
-        playerStats.append($('<table>') .append($('<tr>') .append($('<td>Stats</td><td>#</td>'))) .append(y.join('')));
-        statsContent.append(playerStats);
-        var gameStats = $('<div class=\'statTable\'></div>');
-        gameStats.append($('<table>') .append($('<tr>') .append($('<td>Actions</td><td>#</td>'))) .append(x.join('')));
-        statsContent.append(gameStats);
     };
 
     this.activatePlayerGear = function() {

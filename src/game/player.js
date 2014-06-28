@@ -264,7 +264,7 @@ function Player() {
             console.log(e);
             return false;
         }
-        //game.questProgress('craft', count + " " + itemId);
+        game.questProgress('craft', count + " " + itemId);
 
         //this.equipBestGear();
 

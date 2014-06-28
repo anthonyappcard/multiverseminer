@@ -54,15 +54,6 @@ function UI() {
         this.screenTravel = new UITravelScreen();
         this.screenTravel.init();
 
-        $(".tooltip").tooltipster({
-            theme: 'tooltipster-punk',
-            contentAsHTML: true,
-            position: "bottom",
-            onlyOne: true,
-            interactiveTolerance: 10,
-            speed: 1
-        });
-
         // Todo: function to switch screens
         if (game.currentPlanet) {
             this.screenPlanet.show();
@@ -71,6 +62,21 @@ function UI() {
             this.screenPlanet.hide();
             this.screenTravel.show();
         }
+        $(".tooltip").tooltipster({
+            theme: 'tooltipster-punk',
+            contentAsHTML: true,
+            position: "bottom",
+            onlyOne: true,
+            interactiveTolerance: 10,
+            speed: 1
+        });
+        $(".tooltip2").tooltipster({
+            theme: 'tooltipster-punk',
+            position: "bottom-right",
+            onlyOne: true,
+            interactiveTolerance: 10,
+            speed: 1
+        });
         $('#settings').toolbar({
             content: '#user-toolbar-options',
             position: 'bottom',
@@ -94,11 +100,11 @@ function UI() {
 
         // Update floating components
         for (var i = 0; i < this.activeFloats.length; i++) {
-            var float = this.activeFloats[i];
-            float.update(currentTime);
-            if (float.timedOut) {
+            var _float = this.activeFloats[i];
+            _float.update(currentTime);
+            if (_float.timedOut) {
                 // Remove the float
-                float.remove();
+                _float.remove();
                 this.activeFloats.splice(i, 1);
             }
         }
@@ -112,7 +118,7 @@ function UI() {
 
     this.onKeyPress = function(paremeter) {
         var self = ui;
-        var char = String.fromCharCode(paremeter.which).toLowerCase();
+        var _char = String.fromCharCode(paremeter.which).toLowerCase();
 
         var skipBindings = false;
         if (self.hasModalDialog) {
@@ -123,7 +129,7 @@ function UI() {
         // Add more reasons to skip the keyboard shortcuts around here.
 
         if (!skipBindings) {
-            var callback = self.keyBindings[char];
+            var callback = self.keyBindings[_char];
             if (callback) {
                 callback();
             }
@@ -170,17 +176,17 @@ function UI() {
     };
 
     this.createFloat = function(content, classes, x, y) {
-        var float = new UIFloating(content, classes || "genericFloating");
-        float.parent = $('#floatingArea');
-        float.init();
-        float.moveTo(x, y);
+        var _float = new UIFloating(content, classes || "genericFloating");
+        _float.parent = $('#floatingArea');
+        _float.init();
+        _float.moveTo(x, y);
 
         // Todo: use something else as default i guess
-        float.timeOut = Date.now() + 2;
+        _float.timeOut = Date.now() + 2;
 
-        this.activeFloats.push(float);
+        this.activeFloats.push(_float);
 
-        return float;
+        return _float;
     };
 
     this.beginDrag = function(source) {
@@ -241,7 +247,7 @@ function UI() {
             $(this).dialog("close");
         };
 
-        self.addModalLayer()
+        self.addModalLayer();
         $('<div></div>').dialog({
             autoOpen: true,
             title: title,

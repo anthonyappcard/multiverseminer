@@ -348,19 +348,19 @@
 
   <div id="user-toolbar-options" style="display:none;">
     
-    <a onclick="toggleAudio()" title="Mute Audio">
+    <a onclick="toggleAudio()" title="Mute Audio" class="tooltip2">
         <img src="assets/images/mute.png" style="height:24px;width:24px;" />
     </a>
     
-    <a onclick="onSave()" title="Save">
+    <a onclick="onSave()" title="Save" class="tooltip2">
         <img src="assets/images/save.png" style="height:24px;width:24px;" />
     </a>
     
-    <a onclick="onReset()" title="Reset">
+    <a onclick="onReset()" title="Reset" class="tooltip2">
         <img src="assets/images/reset.png" style="height:24px;width:24px;" />
     </a>
     
-    <a onclick="togglePopup()" title="Low Quality Graphics">
+    <a onclick="togglePopup()" title="Low Quality Graphics" class="tooltip2">
         <img src="assets/images/graphics.png" style="height:24px;width:24px;" />
     </a>
   
@@ -374,7 +374,7 @@
   </div>
 
   <div id="release-notes" style="display:none;"></div>
-  <div class="panelBottom">
+  <div class="panelBottom" id="panel-bottom">
   <img alt="logo" class="logo" src="assets/images/logo.png" />
   <div id="notification-list" style="display:none;">
     You have no notifications.
@@ -481,15 +481,13 @@
 </div>
 <div id="bulletin" class="bulletin">
     <ul>
+        <li>De-duped storage when traveling.</li>
         <li>Change: New functionality for Gather and Scavenge completed.</li>
         <li>Change: Reset now clears stats.</li>
-        <li>Change: New scavenging modal</li>
+        <li>Change: New scavenging modal.</li>
         <li>Change: New crafting workflow for pickaxes, recipes modified to be a bit simpler.</li>
-        <li>Change: Decompose All now found on context menu.</li>
-        <li>Change: Added more icons, and cleaned up some that had whitespace in the background.</li>
-        <li>Change: Ship recipe improved<li>
     </ul>
-    <div class="close" onclick="javascript:void(0)" style="pointer:cursor;">X</div>
+    <div class="close" onclick="javascript:void(0)" style="cursor:pointer;">X</div>
 </div>
 </body>
 </html>

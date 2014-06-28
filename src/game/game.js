@@ -183,7 +183,6 @@ function Game() {
     };
 
     this.craft = function(storageSource, storageTarget, what, count) {
-        console.log("Inside game.js");
         var targetItem = game.itemDictionary[what];
         // Check if we have enough storage to store the result
         if (!storageTarget.canAdd(what, count)) {
@@ -370,6 +369,11 @@ function Game() {
             this.settings.travelDistanceRemaining = Math.abs(this.settings.travelDistanceRemaining - this.currentPlanet.data.distance);
             this._leaveOrbit(target);
         }
+        this.currentPlanet = this.planetDictionary[target.id];
+        this.planetChanged = true;
+        //this.save();
+        //this.currentPlanet.load();
+        
     };
 
     this.getDefaultItemIcon = function(item) {
@@ -742,19 +746,16 @@ function Game() {
 
         // Save the planet before leaving for another one
         this.currentPlanet.save();
-        this.currentPlanet = undefined;
-
         this.settings.targetPlanet = target;
     };
 
     this._enterOrbit = function(target) {
         this.currentPlanet = this.planets[target];
+        this.settings.currentPlanet = this.currentPlanet.data.id;
         this.currentPlanet.load();
-        this.planetChanged = true;
-
         this.settings.targetPlanet = undefined;
-
         this.settings.travelActive = false;
+        //this.currentPlanet.save();
     };
 
     // ---------------------------------------------------------------------------
@@ -784,22 +785,18 @@ function Game() {
         if (!this.wasReset) {
             this.player.save();
             this.settings.save();
+            this.currentPlanet.save();
         };
         if (this.currentPlanet) {
             this.currentPlanet.save();
-            }
+        }
     };
 
     this.load = function() {
         if (typeof(Storage) == "undefined") {
             return;
-        }
-
+        };
         this.player.load();
         this.settings.load();
-
-        if (this.currentPlanet) {
-            this.currentPlanet.load();
-        }
     };
-}
+};

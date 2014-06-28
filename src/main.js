@@ -138,6 +138,7 @@ function onDocumentReady() {
         }]
     });
     $("#bulletin").bulletin();
+    $("#solarsystem").dialog({ autoOpen: false });
 };
 
 function selectClass(playerClass) {
@@ -458,6 +459,7 @@ function onTravelToPlanet(target) {
         return;
     }
     $("#solarsystem").dialog("close");
+    $(".bulletin").hide();
     $(".panelBottom").hide();
     $(window).one("scroll", function() {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -466,6 +468,7 @@ function onTravelToPlanet(target) {
     ui.screenTravel.show();
     game.travelTo(target);
     $(".panelBottom").show();
+    $(".bulletin").show();
 };
 
 function onSetInventoryFilter(filter) {
