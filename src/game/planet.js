@@ -165,7 +165,8 @@ function Planet(data) {
             if(item.autoproduce) {
                 setTimeout(function() {
                     // The object will be {"iron": 1} for example, meaning 1 iron, the every minute is assumed.
-                    this._finalizeAuto();
+                    var obj = jQuery.parseJSON(item.autoproduce);
+                    this._finalizeAuto(obj.name);
                     game.settings.addStat("autoProduceCount");
                 }, 1000);
             }
