@@ -23,9 +23,9 @@ function Planet(data) {
     this.autorefine = false;
     
     this.autoProduce = false;
-    this.autoProducePerMinute = 0;
-    this.autoProduceLastTime = ~~new Date() / 60000 | 0;
-    this.autoProduceItems = {};
+    this.autoProduceItems = [];
+    this.lastProduceTime = Date.now();
+
 
     // ---------------------------------------------------------------------------
     // general
@@ -39,15 +39,15 @@ function Planet(data) {
     this.update = function(currentTime) {
         this.miner.update(currentTime);
         
-        if (this.autoProduce) {
-            if ( Math.floor((new Date() - this.autoProduceLastTime) / 60000) < 1 ) {
-                // TODO
-            }
-        }
-        
         var elapsedTime = currentTime - this.lastAutoTime;
+        
+        
+        if (this.autoProduce && currentTime - this.lastProduceTime >= 6000) {
+                this._autoProduce();
+        };
+        
         var autoCycles = Math.floor(elapsedTime / 1000); // account for inactive tab
-
+        
         for (var i = 0; i < autoCycles; i++) {
             this.lastAutoTime = currentTime;
             if (this.autoMine) {
@@ -152,6 +152,9 @@ function Planet(data) {
         this.autorefinePerSecond = 0;
         this.autorefineValue = 0;
         this.autorefine = false;
+        
+        this.autoProduce = false;
+        this.autoProduceItems = {};
 
         var items = this.storage.getItemsOfCategory('gearBuilding');
         if (!items) {
@@ -160,6 +163,14 @@ function Planet(data) {
 
         for (var i = 0; i < items.length; i++) {
             var item = game.getItem(items[i]);
+            
+            if(item.autoproduce) {
+                this.autoProduce = true;
+                // I think the line below this will be wrong.
+                this.autoProduceItems = [];
+                this.autoProduceItems.push(item.autoproduce);
+            }
+            
             if (item.automine) {
                 this.autoMinePerSecond += item.automine * this.storage.getItemCount(item.id);
                 this.autoMine = true;
@@ -197,7 +208,7 @@ function Planet(data) {
             }
         };
     };
-
+    
     this._autoMine = function(attempts) {
         if (attempts > 100) {
             throw new Error("Way too many auto attempts pending, check the timer code!");
@@ -258,6 +269,7 @@ function Planet(data) {
 
         this._finalizeAuto(totalItems);
     };
+    
     this._autorefine = function(attempts) {
         if (attempts > 100) {
             throw new Error("Way too many auto attempts pending, check the timer code!");
@@ -273,6 +285,13 @@ function Planet(data) {
                 game.player.storage.addItem(rand);
             }
     };
+    
+    this._autoProduce = function() {
+        game.settings.addStat("autoProduceCount");
+        this._finalizeAuto(this.autoProduceItems);
+        this.lastProduceTime = Date.now();
+    };
+    
     this._finalizeAuto = function(totalItems) {
         this.storage.addItems(totalItems);
         uiplanetscreen.updateStatsPanel();

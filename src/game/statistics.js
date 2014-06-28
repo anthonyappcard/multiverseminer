@@ -8,6 +8,7 @@ function Statistics(key) {
     this.autogatherCount = "0";
     this.autorefineCount = "0";
     this.foundItems = "0";
+    this.autoProduceCount = "0";
 
     // ---------------------------------------------------------------------------
     // general
@@ -34,6 +35,7 @@ function Statistics(key) {
         localStorage[storageKey + 'autoscavengeCount'] = this.autoscavengeCount;
         localStorage[storageKey + 'autorefineCount'] = this.autorefineCount;
         localStorage[storageKey + 'foundItems'] = this.foundItems;
+        localStorage[storageKey + 'autoProduceCount'] = this.autoProduceCount;
 
     };
 
@@ -47,6 +49,7 @@ function Statistics(key) {
         this.autoscavengeCount = utils.loadInt(storageKey + 'autoscavengeCount', "0");
         this.autorefineCount = utils.loadInt(storageKey + 'autorefineCount', "0");
         this.foundItems = utils.loadInt(storageKey + 'foundItems', "0");
+        this.autoProduceCount = utils.loadInt(storageKey + 'autoProduceCount', '0');
     };
 
     this.reset = function(fullReset) {
@@ -58,5 +61,6 @@ function Statistics(key) {
         localStorage.setValue(this.autoscavengeCount, "0");
         localStorage.setValue(this.autorefineCount, "0");
         localStorage.setValue(this.foundItems, "0");
+        localStorage.setValue(this.autoProduceCount, "0");
     };
 };
