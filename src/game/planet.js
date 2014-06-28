@@ -165,7 +165,6 @@ function Planet(data) {
                 // I think the line below this will be wrong.
                 this.autoProduceItems = [];
                 this.autoProduceItems.push(item.autoproduce);
-                console.log(this.autoProduceItems);
             }
             
             if (item.automine) {
@@ -283,15 +282,13 @@ function Planet(data) {
             }
     };
     
-    this._autoProduce = function(){
-        setTimeout(function() {
-            var x = this.autoProduceItems.length;
-            for (var i = 0; i < x; i++) {
-                var obj = this.autoProduceItems[i];
-                this.storage.addItem(obj.name);
-                game.settings.addStat("autoProduceCount");
-            };
-        }, 1000);
+    var ticker = setInterval(function() {
+        this._autoProduce;
+    }, 1000);
+    
+    this._autoProduce = function() {
+        this.addItem(this.autoProduceItems);
+        game.settings.addStat("autoProduceCount");
     };
     
     this._finalizeAuto = function(totalItems) {
