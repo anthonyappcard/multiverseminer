@@ -27,8 +27,6 @@ function Game() {
 
     this.activeItemContexts = [];
 
-    this.QuestTable = [];
-
     // ---------------------------------------------------------------------------
     // main functions
     // ---------------------------------------------------------------------------
@@ -44,10 +42,6 @@ function Game() {
         // Initialize all the components
         this.player.initialize();
         this.settings.initialize();
-
-        initQuests();
-
-        this.questProgress("event", "example"); //this is an example of how to progress in event type quests
 
         // Load the settings
         this.load();
@@ -558,17 +552,6 @@ function Game() {
                 }
             default:
                 return false;
-        }
-    };
-
-    this.addQuest = function(name, desc, ordered, tasks, reward) {
-        this.QuestTable.push(new Quest(name, desc, ordered, tasks, reward));
-    };
-
-    this.questProgress = function(type, what) { //Destroy, Craft, Collect, Event? x y
-        for (var i = 0; i < this.QuestTable.length; i++) {
-            if (this.QuestTable[i].completed) continue;
-            this.QuestTable[i].taskProgress(type, what);
         }
     };
 

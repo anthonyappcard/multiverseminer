@@ -618,7 +618,7 @@ function UIPlanetScreen() {
     // Questing Section (650-704)	
     this.updateQuestsDisplay = function() {
         // TODO
-        $('#questsContent').empty();
+        /*$('#questsContent').empty();
         for (var i = 0; i < game.QuestTable.length; i++) {
             var quest = game.QuestTable[i];
             var dom = $("<span class='questTitle'>" + quest.name + "</span><br>");
@@ -634,10 +634,10 @@ function UIPlanetScreen() {
             dom.append(expandQuest);
             $('#questsContent').append(dom);
         }
-        $('#questsContent').disableSelection();
+        $('#questsContent').disableSelection();*/
     };
 
-    this._buildTaskList = function(dom, quest) {
+    /*this._buildTaskList = function(dom, quest) {
         var taskList = $("#taskList");
         if (taskList)
             taskList.remove();
@@ -669,7 +669,7 @@ function UIPlanetScreen() {
         div.dialog({
             modal: true
         });
-    };
+    };*/
 
     this.activateQuests = function() {
         this.hideLeftSideComponents();

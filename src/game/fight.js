@@ -140,7 +140,8 @@ function Fight(teamList) {
             this.status.active = false; //disable fight when somebody dies
             this.winner = this.teams[0];
             
-            game.questProgress('kill', "1 " + this.teams[1].members[0].opts.id);
+            //Just removing the quest things
+            //game.questProgress('kill', "1 " + this.teams[1].members[0].opts.id);
             
         }
 
