@@ -1,4 +1,4 @@
-require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "custombox", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "contextmenu", "bulletin"]);
+require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "custombox", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "contextmenu", "bulletin", "store"]);
 
 // Create components
 var game = new Game();
@@ -225,7 +225,7 @@ function exportStorage() {
     var x = base64;
     //console.log(x);
 
-    $.modal('<p class="selectExportGame" onClick="this.select();">' + x + '</p>', {
+    $.modal('<p class="selectExportGame">' + x + '</p>', {
         opacity: 80,
         escClose: true,
         containerId: 'exportBox',
@@ -237,18 +237,25 @@ function exportStorage() {
 };
 
 function importStorage() {
-    $("#importStorageModal").dialog({
-        modal: true
+    content = '<strong>Import a Saved Game</strong><br>Paste your save below.<br><textarea cols="47" rows="20" class="selectImportGame"></textarea>';
+    content += '<p><button onclick="doImport()">Import</button>';
+    $.modal(content, {
+        opacity: 80,
+        escClose: true,
+        containerId: 'importBox',
+        focus: true,
+        overlayCss: {
+            backgroundColor: "#000"
+        }
     });
 }
 
 function doImport() {
-    $("input[type=input]").on("change", function() {
-        if (confirm("Are you sure you put the correct value in the box?")) {
-            localStorage.clear();
-            localStorage.setItem(this.id, $(this).val());
-            $("#importStorageModal").append("<p>Import successful</p> Refresh the page.");
-        }
+    encoded = $(".selectImportGame").val();
+    var decoded = JSON.parse(window.atob(encoded));
+    game.reset();
+    $.each(decoded, function(k, v) {
+        window.localStorage.setItem(k, v);
     });
 };
 
