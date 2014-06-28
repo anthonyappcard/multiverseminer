@@ -746,17 +746,16 @@ function Game() {
 
         // Save the planet before leaving for another one
         this.currentPlanet.save();
-        this.currentPlanet = undefined;
         this.settings.targetPlanet = target;
     };
 
     this._enterOrbit = function(target) {
         this.currentPlanet = this.planets[target];
-        game.settings.currentPlanet = this.currentPlanet.data.id;
-        //this.currentPlanet.save();
+        this.settings.currentPlanet = this.currentPlanet.data.id;
         this.currentPlanet.load();
         this.settings.targetPlanet = undefined;
         this.settings.travelActive = false;
+        //this.currentPlanet.save();
     };
 
     // ---------------------------------------------------------------------------

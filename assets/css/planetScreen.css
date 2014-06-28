@@ -46,8 +46,8 @@
 
 /* Wrapper for Planet Information */
 .planetDisplay {
-    height: 400px;
-    margin-top: 20px;
+height: 400px;
+margin-top: 20px;
 }
 
 .planetImage {
@@ -56,8 +56,8 @@
 }
 
 .planetBigEarth {
-	margin-top: 5px;
-	height: 320px;
+margin-top: 40%;
+height: 150px;
 }
 
 /* Frame to hold planet image

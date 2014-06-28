@@ -1,13 +1,13 @@
 .bulletin {
-	background: none repeat scroll 0 0 #000000;
-	bottom: 0;
-	left: 0;
-	box-shadow: 10px 0 5px #000000;
-	opacity: 0.6;
-	filter: alpha(opacity=60);
-	position: fixed;
-	width: 100%;
-	z-index: 1000;
+background: none repeat scroll 0 0 #000;
+bottom: 0;
+left: 0;
+box-shadow: 10px 0 5px #000;
+opacity: .6;
+filter: alpha(opacity=60);
+position: fixed;
+width: 100%;
+z-index: 1000;
 }
 .bulletin ul {
 	position: absolute;
@@ -16,7 +16,7 @@
 	height: 23px;
 	overflow: hidden;
 	left: 0;
-	right: 20px;
+	right: 50px;
 	background: url(assets/images/bulletin.gif) no-repeat;
 }
 .bulletin li {

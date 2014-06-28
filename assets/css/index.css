@@ -54,19 +54,21 @@ height:100%;
 }
 
 .floatingArea {
-display:inline-block;
-position:absolute;
-top:35%;
-left:30%;
-width:40%;
-height:50%;
+display: block;
+position: relative;
+/* width: 100px; */
+height: 225px;
+width: 200px;
+bottom: 47%;
+margin-right: auto;
+margin-left: auto;
 }
 
 .panelContent {
 background-color: rgba(125,125,125,.5);
 border: 1px solid #9b9b9b;
 height: 410px;
-width: 100%;
+width: 49%;
 float: left;
 display: block;
 position: relative;
@@ -182,13 +184,16 @@ margin-right:4px;
     background: none repeat scroll 0 0 rgba(83, 83, 83, 0.8);
 }
 .minerStats {
-    display: block;
-    float: left;
-    font-size: 14px;
-    left: 87%;
-    padding-left: 0;
-    position: inherit;
-    text-align: left;
+display: block;
+float: left;
+font-size: 14px;
+left: 87%;
+padding-left: 0;
+position: inherit;
+text-align: left;
+width: 49%;
+padding-left: 1%;
+padding-top: 2%;
 }
 .statsContent {
     font-size: 12px;
