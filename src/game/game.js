@@ -752,7 +752,8 @@ function Game() {
 
     this._enterOrbit = function(target) {
         this.currentPlanet = this.planets[target];
-        this.currentPlanet.save();
+        game.settings.currentPlanet = this.currentPlanet.data.id;
+        //this.currentPlanet.save();
         this.currentPlanet.load();
         this.settings.targetPlanet = undefined;
         this.settings.travelActive = false;
