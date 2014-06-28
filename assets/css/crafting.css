@@ -6,7 +6,7 @@
 	background-color:#444;
 	text-align: middle;
 	min-width: 300px;
-	cursor: hand;
+	cursor: pointer;
 	padding-left: 5px;
 	padding-right: 5px;
 	margin-top:10px;
@@ -21,7 +21,6 @@
 }
 
 .craftEnabled .craftingText {
-	cursor:pointer;
 }
 
 /* Item Display Panel */
