@@ -88,30 +88,55 @@ function onDocumentReady() {
                         }
                     ];
 
-                    if(game.player.canEquip(item.id) || game.currentPlanet.canEquip(item.id)) {
-                        menu.push({
-                            title: "Equip / Unequip",
-                            action: function(event, ui) {
-                                //console.log(ui.target);
-                                if (item.gearType === "building") {
-                                    if (game.currentPlanet.storage.hasItem(item.id)) {
-                                        game.currentPlanet.storage.removeItem(item.id);
-                                        game.player.storage.addItem(item.id);
-                                    } else {
-                                        game.currentPlanet.storage.addItem(item.id);
-                                        game.player.storage.removeItem(item.id);
-                                    }
+                    // Equiptment
+                    if(game.player.canEquip(item.id)) {
+                        var currentEquip = game.player.gear.getItemInSlot(item.gearType);
+                        if(currentEquip !== undefined) {
+                            currentEquip = game.getItem(currentEquip);
+                        }
 
-                                    game.currentPlanet._updateStats();
-                                    game.currentPlanet.update();
+                        // Equip text to show in the menu
+                        var equipText = "Unquip";
+                        if(currentEquip === undefined) {
+                            equipText = "Equip";
+                        }
+
+                        menu.push({
+                            title: equipText,
+                            action: function(event, ui) {
+                                if (game.player.hasEquipped(item.gearType) && item.id === currentEquip.id) {
+                                    game.player.unEquip(item.gearType);
                                 } else {
                                     game.player.equip(item.id);
-                                    game.player.update();
                                 }
+
+                                game.player.update();
                             }
                         });
                     }
 
+                    // Buildings
+                    if(game.currentPlanet.canEquip(item.id)) {
+                        var isCurrentlyEquiped = game.currentPlanet.storage.hasItem(item.id);
+
+                        menu.push({
+                            title: (isCurrentlyEquiped === true ? "Unequip" : "Equip"),
+                            action: function(event, ui) {
+                                if(isCurrentlyEquiped === true) {
+                                    game.currentPlanet.storage.removeItem(item.id);
+                                    game.player.storage.addItem(item.id);
+                                } else {
+                                    game.currentPlanet.storage.addItem(item.id);
+                                    game.player.storage.removeItem(item.id);
+                                }
+
+                                game.currentPlanet._updateStats();
+                                game.currentPlanet.update();
+                            }
+                        });
+                    }
+
+                    // Decompose
                     if(game.player.canDecomposeItem(item)) {
                         menu.push({
                             title: "Decompose All",

@@ -314,7 +314,7 @@ function Player() {
     };
 
     this.hasEquipped = function(type) {
-        return this.gear.getItemInSlot(type) != undefined;
+        return this.gear.getItemInSlot(type) !== undefined;
     };
 
     this.getTravelSpeed = function() {

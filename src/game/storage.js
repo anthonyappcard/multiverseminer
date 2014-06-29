@@ -78,10 +78,13 @@ function Storage(id) {
 		return true;
 	};
 
-	this.hasItem = function(id)
-	{
-		return this.items[id] != undefined;
+	this.hasItem = function(id) {
+		return this.items[id] !== undefined;
 	};
+
+	this.getItem = function(id) {
+		return this.items[id] || undefined;
+	}
 
 	this.getItems = function() {
 		return Object.keys(this.items);
