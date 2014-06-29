@@ -256,7 +256,8 @@ function Player() {
         removedString = removedString.substring(0, removedString.length - 2);
         gainedString = gainedString.substring(0, gainedString.length - 2);
         $('#decompModal').modal({
-            opacity: 80,
+			onShow: function(dialog) { $(dialog.container).draggable({handle: 'div'}); },
+            opacity: 40,
             escClose: true,
             overlayClose: true,
             overlayCss: {

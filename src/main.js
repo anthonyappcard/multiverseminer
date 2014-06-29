@@ -323,7 +323,7 @@ function goMining() {
 };
 
 function goGathering() {
-    $("#gatheringModal").modal({
+	$("#gatheringModal").modal({
         opacity: 80,
         escClose: true,
         overlayClose: true,
@@ -519,8 +519,9 @@ function showFight() {
 }
 
 function onReset() {
-    $("#resetModal").modal({
-        opacity: 80,
+	$("#resetModal").modal({
+        onShow: function(dialog) { $(dialog.container).draggable({handle: 'div'}); },
+		opacity: 80,
         escClose: true,
         overlayClose: true,
         overlayCss: {
