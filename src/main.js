@@ -94,7 +94,7 @@ function onDocumentReady() {
                         if(currentEquip !== undefined) {
                             currentEquip = game.getItem(currentEquip);
                         }
-                        
+
                         // Equip text to show in the menu
                         var equipText = "Unquip";
                         if(currentEquip === undefined || currentEquip.id !== item.id) {
@@ -120,7 +120,7 @@ function onDocumentReady() {
                         var isCurrentlyEquiped = game.currentPlanet.storage.hasItem(item.id);
 
                         menu.push({
-                            title: (isCurrentlyEquiped === true ? "Unequip" : "Equip"),
+                            title: (isCurrentlyEquiped === true ? "Demolish" : "Construct"),
                             action: function(event, ui) {
                                 if(isCurrentlyEquiped === true) {
                                     game.currentPlanet.storage.removeItem(item.id);
