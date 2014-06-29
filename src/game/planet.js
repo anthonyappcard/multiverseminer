@@ -94,7 +94,7 @@ function Planet(data) {
         }
 
         return true;
-    }
+    };
 
     this.equip = function(itemId) {
         if (this.canEquip(itemId) === false) {

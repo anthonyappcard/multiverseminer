@@ -88,7 +88,7 @@ function onDocumentReady() {
                         }
                     ];
 
-                    if(game.player.canEquip(item.id) || game.planet.canEquip(item.id)) {
+                    if(game.player.canEquip(item.id) || game.currentPlanet.canEquip(item.id)) {
                         menu.push({
                             title: "Equip / Unequip",
                             action: function(event, ui) {
