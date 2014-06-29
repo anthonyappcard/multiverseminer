@@ -1,4 +1,11 @@
-﻿#solarsystem {
+﻿#solarMapBox {
+	width: 1220px;
+	height: 300px;
+	background-image:url('assets/images/stardust.jpg');
+}
+
+
+#solarsystem {
     font-size: 0.1px;
     min-width: 400px;
     text-align: center;
@@ -16,7 +23,7 @@
 
 .sun:before {
     content: url('assets/images/sun.png');
-    margin-left: -40px; /* Sun starts a bit off frame */
+    margin-left: -10px; /* Sun starts a bit off frame */
 }
 
 .mercury:before {

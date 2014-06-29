@@ -1,4 +1,37 @@
 /* -------------------------- */
+/* SolarSystem Styling Begin */
+/* -------------------------- */
+
+/* Container */
+#spaceTravelMap {
+	font-family: overpassregular,Arial,sans-serif;
+    font-size: 14px;
+    display: none;
+    height: 300px;
+    width: 1220px;
+    color: #bbb;
+	background-image:url(assets/images/stardust.jpg) no-repeat;
+    /* background-color: #333; */
+    border: 1px solid #444;
+    padding: 1px;
+    word-wrap: break-word;
+    overflow-x: none;
+    overflow-y: none;
+}
+
+#spaceTravelMap a.modalCloseImg {
+    background: url(assets/images/x.png) no-repeat;
+    width: 25px;
+    height: 29px;
+    display: inline;
+    z-index: 3200;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+}
+
+/* -------------------------- */
 /* Import Box Styling Begin */
 /* -------------------------- */
 

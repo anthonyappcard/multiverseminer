@@ -128,9 +128,7 @@ function onDocumentReady() {
     });
 
     $("#bulletin").bulletin();
-    $("#solarsystem").dialog({
-        autoOpen: false
-    });
+    //$("#solarsystem").dialog();
 };
 
 function selectClass(playerClass) {
@@ -461,7 +459,8 @@ function onTravelToPlanet(target) {
     if (!game.canTravelTo(target)) {
         return;
     }
-    $("#solarsystem").dialog("close");
+    //$("#solarsystem").modal.close();
+	$.modal.close();
     $(".bulletin").hide();
     $(".panelBottom").hide();
     $(window).one("scroll", function() {
@@ -500,9 +499,22 @@ function onReset() {
         escClose: true,
         overlayClose: true,
         overlayCss: {
-            backgroundColor: "#000"
+            backgroundcolor: "#000"
         },
         containerId: 'resetDialog'
+    });
+}
+
+function spaceTravel() {
+	$("#solarsystem").load('solar.html').modal({
+        opacity: 100,
+		height: 20,
+        escClose: true,
+        overlayClose: true,
+        overlayCss: {
+            backgroundColor: "#000"
+        },
+        containerId: 'spaceTravelMap'
     });
 }
 
