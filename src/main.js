@@ -56,6 +56,7 @@ function onDocumentReady() {
         onUpdate();
     }, interval);
 
+    // Right Click Menus
     $(document).on('mousedown', '.hasMenu', function(e) {
         e.preventDefault();
         var item = game.getItem($("div:last-child", this).attr("id"));
@@ -327,7 +328,7 @@ function onMine() {
     if (!$("#miningModal").is(':visible')) goMining();
     if (game.playerDied > 0) return false;
     if (this.lastRun !== "undefined") {
-        if (this.lastRun >= ~~new Date() / 1000 | 0) {
+        if (this.lastRun >= ~~new Date() / 200 | 0) {
             return false;
         };
     };
@@ -340,21 +341,21 @@ function onMine() {
     } else {
         $('#audioDig').trigger('play');
     }
-    this.lastRun = ~~new Date() / 1000 | 0;
+    this.lastRun = ~~new Date() / 200 | 0;
 };
 
 function onGather() {
     if (!$("#gatheringModal").is(':visible')) goGathering();
     if (game.playerDied > 0) return false;
     if (this.lastRun !== "undefined") {
-        if (this.lastRun >= ~~new Date() / 1000 | 0) {
+        if (this.lastRun >= ~~new Date() / 200 | 0) {
             return false;
         };
     };
     game.settings.addStat('manualGatherCount');
     if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
     game.player.gather();
-    this.lastRun = ~~new Date() / 1000 | 0;
+    this.lastRun = ~~new Date() / 200 | 0;
 };
 
 function onScavenge() {
@@ -363,14 +364,14 @@ function onScavenge() {
         return false;
     };
     if (this.lastRun !== "undefined") {
-        if (this.lastRun >= ~~new Date() / 1000 | 0) {
+        if (this.lastRun >= ~~new Date() / 200 | 0) {
             return false;
         };
     };
     game.settings.addStat('manualScavengeCount');
     if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
     game.player.scavenge();
-    this.lastRun = ~~new Date() / 1000 | 0;
+    this.lastRun = ~~new Date() / 200 | 0;
 };
 
 function onActivatePlayerInventory() {
