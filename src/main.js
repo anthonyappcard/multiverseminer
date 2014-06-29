@@ -224,8 +224,11 @@ function exportStorage() {
     base64 = window.btoa(JSON.stringify(localStorage));
     var x = base64;
     //console.log(x);
-
-    $.modal('<p class="selectExportGame">' + x + '</p>', {
+	
+	content = 	'<strong>Export your Game</strong><br>Ctrl+A to select your saved game';
+	content +=	'<textarea class="selectExportGame" cols="43" rows="20">' + x + '</textarea>';
+    
+	$.modal(content, {
         opacity: 80,
         escClose: true,
         containerId: 'exportBox',
@@ -234,11 +237,12 @@ function exportStorage() {
             backgroundColor: "#000"
         }
     });
-};
+}
 
 function importStorage() {
-    content = '<strong>Import a Saved Game</strong><br>Paste your save below.<br><textarea cols="47" rows="20" class="selectImportGame"></textarea>';
-    content += '<p><button onclick="doImport()">Import</button>';
+    content =	'<strong>Import a Saved Game</strong><br>Paste your save below.';
+	content +=	'<textarea cols="43" rows="19" class="selectImportGame"></textarea>';
+    content += 	'<p><button onclick="doImport()">Import</button>';
     $.modal(content, {
         opacity: 80,
         escClose: true,
