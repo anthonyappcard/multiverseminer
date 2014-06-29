@@ -55,97 +55,77 @@ function onDocumentReady() {
     setInterval(function() {
         onUpdate();
     }, interval);
-    //$('<div class=\'hide-left\'><button onclick=\'$("#leftCategory").toggle()\'>Hide Panel</button></div>').insertAfter('#leftCategoryContent');
-    //var ws = $.WebSocket('ws://dev.multiverseminer.com:8080', null, {
-    //    http: 'http://127.0.0.1:81/Lab/Websocket/Data/poll.php'
-    //});
-    //ws.onerror = function(e) {
-    //    console.log('Error with WebSocket uid: ' + e.target.uid);
-    //};
-    //var pipe1;
-    //// if connection is opened => start opening a pipe (multiplexing)
-    //ws.onopen = function() {
-    //  //
-    //  pipe1 = ws.registerPipe('user/all', null, {
-    //      onopen: function() {
-    //          console.log('pipe1 (' + this.uid + ') connected!');
-    //      },
-    //      onmessage: function(e) {
-    //          console.log('< pipe1 : ' + e.data);
-    //      },
-    //      onerror: function(e) {
-    //          console.log('< pipe1 error : ' + e.data);
-    //      },
-    //      onclose: function() {
-    //          console.log('pipe1 (' + pipe.uid + ') connection closed!');
-    //      }
-    //  });
-    //};
-    //$(document).on("contextmenu", ".hasMenu", function(e) {
-    //    console.log(e.target.id);
-    //    return false;
-    //});
-    $(document).contextmenu({
-        delegate: ".hasMenu",
-        preventSelect: true,
-        autoTrigger: true,
-        taphold: true,
-        menu: [{
-            title: "Info",
-            action: function(event, ui) {
-                var info = game.getItem($("div:last-child", ui.target).attr("id"));
-                var itemName = info.name,
-                    itemDescription = info.description,
-                    dialogDiv = $("#itemInfo");
 
-                dialogDiv.dialog({
-                    title: "Item Info: " + itemName,
-                    autoOpen: true
-                });
+    $(document).on('mousedown', '.hasMenu', function(e) {
+        e.preventDefault();
+        var item = game.getItem($("div:last-child", this).attr("id"));
 
-                dialogDiv.html("<p>Name: " + itemName + "</p>");
+        if(e.which === 3 && item !== undefined) {
+            $(this).contextmenu({
+                menu: function() {
+                    var menu = [
+                        {
+                            title: "Info",
+                            action: function(event, ui) {
+                                var itemName = item.name,
+                                    itemDescription = item.description,
+                                    dialogDiv = $("#itemInfo");
 
-                if (typeof itemDescription === undefined) {
-                    itemDescription = "A mysterious item.";
-                }
+                                dialogDiv.dialog({
+                                    title: "Item Info: " + itemName,
+                                    autoOpen: true
+                                });
 
-                dialogDiv.append("<p>Description: " + itemDescription + "</p>");
-            }
-        }, {
-            title: "Equip / Unequip",
-            action: function(event, ui) {
-                //console.log(ui.target);
-                var itemId = game.getItem($("div:last-child", ui.target).attr("id"));
-                if (itemId.gearType === "building") {
-                    if (game.currentPlanet.storage.hasItem(itemId.id)) {
-                        game.currentPlanet.storage.removeItem(itemId.id);
-                        game.player.storage.addItem(itemId.id);
-                    } else {
-                        game.currentPlanet.storage.addItem(itemId.id);
-                        game.player.storage.removeItem(itemId.id);
-                    }
-                    game.currentPlanet._updateStats();
-                    game.currentPlanet.update();
-                } else {
-                    if (game.player.canEquip(itemId.id)) {
-                        game.player.equip(itemId.id);
-                        game.player.update();
-                    } else {
-                        noty({
-                            text: "You can't equip this item.",
-                            timeout: 2000,
-                            type: "notification"
+                                dialogDiv.html("<p>Name: " + itemName + "</p>");
+
+                                if (itemDescription === undefined) {
+                                    itemDescription = "A mysterious item.";
+                                }
+
+                                dialogDiv.append("<p>Description: " + itemDescription + "</p>");
+                            }
+                        }
+                    ];
+
+                    if(game.player.canEquip(item.id)) {
+                        menu.push({
+                            title: "Equip / Unequip",
+                            action: function(event, ui) {
+                                //console.log(ui.target);
+                                if (item.gearType === "building") {
+                                    if (game.currentPlanet.storage.hasItem(item.id)) {
+                                        game.currentPlanet.storage.removeItem(item.id);
+                                        game.player.storage.addItem(item.id);
+                                    } else {
+                                        game.currentPlanet.storage.addItem(item.id);
+                                        game.player.storage.removeItem(item.id);
+                                    }
+
+                                    game.currentPlanet._updateStats();
+                                    game.currentPlanet.update();
+                                } else {
+                                    game.player.equip(item.id);
+                                    game.player.update();
+                                }
+                            }
                         });
                     }
+
+                    if(game.player.canDecomposeItem(item)) {
+                        menu.push({
+                            title: "Decompose All",
+                            action: function(event, ui) {
+                                game.player.decomposeScavenged();
+                            }
+                        });
+                    }
+
+                    return menu;
                 }
-            }
-        }, {
-            title: "Decompose All",
-            action: function(event, ui) {
-                game.player.decomposeScavenged();
-            }
-        }]
+            });
+        }
     });
+
     $("#bulletin").bulletin();
     $("#solarsystem").dialog({
         autoOpen: false

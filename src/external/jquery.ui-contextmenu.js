@@ -126,6 +126,9 @@
 				this.menuIsTemp = true;
 			}else if ( typeof menuDef === "string" ){
 				this.$menu = $(menuDef);
+			} else if ( typeof menuDef === "function" ){
+				this.$menu = $.moogle.contextmenu.createMenuMarkup(menuDef());
+				this.menuIsTemp = true;
 			}else{
 				this.$menu = menuDef;
 			}

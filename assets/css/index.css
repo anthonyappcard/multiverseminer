@@ -248,11 +248,8 @@ bottom: 26px;
 background-color: rgba(37, 37, 37, 0.75);
 }
 .ui-menu {
-    list-style: none outside none;
-    padding-left: 7px;
-    padding-bottom: 5px;
-    padding-top: 5px;
     display: block;
-    height: 65px;
-    width:100px;
+    list-style: none outside none;
+    min-width: 100px;
+    padding: 5px 10px 10px;
 }

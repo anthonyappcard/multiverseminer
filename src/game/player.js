@@ -206,6 +206,10 @@ function Player() {
         this.storage.removeItem(itemId);
     };
 
+    this.canDecomposeItem = function(item) {
+        return (item.category === "scavenge" ? true : false);
+    }
+
     this.decomposeScavenged = function() {
         // Decomposing scavenged items
         // TODO - Add stat for whatever items you found.
