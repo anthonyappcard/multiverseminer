@@ -89,8 +89,13 @@ function Planet(data) {
     };
 
     this.canEquip = function(itemId) {
-        if (!itemId || (!this.storage.hasItem(itemId) && !game.player.storage.hasItem(itemId))) {
-            return true;
+        if(!itemId) {
+            return false;
+        }
+
+        var item = game.getItem(itemId);
+        if(item === undefined || item.gearType !== "building" || (!this.storage.hasItem(itemId) && !game.player.storage.hasItem(itemId))) {
+            return false;
         }
 
         return true;
