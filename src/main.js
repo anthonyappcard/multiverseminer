@@ -95,9 +95,12 @@ function onDocumentReady() {
                             currentEquip = game.getItem(currentEquip);
                         }
 
+                        console.log('New Item', item);
+                        console.log('Current Item', currentEquip);
+
                         // Equip text to show in the menu
                         var equipText = "Unquip";
-                        if(currentEquip === undefined) {
+                        if(currentEquip === undefined || currentEquip.id !== item.id) {
                             equipText = "Equip";
                         }
 
