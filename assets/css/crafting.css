@@ -1,3 +1,12 @@
+.craftingInfo .qtip-content {
+		background-color: #444;
+		font-family: overpassregular,Arial,sans-serif;
+		color: #FFF;
+		padding:15px;
+		font-size: 12px;
+		width: 200px;
+}
+
 .craft1, .craft10, .craft100, .craftMax {
 /*	width:13%;
 	min-width: 4em;

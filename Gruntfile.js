@@ -64,7 +64,8 @@ module.exports = function(grunt) {
                         contextmenu : 'external/jquery.ui-contextmenu',
                         ws          : 'external/jquery.WebSocket',
 						simplemodal : 'external/jquery.simplemodal-1.4.4',
-                        bulletin    : 'external/jquery.bulletin'
+                        bulletin    : 'external/jquery.bulletin',
+						qtip2		: 'external/jquery.qtip'
 					}
 				}
 			}
