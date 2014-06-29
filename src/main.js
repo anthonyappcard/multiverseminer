@@ -512,7 +512,8 @@ function spaceTravel() {
         escClose: true,
         overlayClose: true,
         overlayCss: {
-            backgroundColor: "#000"
+            backgroundColor: "#000",
+			backgroundImage: "url('assets/images/stardust.jpg')"
         },
         containerId: 'spaceTravelMap'
     });
