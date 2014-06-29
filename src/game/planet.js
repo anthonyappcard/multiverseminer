@@ -88,9 +88,16 @@ function Planet(data) {
         }
     };
 
-    this.equip = function(itemId) {
-        console.log(itemId);
+    this.canEquip = function(itemId) {
         if (!itemId || (!this.storage.hasItem(itemId) && !game.player.storage.hasItem(itemId))) {
+            return true;
+        }
+
+        return true;
+    }
+
+    this.equip = function(itemId) {
+        if (this.canEquip(itemId) === false) {
             utils.logError("Unable to equip item, invalid or don't have it");
             return;
         }
