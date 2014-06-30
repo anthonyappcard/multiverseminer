@@ -457,16 +457,16 @@ function UIPlanetScreen() {
 
 	this.updateCraftingPanel = function() {
 		function addTooltip(element, item) {
-			element.qtip({
-			content: self.buildCraftingTooltip(item),
-				position	: {
-						my: 'center right',
-						at:	'center left',
-				},
-				
-				style		: {
-						classes: 'craftingInfo'
-				}						
+			element.tooltipster ({
+					content: self.buildCraftingTooltip(item),
+					theme: 'tooltipster-punk',
+					contentAsHTML: true,
+					position: "bottom",
+					onlyOne: true,
+					interactiveTolerance: 10,
+					offsetX: 0,
+					offsetY: 0,
+					speed: 10
 			});
 		}
 
