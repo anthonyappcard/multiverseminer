@@ -120,7 +120,7 @@ function onDocumentReady() {
                         var isCurrentlyEquiped = game.currentPlanet.storage.hasItem(item.id);
 
                         menu.push({
-                            title: (isCurrentlyEquiped === true ? "Demolish" : "Construct"),
+                            title: (isCurrentlyEquiped === true ? "Move to Player" : "Construct"),
                             action: function(event, ui) {
                                 if(isCurrentlyEquiped === true) {
                                     game.currentPlanet.storage.removeItem(item.id);
@@ -358,9 +358,13 @@ function onMine() {
     game.settings.addStat('manualDigCount');
 
     if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
-
-    if (game.player.mine()) {
+    result = game.player.mine();
+    console.log(result);
+    if (result) {
         $('#audioDigSuccess').trigger('play');
+        //x = String(result.split(" = ")[1]);
+        //console.log(x);
+        //game.settings.addStat("foundItems", x.length);
     } else {
         $('#audioDig').trigger('play');
     }
