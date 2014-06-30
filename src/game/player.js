@@ -85,14 +85,6 @@ function Player() {
             }
             // TODO - Add stat for whatever items you found.
 
-            var questProgress = {};
-            for (var i = 0; i < items.length; i++) {
-                questProgress[items[i]] = questProgress[items[i]] ? (questProgress[items[i]] + 1) : 1;
-            }
-            for (var name in questProgress) {
-                game.questProgress('mine', questProgress[name] + " " + name);
-                this.storage.addItem(name, questProgress[name]);
-            }
             var results = items;
             if (results.length > 1) {
                 x = [];

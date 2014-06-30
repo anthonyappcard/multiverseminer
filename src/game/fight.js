@@ -140,8 +140,6 @@ function Fight(teamList) {
             this.status.active = false; //disable fight when somebody dies
             this.winner = this.teams[0];
             
-            game.questProgress('kill', "1 " + this.teams[1].members[0].opts.id);
-            
         }
 
         $('#playerHP').width((this.teams[0].members[0].health / this.teams[0].members[0].maxHealth) * 100 + "%");
