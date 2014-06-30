@@ -622,11 +622,58 @@ function UIPlanetScreen() {
 
 	// Questing Section (650-704)
 	this.updateQuestsDisplay = function() {
-
+		// TODO
+		$('#questsContent').empty();
+		for (var i = 0; i < game.QuestTable.length; i++) {
+			var quest = game.QuestTable[i];
+			var dom = $("<span class='questTitle'>" + quest.name + "</span><br>");
+			var expandQuest = $("<span class='expandQuest'>Open</span>");
+			if (quest.completed)
+				dom.addClass('questCompleted');
+			expandQuest.mousedown({
+				'self': dom,
+				'quest': quest
+			}, function(a) {
+				uiplanetscreen._buildTaskList(a.data.self, a.data.quest);
+			});
+			dom.append(expandQuest);
+			$('#questsContent').append(dom);
+		}
+		$('#questsContent').disableSelection();
 	};
 
 	this._buildTaskList = function(dom, quest) {
-
+		var taskList = $("#taskList");
+		if (taskList)
+			taskList.remove();
+		var last = 0;
+		var div = $("<div id='taskList'></div>");
+		var ul = $("<ul class='taskList'></ul>");
+		for (var i = 0; i < quest.tasks.length; i++) {
+			var task = quest.tasks[i];
+			var li = $("<li class='taskItem'>" + task.desc + "</li>");
+			if (quest.ordered) {
+				if (task.completed) {
+					last = i;
+					li.addClass("taskCompleted");
+				} else if (i == (last + 1)) {
+					li.addClass("taskCurrent");
+				} else {
+					li.addClass("taskUnavailable");
+				}
+			} else {
+				if (task.completed)
+					li.addClass("taskCompleted");
+				else
+					li.addClass("taskCurrent");
+			}
+			ul.append(li);
+		}
+		div.append("<div class='questDescription'>-&nbsp;" + quest.desc + "</div>");
+		div.append(ul);
+		div.dialog({
+			modal: true
+		});
 	};
 
 	this.activateQuests = function() {
