@@ -21,15 +21,15 @@
 }
 .itemSlotText {
     cursor: pointer;
-    float: right;
-    font-size: 12px;
-    margin-right: 0px;
+    font-size: 10px;
+    margin-right: 0;
     margin-top: -9px;
     position: relative;
+    text-align: right;
 }
 .itemSlot img {
-    display: block;
-    height: 40px;
-    margin: 0;
-    width: 40px;
+      display: block;
+      height: 32px;
+      margin: 6px;
+      width: 32px;
 }
