@@ -218,6 +218,10 @@ function Game() {
         }
         var totalQuantity = count * quantity;
         storageTarget.addItem(what, totalQuantity);
+        game.settings.addStat("craftedItems", totalQuantity);
+        if ($("#leftCategory2").hasClass("genericButtonSelected")) {
+            uiplanetscreen.updateStatsPanel();
+        };
         noty({
             text: "Crafted " + totalQuantity + " " + targetItem.name,
             type: "information",
