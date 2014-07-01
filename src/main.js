@@ -593,3 +593,19 @@ function changeRightCategoryButton(selected) {
 //$("#class3").click(function() {
 //    selectClass(3);
 //});
+
+function characterSelect() {
+	var src = "character.html";	
+	
+	$.modal('<iframe src="' + src + '"height="590" width="1020" frameBorder="0">', {
+		closeHTML: "",
+        //onShow: function(dialog) { $(dialog.container).draggable({handle: 'div'}); },
+		opacity: 90,
+        escClose: true,
+        overlayClose: true,
+        overlayCss: {
+            backgroundColor: "#000"
+        },
+        containerId: 'characterSelect'
+    });
+}

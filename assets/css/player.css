@@ -1,0 +1,48 @@
+#characterBox {
+	width: 100%;
+	height: 100%;
+}
+
+#characterSelect {
+    font-family: Lucida Console;
+    font-size: 14px;
+    text-align: center;
+}
+
+#characterSelect {
+    display: none;
+}
+
+/* Container */
+#characterSelect {
+    height: 600px;
+    width: 1024px;
+    color: #bbb;
+    background-color: #333;
+    border: 4px solid #444;
+    padding: 12px;
+}
+
+#characterSelect {
+    padding: 8px;
+}
+
+#characterSelect a {
+    color: #ddd;
+}
+
+#characterSelect a.modalCloseImg {
+    background: url(assets/images/x.png) no-repeat;
+    width: 25px;
+    height: 29px;
+    display: inline;
+    z-index: 3200;
+    position: absolute;
+    top: -15px;
+    right: -16px;
+    cursor: pointer;
+}
+
+#characterSelect h3 {
+    color: #84b8d9;
+}
