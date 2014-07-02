@@ -312,12 +312,8 @@ function togglePopup() {
 
 function goMining() {
     $("#miningModal").modal({
-        opacity: 80,
         escClose: true,
-        overlayClose: true,
-        overlayCss: {
-            backgroundColor: "#000"
-        },
+		position: ["15%","36%"],
         containerId: 'miningBox'
     });
 };
