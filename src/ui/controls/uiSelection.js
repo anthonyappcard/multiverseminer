@@ -35,6 +35,7 @@ function UISelection(id, parent) {
     	}
     	
     	this.keys = Object.keys(this.values);
+        console.log(this.keys);
     	this.max = this.keys.length - 1;
     	
         this.selectionFirstElement = $('<img class="selectPrevious clickable" src="'+ sys.selectionArrowBackFast + '"/>');
@@ -66,21 +67,21 @@ function UISelection(id, parent) {
     	};
         try {
             var key = this.keys[this.selection];
-            this.selectionTextElement.text(key.toUpperCase());
+            this.selectionTextElement.text(key.replace("gear", "").split(/(?=[A-Z])/g).join(' ').toLowerCase());
         } catch (e) {
             var key = "rawMaterial";
-            this.selectionTextElement.text(key.toUpperCase());
+            this.selectionTextElement.text(key.replace("gear", "").split(/(?=[A-Z])/g).join(' ').toLowerCase());
         }
     };
     
     this.setSelection = function(id) {
-        console.log(this.keys);
+        //console.log(this.keys);
         if (!this.keys[id]) {
-            this.keys[id] = 1;
-            //utils.logError("setSelection called with invalid argument: " + id);
-            //return;
+            this.selection = self.min + 1;
+        } else {
+            this.selection = id;
         }
-        this.selection = this.keys[id];
+        this.invalidate();
     };
         
     this.selectPrevious = function() {
