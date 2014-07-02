@@ -355,7 +355,6 @@ function onMine() {
 
     if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
     result = game.player.mine();
-    console.log(result);
     if (result) {
         $('#audioDigSuccess').trigger('play');
         //x = String(result.split(" = ")[1]);
