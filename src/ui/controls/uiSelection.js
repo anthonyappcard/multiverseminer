@@ -69,7 +69,7 @@ function UISelection(id, parent) {
             this.selectionTextElement.text(key.toUpperCase());
         } catch (e) {
             var key = "rawMaterial";
-        this.selectionTextElement.text(key.toUpperCase());
+            this.selectionTextElement.text(key.toUpperCase());
         }
     };
     
