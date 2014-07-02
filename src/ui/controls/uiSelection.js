@@ -64,19 +64,23 @@ function UISelection(id, parent) {
     	if(!this.baseUpdate(currentTime)) {
     		return;
     	};
-    	
-        var key = this.keys[this.selection];
-        this.selectionTextElement.text(this.values[key].toUpperCase());
+        try {
+            var key = this.keys[this.selection];
+            this.selectionTextElement.text(key.toUpperCase());
+        } catch (e) {
+            var key = "rawMaterial";
+            this.selectionTextElement.text(key.toUpperCase());
+        }
     };
     
     this.setSelection = function(id) {
+        console.log(this.keys);
         if (!this.keys[id]) {
-            utils.logError("setSelection called with invalid argument: " + id);
-            return;
+            this.keys[id] = 1;
+            //utils.logError("setSelection called with invalid argument: " + id);
+            //return;
         }
-        
-        this.selection = id;
-        this.invalidate();
+        this.selection = this.keys[id];
     };
         
     this.selectPrevious = function() {

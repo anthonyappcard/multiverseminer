@@ -15,7 +15,7 @@ function Game() {
 
     this.planetChanged = true;
 
-    this.version = 0.1;
+    this.version = 0.2;
 
     this.itemContexts = {
         'playerInventory': 1,
