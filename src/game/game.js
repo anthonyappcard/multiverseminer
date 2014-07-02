@@ -731,7 +731,7 @@ function Game() {
             for (var i = 0; i < buildings.length; i++) {
                 var building = buildings[i];
                 var count = game.currentPlanet.storage.getItemCount(building);
-                var stats = game.getItem(building).statchange;
+                var stats = game.getItem(building).statChange;
                 if (!stats) continue;
                 var aMatch = stats.match("(\\w+)\":([0-9.]+)");
                 var material = aMatch[1],
