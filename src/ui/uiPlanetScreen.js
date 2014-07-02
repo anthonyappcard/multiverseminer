@@ -262,7 +262,7 @@ function UIPlanetScreen() {
 					}
 					content += "<strong>Cost:</strong></br>";
 					for (cost in item.craftCost) {
-						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "&nbsp;(" + game.player.storage.getItemCount(cost) +")</br>";
 					}
 				}
 				if (item.el) {
@@ -279,7 +279,7 @@ function UIPlanetScreen() {
 					content = "<strong>" + item.name + "</strong><p>";
 					content += "<strong>Cost:</strong></br>";
 					for (cost in item.craftCost) {
-						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "&nbsp;(" + game.player.storage.getItemCount(cost) +")</br>";
 					}
 				}
 				if (item.description) {
@@ -293,7 +293,7 @@ function UIPlanetScreen() {
 					content = "<strong>" + item.name + "</strong><p>";
 					content += "<strong>Cost:</strong></br>";
 					for (cost in item.craftCost) {
-						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "&nbsp;(" + game.player.storage.getItemCount(cost) +")</br>";
 					}
 				}
 				if (item.description) {
@@ -312,7 +312,7 @@ function UIPlanetScreen() {
 					content = "<strong>" + item.name + "</strong><p>";
 					content += "<strong>Cost:</strong></br>";
 					for (cost in item.craftCost) {
-						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "&nbsp;(" + game.player.storage.getItemCount(cost) +")</br>";
 					}
 				}
 				if (item.description) {
@@ -328,7 +328,7 @@ function UIPlanetScreen() {
 					content = "<strong>" + item.name + "</strong><p>";
 					content += "<strong>Cost:</strong></br>";
 					for (cost in item.craftCost) {
-						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "&nbsp;(" + game.player.storage.getItemCount(cost) +")</br>";
 					}
 				}
 				if (item.description) {
@@ -344,7 +344,7 @@ function UIPlanetScreen() {
 					content = "<strong>" + item.name + "</strong><p>";
 					content += "<strong>Cost:</strong></br>";
 					for (cost in item.craftCost) {
-						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "&nbsp;(" + game.player.storage.getItemCount(cost) +")</br>";
 					}
 				}
 				if (item.description) {
@@ -360,7 +360,7 @@ function UIPlanetScreen() {
 					content = "<strong>" + item.name + "</strong><p>";
 					content += "<strong>Cost:</strong></br>";
 					for (cost in item.craftCost) {
-						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "&nbsp;(" + game.player.storage.getItemCount(cost) +")</br>";
 					}
 				}
 				if (item.description) {
@@ -376,7 +376,7 @@ function UIPlanetScreen() {
 					content = "<strong>" + item.name + "</strong><p>";
 					content += "<strong>Cost:</strong></br>";
 					for (cost in item.craftCost) {
-						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "&nbsp;(" + game.player.storage.getItemCount(cost) +")</br>";
 					}
 				}
 				if (item.description) {
@@ -396,7 +396,7 @@ function UIPlanetScreen() {
 					}
 					content += "<strong>Cost:</strong></br>";
 					for (cost in item.craftCost) {
-						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "&nbsp;(" + game.player.storage.getItemCount(cost) +")</br>";
 					}
 				}
 				if (item.id == "miningRig") {
@@ -436,7 +436,7 @@ function UIPlanetScreen() {
 					content += "&nbsp;" + game.getItemName(aMatch[1]) + " +" + aMatch[2] + "&#37;";
 				}
 				break;
-
+				
 				/* Spaceship */
 			case "spaceship":
 				if (item.craftCost) {
@@ -461,7 +461,7 @@ function UIPlanetScreen() {
 					content: self.buildCraftingTooltip(item),
 					theme: 'tooltipster-punk',
 					contentAsHTML: true,
-					position: "bottom",
+					position: "left",
 					onlyOne: true,
 					interactiveTolerance: 10,
 					offsetX: 0,
