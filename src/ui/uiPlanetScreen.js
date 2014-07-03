@@ -451,13 +451,13 @@ function UIPlanetScreen() {
 			case "spaceship":
 				if (item.craftCost) {
 					content = "<strong>" + item.name + "</strong><p>";
+				if (item.description) {
+					content += "<p><strong>Description: </strong><br>&nbsp;" + item.description + "</br><br>";
+					}
 					content += "<strong>Cost:</strong></br>";
 					for (cost in item.craftCost) {
 						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
 					}
-				}
-				if (item.description) {
-					content += "<p><strong>Description: </strong>" + "</br>&nbsp;" + item.description + "</br>";
 				}
 				break;
 		};
