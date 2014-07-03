@@ -5,79 +5,83 @@ UISelection.prototype.constructor = UISelection;
 function UISelection(id, parent) {
     this.id = id;
     this.parent = parent;
-    
+
     this.values = undefined;
     this.callback = undefined;
     this.keys = undefined;
-    
-    this.min = 0;
+
+    this.min = 1;
     this.max = 0;
-    
+
     this.selection = -1;
     this.selectionTextElement = undefined;
-    
-    this.loop = false;
-    
- // ---------------------------------------------------------------------------
+
+    this.loop = true;
+
+    // ---------------------------------------------------------------------------
     // overrides
     // ---------------------------------------------------------------------------
     this.baseInit = this.init;
     this.baseUpdate = this.update;
-    
+
     // ---------------------------------------------------------------------------
     // main functions
     // ---------------------------------------------------------------------------
     this.init = function() {
-    	this.baseInit();
-    	
-    	if(!this.values || !this.callback) {
-    		throw new Error("Values and callback must be set!");
-    	}
-    	
-    	this.keys = Object.keys(this.values);
-        console.log(this.keys);
-    	this.max = this.keys.length - 1;
-    	
-        this.selectionFirstElement = $('<img class="selectPrevious clickable" src="'+ sys.selectionArrowBackFast + '"/>');
-        this.selectionFirstElement.click({self: this}, this.onSelectFirst);
-        
-        this.selectionPrevElement = $('<img class="selectPrevious clickable" src="'+ sys.selectionArrowBack + '"/>');
-        this.selectionPrevElement.click({self: this}, this.onSelectPrevious);
-        
+        this.baseInit();
+
+        if (!this.values || !this.callback) {
+            throw new Error("Values and callback must be set!");
+        }
+
+        this.keys = Object.keys(this.values);
+        this.max = this.keys.length - 1;
+
+        this.selectionFirstElement = $('<img class="selectPrevious clickable" src="' + sys.selectionArrowBackFast + '"/>');
+        this.selectionFirstElement.click({
+            self: this
+        }, this.onSelectFirst);
+
+        this.selectionPrevElement = $('<img class="selectPrevious clickable" src="' + sys.selectionArrowBack + '"/>');
+        this.selectionPrevElement.click({
+            self: this
+        }, this.onSelectPrevious);
+
         this.selectionTextElement = $('<div class="selectionText"></div>');
-        
-        this.selectionNextElement = $('<img class="selectNext clickable" src="'+ sys.selectionArrowForward +'"/>');
-        this.selectionNextElement.click({self: this}, this.onSelectNext);
-        
-        this.selectionLastElement = $('<img class="selectNext clickable" src="'+ sys.selectionArrowForwardFast +'"/>');
-        this.selectionLastElement.click({self: this}, this.onSelectLast);
-        
+
+        this.selectionNextElement = $('<img class="selectNext clickable" src="' + sys.selectionArrowForward + '"/>');
+        this.selectionNextElement.click({
+            self: this
+        }, this.onSelectNext);
+
+        this.selectionLastElement = $('<img class="selectNext clickable" src="' + sys.selectionArrowForwardFast + '"/>');
+        this.selectionLastElement.click({
+            self: this
+        }, this.onSelectLast);
+
         // have to add the right floating elements first
         this.mainDiv.append(this.selectionLastElement);
         this.mainDiv.append(this.selectionNextElement);
-        
+
         this.mainDiv.append(this.selectionFirstElement);
         this.mainDiv.append(this.selectionPrevElement);
         this.mainDiv.append(this.selectionTextElement);
     };
-    
+
     this.update = function(currentTime) {
-    	if(!this.baseUpdate(currentTime)) {
-    		return;
-    	};
-        try {
-            var key = this.keys[this.selection];
-            this.selectionTextElement.text(key.replace("gear", "").split(/(?=[A-Z])/g).join(' ').toLowerCase());
-        } catch (e) {
-            var key = "rawMaterial";
-            this.selectionTextElement.text(key.replace("gear", "").split(/(?=[A-Z])/g).join(' ').toLowerCase());
-        }
+        if (!this.baseUpdate(currentTime)) {
+            return;
+        };
+        var key = this.keys[this.selection];
+        //var newStr = key.replace("gear", "")
+        // TODO: remove gear from building string later.
+        var newStr = key.split(/(?=[A-Z])/g).join(' ').toLowerCase();
+        this.selectionTextElement.text(newStr);
     };
-    
+
     this.setSelection = function(id) {
-        //console.log(this.keys);
         if (!this.keys[id]) {
-            this.selection = this.min + 1;
+            this.selection = this.min;
         } else {
             this.selection = id;
         }
@@ -115,24 +119,24 @@ function UISelection(id, parent) {
     };
     
     this.onSelectFirst = function(parameter) {
-    	var self = parameter.data.self;
-    	self.selection = self.min + 1;
-    	self.selectPrevious();
+     var self = parameter.data.self;
+     self.selection = self.min ;
+     self.selectPrevious();
     };
     
     this.onSelectPrevious = function(parameter) {
-    	var self = parameter.data.self;
+     var self = parameter.data.self;
         self.selectPrevious();
     };
     
     this.onSelectNext = function(parameter) {
-    	var self = parameter.data.self;
+     var self = parameter.data.self;
         self.selectNext();
     };
     
     this.onSelectLast = function(parameter) {
-    	var self = parameter.data.self;
-    	self.selection = self.max - 1;
-    	self.selectNext();
+     var self = parameter.data.self;
+     self.selection = self.max;
+     self.selectNext();
     };
 };

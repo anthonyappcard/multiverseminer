@@ -38,9 +38,6 @@ function Game() {
         this.itemDictionary = this.buildDictionary(Items);
         this.lootTableDictionary = this.buildDictionary(LootTables);
 
-        utils.log(Object.keys(this.planetDictionary).length + " planets");
-        utils.log(Object.keys(this.itemDictionary).length + " items");
-
         // Initialize all the components
         this.player.initialize();
         this.settings.initialize();
@@ -128,7 +125,7 @@ function Game() {
             var notify = noty({
                 layout: 'bottomCenter',
                 type: 'success',
-                timeout: 3500,
+                timeout: 1500,
                 text: 'Auto Saved'
             });
             this.save();
