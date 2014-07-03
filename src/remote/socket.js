@@ -1,6 +1,6 @@
 define(['remote/socket.io'], function(io) {
-    //socket = new Socket(io);
-    //socket.initialize();
+    socket = new Socket(io);
+    socket.initialize();
 });
 
 function Socket(io) {
@@ -33,7 +33,13 @@ function Socket(io) {
 	};
 
 	this.registerNotificationEvents = function() {
-
+		this.socket.on('notification', function(msg) {
+        	noty({
+	            text: msg,
+	            type: "information",
+	            timeout: 5000
+	        });
+		});
 	};
 
 	// http://socket.io/docs/client-api/#socket
