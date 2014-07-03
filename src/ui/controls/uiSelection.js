@@ -77,7 +77,7 @@ function UISelection(id, parent) {
     this.setSelection = function(id) {
         //console.log(this.keys);
         if (!this.keys[id]) {
-            this.selection = self.min + 1;
+            this.selection = this.min + 1;
         } else {
             this.selection = id;
         }
