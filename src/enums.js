@@ -21,7 +21,8 @@ ItemCategoryPlanet = {
     'unset': '-unset-',
     'gearBuildings': 'Buildings',
     'rawMaterial': 'Raw Materials',
-    'gem': 'Gems'
+    'gem': 'Gems',
+    'scavenge': 'Scavenge'
 };
 
 GearType = {

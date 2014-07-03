@@ -26,7 +26,9 @@ function Miner(id) {
 		power = power || 1; //power comes from pickaxe
 		luck = luck || 0;
 		var tableId = location.getMiningLootTableId();
-		return this._dropResources(tableId, power, luck);
+		items = this._dropResources(tableId, power, luck);
+        if (items.length > 0) game.settings.addStat("foundItems", items.length);
+        return items;
 	};
 
 	this.scavenge = function(location) {
