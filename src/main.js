@@ -314,6 +314,11 @@ function togglePopup() {
 function goMining() {
     $("#miningModal").modal({
         escClose: true,
+		overlayClose: true,
+		opacity: 1,
+		overlayCss: {
+            backgroundColor: "#000"
+        },
 		position: ["15%","36%"],
         containerId: 'miningBox'
     });
@@ -321,24 +326,26 @@ function goMining() {
 
 function goGathering() {
 	$("#gatheringModal").modal({
-        opacity: 80,
         escClose: true,
-        overlayClose: true,
-        overlayCss: {
+		overlayClose: true,
+		opacity: 1,
+		overlayCss: {
             backgroundColor: "#000"
         },
+		position: ["15%","36%"],
         containerId: 'gatheringBox'
     });
 };
 
 function goScavenging() {
     $("#scavengingModal").modal({
-        opacity: 80,
         escClose: true,
-        overlayClose: true,
-        overlayCss: {
+		overlayClose: true,
+		opacity: 1,
+		overlayCss: {
             backgroundColor: "#000"
         },
+		position: ["15%","36%"],
         containerId: 'scavengingBox'
     });
 };

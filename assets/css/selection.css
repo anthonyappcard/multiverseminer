@@ -1,22 +1,24 @@
 .selectPrevious {
-opacity:0.5;
-float:left;
-margin-left:20px;
-margin-top:3px;
+	opacity:0.6;
+	float:left;
+	margin-left:20px;
+	margin-top:3px;
+	cursor: pointer;
 }
 
 .selectionText {
-text-align:center;
-font-size:12px;
+	text-align:center;
+	font-size:12px;
 }
 
 .selectNext {
-opacity:0.5;
-float:right;
-margin-right:20px;
-margin-top:3px;
+	opacity:0.6;
+	float:right;
+	margin-right:20px;
+	margin-top:3px;
+	cursor: pointer;
 }
 
 .selectPrevious:hover,.selectNext:hover {
-opacity:1;
+	opacity:1.5;
 }
