@@ -1,7 +1,7 @@
 ItemCategory = {
     'unset': '-unset-',
     'rawMaterial': 'Raw Materials',
-    'gearBuildings': 'Buildings',
+    'gearBuilding': 'Buildings',
     'gem': 'Gems',
     'component': 'Components',
     'miningGear': 'Mining Gear',
@@ -19,8 +19,8 @@ ItemCategory = {
 
 ItemCategoryPlanet = {
     'unset': '-unset-',
-    'gearBuildings': 'Buildings',
     'rawMaterial': 'Raw Materials',
+    'gearBuilding': 'Buildings',
     'gem': 'Gems',
     'scavenge': 'Scavenge'
 };
@@ -33,5 +33,5 @@ GearType = {
     'secondHand': 'Second Hand',
     'legs': 'Legs',
     'feet': 'Feet',
-    'buildings': 'Building'
+    'building': 'Building'
 };

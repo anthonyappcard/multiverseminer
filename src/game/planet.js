@@ -168,7 +168,7 @@ function Planet(data) {
         this.autoProduce = false;
         this.autoProduceItems = {};
 
-        var items = this.storage.getItemsOfCategory('gearBuildings');
+        var items = this.storage.getItemsOfCategory('gearBuilding');
         if (!items) {
             return;
         }
