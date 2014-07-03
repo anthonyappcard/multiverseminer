@@ -1,8 +1,9 @@
-require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "custombox", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "contextmenu", "bulletin","qtip2"]);
+require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "custombox", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "contextmenu", "bulletin","qtip2", "remote/socket"]);
 
 // Create components
 var game = new Game();
 var ui = new UI();
+var socket = undefined;
 var uiplanetscreen = new UIPlanetScreen();
 
 // Save before closing the page.
