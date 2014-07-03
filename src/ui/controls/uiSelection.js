@@ -35,6 +35,7 @@ function UISelection(id, parent) {
     	}
     	
     	this.keys = Object.keys(this.values);
+        console.log(this.keys);
     	this.max = this.keys.length - 1;
     	
         this.selectionFirstElement = $('<img class="selectPrevious clickable" src="'+ sys.selectionArrowBackFast + '"/>');
@@ -64,18 +65,22 @@ function UISelection(id, parent) {
     	if(!this.baseUpdate(currentTime)) {
     		return;
     	};
-    	
-        var key = this.keys[this.selection];
-        this.selectionTextElement.text(this.values[key].toUpperCase());
+        try {
+            var key = this.keys[this.selection];
+            this.selectionTextElement.text(key.replace("gear", "").split(/(?=[A-Z])/g).join(' ').toLowerCase());
+        } catch (e) {
+            var key = "rawMaterial";
+            this.selectionTextElement.text(key.replace("gear", "").split(/(?=[A-Z])/g).join(' ').toLowerCase());
+        }
     };
     
     this.setSelection = function(id) {
+        //console.log(this.keys);
         if (!this.keys[id]) {
-            utils.logError("setSelection called with invalid argument: " + id);
-            return;
+            this.selection = self.min + 1;
+        } else {
+            this.selection = id;
         }
-        
-        this.selection = id;
         this.invalidate();
     };
         

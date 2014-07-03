@@ -5,9 +5,10 @@
   <title>Multiverse Miner</title>
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 	<meta content="utf-8" http-equiv="encoding">
+	<link href="MultiverseMiner.min.css" rel="stylesheet" type="text/css" />
 	<script src="require.js" type="text/javascript"></script>
 	<script src="MultiverseMiner.min.js" type="text/javascript"></script>
-	<link href="MultiverseMiner.min.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body class="body">
@@ -120,9 +121,10 @@
         <div class="gearPanel" id="playerGearPanel">
           <div id="playerGearContent" style="overflow-x:none;">
             <div class="playerGearPaperdoll" id="playerGearSlots"></div>
+            <div class="minerGearStats" id="minerGearStats"></div>
           </div>
 
-          <div class="minerStats" id="minerStats">
+          
             <div id="combatantHP">
               HP:
             </div>
@@ -150,8 +152,7 @@
         <div class="planetPanel" id="planetPanel">
           <div class="inventoryPanel" id="planetInventoryPanel">
             <div id="planetInventoryContent">
-              <div class="inventoryFilter" id="planetInventoryFilter"></div>
-
+              <div class="planetInventoryFilter" id="planetInventoryFilter"></div>
               <div class="inventoryContentPlanet panelContent" id="planetInventorySlots">
               </div>
             </div>
@@ -404,12 +405,13 @@
           Travel
 		</div>
     </div>
-
+    <!--
       <div class="genericButton bottomBarButton clickable noselect" id="fightButton" onclick="showFight()">
         <div class="bottomBarButtonText noSelect">
           Fight
         </div>
       </div>
+    -->
 </div>
 	
 	

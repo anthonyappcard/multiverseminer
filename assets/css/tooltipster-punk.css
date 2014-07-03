@@ -5,6 +5,7 @@
 	color: #fff;
 	position: absolute;
 	border-radius: 2px;
+	border: 1px solid orange;
 }
 .tooltipster-punk .tooltipster-content {
 	font-family: 'Courier', monospace;
@@ -12,4 +13,5 @@
 	z-index: 3000;
 	line-height: 16px;
 	padding: 8px 10px;
+	width: 250px;
 }

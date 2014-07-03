@@ -195,6 +195,16 @@ width: 49%;
 padding-left: 1%;
 padding-top: 2%;
 }
+.minerGearStats{
+    display: block;
+    float: right;
+    font-size: 12px;
+    position: absolute;
+    right: 85px;
+    text-align: left;
+    top: 11%;
+    width: 180px;
+}
 .statsContent {
     font-size: 12px;
     text-align: left;

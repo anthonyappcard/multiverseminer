@@ -1,4 +1,4 @@
-require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "custombox", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "contextmenu", "bulletin","qtip2", "remote/socket"]);
+require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "contextmenu", "bulletin", "qtip2", "remote/socket"]);
 
 // Create components
 var game = new Game();
@@ -313,12 +313,8 @@ function togglePopup() {
 
 function goMining() {
     $("#miningModal").modal({
-        opacity: 80,
         escClose: true,
-        overlayClose: true,
-        overlayCss: {
-            backgroundColor: "#000"
-        },
+		position: ["15%","36%"],
         containerId: 'miningBox'
     });
 };
@@ -360,7 +356,6 @@ function onMine() {
 
     if ($("#leftCategory2").hasClass("genericButtonSelected")) uiplanetscreen.updateStatsPanel();
     result = game.player.mine();
-    console.log(result);
     if (result) {
         $('#audioDigSuccess').trigger('play');
         //x = String(result.split(" = ")[1]);

@@ -211,7 +211,7 @@ function UISlot(id, parent) {
                 content += "Evasion: " + item.evasion + "</br>";
                 break;
 
-            case "gearBuilding":
+            case "autoProduce":
                 content = "<b>" + item.name + "</b></br>" + item.description + "<br><br>";
                 break;
 

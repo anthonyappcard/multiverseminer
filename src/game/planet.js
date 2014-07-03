@@ -10,17 +10,17 @@ function Planet(data) {
     this.autoMineValue = 0;
     this.autoMine = false;
 
-    this.autogatherPerSecond = 0;
-    this.autogatherValue = 0;
-    this.autogather = false;
+    this.autoGatherPerSecond = 0;
+    this.autoGatherValue = 0;
+    this.autoGather = false;
 
-    this.autoscavengePerSecond = 0;
-    this.autoscavengeValue = 0;
-    this.autoscavenge = false;
+    this.autoScavengePerSecond = 0;
+    this.autoScavengeValue = 0;
+    this.autoScavenge = false;
     
-    this.autorefinePerSecond = 0;
-    this.autorefineValue = 0;
-    this.autorefine = false;
+    this.autoRefinePerSecond = 0;
+    this.autoRefineValue = 0;
+    this.autoRefine = false;
     
     this.autoProduce = false;
     this.autoProduceItems = [];
@@ -60,29 +60,29 @@ function Planet(data) {
                 }
             }
 
-            if (this.autogather) {
-                this.autogatherValue += this.autogatherPerSecond;
-                if (this.autogatherValue >= 1) {
-                    var attempts = Math.floor(this.autogatherValue);
-                    this.autogatherValue -= attempts;
-                    this._autogather(attempts);
+            if (this.autoGather) {
+                this.autoGatherValue += this.autoGatherPerSecond;
+                if (this.autoGatherValue >= 1) {
+                    var attempts = Math.floor(this.autoGatherValue);
+                    this.autoGatherValue -= attempts;
+                    this._autoGather(attempts);
                 }
             }
 
-            if (this.autoscavenge) {
-                this.autoscavengeValue += this.autoscavengePerSecond;
-                if (this.autoscavengeValue >= 1) {
-                    var attempts = Math.floor(this.autoscavengeValue);
-                    this.autoscavengeValue -= attempts;
-                    this._autoscavenge(attempts);
+            if (this.autoScavenge) {
+                this.autoScavengeValue += this.autoScavengePerSecond;
+                if (this.autoScavengeValue >= 1) {
+                    var attempts = Math.floor(this.autoScavengeValue);
+                    this.autoScavengeValue -= attempts;
+                    this._autoScavenge(attempts);
                 }
             }
             
-            if (this.autorefine) {
-                this.autorefineValue += this.autorefinePerSecond;
-                if (this.autorefineValue >= 1) {
-                    this.autorefineValue -= attempts;
-                    this._autorefine(attempts);
+            if (this.autoRefine) {
+                this.autoRefineValue += this.autoRefinePerSecond;
+                if (this.autoRefineValue >= 1) {
+                    this.autoRefineValue -= attempts;
+                    this._autoRefine(attempts);
                 }
             }
         }
@@ -107,8 +107,8 @@ function Planet(data) {
             return;
         }
 
-        if(this.storage.getItemCount(itemId) > (game.getItem(itemId).planetlimit || 1)) {
-            game.moveItems(itemId, this.storage, game.player.storage, this.storage.getItemCount(itemId) - (game.getItem(itemId).planetlimit || 1));
+        if(this.storage.getItemCount(itemId) > (game.getItem(itemId).planetLimit || 1)) {
+            game.moveItems(itemId, this.storage, game.player.storage, this.storage.getItemCount(itemId) - (game.getItem(itemId).planetLimit || 1));
         }
         
         this._updateStats();
@@ -153,22 +153,22 @@ function Planet(data) {
         this.autoMineValue = 0;
         this.autoMine = false;
 
-        this.autogatherPerSecond = 0;
-        this.autogatherValue = 0;
-        this.autogather = false;
+        this.autoGatherPerSecond = 0;
+        this.autoGatherValue = 0;
+        this.autoGather = false;
 
-        this.autoscavengePerSecond = 0;
-        this.autoscavengeValue = 0;
-        this.autoscavenge = false;
+        this.autoScavengePerSecond = 0;
+        this.autoScavengeValue = 0;
+        this.autoScavenge = false;
         
-        this.autorefinePerSecond = 0;
-        this.autorefineValue = 0;
-        this.autorefine = false;
+        this.autoRefinePerSecond = 0;
+        this.autoRefineValue = 0;
+        this.autoRefine = false;
         
         this.autoProduce = false;
         this.autoProduceItems = {};
 
-        var items = this.storage.getItemsOfCategory('gearBuilding');
+        var items = this.storage.getItemsOfCategory('gearBuildings');
         if (!items) {
             return;
         }
@@ -176,15 +176,15 @@ function Planet(data) {
         for (var i = 0; i < items.length; i++) {
             var item = game.getItem(items[i]);
             
-            if(item.autoproduce) {
+            if(item.autoProduce) {
                 this.autoProduce = true;
                 // I think the line below this will be wrong.
                 this.autoProduceItems = [];
-                this.autoProduceItems.push(item.autoproduce);
+                this.autoProduceItems.push(item.autoProduce);
             }
             
-            if (item.automine) {
-                this.autoMinePerSecond += item.automine * this.storage.getItemCount(item.id);
+            if (item.autoMine) {
+                this.autoMinePerSecond += item.autoMine * this.storage.getItemCount(item.id);
                 this.autoMine = true;
                 // Temporary cap at 10 / s
                 if (this.autoMinePerSecond > 10) {
@@ -193,29 +193,29 @@ function Planet(data) {
 
             }
 
-            if (item.autogather) {
-                this.autogatherPerSecond += item.autogather * this.storage.getItemCount(item.id);
-                this.autogather = true;
+            if (item.autoGather) {
+                this.autoGatherPerSecond += item.autoGather * this.storage.getItemCount(item.id);
+                this.autoGather = true;
                 // Temporary cap at 10 / s
-                if (this.autogatherPerSecond > 10) {
-                    this.autogatherPerSecond = 10;
+                if (this.autoGatherPerSecond > 10) {
+                    this.autoGatherPerSecond = 10;
                 }
             }
 
-            if (item.autoscavenge) {
-                this.autoscavengePerSecond += item.autoscavenge * this.storage.getItemCount(item.id);
-                this.autoscavenge = true;
+            if (item.autoScavenge) {
+                this.autoScavengePerSecond += item.autoScavenge * this.storage.getItemCount(item.id);
+                this.autoScavenge = true;
                 // Temporary cap at 5 / s
-                if (this.autoscavengePerSecond > 5) {
-                    this.autoscavengePerSecond = 5;
+                if (this.autoScavengePerSecond > 5) {
+                    this.autoScavengePerSecond = 5;
                 }
             }
-            if (item.autorefine) {
-                this.autorefinePerSecond += item.autorefine * this.storage.getItemCount(item.id);
-                this.autorefine = true;
+            if (item.autoRefine) {
+                this.autoRefinePerSecond += item.autoRefine * this.storage.getItemCount(item.id);
+                this.autoRefine = true;
                 // Temporary cap at 5 / s
-                if (this.autorefine > 5) {
-                    this.autorefinePerSecond = 5;
+                if (this.autoRefine > 5) {
+                    this.autoRefinePerSecond = 5;
                 }
             }
         };
@@ -242,11 +242,11 @@ function Planet(data) {
         this._finalizeAuto(totalItems);
     };
 
-    this._autogather = function(attempts) {
+    this._autoGather = function(attempts) {
         if (attempts > 100) {
             throw new Error("Way too many auto attempts pending, check the timer code!");
         }
-        game.settings.addStat('autogatherCount');
+        game.settings.addStat('autoGatherCount');
         var totalItems = [];
         for (var i = 0; i < attempts; i++) {
             var items = this.miner.gather(this);
@@ -262,11 +262,11 @@ function Planet(data) {
         this._finalizeAuto(totalItems);
     };
 
-    this._autoscavenge = function(attempts) {
+    this._autoScavenge = function(attempts) {
         if (attempts > 100) {
             throw new Error("Way too many auto attempts pending, check the timer code!");
         }
-        game.settings.addStat('autoscavengeCount');
+        game.settings.addStat('autoScavengeCount');
         var totalItems = [];
         for (var i = 0; i < attempts; i++) {
             var items = this.miner.scavenge(this);
@@ -282,11 +282,11 @@ function Planet(data) {
         this._finalizeAuto(totalItems);
     };
     
-    this._autorefine = function(attempts) {
+    this._autoRefine = function(attempts) {
         if (attempts > 100) {
             throw new Error("Way too many auto attempts pending, check the timer code!");
         }
-        game.settings.addStat('autorefineCount');
+        game.settings.addStat('autoRefineCount');
         if ($("#leftCategory2").hasClass("genericButtonSelected")) {
             uiplanetscreen.updateStatsPanel();
         }

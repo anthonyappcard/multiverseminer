@@ -1,6 +1,7 @@
 ItemCategory = {
     'unset': '-unset-',
     'rawMaterial': 'Raw Materials',
+    'gearBuildings': 'Buildings',
     'gem': 'Gems',
     'component': 'Components',
     'miningGear': 'Mining Gear',
@@ -10,7 +11,6 @@ ItemCategory = {
     'gearChest': 'Chest Gear',
     'gearLegs': 'Leg Gear',
     'gearFeet': 'Foot Gear',
-    'gearBuilding': 'Buildings',
     'machines': 'Machines',
     'usable': 'Usable',
     'spaceship': 'Spaceship',
@@ -19,9 +19,9 @@ ItemCategory = {
 
 ItemCategoryPlanet = {
     'unset': '-unset-',
+    'gearBuildings': 'Buildings',
     'rawMaterial': 'Raw Materials',
-    'gem': 'Gems',
-    'gearBuilding': 'Buildings',
+    'gem': 'Gems'
 };
 
 GearType = {
@@ -32,5 +32,5 @@ GearType = {
     'secondHand': 'Second Hand',
     'legs': 'Legs',
     'feet': 'Feet',
-    'building': 'Building'
+    'buildings': 'Building'
 };

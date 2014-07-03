@@ -61,7 +61,7 @@ function UIPlanetScreen() {
 		this.playerInventory.setCategory(game.settings.selectedPlayerInventoryFilter);
 
 		this.planetInventoryFilter = new UISelection('planetInventoryFilter');
-		this.planetInventoryFilter.values = ItemCategory;
+		this.planetInventoryFilter.values = ItemCategoryPlanet;
 		this.planetInventoryFilter.callback = this.onPlanetInventoryFilterChanged;
 		this.planetInventoryFilter.min = 1; // To avoid selecting undef
 		this.planetInventoryFilter.init();
@@ -246,7 +246,17 @@ function UIPlanetScreen() {
 			var slot = ui.buildGearSlot('playerGear', gearSlots[i], itemId, parent);
 			slot.itemContext = self.componentPlayerGear.itemContext;
 			parent.append(slot.getMainElement());
-		}
+		};
+        stats = game.player.gear.getStats();
+        y = [];
+		Object.keys(stats) .forEach(function (key) {
+			var value = stats[key];
+			if (isNaN(value)) {
+				value = 0;
+			};
+			y.push('<tr><td>' + key.split(/(?=[A-Z])/g).join(' ').toLowerCase() + '</td><td>' + value + '</td></tr>');
+		});
+        $("#minerGearStats").html('<div class=\'statTable\'><table><tbody><tr><td>Stats</td><td>#</td></tr>' + y.join(''));
 	};
 
 	this.buildCraftingTooltip = function(item) {
@@ -262,7 +272,7 @@ function UIPlanetScreen() {
 					}
 					content += "<strong>Cost:</strong></br>";
 					for (cost in item.craftCost) {
-						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "&nbsp;(" + game.player.storage.getItemCount(cost) +")</br>";
 					}
 				}
 				if (item.el) {
@@ -279,7 +289,7 @@ function UIPlanetScreen() {
 					content = "<strong>" + item.name + "</strong><p>";
 					content += "<strong>Cost:</strong></br>";
 					for (cost in item.craftCost) {
-						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "&nbsp;(" + game.player.storage.getItemCount(cost) +")</br>";
 					}
 				}
 				if (item.description) {
@@ -293,7 +303,7 @@ function UIPlanetScreen() {
 					content = "<strong>" + item.name + "</strong><p>";
 					content += "<strong>Cost:</strong></br>";
 					for (cost in item.craftCost) {
-						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "&nbsp;(" + game.player.storage.getItemCount(cost) +")</br>";
 					}
 				}
 				if (item.description) {
@@ -312,7 +322,7 @@ function UIPlanetScreen() {
 					content = "<strong>" + item.name + "</strong><p>";
 					content += "<strong>Cost:</strong></br>";
 					for (cost in item.craftCost) {
-						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "&nbsp;(" + game.player.storage.getItemCount(cost) +")</br>";
 					}
 				}
 				if (item.description) {
@@ -328,7 +338,7 @@ function UIPlanetScreen() {
 					content = "<strong>" + item.name + "</strong><p>";
 					content += "<strong>Cost:</strong></br>";
 					for (cost in item.craftCost) {
-						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "&nbsp;(" + game.player.storage.getItemCount(cost) +")</br>";
 					}
 				}
 				if (item.description) {
@@ -344,7 +354,7 @@ function UIPlanetScreen() {
 					content = "<strong>" + item.name + "</strong><p>";
 					content += "<strong>Cost:</strong></br>";
 					for (cost in item.craftCost) {
-						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "&nbsp;(" + game.player.storage.getItemCount(cost) +")</br>";
 					}
 				}
 				if (item.description) {
@@ -360,7 +370,7 @@ function UIPlanetScreen() {
 					content = "<strong>" + item.name + "</strong><p>";
 					content += "<strong>Cost:</strong></br>";
 					for (cost in item.craftCost) {
-						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "&nbsp;(" + game.player.storage.getItemCount(cost) +")</br>";
 					}
 				}
 				if (item.description) {
@@ -376,7 +386,7 @@ function UIPlanetScreen() {
 					content = "<strong>" + item.name + "</strong><p>";
 					content += "<strong>Cost:</strong></br>";
 					for (cost in item.craftCost) {
-						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "&nbsp;(" + game.player.storage.getItemCount(cost) +")</br>";
 					}
 				}
 				if (item.description) {
@@ -396,47 +406,47 @@ function UIPlanetScreen() {
 					}
 					content += "<strong>Cost:</strong></br>";
 					for (cost in item.craftCost) {
-						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "</br>";
+						content += "&nbsp;" + game.getItemName(cost) + " x " + item.craftCost[cost] + "&nbsp;(" + game.player.storage.getItemCount(cost) +")</br>";
 					}
 				}
 				if (item.id == "miningRig") {
 					content += "</br><strong>Stats:</strong></br>";
-					content += "&nbsp;Mining : " + item.automine + "/aps";
+					content += "&nbsp;Mining : " + item.autoMine + "/aps";
 				}
 				if (item.id == "refinery") {
 					content += "</br><strong>Stats:</strong></br>";
-					content += "&nbsp;Refining Rate: " + item.autorefine + "/aps";
+					content += "&nbsp;Refining Rate: " + item.autoRefine + "/aps";
 				}
 				if (item.id == "gatherStation") {
 					content += "</br><strong>Stats:</strong></br>";
-					content += "&nbsp;Gathering Rate: " + item.autogather + "/aps";
+					content += "&nbsp;Gathering Rate: " + item.autoGather + "/aps";
 				}
 				if (item.id == "scavengeStation") {
 					content += "</br><strong>Stats:</strong></br>";
-					content += "&nbsp;Scavenging Rate: " + item.autoscavenge + "/aps";
+					content += "&nbsp;Scavenging Rate: " + item.autoScavenge + "/aps";
 				}
 				if (item.id == "crudeOilDrone") {
 					content += "</br><strong>Stats:</strong></br>";
-					var aMatch = item.statchange.match("(\\w+)\":([0-9.]+)");
+					var aMatch = item.statChange.match("(\\w+)\":([0-9.]+)");
 					content += "&nbsp;" + game.getItemName(aMatch[1]) + " +" + aMatch[2] + "&#37;";
 				}
 				if (item.id == "ironDetector") {
 					content += "</br><strong>Stats:</strong></br>";
-					var aMatch = item.statchange.match("(\\w+)\":([0-9.]+)");
+					var aMatch = item.statChange.match("(\\w+)\":([0-9.]+)");
 					content += "&nbsp;" + game.getItemName(aMatch[1]) + " +" + aMatch[2] + "&#37;";
 				}
 				if (item.id == "oilPump") {
 					content += "</br><strong>Stats:</strong></br>";
-					var aMatch = item.statchange.match("(\\w+)\":([0-9.]+)");
+					var aMatch = item.statChange.match("(\\w+)\":([0-9.]+)");
 					content += "&nbsp;" + game.getItemName(aMatch[1]) + " +" + aMatch[2] + "&#37;";
 				}
 				if (item.id == "carbonDetector") {
 					content += "</br><strong>Stats:</strong></br>";
-					var aMatch = item.statchange.match("(\\w+)\":([0-9.]+)");
+					var aMatch = item.statChange.match("(\\w+)\":([0-9.]+)");
 					content += "&nbsp;" + game.getItemName(aMatch[1]) + " +" + aMatch[2] + "&#37;";
 				}
 				break;
-
+				
 				/* Spaceship */
 			case "spaceship":
 				if (item.craftCost) {
@@ -461,7 +471,7 @@ function UIPlanetScreen() {
 					content: self.buildCraftingTooltip(item),
 					theme: 'tooltipster-punk',
 					contentAsHTML: true,
-					position: "bottom",
+					position: "left",
 					onlyOne: true,
 					interactiveTolerance: 10,
 					offsetX: 0,
@@ -580,7 +590,6 @@ function UIPlanetScreen() {
 	};
 
 	this.updateStatsPanel = function() {
-		//$("#statsContent").html("");
 		var stats = game.player.stats;
 		var x = [];
 		var y = [];
@@ -588,8 +597,7 @@ function UIPlanetScreen() {
 		Object.keys(myObj) .forEach(function (prop) {
 			if (myObj.hasOwnProperty(prop) && prop !== 'key' && typeof myObj[prop] != 'function' && prop != 'id') {
 				if (myObj[prop] == null) myObj[prop] = 0;
-				//x.push($('<div>') .append($('<tr>') .append($('<td>' + prop + '</td>')) .append('<td>' + myObj[prop] + '</td>')) .html());
-				x.push('<tr><td>' + prop + '</td><td>' + myObj[prop] + '</td></tr>');
+				x.push('<tr><td>' + prop.split(/(?=[A-Z])/g).join(' ').toLowerCase() + '</td><td>' + myObj[prop] + '</td></tr>');
 			};
 		});
 		Object.keys(stats) .forEach(function (key) {
@@ -597,18 +605,8 @@ function UIPlanetScreen() {
 			if (isNaN(value)) {
 				value = 0;
 			};
-			//y.push($('<div>') .append($('<tr>') .append($('<td>' + key + '</td>')) .append('<td>' + value + '</td>')) .html());
-			y.push('<tr><td>' + key + '</td><td>' + value + '</td></tr>');
+			y.push('<tr><td>' + key.split(/(?=[A-Z])/g).join(' ').toLowerCase() + '</td><td>' + value + '</td></tr>');
 		});
-/*
-		var statsContent = $('#statsContent');
-		var playerStats = $('<div class=\'statTable\'></div>');
-		playerStats.append($('<table>') .append($('<tr>') .append($('<td>Stats</td><td>#</td>'))) .append(y.join('')));
-		statsContent.append(playerStats);
-		var gameStats = $('<div class=\'statTable\'></div>');
-		gameStats.append($('<table>') .append($('<tr>') .append($('<td>Actions</td><td>#</td>'))) .append(x.join('')));
-		statsContent.append(gameStats);
-*/
 		$("#statsContent").html('<div class=\'statTable\'><table><tbody><tr><td>Stats</td><td>#</td></tr>' + y.join('') + '</tbody></table></div><div class=\'statTable\'><table><tbody><tr><td>Actions</td><td>#</td></tr>' + x.join('') + '</tbody></table></div>');
 	};
 
@@ -787,7 +785,7 @@ function UIPlanetScreen() {
 			icon = item.icon;
 		}
 	
-		if (item.planetlimit == "1") {
+		if (item.planetLimit == "1") {
 			content.append('<image class="craftingIcon" src="' + sys.iconRoot + icon + '" />');
 			content.append('<span id="craftingText" class="craftingText">' + item.name + '</span>');
 			content.append('<span class="craftingCount"></span><br>');
