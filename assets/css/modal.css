@@ -307,7 +307,7 @@
     color: #ddd;
 }
 
-/*
+
 #miningBox a.modalCloseImg {
     background: url(assets/images/x.png) no-repeat;
     width: 25px;
@@ -319,7 +319,6 @@
     right: -16px;
     cursor: pointer;
 }
-*/
 
 #miningBox h3 {
     color: #84b8d9;
