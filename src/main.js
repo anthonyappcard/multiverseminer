@@ -61,7 +61,6 @@ function onDocumentReady() {
     $(document).on('mousedown', '.hasMenu', function(e) {
         e.preventDefault();
         var item = game.getItem($("div:last-child", this).attr("id"));
-
         if (e.which === 3 && item !== undefined) {
             $(this).contextmenu({
                 menu: function() {
@@ -158,8 +157,7 @@ function onDocumentReady() {
             });
         }
     });
-
-    $("#bulletin").bulletin();
+    //$("#bulletin").bulletin();
     //$("#solarsystem").dialog();
 };
 
@@ -207,7 +205,6 @@ function newCraft(itemId, quantity) {
         quantity = 1;
     };
     if (quantity == "max") quantity = game.player.storage.getMaxCrafts(itemId);
-    //console.log("Final quantity: " + quantity);
     try {
         if (game.player.craft(itemId, quantity)) {
             return true;

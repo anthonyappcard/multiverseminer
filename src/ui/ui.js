@@ -78,14 +78,9 @@ function UI() {
 			speed: 1
 		});
 		$('#settings').toolbar({
-            theme: 'tooltipster-punk',
 			content: '#user-toolbar-options',
-			contentAsHTML: true,
 			position: "bottom",
-			onlyOne: true,
-			interactiveTolerance: 10,
-            autoClose: true,
-			speed: 1
+            autoClose: true
 		});
 	};
 
