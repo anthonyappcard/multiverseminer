@@ -89,7 +89,7 @@ function onDocumentReady() {
                         }
                     ];
 
-                    // Equiptment
+                    // Equipment
                     if(game.player.canEquip(item.id)) {
                         var currentEquip = game.player.gear.getItemInSlot(item.gearType);
                         if(currentEquip !== undefined) {
@@ -97,7 +97,7 @@ function onDocumentReady() {
                         }
 
                         // Equip text to show in the menu
-                        var equipText = "Unquip";
+                        var equipText = "Unequip";
                         if(currentEquip === undefined || currentEquip.id !== item.id) {
                             equipText = "Equip";
                         }
@@ -117,20 +117,18 @@ function onDocumentReady() {
                     }
 
                     // Buildings
-                    if(game.currentPlanet.canEquip(item.id)) {
-                        var isCurrentlyEquiped = game.currentPlanet.storage.hasItem(item.id);
-
+                    if (game.getItem(item.id).planetLimit < game.currentPlanet.storage.getItem(item.id)) {
+                        isCurrentlyEquiped = game.currentPlanet.storage.hasItem(item.id);
                         menu.push({
-                            title: (isCurrentlyEquiped === true ? "Move to Player" : "Construct"),
+                            title: (isCurrentlyEquiped === true ? "Deconstruct" : "Construct"),
                             action: function(event, ui) {
-                                if(isCurrentlyEquiped === true) {
+                                if(game.getItem(item.id).planetLimit >= game.currentPlanet.storage.getItem(item.id)) {
                                     game.currentPlanet.storage.removeItem(item.id);
                                     game.player.storage.addItem(item.id);
                                 } else {
                                     game.currentPlanet.storage.addItem(item.id);
                                     game.player.storage.removeItem(item.id);
                                 }
-
                                 game.currentPlanet._updateStats();
                                 game.currentPlanet.update();
                             }
@@ -146,6 +144,17 @@ function onDocumentReady() {
                             }
                         });
                     }
+                    
+                    // Trash
+                    if (game.player.storage.hasItem(item.id)) {
+                        menu.push({
+                            title: "Trash",
+                            action: function(event, ui) {
+                                console.log(ui.target.getAttribute("div"));
+                                //game.player.storage.removeItem(item.id, game.player.storage.getItemCount(item.id));
+                            }
+                        });
+                    };
 
                     return menu;
                 }

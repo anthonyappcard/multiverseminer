@@ -100,13 +100,13 @@ function Game() {
         // Reset the saved settings
         this.player.reset(fullReset);
         this.settings.reset(fullReset);
-        
+
         this.settings.currentPlanet = Planets.earth.id;
 
         if (this.currentPlanet) {
             this.currentPlanet.reset(fullReset);
         }
-        
+
         this.setNewGame();
         this.setStartupState();
         //this.save();
@@ -374,7 +374,7 @@ function Game() {
         this.planetChanged = true;
         //this.save();
         //this.currentPlanet.load();
-        
+
     };
 
     this.getDefaultItemIcon = function(item) {
@@ -499,11 +499,11 @@ function Game() {
         // Todo
         switch (sourceContext) {
             case this.itemContexts.playerInventory:
-                return; //this._processItemContextPlayerInventory(itemId, target);
+                return this._processItemContextPlayerInventory(itemId, target);
             case this.itemContexts.planetInventory:
-                return; //this._processItemContextPlanetInventory(itemId, target);
+                return this._processItemContextPlanetInventory(itemId, target);
             case this.itemContexts.playerGear:
-                return; //this._processItemContextPlayerGear(itemId, target);
+                return this._processItemContextPlayerGear(itemId, target);
             case this.itemContexts.planetGear:
                 return this._processItemContextPlanetGear(itemId, target);
             case this.itemContexts.playerShip:
@@ -585,6 +585,9 @@ function Game() {
     this._processItemContextPlayerInventory = function(itemId, targetContext) {
         switch (targetContext) {
             case this.itemContexts.playerInventory:
+                {
+                    this.moveItems(itemId, this.currentPlanet.storage, this.player.storage, this.currentPlanet.storage.getItemCount(itemId));
+                }
                 return false;
 
             case this.itemContexts.planetInventory:
@@ -605,6 +608,7 @@ function Game() {
 
             case this.itemContexts.planetGear:
                 {
+                    return true;
                     if (this.currentPlanet.canEquip(itemId)) {
                         // Move the item to the planet and equip
                         this.moveItems(itemId, this.player.storage, this.currentPlanet.storage, this.player.storage.getItemCount(itemId));
@@ -636,7 +640,7 @@ function Game() {
                     return true;
                 }
 
-            case this.itemContexts.planetGear:
+            case this.itemContexts.planetInventory:
                 {
                     if (this.currentPlanet.canEquip(itemId)) {
                         this.currentPlanet.equip(itemId);
@@ -668,9 +672,7 @@ function Game() {
         }
     };
 
-    this._processItemContextPlanetGear = function(item, targetContext) {
-
-    };
+    this._processItemContextPlanetGear = function(item, targetContext) {};
 
     this._processItemContextPlayerShip = function(item, targetContext) {};
 
@@ -723,7 +725,7 @@ function Game() {
         //TODO: gather extra chances from planet buildings
         var chance = entry[1] * Math.sqrt(Math.pow(1.1, luck - 1)); //TODO: find a proper formula
         //TODO: add modifiers?
-        var buildings = game.currentPlanet.storage.getItemsOfCategory('gearBuilding');
+        var buildings = game.currentPlanet.storage.getItemsOfCategory('building');
         if (buildings) {
             for (var i = 0; i < buildings.length; i++) {
                 var building = buildings[i];

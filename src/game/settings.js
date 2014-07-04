@@ -16,8 +16,8 @@ function Settings() {
 	this.showTutorial;
 	
 	// UI settings
-	this.selectedPlayerInventoryFilter = 1;
-	this.selectedPlanetInventoryFilter = 1;
+	//this.selectedPlayerInventoryFilter = 1;
+	//this.selectedPlanetInventoryFilter = 1;
 	
 	this.isNewGame = true;
 	this.showTutorial = true;
@@ -69,8 +69,8 @@ function Settings() {
 		localStorage.travelDistanceRemaining = this.travelDistanceRemaining;
 		localStorage.travelDistanceElapsed = this.travelDistanceElapsed;
 		
-		localStorage.selectedPlayerInventoryFilter = this.selectedPlayerInventoryFilter;
-		localStorage.selectedPlanetInventoryFilter = this.selectedPlanetInventoryFilter;
+		//localStorage.selectedPlayerInventoryFilter = this.selectedPlayerInventoryFilter;
+		//localStorage.selectedPlanetInventoryFilter = this.selectedPlanetInventoryFilter;
 		
 		localStorage.isNewGame = this.newGame;
 		localStorage.showTutorial = this.showTutorial;
@@ -94,8 +94,8 @@ function Settings() {
 		this.travelDistanceRemaining = utils.loadFloat("travelDistanceRemaining", 0);
 		this.travelDistanceElapsed = utils.loadFloat("travelDistanceElapsed", 0);
 		
-		this.selectedPlayerInventoryFilter = utils.loadInt('selectedPlayerInventoryFilter', 1);
-		this.selectedPlanetInventoryFilter = utils.loadInt('selectedPlanetInventoryFilter', 1);
+		//this.selectedPlayerInventoryFilter = utils.loadInt('selectedPlayerInventoryFilter', 1);
+		//this.selectedPlanetInventoryFilter = utils.loadInt('selectedPlanetInventoryFilter', 1);
 		
 		this.isNewGame = utils.loadBool("isNewGame", true);
 		this.showTutorial = utils.loadBool("showTutorial", true);

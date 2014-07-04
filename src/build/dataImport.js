@@ -138,7 +138,7 @@ module.exports = function (grunt) {
 		
 		// Items		
 		var sourceFiles = {
-				'buildings.xls': {'category': 'gearBuilding', 'gearType': 'building'},
+				'buildings.xls': {'category': 'building'},
 				'components.xls': {'category': 'component'},
 		        'gear - chest.xls': {'category': 'gearChest', 'gearType': 'chest'},
 		        'gear - feet.xls': {'category': 'gearFeet', 'gearType': 'feet'}, 

@@ -211,10 +211,6 @@ function UISlot(id, parent) {
                 content += "Evasion: " + item.evasion + "</br>";
                 break;
 
-            case "autoProduce":
-                content = "<b>" + item.name + "</b></br>" + item.description + "<br><br>";
-                break;
-
             case "machines":
                 content = "<b>" + item.name + "</b>";
                 break;
@@ -233,6 +229,15 @@ function UISlot(id, parent) {
 
             case "scavenge":
                 content = "<b>" + item.name + "</b>";
+                break;
+            
+            case "building":
+                content = "<b>" + item.name + "</b>";
+                content += "Auto Mining Speed: " + item.autoMine + "</br>";
+                content += "Auto Gathering Speed: " + item.autoGather + "</br>";
+                content += "Auto Decompose Speed: " + item.autoRefine + "</br>";
+                content += "Auto Scavenge Speed: " + item.autoScavenge + "</br>";
+                content += "Planet Limit: " + item.planetLimit + "</br>";
                 break;
         };
         content += "</div>";

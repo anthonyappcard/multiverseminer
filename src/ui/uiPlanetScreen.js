@@ -49,29 +49,31 @@ function UIPlanetScreen() {
 		this.playerInventoryFilter = new UISelection('playerInventoryFilter');
 		this.playerInventoryFilter.values = ItemCategory;
 		this.playerInventoryFilter.callback = this.onPlayerInventoryFilterChanged;
-		this.playerInventoryFilter.min = 1; // To avoid selecting undef
+		this.playerInventoryFilter.min = 0; // To avoid selecting undef
+        this.playerInventoryFilter.max = 11;
 		this.playerInventoryFilter.init();
-		this.playerInventoryFilter.setSelection(game.settings.selectedPlayerInventoryFilter);
+		this.playerInventoryFilter.setSelection(0);
 
 		this.playerInventory = new UIInventory('playerInventorySlots', 56);
 		this.playerInventory.setStorage(game.player.storage);
 		this.playerInventory.itemContext = game.itemContexts.playerInventory;
 		this.playerInventory.slotCount = 56;
 		this.playerInventory.init();
-		this.playerInventory.setCategory(game.settings.selectedPlayerInventoryFilter);
+		this.playerInventory.setCategory(0);
 
 		this.planetInventoryFilter = new UISelection('planetInventoryFilter');
 		this.planetInventoryFilter.values = ItemCategoryPlanet;
 		this.planetInventoryFilter.callback = this.onPlanetInventoryFilterChanged;
-		this.planetInventoryFilter.min = 1; // To avoid selecting undef
+		this.planetInventoryFilter.min = 0; // To avoid selecting undef
+        this.planetInventoryFilter.max = 3;
 		this.planetInventoryFilter.init();
-		this.planetInventoryFilter.setSelection(game.settings.selectedPlanetInventoryFilter);
+		this.planetInventoryFilter.setSelection(0);
 
 		this.planetInventory = new UIInventory('planetInventorySlots', 56);
 		this.planetInventory.itemContext = game.itemContexts.planetInventory;
 		this.planetInventory.slotCount = 56;
 		this.planetInventory.init();
-		this.planetInventory.setCategory(game.settings.selectedPlanetInventoryFilter);
+		this.planetInventory.setCategory(0);
 
 		this.componentLeftPanel = new UIComponent('panelPlanetLeft');
 		this.componentLeftPanel.init();
@@ -398,7 +400,7 @@ function UIPlanetScreen() {
 
 			
 			/* Buildings */
-			case "gearBuilding":
+			case "building":
 				if (item.craftCost) {
 					content = "<strong>" + item.name + "</strong><p>";
 					if (item.description) {
@@ -701,7 +703,6 @@ function UIPlanetScreen() {
 		var category = self.playerInventoryFilter.selection;
 		game.settings.selectedPlayerInventoryFilter = category;
 		self.playerInventory.setCategory(category);
-
 		self.componentPlayerInventory.invalidate();
 	};
 

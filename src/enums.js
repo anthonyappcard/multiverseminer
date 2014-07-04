@@ -1,27 +1,22 @@
 ItemCategoryPlanet = {
-    'unset': '-unset-',
-    'gearBuilding': 'Buildings',
     'rawMaterial': 'Raw Materials',
     'gem': 'Gems',
-    'scavenge': 'Scavenge'
+    'scavenge': 'Scavenge',
+    'building': 'Buildings'
 };
 ItemCategory = {
-    'unset': '-unset-',
-    'gearBuilding': 'Buildings',
     'rawMaterial': 'Raw Materials',
     'gem': 'Gems',
     'scavenge': 'Scavenge',
     'component': 'Components',
     'miningGear': 'Mining Gear',
     'gearMainHand': 'Main Hand',
-    'gearSecondHand': 'Second Hand',
     'gearHead': 'Head Gear',
     'gearChest': 'Chest Gear',
     'gearLegs': 'Leg Gear',
     'gearFeet': 'Foot Gear',
-    'machines': 'Machines',
-    'usable': 'Usable',
-    'spaceship': 'Spaceship'
+    'spaceship': 'Spaceship',
+    'building': 'Buildings'
 };
 GearType = {
     'head': 'Head',

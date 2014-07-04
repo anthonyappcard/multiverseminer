@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 					name     : 'main',
 
 					uglify2 : {
-						mangle : true
+						mangle : false
 					},
 
 					paths : {
@@ -106,12 +106,11 @@ module.exports = function(grunt) {
 	});
 
 	// Load the plugin that provides the "uglify" task.
+	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks('grunt-contrib-requirejs');
-	grunt.loadNpmTasks('grunt-contrib-clean');
-	
 	grunt.loadTasks("./src/build/");
 
 	// Default task(s).

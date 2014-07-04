@@ -92,13 +92,11 @@ function Planet(data) {
         if(!itemId) {
             return false;
         }
-
         var item = game.getItem(itemId);
-        if(item === undefined || item.gearType !== "building" || (!this.storage.hasItem(itemId) && !game.player.storage.hasItem(itemId))) {
-            return false;
+        if(item !== undefined && (game.getItem(itemId).planetLimit < game.player.storage.getItemCount(itemId) && game.player.storage.hasItem(itemId))) {
+            return true;
         }
-
-        return true;
+        return false;
     };
 
     this.equip = function(itemId) {
@@ -107,22 +105,17 @@ function Planet(data) {
             return;
         }
 
-        if(this.storage.getItemCount(itemId) > (game.getItem(itemId).planetLimit || 1)) {
+        if(this.storage.getItemCount(itemId) < game.getItem(itemId).planetLimit || 1) {
             game.moveItems(itemId, this.storage, game.player.storage, this.storage.getItemCount(itemId) - (game.getItem(itemId).planetLimit || 1));
         }
-        
         this._updateStats();
         this.update();
-        if (game.getItem(itemId).category == "rawMaterial") {
-            noty({text: game.getItem(itemId).name + " moved to other storage.",type: "notification",timeout: 1500});
-        } else {
-            noty({text: game.getItem(itemId).name + " equipped",type: "notification",timeout: 1500});
-        };
     };
 
     this.unEquip = function(itemId) {
         game.moveItems(itemId, this.storage, game.player.storage, 1);
         this._updateStats();
+        this.update();
     };
 
     // ---------------------------------------------------------------------------
@@ -168,7 +161,7 @@ function Planet(data) {
         this.autoProduce = false;
         this.autoProduceItems = {};
 
-        var items = this.storage.getItemsOfCategory('gearBuilding');
+        var items = this.storage.getItemsOfCategory('building');
         if (!items) {
             return;
         }
