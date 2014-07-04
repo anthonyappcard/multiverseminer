@@ -26,13 +26,12 @@
     width: 95%;
 }
 .inventoryContentPlanet, .inventoryContentPlayer {
-        display: block;
-        height: 436px;
-        margin-left: auto;
-        margin-right: auto;
-        overflow-x: hidden;
-        overflow-y: scroll;
-        position: inherit;
-        vertical-align: middle;
-        width: 382px;
+    display: block;
+    height: 436px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    position: inherit;
+    vertical-align: middle;
+    width: 380px;
 }
