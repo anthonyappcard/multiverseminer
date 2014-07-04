@@ -579,6 +579,19 @@ function spaceTravel() {
     });
 }
 
+function showChangeLog() {
+    $("#changeLog").load('changelog.html').modal({
+        opacity: 60,
+        height: 50,
+        escClose: true,
+        overlayClose: true,
+        overlayCss: {
+            backgroundColor: "#000",
+        },
+        containerId: 'changesLog'
+    });
+}
+
 function changeLeftCategoryButton(selected) {
     for (var i = 0; i < 4; i++) {
         var name = document.getElementById("leftCategory" + i);
