@@ -62,43 +62,41 @@ function onDocumentReady() {
         e.preventDefault();
         var item = game.getItem($("div:last-child", this).attr("id"));
 
-        if(e.which === 3 && item !== undefined) {
+        if (e.which === 3 && item !== undefined) {
             $(this).contextmenu({
                 menu: function() {
-                    var menu = [
-                        {
-                            title: "Info",
-                            action: function(event, ui) {
-                                var itemName = item.name,
-                                    itemDescription = item.description,
-                                    dialogDiv = $("#itemInfo");
+                    var menu = [{
+                        title: "Info",
+                        action: function(event, ui) {
+                            var itemName = item.name,
+                                itemDescription = item.description,
+                                dialogDiv = $("#itemInfo");
 
-                                dialogDiv.dialog({
-                                    title: "Item Info: " + itemName,
-                                    autoOpen: true
-                                });
+                            dialogDiv.dialog({
+                                title: "Item Info: " + itemName,
+                                autoOpen: true
+                            });
 
-                                dialogDiv.html("<p>Name: " + itemName + "</p>");
+                            dialogDiv.html("<p>Name: " + itemName + "</p>");
 
-                                if (itemDescription === undefined) {
-                                    itemDescription = "A mysterious item.";
-                                }
-
-                                dialogDiv.append("<p>Description: " + itemDescription + "</p>");
+                            if (itemDescription === undefined) {
+                                itemDescription = "A mysterious item.";
                             }
+
+                            dialogDiv.append("<p>Description: " + itemDescription + "</p>");
                         }
-                    ];
+                    }];
 
                     // Equipment
-                    if(game.player.canEquip(item.id)) {
+                    if (game.player.canEquip(item.id)) {
                         var currentEquip = game.player.gear.getItemInSlot(item.gearType);
-                        if(currentEquip !== undefined) {
+                        if (currentEquip !== undefined) {
                             currentEquip = game.getItem(currentEquip);
                         }
 
                         // Equip text to show in the menu
                         var equipText = "Unequip";
-                        if(currentEquip === undefined || currentEquip.id !== item.id) {
+                        if (currentEquip === undefined || currentEquip.id !== item.id) {
                             equipText = "Equip";
                         }
 
@@ -114,29 +112,26 @@ function onDocumentReady() {
                                 game.player.update();
                             }
                         });
-                    }
+                    };
 
                     // Buildings
-                    if ((game.getItem(item.id).planetLimit) > (game.currentPlanet.storage.getItemCount(item.id))) {
-                        isCurrentlyEquiped = game.currentPlanet.storage.hasItem(item.id);
-                        menu.push({
-                            title: (isCurrentlyEquiped === true ? "Deconstruct" : "Construct"),
-                            action: function(event, ui) {
-                                if ((game.getItem(item.id).planetLimit) > (game.currentPlanet.storage.getItem(item.id))) {
-                                    game.player.storage.addItem(item.id);
-                                    game.currentPlanet.storage.removeItem(item.id);
-                                } else {
-                                    game.currentPlanet.storage.addItem(item.id);
-                                    game.player.storage.removeItem(item.id);
-                                }
-                                game.currentPlanet._updateStats();
-                                game.currentPlanet.update();
+                    hasBuilding = game.currentPlanet.storage.hasItem(item.id);
+                    menu.push({
+                        title: (hasBuilding === true ? "Deconstruct" : "Construct"),
+                        action: function(event, ui) {
+                            if ((game.getItem(item.id).planetLimit) > (game.currentPlanet.storage.getItemCount(item.id))) {
+                                game.moveItems(item.id, game.player.storage, game.currentPlanet.storage, 1);
+                            } else {
+                                game.moveItems(item.id, game.currentPlanet.storage, game.player.storage, 1);
                             }
-                        });
-                    }
+                            game.currentPlanet.storage.setStorageChanged(true);
+                            game.currentPlanet._updateStats();
+                            game.currentPlanet.update();
+                        }
+                    });
 
                     // Decompose
-                    if(game.player.canDecomposeItem(item)) {
+                    if (game.player.canDecomposeItem(item)) {
                         menu.push({
                             title: "Decompose All",
                             action: function(event, ui) {
@@ -144,18 +139,20 @@ function onDocumentReady() {
                             }
                         });
                     }
-                    
+
                     // Trash
                     if (game.player.storage.hasItem(item.id)) {
                         menu.push({
                             title: "Trash",
                             action: function(event, ui) {
-                                console.log(ui.target.getAttribute("div"));
-                                //game.player.storage.removeItem(item.id, game.player.storage.getItemCount(item.id));
+                                if (e.target.id.slice(0, 6) == "planet") {
+                                    game.player.storage.removeItem(item.id, game.player.storage.getItemCount(item.id));
+                                } else {
+                                    game.currentPlanet.storage.removeItem(item.id, game.currentPlanet.storage.getItemCount(item.id));
+                                }
                             }
                         });
                     };
-
                     return menu;
                 }
             });
@@ -238,11 +235,11 @@ function exportStorage() {
     base64 = window.btoa(JSON.stringify(localStorage));
     var x = base64;
     //console.log(x);
-	
-	content = 	'<strong>Export your Game</strong><br>Ctrl+A to select your saved game';
-	content +=	'<textarea class="selectExportGame" cols="43" rows="20">' + x + '</textarea>';
-    
-	$.modal(content, {
+
+    content = '<strong>Export your Game</strong><br>Ctrl+A to select your saved game';
+    content += '<textarea class="selectExportGame" cols="43" rows="20">' + x + '</textarea>';
+
+    $.modal(content, {
         opacity: 80,
         escClose: true,
         containerId: 'exportBox',
@@ -254,9 +251,9 @@ function exportStorage() {
 }
 
 function importStorage() {
-    content =	'<strong>Import a Saved Game</strong><br>Paste your save below.';
-	content +=	'<textarea cols="43" rows="19" class="selectImportGame"></textarea>';
-    content += 	'<p><button onclick="doImport()">Import</button>';
+    content = '<strong>Import a Saved Game</strong><br>Paste your save below.';
+    content += '<textarea cols="43" rows="19" class="selectImportGame"></textarea>';
+    content += '<p><button onclick="doImport()">Import</button>';
     $.modal(content, {
         opacity: 80,
         escClose: true,
@@ -323,25 +320,25 @@ function togglePopup() {
 function goMining() {
     $("#miningModal").modal({
         escClose: true,
-		overlayClose: true,
-		opacity: 1,
-		overlayCss: {
+        overlayClose: true,
+        opacity: 1,
+        overlayCss: {
             backgroundColor: "#000"
         },
-		position: ["15%","36%"],
+        position: ["15%", "36%"],
         containerId: 'miningBox'
     });
 };
 
 function goGathering() {
-	$("#gatheringModal").modal({
+    $("#gatheringModal").modal({
         escClose: true,
-		overlayClose: true,
-		opacity: 1,
-		overlayCss: {
+        overlayClose: true,
+        opacity: 1,
+        overlayCss: {
             backgroundColor: "#000"
         },
-		position: ["15%","36%"],
+        position: ["15%", "36%"],
         containerId: 'gatheringBox'
     });
 };
@@ -349,12 +346,12 @@ function goGathering() {
 function goScavenging() {
     $("#scavengingModal").modal({
         escClose: true,
-		overlayClose: true,
-		opacity: 1,
-		overlayCss: {
+        overlayClose: true,
+        opacity: 1,
+        overlayCss: {
             backgroundColor: "#000"
         },
-		position: ["15%","36%"],
+        position: ["15%", "36%"],
         containerId: 'scavengingBox'
     });
 };
@@ -501,7 +498,7 @@ function onTravelToPlanet(target) {
         return;
     }
     //$("#solarsystem").modal.close();
-	$.modal.close();
+    $.modal.close();
     $(".bulletin").hide();
     $(".panelBottom").hide();
     $(window).one("scroll", function() {
@@ -516,6 +513,8 @@ function onTravelToPlanet(target) {
 
 function onSetInventoryFilter(filter) {
     ui.inventoryPlayerCategoryFilter = filter;
+    ui.updateComponent(ui.componentPlayerInventory);
+    ui.inventoryPlanetCategoryFilter = filter;
     ui.updateComponent(ui.componentPlayerInventory);
 }
 
@@ -535,9 +534,13 @@ function showFight() {
 }
 
 function onReset() {
-	$("#resetModal").modal({
-        onShow: function(dialog) { $(dialog.container).draggable({handle: 'div'}); },
-		opacity: 80,
+    $("#resetModal").modal({
+        onShow: function(dialog) {
+            $(dialog.container).draggable({
+                handle: 'div'
+            });
+        },
+        opacity: 80,
         escClose: true,
         overlayClose: true,
         overlayCss: {
@@ -548,14 +551,14 @@ function onReset() {
 }
 
 function spaceTravel() {
-	$("#solarsystem").load('solar.html').modal({
+    $("#solarsystem").load('solar.html').modal({
         opacity: 100,
-		height: 20,
+        height: 20,
         escClose: true,
         overlayClose: true,
         overlayCss: {
             backgroundColor: "#000",
-			backgroundImage: "url('assets/images/stardust.jpg')"
+            backgroundImage: "url('assets/images/stardust.jpg')"
         },
         containerId: 'spaceTravelMap'
     });
@@ -607,12 +610,12 @@ function changeRightCategoryButton(selected) {
 //});
 
 function characterSelect() {
-	var src = "character.html";	
-	
-	$.modal('<iframe src="' + src + '"height="590" width="1020" frameBorder="0">', {
-		closeHTML: "",
+    var src = "character.html";
+
+    $.modal('<iframe src="' + src + '"height="590" width="1020" frameBorder="0">', {
+        closeHTML: "",
         //onShow: function(dialog) { $(dialog.container).draggable({handle: 'div'}); },
-		opacity: 90,
+        opacity: 90,
         escClose: true,
         overlayClose: true,
         overlayCss: {

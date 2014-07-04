@@ -49,14 +49,13 @@ function UIPlanetScreen() {
 		this.playerInventoryFilter = new UISelection('playerInventoryFilter');
 		this.playerInventoryFilter.values = ItemCategory;
 		this.playerInventoryFilter.callback = this.onPlayerInventoryFilterChanged;
-		this.playerInventoryFilter.min = 0; // To avoid selecting undef
+		this.playerInventoryFilter.min = 0;
         this.playerInventoryFilter.max = 11;
 		this.playerInventoryFilter.init();
 		this.playerInventoryFilter.setSelection(0);
 
 		this.playerInventory = new UIInventory('playerInventorySlots', 56);
 		this.playerInventory.setStorage(game.player.storage);
-		this.playerInventory.itemContext = game.itemContexts.playerInventory;
 		this.playerInventory.slotCount = 56;
 		this.playerInventory.init();
 		this.playerInventory.setCategory(0);
@@ -64,13 +63,20 @@ function UIPlanetScreen() {
 		this.planetInventoryFilter = new UISelection('planetInventoryFilter');
 		this.planetInventoryFilter.values = ItemCategoryPlanet;
 		this.planetInventoryFilter.callback = this.onPlanetInventoryFilterChanged;
-		this.planetInventoryFilter.min = 0; // To avoid selecting undef
+		this.planetInventoryFilter.min = 0;
+        delete this.planetInventoryFilter.values['component'];
+        delete this.planetInventoryFilter.values['miningGear'];
+        delete this.planetInventoryFilter.values['gearMainHand'];
+        delete this.planetInventoryFilter.values['gearHead'];
+        delete this.planetInventoryFilter.values['gearChest'];
+        delete this.planetInventoryFilter.values['gearLegs'];
+        delete this.planetInventoryFilter.values['gearFeet'];
+        delete this.planetInventoryFilter.values['spaceship'];
         this.planetInventoryFilter.max = 3;
 		this.planetInventoryFilter.init();
 		this.planetInventoryFilter.setSelection(0);
 
 		this.planetInventory = new UIInventory('planetInventorySlots', 56);
-		this.planetInventory.itemContext = game.itemContexts.planetInventory;
 		this.planetInventory.slotCount = 56;
 		this.planetInventory.init();
 		this.planetInventory.setCategory(0);
@@ -139,9 +145,9 @@ function UIPlanetScreen() {
 
 		// Check for inventory changes
 		if (game.player.storage.getStorageChanged()) {
-			this.playerInventory.invalidate();
-            this.planetInventory.invalidate();
-			this.componentCrafting.invalidate();
+			this.playerInventory.invalidate(currentTime);
+            this.planetInventory.invalidate(currentTime);
+			this.componentCrafting.invalidate(currentTime);
 			game.player.storage.setStorageChanged(false);
 		}
 
@@ -206,7 +212,7 @@ function UIPlanetScreen() {
 		this.componentLeftPanel.show("left");
 		this.componentRightPanel.show("right");
 		this.invalidate();
-		game.clearItemContexts();
+		//game.clearItemContexts();
 	};
 
 	this.hide = function() {
@@ -219,7 +225,7 @@ function UIPlanetScreen() {
 		this.componentLeftPanel.hide("left");
 		this.componentRightPanel.hide("right");
 
-		game.clearItemContexts();
+		//game.clearItemContexts();
 	};
 
 	// ---------------------------------------------------------------------------
@@ -227,7 +233,7 @@ function UIPlanetScreen() {
 	// ---------------------------------------------------------------------------
 	this.updatePlayerInventoryPanel = function() {
 		var self = ui.screenPlanet;
-		//self.playerInventory.update(game.player.storage);
+		self.playerInventory.update(game.player.storage);
 	};
 
 	this.updatePlanetInventoryPanel = function() {
@@ -712,6 +718,7 @@ function UIPlanetScreen() {
 		var category = self.planetInventoryFilter.selection;
 		game.settings.selectedPlanetInventoryFilter = category;
 		self.planetInventory.setCategory(category);
+        self.componentPlanet.invalidate();
 	};
 
 	this.hideLeftSideComponents = function() {
