@@ -316,25 +316,37 @@ function togglePopup() {
 
 function goMining() {
     $("#miningModal").modal({
-        escClose: true,
+		modal: false,
+		escClose: true,
         overlayClose: true,
         opacity: 1,
         overlayCss: {
             backgroundColor: "#000"
         },
-        position: ["15%", "36%"],
+        onShow: function(dialog) {
+            $(dialog.container).draggable({
+                handle: 'div'
+            });
+        },
+		position: ["15%", "36%"],
         containerId: 'miningBox'
     });
 };
 
 function goGathering() {
     $("#gatheringModal").modal({
-        escClose: true,
+        modal: false,
+		escClose: true,
         overlayClose: true,
         opacity: 1,
         overlayCss: {
             backgroundColor: "#000"
         },
+        onShow: function(dialog) {
+            $(dialog.container).draggable({
+                handle: 'div'
+            });
+        },		
         position: ["15%", "36%"],
         containerId: 'gatheringBox'
     });
@@ -342,11 +354,17 @@ function goGathering() {
 
 function goScavenging() {
     $("#scavengingModal").modal({
-        escClose: true,
+        modal: false,
+		escClose: true,
         overlayClose: true,
         opacity: 1,
         overlayCss: {
             backgroundColor: "#000"
+        },
+        onShow: function(dialog) {
+            $(dialog.container).draggable({
+                handle: 'div'
+            });
         },
         position: ["15%", "36%"],
         containerId: 'scavengingBox'
