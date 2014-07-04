@@ -73,10 +73,10 @@ function UISelection(id, parent) {
         // this.selectionTextElement.text(key.replace("gear", "").split(/(?=[A-Z])/g).join(' ').toLowerCase());
         try {
             var key = this.keys[this.selection];
-            this.selectionTextElement.text(key);
+            this.selectionTextElement.text(key.split(/(?=[A-Z])/g).join(' ').toLowerCase());
         } catch (e) {
             var key = "rawMaterial";
-            this.selectionTextElement.text(key);
+            this.selectionTextElement.text(key.split(/(?=[A-Z])/g).join(' ').toLowerCase());
         }
         this.invalidate();
     };

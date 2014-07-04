@@ -74,7 +74,6 @@ function Miner(id) {
 		// Todo: apply modifiers and tools etc	
 		items = game.loot(table, this.baseMineSpeed * power, luck);
 		this.gainExp(items.length);
-        //if (items.length > 0) game.settings.addStat("foundItems", items.length);
 		return items;
 	};
 
