@@ -140,6 +140,7 @@ function UIPlanetScreen() {
 		// Check for inventory changes
 		if (game.player.storage.getStorageChanged()) {
 			this.playerInventory.invalidate();
+            this.planetInventory.invalidate();
 			this.componentCrafting.invalidate();
 			game.player.storage.setStorageChanged(false);
 		}
@@ -718,7 +719,7 @@ function UIPlanetScreen() {
 		this.componentEmpire.hide();
 		this.componentStats.hide();
 		this.componentQuestsPanel.hide();
-		game.clearItemContext(this.playerInventory.itemContext);
+		//game.clearItemContext(this.playerInventory.itemContext);
 	};
 
 	this.hideRightSideComponents = function() {
@@ -727,17 +728,17 @@ function UIPlanetScreen() {
 		this.componentPlanet.hide();
 		this.componentCrafting.hide();
 
-		game.clearItemContext(this.componentPlayerGear.itemContext);
-		game.clearItemContext(this.componentPlayerShip.itemContext);
-		game.clearItemContext(this.componentPlanet.itemContext);
-		game.clearItemContext(this.planetInventory.itemContext);
+		//game.clearItemContext(this.componentPlayerGear.itemContext);
+		//game.clearItemContext(this.componentPlayerShip.itemContext);
+		//game.clearItemContext(this.componentPlanet.itemContext);
+		//game.clearItemContext(this.planetInventory.itemContext);
 	};
 
 	this.activatePlayerInventory = function() {
 		this.hideLeftSideComponents();
 		this.componentPlayerInventory.show();
 
-		game.setItemContext(this.playerInventory.itemContext);
+		//game.setItemContext(this.playerInventory.itemContext);
 	};
 
 	this.activateCrafting = function() {
@@ -760,21 +761,21 @@ function UIPlanetScreen() {
 		this.hideRightSideComponents();
 		this.componentPlayerGear.show();
 
-		game.setItemContext(this.componentPlayerGear.itemContext);
+		//game.setItemContext(this.componentPlayerGear.itemContext);
 	};
 
 	this.activatePlayerShip = function() {
 		this.hideRightSideComponents();
 		this.componentPlayerShip.show();
 
-		game.setItemContext(this.componentPlayerShip.itemContext);
+		//game.setItemContext(this.componentPlayerShip.itemContext);
 	};
 
 	this.activatePlanet = function() {
 		this.hideRightSideComponents();
 		this.componentPlanet.show();
 
-		game.setItemContext(this.planetInventory.itemContext);
+		//game.setItemContext(this.planetInventory.itemContext);
 	};
 
 	this.buildCraftingEntry = function(item) {

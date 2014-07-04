@@ -117,14 +117,14 @@ function onDocumentReady() {
                     }
 
                     // Buildings
-                    if (game.getItem(item.id).planetLimit < game.currentPlanet.storage.getItem(item.id)) {
+                    if ((game.getItem(item.id).planetLimit) > (game.currentPlanet.storage.getItemCount(item.id))) {
                         isCurrentlyEquiped = game.currentPlanet.storage.hasItem(item.id);
                         menu.push({
                             title: (isCurrentlyEquiped === true ? "Deconstruct" : "Construct"),
                             action: function(event, ui) {
-                                if(game.getItem(item.id).planetLimit >= game.currentPlanet.storage.getItem(item.id)) {
-                                    game.currentPlanet.storage.removeItem(item.id);
+                                if ((game.getItem(item.id).planetLimit) > (game.currentPlanet.storage.getItem(item.id))) {
                                     game.player.storage.addItem(item.id);
+                                    game.currentPlanet.storage.removeItem(item.id);
                                 } else {
                                     game.currentPlanet.storage.addItem(item.id);
                                     game.player.storage.removeItem(item.id);

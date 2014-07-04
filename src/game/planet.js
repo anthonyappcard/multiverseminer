@@ -93,7 +93,7 @@ function Planet(data) {
             return false;
         }
         var item = game.getItem(itemId);
-        if(item !== undefined && (game.getItem(itemId).planetLimit < game.player.storage.getItemCount(itemId) && game.player.storage.hasItem(itemId))) {
+        if(item !== undefined && game.getItem(itemId).planetLimit < game.currentPlanet.storage.getItemCount(itemId) && game.player.storage.hasItem(itemId)) {
             return true;
         }
         return false;
@@ -315,10 +315,10 @@ function Planet(data) {
             items[totalItems[i]]++;
         }
 
-        for (item in items) {
-            var name = game.getItemName(item);
-            ui.createFloat('+' + items[item] + ' ' + name, 'lootFloating', utils.getRandomInt(-100, 100), utils.getRandomInt(-100, 0));
-        }
+        //for (item in items) {
+        //    var name = game.getItemName(item);
+        //    ui.createFloat('+' + items[item] + ' ' + name, 'lootFloating', utils.getRandomInt(-100, 100), utils.getRandomInt(-100, 0));
+        //};
     };
 
     // ---------------------------------------------------------------------------

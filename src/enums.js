@@ -1,9 +1,3 @@
-ItemCategoryPlanet = {
-    'rawMaterial': 'Raw Materials',
-    'gem': 'Gems',
-    'scavenge': 'Scavenge',
-    'building': 'Buildings'
-};
 ItemCategory = {
     'rawMaterial': 'Raw Materials',
     'gem': 'Gems',
@@ -16,6 +10,12 @@ ItemCategory = {
     'gearLegs': 'Leg Gear',
     'gearFeet': 'Foot Gear',
     'spaceship': 'Spaceship',
+    'building': 'Buildings'
+};
+ItemCategoryPlanet = {
+    'rawMaterial': 'Raw Materials',
+    'gem': 'Gems',
+    'scavenge': 'Scavenge',
     'building': 'Buildings'
 };
 GearType = {

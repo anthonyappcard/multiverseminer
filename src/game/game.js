@@ -429,8 +429,8 @@ function Game() {
             var item = this.getItem(items[i]);
             switch (item.category) {
                 case 'rawMaterial':
-                case 'scavenge':
                 case 'gem':
+                case 'scavenge':
                     {
                         break;
                     }
@@ -453,6 +453,7 @@ function Game() {
     };
 
     this.setItemContext = function(context) {
+        return;
         if (jQuery.inArray(context, this.activeItemContexts) != -1) {
             return;
         }
