@@ -710,7 +710,7 @@ function UIPlanetScreen() {
 		var category = self.playerInventoryFilter.selection;
 		game.settings.selectedPlayerInventoryFilter = category;
 		self.playerInventory.setCategory(category);
-		self.componentPlayerInventory.invalidate();
+		//self.componentPlayerInventory.invalidate();
 	};
 
 	this.onPlanetInventoryFilterChanged = function() {
@@ -718,7 +718,7 @@ function UIPlanetScreen() {
 		var category = self.planetInventoryFilter.selection;
 		game.settings.selectedPlanetInventoryFilter = category;
 		self.planetInventory.setCategory(category);
-        self.componentPlanet.invalidate();
+        //self.componentPlanet.invalidate();
 	};
 
 	this.hideLeftSideComponents = function() {
