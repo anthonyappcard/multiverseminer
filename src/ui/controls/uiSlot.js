@@ -257,7 +257,7 @@ function UISlot(id, parent) {
         this.mainDiv.attr('title', item.name);
         $("#" + this.id).tooltipster({
             content: this.generateItemTooltip(item),
-            theme: 'tooltipster-punk',
+            theme: 'tooltipster-multi',
             contentAsHTML: true,
             position: "top",
             onlyOne: true,
