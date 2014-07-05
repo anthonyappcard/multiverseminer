@@ -259,7 +259,7 @@ function UISlot(id, parent) {
             content: this.generateItemTooltip(item),
             theme: 'tooltipster-punk',
             contentAsHTML: true,
-            position: "bottom",
+            position: "top",
             onlyOne: true,
             interactiveTolerance: 10,
             speed: 10

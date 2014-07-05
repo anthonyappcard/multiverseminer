@@ -62,21 +62,26 @@ function UI() {
 			this.screenPlanet.hide();
 			this.screenTravel.show();
 		}
+		
+		// Overall Site Tooltips
 		$(".tooltip").tooltipster({
-			theme: 'tooltipster-punk',
+			theme: 'tooltipster-multi',
 			contentAsHTML: true,
-			position: "bottom",
+			position: "top",
 			onlyOne: true,
 			interactiveTolerance: 10,
 			speed: 1
 		});
+		
+		// Tooltips for Settings Menu
 		$(".tooltip2").tooltipster({
-			theme: 'tooltipster-punk',
-			position: "bottom-right",
+			theme: '.tooltipster-multi',
+			position: "top",
 			onlyOne: true,
 			interactiveTolerance: 10,
 			speed: 1
 		});
+		
 		$('#settings').toolbar({
 			content: '#user-toolbar-options',
 			position: "bottom",
