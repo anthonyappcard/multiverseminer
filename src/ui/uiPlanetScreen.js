@@ -478,7 +478,7 @@ function UIPlanetScreen() {
 		function addTooltip(element, item) {
 			element.tooltipster ({
 					content: self.buildCraftingTooltip(item),
-					theme: 'tooltipster-punk',
+					theme: 'tooltipster-multi',
 					contentAsHTML: true,
 					position: "left",
 					onlyOne: true,
