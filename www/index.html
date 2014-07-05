@@ -460,22 +460,21 @@
   </div>
   
   <div id="itemInfo"></div>
+    <!-- Mining modal contents -->
+    <div id="miningModal" class="miningBox" style="display:none;">
+        <div id="miningActionText">Press or hold D to mine</div>
+        <div id="miningResultsText">&nbsp;</div>
+        <div class="genericButton bottomBarButton2 clickable" onclick="onMine()">Mine [D]</div>
+    </div>
+    <!-- end of mining modal -->
   
-  <!-- Mining modal contents -->
-  <div id="miningModal" class="miningBox" style="display:none;">
-    <div id="miningActionText">Press or hold D to mine</div>
-    <div id="miningResultsText">&nbsp;</div>
-    <div class="genericButton bottomBarButton2 clickable" onclick="onMine()">Mine [D]</div>
-  </div>
-  <!-- end of mining modal -->
-  
-  <!-- Gathering modal contents -->
-  <div id="gatheringModal" class="gatheringBox" style="display:none;">
-  	<div id="gatheringActionText">Press or hold G to gather</div>
-  	<div id="gatheringResultsText">&nbsp;</div>
-      <div class="genericButton bottomBarButton2 clickable" onclick="onGather()">Gather [G]</div>
-  </div>
-  <!-- End of gathering modal -->
+    <!-- Gathering modal contents -->
+      <div id="gatheringModal" class="gatheringBox" style="display:none;">
+        <div id="gatheringActionText">Press or hold G to gather</div>
+        <div id="gatheringResultsText">&nbsp;</div>
+        <div class="genericButton bottomBarButton2 clickable" onclick="onGather()">Gather [G]</div>
+    </div>
+    <!-- End of gathering modal -->
   
   <!-- Scavenging modal contents -->
     <div id="scavengingModal" class="scavengingBox" style="display:none;">
@@ -484,17 +483,6 @@
   	    <div class="genericButton bottomBarButton2 clickable" onclick="onScavenge()">Scavenge [S]</div>
     </div>
     <!-- End of scavenging modal -->
-    
 </div>
-
-	<div id="bulletin" class="bulletin">
-		<ul>
-			<li>Increased pick power, and added more power to buildings</li>
-			<li>De-duped storage when traveling.</li>
-			<li>New functionality for Gather and Scavenge completed.</li>
-			<li>Reset now clears stats.</li>
-		</ul>
-		<div class="close" onclick="javascript:void(0)" style="cursor:pointer;">X</div>
-	</div>
 </body>
 </html>

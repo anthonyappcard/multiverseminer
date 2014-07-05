@@ -1,4 +1,4 @@
-require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "contextmenu", "bulletin", "qtip2", "remote/socket"]);
+require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "contextmenu", "qtip2", "remote/socket"]);
 
 // Create components
 var game = new Game();
@@ -157,8 +157,6 @@ function onDocumentReady() {
             });
         }
     });
-    //$("#bulletin").bulletin();
-    //$("#solarsystem").dialog();
 };
 
 function selectClass(playerClass) {
@@ -514,7 +512,6 @@ function onTravelToPlanet(target) {
     }
     //$("#solarsystem").modal.close();
     $.modal.close();
-    $(".bulletin").hide();
     $(".panelBottom").hide();
     $(window).one("scroll", function() {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -523,7 +520,6 @@ function onTravelToPlanet(target) {
     ui.screenTravel.show();
     game.travelTo(target);
     $(".panelBottom").show();
-    $(".bulletin").show();
 };
 
 function onSetInventoryFilter(filter) {
@@ -586,7 +582,7 @@ function showChangeLog() {
         escClose: true,
         overlayClose: true,
         overlayCss: {
-            backgroundColor: "#000",
+            backgroundColor: "#000"
         },
         containerId: 'changesLog'
     });
