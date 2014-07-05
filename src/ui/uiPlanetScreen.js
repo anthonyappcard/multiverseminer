@@ -484,7 +484,7 @@ function UIPlanetScreen() {
 					onlyOne: true,
 					interactiveTolerance: 10,
 					offsetX: 0,
-					offsetY: 0,
+					offsetY: 45,
 					speed: 10
 			});
 		}

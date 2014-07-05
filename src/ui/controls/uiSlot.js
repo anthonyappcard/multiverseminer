@@ -262,7 +262,9 @@ function UISlot(id, parent) {
             position: "top",
             onlyOne: true,
             interactiveTolerance: 10,
-            speed: 10
+            speed: 10,
+			offsetY: 30,
+			offsetX: -10
         });
         this.mainDiv.append(this.iconDisplay);
         this.mainDiv.append(this.countDisplay);

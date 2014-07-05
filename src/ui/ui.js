@@ -67,19 +67,25 @@ function UI() {
 		$(".tooltip").tooltipster({
 			theme: 'tooltipster-multi',
 			contentAsHTML: true,
-			position: "top",
+			position: "bottom",
 			onlyOne: true,
+			arrowColor: 'orange',
 			interactiveTolerance: 10,
-			speed: 1
+			speed: 1,
+			offsetX: 0,
+			offsetY: 0
 		});
 		
 		// Tooltips for Settings Menu
 		$(".tooltip2").tooltipster({
 			theme: '.tooltipster-multi',
-			position: "top",
+			position: "left",
 			onlyOne: true,
+			timer: 1000,
 			interactiveTolerance: 10,
-			speed: 1
+			speed: 1,
+			offsetX: 335,
+			offsetY: -20
 		});
 		
 		$('#settings').toolbar({
