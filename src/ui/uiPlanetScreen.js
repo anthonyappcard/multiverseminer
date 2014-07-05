@@ -265,7 +265,7 @@ function UIPlanetScreen() {
 			};
 			y.push('<tr><td>' + key.split(/(?=[A-Z])/g).join(' ').toLowerCase() + '</td><td>' + value + '</td></tr>');
 		});
-        $("#minerGearStats").html('<div class=\'statTable\'><table><tbody><tr><td>Stats</td><td>#</td></tr>' + y.join(''));
+        $("#minerGearStats").html('<div class=\'statTable\'><table id="panel"><tbody><tr><td>Stats</td><td>#</td></tr>' + y.join(''));
 	};
 
 	this.buildCraftingTooltip = function(item) {
@@ -599,9 +599,7 @@ function UIPlanetScreen() {
 	};
 
 	this.updateStatsPanel = function() {
-		var stats = game.player.stats;
 		var x = [];
-		var y = [];
 		var myObj = game.settings.totalStats;
 		Object.keys(myObj) .forEach(function (prop) {
 			if (myObj.hasOwnProperty(prop) && prop !== 'key' && typeof myObj[prop] != 'function' && prop != 'id') {
@@ -609,14 +607,7 @@ function UIPlanetScreen() {
 				x.push('<tr><td>' + prop.split(/(?=[A-Z])/g).join(' ').toLowerCase() + '</td><td>' + myObj[prop] + '</td></tr>');
 			};
 		});
-		Object.keys(stats) .forEach(function (key) {
-			var value = stats[key];
-			if (isNaN(value)) {
-				value = 0;
-			};
-			y.push('<tr><td>' + key.split(/(?=[A-Z])/g).join(' ').toLowerCase() + '</td><td>' + value + '</td></tr>');
-		});
-		$("#statsContent").html('<div class=\'statTable\'><table><tbody><tr><td>Stats</td><td>#</td></tr>' + y.join('') + '</tbody></table></div><div class=\'statTable\'><table><tbody><tr><td>Actions</td><td>#</td></tr>' + x.join('') + '</tbody></table></div>');
+		$("#statsContent").html('<div class=\'statTable\'><table><tbody><tr><td>Stats</td><td>#</td></tr>' + x.join(''));
 	};
 
 	this.updateShipPanel = function() {

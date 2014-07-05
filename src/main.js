@@ -14,7 +14,7 @@ window.onbeforeunload = function() {
 $(document).ready(onDocumentReady);
 
 // Setup notifications
-$.jGrowl.defaults.position = 'top-right';
+$.jGrowl.defaults.position = 'bottom';
 $.jGrowl.defaults.animateOpen = {
     height: 'show'
 };
@@ -158,7 +158,6 @@ function onDocumentReady() {
         }
     });
 };
-
 function selectClass(playerClass) {
     game.player.playerClass = playerClass;
     $("#class-pick").dialog("close");
@@ -371,7 +370,10 @@ function goScavenging() {
 // Mining, Gathering, Scavenging Modals End
 
 function onMine() {
-    if (!$("#miningModal").is(':visible')) goMining();
+    if (!$("#miningModal").is(':visible')) {
+        $.modal.close();
+        goMining();
+    };
     if (game.playerDied > 0) return false;
     if (this.lastRun !== "undefined") {
         if (this.lastRun >= ~~new Date() / 200 | 0) {
@@ -384,9 +386,6 @@ function onMine() {
     result = game.player.mine();
     if (result) {
         $('#audioDigSuccess').trigger('play');
-        //x = String(result.split(" = ")[1]);
-        //console.log(x);
-        //game.settings.addStat("foundItems", x.length);
     } else {
         $('#audioDig').trigger('play');
     }
@@ -394,7 +393,10 @@ function onMine() {
 };
 
 function onGather() {
-    if (!$("#gatheringModal").is(':visible')) goGathering();
+    if (!$("#gatheringModal").is(':visible')) {
+        $.modal.close();
+        goGathering();
+    };
     if (game.playerDied > 0) return false;
     if (this.lastRun !== "undefined") {
         if (this.lastRun >= ~~new Date() / 200 | 0) {
@@ -408,9 +410,12 @@ function onGather() {
 };
 
 function onScavenge() {
-    if (!$("#goScavenging").is(':visible')) goScavenging();
-    if (game.playerDied > 0 || game.currentPlanet.data.id != "1") {
-        return false;
+    if (!$("#scavengingModal").is(':visible')) {
+        if (game.playerDied > 0 || game.currentPlanet.data.id != "1") {
+            return false;
+        };
+        $.modal.close();
+        goScavenging();
     };
     if (this.lastRun !== "undefined") {
         if (this.lastRun >= ~~new Date() / 200 | 0) {

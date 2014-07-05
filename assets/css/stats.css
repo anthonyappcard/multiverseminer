@@ -2,7 +2,7 @@
     margin: 0px;
     padding: 0px;
     width: calc(100% + 4px);
-    border: 1px solid #000000;
+    border: none;
     -moz-border-radius-bottomleft: 0px;
     -webkit-border-bottom-left-radius: 0px;
     border-bottom-left-radius: 0px;
@@ -15,6 +15,15 @@
     -moz-border-radius-topleft: 0px;
     -webkit-border-top-left-radius: 0px;
     border-top-left-radius: 0px;
+}
+.statTable #panel {
+    border: 1px solid #000000 !important;
+    border-radius: 0;
+    margin-top: 48px;
+    padding: 0;
+    position: absolute;
+    width: 253px;
+    display: block;
 }
 .statTable table {
     border-collapse: collapse;

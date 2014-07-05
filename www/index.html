@@ -117,35 +117,32 @@
         </div>
       </div>
 
-      <div class="categoryContent clearLeftFloat" id="rightCategoryContent">
-        <div class="gearPanel" id="playerGearPanel">
-          <div id="playerGearContent" style="overflow-x:none;">
-            <div class="playerGearPaperdoll" id="playerGearSlots"></div>
-            <div class="minerGearStats" id="minerGearStats"></div>
-          </div>
-
-          
-            <div id="combatantHP">
-              HP:
+        <div class="categoryContent clearLeftFloat" id="rightCategoryContent">
+            <div class="gearPanel" id="playerGearPanel">
+                <div id="playerGearContent" style="overflow-x:none;">
+                    <div class="playerGearPaperdoll" id="playerGearSlots"></div>
+                    <div class="minerGearStats" id="minerGearStats"></div>
+                </div>
+                <div class="gearText">
+                    <div id="combatantHP">
+                        HP:
+                    </div>
+                    <div id="combatantXP">
+                        Combat XP:
+                    </div>
+                    <div id="combatantLevel">
+                        Combat Level:
+                    </div>
+                    <div id="minerXP">
+                        Mining XP:
+                    </div>
+                    <div id="minerLevel">
+                        Mining Level:
+                    </div>
+                </div>
             </div>
-
-            <div id="combatantXP">
-              Combat XP:
-            </div>
-
-            <div id="combatantLevel">
-              Combat Level:
-            </div>
-
-            <div id="minerXP">
-              Mining XP:
-            </div>
-
-            <div id="minerLevel">
-              Mining Level:
-            </div>
-          </div>
         </div>
+
 
         <div class="shipPanel" id="playerShipPanel"></div>
 
@@ -171,15 +168,15 @@
 
     <div class="panelPlanetDisplay" id="planetDisplay">
       <div>
-        <button class="a_demo_two tooltip" id="mineButton" title="Click to mine." onClick="goMining()" style="cursor: pointer">
+        <button class="a_demo_two tooltip" id="mineButton" title="Click to mine." onClick="onMine()" style="cursor: pointer">
             <div class="categoryButtonText">MINE</div>
         </button>
         
-        <button class="a_demo_two tooltip" id="gatherButton" title="Click to gather atmosphere." onClick="goGathering()" style="cursor: pointer">
+        <button class="a_demo_two tooltip" id="gatherButton" title="Click to gather atmosphere." onClick="onGather()" style="cursor: pointer">
             <div class="categoryButtonText">GATHER</div>
         </button>
         
-		<button class="a_demo_two tooltip" id="scavengeButton" title="Click to scavenge." onClick="goScavenging()" style="cursor: pointer">
+		<button class="a_demo_two tooltip" id="scavengeButton" title="Click to scavenge." onClick="onScavenge()" style="cursor: pointer">
             <div class="categoryButtonText">SCAVENGE</div>
         </button>
       </div>
@@ -248,7 +245,7 @@
 	</div>
 	
 
-<div>
+    <div>
     <ol id="joyRideTipContent">
       <li data-id="leftCategory0" data-options="tipLocation:bottom;" data-text="Next">
         <h2>Inventory</h2>
