@@ -1,4 +1,4 @@
-require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "contextmenu", "remote/socket"]);
+require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "utils", "uiplanetscreen", "noty", "joyride", "toolbar", "contextmenu", "remote/socket"]);
 
 // Create components
 var game = new Game();
@@ -114,21 +114,51 @@ function onDocumentReady() {
                     };
 
                     // Buildings
-                    hasBuilding = game.currentPlanet.storage.hasItem(item.id);
-                    menu.push({
-                        title: (hasBuilding === true ? "Deconstruct" : "Construct"),
-                        action: function(event, ui) {
-                            if ((game.getItem(item.id).planetLimit) > (game.currentPlanet.storage.getItemCount(item.id))) {
-                                game.moveItems(item.id, game.player.storage, game.currentPlanet.storage, 1);
-                            } else {
-                                game.moveItems(item.id, game.currentPlanet.storage, game.player.storage, 1);
-                            }
-                            game.currentPlanet.storage.setStorageChanged(true);
-                            game.currentPlanet._updateStats();
-                            game.currentPlanet.update();
+                    // If the planet limit is less than the total that exists on the planet
+                    if (~item.category.indexOf('building')) {
+                        if (~e.target.id.indexOf('planet')) {
+                            menu.push({
+                                title: "Remove from planet",
+                                action: function(event, ui) {
+                                    try {
+                                        game.moveItems(item.id, game.currentPlanet.storage, game.player.storage, 1);
+                                        game.currentPlanet.storage.setStorageChanged(true);
+                                        game.currentPlanet._updateStats();
+                                        game.currentPlanet.update();
+                                    } catch (e) {
+                                        noty({
+                                            layout: 'bottomCenter',
+                                            type: 'error',
+                                            timeout: 1500,
+                                            text: "An error was encountered when trying to move the building."
+                                        });
+                                        return;
+                                    }
+                                }
+                            });
                         }
-                    });
-
+                        if (~e.target.id.indexOf('player') && parseInt(item.planetLimit, 10) > parseInt(game.currentPlanet.storage.getItemCount(item.id), 10)) {
+                            menu.push({
+                                title: "Construct on planet",
+                                action: function(event, ui) {
+                                    try {
+                                        game.moveItems(item.id, game.player.storage, game.currentPlanet.storage, 1);
+                                        game.currentPlanet.storage.setStorageChanged(true);
+                                        game.currentPlanet._updateStats();
+                                        game.currentPlanet.update();
+                                    } catch (e) {
+                                        noty({
+                                            layout: 'bottomCenter',
+                                            type: 'error',
+                                            timeout: 1500,
+                                            text: "An error was encountered when trying to move the building."
+                                        });
+                                        return;
+                                    }
+                                }
+                            });
+                        }
+                    }
                     // Decompose
                     if (game.player.canDecomposeItem(item)) {
                         menu.push({
@@ -157,38 +187,39 @@ function onDocumentReady() {
             });
         }
     });
-    
+
     $('#settings').toolbar({
         content: '#user-toolbar-options',
         position: "bottom",
         hideOnClick: true
     });
-	// Overall Site Tooltips
-	$(".tooltip").tooltipster({
-		theme: 'tooltipster-multi',
-		contentAsHTML: true,
-		position: "left",
-		onlyOne: true,
-		interactiveTolerance: 10,
-		speed: 1,
-		offsetX: 0,
-		offsetY: 0
-	});
-    
-	// Tooltips for Settings Menu
-	$(".tooltip2").tooltipster({
-		theme: 'tooltipster-multi',
-		position: "bottom",
-		onlyOne: true,
+    // Overall Site Tooltips
+    $(".tooltip").tooltipster({
+        theme: 'tooltipster-multi',
+        contentAsHTML: true,
+        position: "left",
+        onlyOne: true,
+        interactiveTolerance: 10,
+        speed: 1,
+        offsetX: 0,
+        offsetY: 0
+    });
+
+    // Tooltips for Settings Menu
+    $(".tooltip2").tooltipster({
+        theme: 'tooltipster-multi',
+        position: "bottom",
+        onlyOne: true,
         delay: 0,
-		timer: 2000,
-		interactiveTolerance: 10,
-		speed: 1,
+        timer: 2000,
+        interactiveTolerance: 10,
+        speed: 1,
         positionTracker: true,
         offsetX: 0,
-		offsetY: 0
-	});
+        offsetY: 0
+    });
 };
+
 function selectClass(playerClass) {
     game.player.playerClass = playerClass;
     $("#class-pick").dialog("close");
@@ -344,8 +375,8 @@ function togglePopup() {
 
 function goMining() {
     $("#miningModal").modal({
-		modal: false,
-		escClose: true,
+        modal: false,
+        escClose: true,
         overlayClose: true,
         opacity: 1,
         overlayCss: {
@@ -356,7 +387,7 @@ function goMining() {
                 handle: 'div'
             });
         },
-		position: ["15%", "36%"],
+        position: ["15%", "36%"],
         containerId: 'miningBox'
     });
 };
@@ -364,7 +395,7 @@ function goMining() {
 function goGathering() {
     $("#gatheringModal").modal({
         modal: false,
-		escClose: true,
+        escClose: true,
         overlayClose: true,
         opacity: 1,
         overlayCss: {
@@ -374,7 +405,7 @@ function goGathering() {
             $(dialog.container).draggable({
                 handle: 'div'
             });
-        },		
+        },
         position: ["15%", "36%"],
         containerId: 'gatheringBox'
     });
@@ -383,7 +414,7 @@ function goGathering() {
 function goScavenging() {
     $("#scavengingModal").modal({
         modal: false,
-		escClose: true,
+        escClose: true,
         overlayClose: true,
         opacity: 1,
         overlayCss: {

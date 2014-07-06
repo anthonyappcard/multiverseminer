@@ -1,125 +1,151 @@
 module.exports = function(grunt) {
-	// Project configuration.
-	grunt.initConfig({
-		pkg : grunt.file.readJSON('package.json'),
-		
-		dataImport: {
-			build: {
-				src: 'assets/data/',
-				dest: 'src/data/'
-			}
-		},
-	
-		clean: ["bin/"],
+    // Project configuration.
+    require('time-grunt')(grunt);
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
 
-		requirejs : {
-			compile : {
-				options : {
- 					generateSourceMaps: true,
-					preserveLicenseComments: false,
+        dataImport: {
+            build: {
+                src: 'assets/data/',
+                dest: 'src/data/'
+            }
+        },
 
-					baseUrl  : "./src",
-					out      : "bin/MultiverseMiner.min.js",
-					optimize : 'uglify2',
-					name     : 'main',
+        clean: ["bin/", "tmp/"],
 
-					uglify2 : {
-						mangle : false
-					},
+        requirejs: {
+            compile: {
+                options: {
+                    generateSourceMaps: true,
+                    preserveLicenseComments: false,
 
-					paths : {
-						game           : 'game/game',
-						gamecombatant  : 'game/combatant',
-						gamegear       : 'game/gear',
-						gameminer      : 'game/miner',
-						gamenpc        : 'game/npc',
-						gameplanet     : 'game/planet',
-						gameplayer     : 'game/player',
-						gamesettings   : 'game/settings',
-						gamestatistics : 'game/statistics',
-						gamestorage    : 'game/storage',
-						gamefight      : 'game/fight',
-						gamequest      : 'game/quest',
+                    baseUrl: "./src",
+                    out: "bin/MultiverseMiner.min.js",
+                    optimize: 'uglify2',
+                    name: 'main',
 
-						ui             : 'ui/ui',
-						uicomponent    : 'ui/controls/uiComponent',
-						uifloating     : 'ui/controls/uiFloating',
-						uiinventory    : 'ui/controls/uiInventory',
-						uiselection    : 'ui/controls/uiSelection',
-						uislot         : 'ui/controls/uiSlot',
-						uistarfield    : 'ui/controls/uiStarfield',
-						uiplanetscreen : 'ui/uiPlanetScreen',
-						uitravelscreen : 'ui/uiTravelScreen',
+                    uglify2: {
+                        mangle: false
+                    },
 
-						jquery      : 'external/jquery-2.1.1.min',
-						jqueryui    : 'external/jquery-ui-1.10.4.custom',
-                        widget      : 'external/jquery.ui.widget',
-						jgrowl      : 'external/jquery.jgrowl.min',
-						starfield   : 'external/starfield',
-                        tooltipster : 'external/jquery.tooltipster.min',
-                        joyride     : 'external/jquery.joyride-2.1',
-                        noty        : 'external/jquery.noty.packaged',
-                        toolbar     : 'external/jquery.toolbar',
-                        contextmenu : 'external/jquery.ui-contextmenu',
-                        ws          : 'external/jquery.WebSocket',
-						simplemodal : 'external/jquery.simplemodal-1.4.4',
-						qtip2		: 'external/jquery.qtip'
-					}
-				}
-			}
-		},
+                    paths: {
+                        game: 'game/game',
+                        gamecombatant: 'game/combatant',
+                        gamegear: 'game/gear',
+                        gameminer: 'game/miner',
+                        gamenpc: 'game/npc',
+                        gameplanet: 'game/planet',
+                        gameplayer: 'game/player',
+                        gamequest: 'game/quest',
+                        gamesettings: 'game/settings',
+                        gamestatistics: 'game/statistics',
+                        gamestorage: 'game/storage',
 
-		cssmin : {
-			combine : {
-				files : {
-					'bin/<%= pkg.name %>.min.css' : [
-						'assets/css/*.css',
-						'assets/fonts/overpass/*.css',
-						'src/ui/controls/*.css',
-						'src/external/*.css'
-					]
-				}
-			}
-		},
+                        ui: 'ui/ui',
+                        uicomponent: 'ui/controls/uiComponent',
+                        uifloating: 'ui/controls/uiFloating',
+                        uiinventory: 'ui/controls/uiInventory',
+                        uiselection: 'ui/controls/uiSelection',
+                        uislot: 'ui/controls/uiSlot',
+                        uistarfield: 'ui/controls/uiStarfield',
+                        uiplanetscreen: 'ui/uiPlanetScreen',
+                        uitravelscreen: 'ui/uiTravelScreen',
 
-		copy : {
-			main : {
-				files : [
-					{ cwd: 'www', src: '**/*', dest: 'bin', expand: true },
-					{ cwd: 'src/external/images', src: '**/*', dest: 'bin/images', expand: true },
-					{ cwd: 'assets/images', src: '**/*', dest: 'bin/assets/images', expand: true },
-					{ cwd: 'assets/fonts/overpass/', src: '**/*.ttf', dest: 'bin/', expand: true },
-					{ cwd: 'assets/fonts/overpass/', src: '**/*.svg', dest: 'bin/', expand: true },
-					{ cwd: 'assets/fonts/overpass/', src: '**/*.woff', dest: 'bin/', expand: true },
-					{ cwd: 'assets/sound', src: '**/*', dest: 'bin/assets/sound', expand: true }
-				]
-			}
-		},
-		
-		dataExport: {
-			build: {
-				src: 'assets/data/',
-				dest: 'export/'
-			}
-		}
-	});
+                        jquery: 'external/jquery-2.1.1.min',
+                        jqueryui: 'external/jquery-ui-1.10.4.custom',
+                        widget: 'external/jquery.ui.widget',
+                        jgrowl: 'external/jquery.jgrowl.min',
+                        starfield: 'external/starfield',
+                        tooltipster: 'external/jquery.tooltipster.min',
+                        joyride: 'external/jquery.joyride-2.1',
+                        noty: 'external/jquery.noty.packaged',
+                        toolbar: 'external/jquery.toolbar',
+                        contextmenu: 'external/jquery.ui-contextmenu',
+                        ws: 'external/jquery.WebSocket',
+                        simplemodal: 'external/jquery.simplemodal-1.4.4',
+                        qtip2: 'external/jquery.qtip'
+                    }
+                }
+            }
+        },
 
-	// Load the plugin that provides the "uglify" task.
-	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-contrib-requirejs');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-contrib-cssmin');
-	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadTasks("./src/build/");
+        cssmin: {
+            combine: {
+                files: {
+                    'bin/<%= pkg.name %>.min.css': [
+                        'assets/css/*.css',
+                        'assets/fonts/overpass/*.css',
+                        'src/ui/controls/*.css',
+                        'src/external/*.css'
+                    ]
+                }
+            }
+        },
 
-	// Default task(s).
-	grunt.registerTask('default', [
-		'clean',
+        copy: {
+            main: {
+                files: [{
+                    cwd: 'www',
+                    src: '**/*',
+                    dest: 'bin',
+                    expand: true
+                }, {
+                    cwd: 'src/external/images',
+                    src: '**/*',
+                    dest: 'bin/images',
+                    expand: true
+                }, {
+                    cwd: 'assets/images',
+                    src: '**/*',
+                    dest: 'bin/assets/images',
+                    expand: true
+                }, {
+                    cwd: 'assets/fonts/overpass/',
+                    src: '**/*.ttf',
+                    dest: 'bin',
+                    expand: true
+                }, {
+                    cwd: 'assets/fonts/overpass/',
+                    src: '**/*.svg',
+                    dest: 'bin',
+                    expand: true
+                }, {
+                    cwd: 'assets/fonts/overpass/',
+                    src: '**/*.woff',
+                    dest: 'bin',
+                    expand: true
+                }, {
+                    cwd: 'assets/sound',
+                    src: '**/*',
+                    dest: 'bin/assets/sound',
+                    expand: true
+                }]
+            }
+        },
+
+        dataExport: {
+            build: {
+                src: 'assets/data/',
+                dest: 'export/'
+            }
+        }
+    });
+
+    // Load the plugin that provides the "uglify" task.
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadTasks("./src/build/");
+
+    // Default task(s).
+    grunt.registerTask('default', [
+        'clean',
         'dataImport',
-		'requirejs',
-		'cssmin',
-		'copy'
-		//'dataExport'
-	]);
+        'requirejs',
+        'cssmin',
+        'copy'
+        //'dataExport'
+    ]);
 };
-
