@@ -1,4 +1,4 @@
-require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "contextmenu", "qtip2", "remote/socket"]);
+require(["data/system", "data/items", "data/loot", "data/planets", "data/actors", "game", "ui", "jquery", "jqueryui", "enums", "utils", "uiplanetscreen", "gamegear", "noty", "joyride", "toolbar", "contextmenu", "remote/socket"]);
 
 // Create components
 var game = new Game();
@@ -45,7 +45,7 @@ function onDocumentReady() {
     ui.bindKey("s", onScavenge);
 
     // Call one round of UI Updates
-    ui.update();
+    //ui.update();
 
     // Activate the default panels
     onActivatePlayerInventory();
@@ -157,6 +157,37 @@ function onDocumentReady() {
             });
         }
     });
+    
+    $('#settings').toolbar({
+        content: '#user-toolbar-options',
+        position: "bottom",
+        hideOnClick: true
+    });
+	// Overall Site Tooltips
+	$(".tooltip").tooltipster({
+		theme: 'tooltipster-multi',
+		contentAsHTML: true,
+		position: "left",
+		onlyOne: true,
+		interactiveTolerance: 10,
+		speed: 1,
+		offsetX: 0,
+		offsetY: 0
+	});
+    
+	// Tooltips for Settings Menu
+	$(".tooltip2").tooltipster({
+		theme: 'tooltipster-multi',
+		position: "bottom",
+		onlyOne: true,
+        delay: 0,
+		timer: 2000,
+		interactiveTolerance: 10,
+		speed: 1,
+        positionTracker: true,
+        offsetX: 0,
+		offsetY: 0
+	});
 };
 function selectClass(playerClass) {
     game.player.playerClass = playerClass;

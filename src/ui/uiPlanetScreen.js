@@ -480,11 +480,11 @@ function UIPlanetScreen() {
 					content: self.buildCraftingTooltip(item),
 					theme: 'tooltipster-multi',
 					contentAsHTML: true,
-					position: "left",
+					position: "bottom",
 					onlyOne: true,
 					interactiveTolerance: 10,
 					offsetX: 0,
-					offsetY: 45,
+					offsetY: 0,
 					speed: 10
 			});
 		}

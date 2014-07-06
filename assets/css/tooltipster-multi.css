@@ -27,13 +27,6 @@
 	margin-left: 4px;
 }
 
-
-
-
-
-
-
-
 /* This is the base styling required to make all Tooltipsters work */
 .tooltipster-base {
 	padding: 0;
@@ -42,10 +35,15 @@
 	position: absolute;
 	left: 0;
 	top: 0;
+    margin-top:40px;
 	z-index: 9999999;
 	pointer-events: none;
 	width: auto;
 	overflow: visible;
+    border-radius:0.25em;
+    box-shadow:0.625em 0.625em 0 rgba(0,0,0,.1);
+    margin:3em auto;
+    padding:1.618em;
 }
 .tooltipster-base .tooltipster-content {
 	overflow: hidden;

@@ -143,12 +143,12 @@ function UISlot(id, parent) {
             case "rawMaterial":
                 content = "<b>" + item.name + "</b></br>" + item.description +"<br><br>";
                 content = "<b>" + item.name + "</b><br>";
-                content += "Value: " + item.value;
+                if (item.value) content += "Value: " + item.value;
                 break;
 
             case "gem":
                 content = "<b>" + item.name + "</b><br>";
-                content += "Value: " + item.value;
+                //content += "Value: " + item.value;
                 break;
 
             case "component":
@@ -259,12 +259,12 @@ function UISlot(id, parent) {
             content: this.generateItemTooltip(item),
             theme: 'tooltipster-multi',
             contentAsHTML: true,
-            position: "top",
+            position: "right",
             onlyOne: true,
             interactiveTolerance: 10,
-            speed: 10,
-			offsetY: 30,
-			offsetX: -10
+            speed: 10
+			//offsetX: -10,
+			//offsetY: 5
         });
         this.mainDiv.append(this.iconDisplay);
         this.mainDiv.append(this.countDisplay);

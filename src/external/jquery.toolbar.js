@@ -233,9 +233,8 @@ if ( typeof Object.create !== 'function' ) {
     };
 
     $.fn.toolbar.options = {
-        content: '#myContent',
-        position: 'top',
-        hideOnClick: false,
+        position: 'bottom',
+        hideOnClick: true,
         zIndex: 120
     };
 

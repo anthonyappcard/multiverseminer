@@ -53,6 +53,10 @@ function UI() {
 
 		this.screenTravel = new UITravelScreen();
 		this.screenTravel.init();
+		
+        if (game.settings.travelActive) {
+			$('#depth').text(game.settings.travelDistanceElapsed + " / " + game.settings.travelDistanceRemaining);
+		}
 
 		// Todo: function to switch screens
 		if (game.currentPlanet) {
@@ -62,41 +66,10 @@ function UI() {
 			this.screenPlanet.hide();
 			this.screenTravel.show();
 		}
-		
-		// Overall Site Tooltips
-		$(".tooltip").tooltipster({
-			theme: 'tooltipster-multi',
-			contentAsHTML: true,
-			position: "bottom",
-			onlyOne: true,
-			arrowColor: 'orange',
-			interactiveTolerance: 10,
-			speed: 1,
-			offsetX: 0,
-			offsetY: 0
-		});
-		
-		// Tooltips for Settings Menu
-		$(".tooltip2").tooltipster({
-			theme: '.tooltipster-multi',
-			position: "left",
-			onlyOne: true,
-			timer: 1000,
-			interactiveTolerance: 10,
-			speed: 1,
-			offsetX: 335,
-			offsetY: -20
-		});
-		
-		$('#settings').toolbar({
-			content: '#user-toolbar-options',
-			position: "bottom",
-            autoClose: true
-		});
 	};
 
 	this.update = function(currentTime) {
-		$('#timeDisplayText').text(utils.getShortTimeDisplay(utils.getDayTimeInSeconds()));
+		//$('#timeDisplayText').text(utils.getShortTimeDisplay(utils.getDayTimeInSeconds()));
 		if (game.settings.travelActive) {
 			$('#depth').text(game.settings.travelDistanceElapsed + " / " + game.settings.travelDistanceRemaining);
 		}
@@ -121,10 +94,10 @@ function UI() {
 		}
 
 		// Check if we are starting a drag operation
-		if (this.pendingDragElement && currentTime - this.pendingDragElementTime > sys.dragDelay) {
-			this.enterDrag(this.pendingDragElement);
-			this.pendingDragElement = undefined;
-		}
+		//if (this.pendingDragElement && currentTime - this.pendingDragElementTime > sys.dragDelay) {
+		//	this.enterDrag(this.pendingDragElement);
+		//	this.pendingDragElement = undefined;
+		//}
 	};
 
 	this.onKeyPress = function(paremeter) {
