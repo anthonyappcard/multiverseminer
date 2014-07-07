@@ -136,6 +136,22 @@ function onDocumentReady() {
                                     }
                                 }
                             });
+							/* Needs 
+							menu.push({
+								title: "Upgrade",
+								action: function(event, ui){
+									switch (item.autoX){
+										case "mine":
+											if (game.currentPlanet.autoMineValue==0){
+												
+											} else {
+												alert("Already have a Mining Rig on this planet");
+											}
+											break;
+									}
+								}
+							});
+							*/
                         }
                         if (~e.target.id.indexOf('player') && parseInt(item.planetLimit, 10) > parseInt(game.currentPlanet.storage.getItemCount(item.id), 10)) {
                             menu.push({
