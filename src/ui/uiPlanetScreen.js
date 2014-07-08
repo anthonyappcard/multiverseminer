@@ -163,9 +163,9 @@ function UIPlanetScreen() {
 
                             // Hacky D:
                             if (name == 'Gems') {
-                                html += game.lootTableDictionary[index].entries[j];
+                                html += game.getItemName(game.lootTableDictionary[index].entries[j]);
                             } else {
-                                html += game.lootTableDictionary[index].entries[j][0];
+                                html += game.getItemName(game.lootTableDictionary[index].entries[j][0]);
                             }
                         }
                     }
