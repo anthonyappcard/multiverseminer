@@ -131,6 +131,47 @@ function UIPlanetScreen() {
 		// Activate some defaults
 		this.activatePlayerInventory();
 		this.activatePlayerGear();
+
+                var divs = {
+                    "Minerals": {
+                        "dictionaryIndex": [101],
+                        "divId": "planetMinerals"
+                    },
+                    "Gases": {
+                        "dictionaryIndex": [100],
+                        "divId": "planetGases"
+                    },
+                    "Scavenge": {
+                        "dictionaryIndex": [1000],
+                        "divId": "planetScavenge"
+                    },
+                    "Gems": {
+                        "dictionaryIndex": [102, 103],
+                        "divId": "planetGems"
+                    }
+                };
+
+                for (var name in divs) {
+                    var html = name + ': ';
+
+                    for (var i = 0; i < divs[name]['dictionaryIndex'].length; i++) {
+                        var index = divs[name]['dictionaryIndex'][i];
+                        for (var j = 0; j < game.lootTableDictionary[index].entries.length; j++) {
+                            if (j != 0 || i > 0) {
+                                html += ', ';
+                            }
+
+                            // Hacky D:
+                            if (name == 'Gems') {
+                                html += game.lootTableDictionary[index].entries[j];
+                            } else {
+                                html += game.lootTableDictionary[index].entries[j][0];
+                            }
+                        }
+                    }
+
+                    $('#' + divs[name]['divId']).html(html);
+                }
 	};
 
 	this.update = function(currentTime) {
@@ -202,6 +243,7 @@ function UIPlanetScreen() {
 
 		this.componentPlanetDisplay.update(currentTime);
 		this.componentQuestsPanel.update(currentTime);
+
 	};
 
 	this.show = function() {
