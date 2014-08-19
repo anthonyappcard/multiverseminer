@@ -21,3 +21,13 @@ src/data/actors.js
 multiverseminer.iml
 scripts
 
+# Python/flask stuff
+env/
+*.pyc
+*.swp
+
+
+# Minified text
+static/.webassets-cache/
+static/gen/
+
